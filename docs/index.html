@@ -9,7 +9,7 @@
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
   <link rel="stylesheet" href="style.css?v=13">
-  <script defer src="accuracy-plot.js?v=10"></script>
+  <script defer src="accuracy-plot.js?v=11"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -89,17 +89,17 @@
       <div class="scatter-controls">
         <fieldset id="plot-conditions">
           <legend>Reading conditions</legend>
-          <label><input type="checkbox" value="minimal" checked> Minimal clues</label>
+          <label><input type="checkbox" value="minimal" checked> Conlang score</label>
           <label><input type="checkbox" value="english" checked> English control</label>
         </fieldset>
         <div class="tier-tabs" role="tablist" aria-label="Story tier"><button type="button" role="tab" data-tier="two" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 1 · Two transfers</button><button type="button" role="tab" data-tier="four" aria-controls="tier-plot" aria-selected="true" tabindex="0">Tier 2 · Four transfers</button></div>
       </div>
       <figure class="chart scatter" id="tier-plot">
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
-        <div class="legend scatter-key"><span class="minimal"><i aria-hidden="true"></i>Minimal clues</span><span class="english"><i aria-hidden="true"></i>English control</span></div>
+        <div class="legend scatter-key"><span class="minimal"><i aria-hidden="true"></i>Conlang score</span><span class="english"><i aria-hidden="true"></i>English control</span></div>
         <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
         <p class="scatter-detail" aria-live="polite"></p>
-        <p class="chart-note">Horizontal spacing shows time between model releases. Select a point for its score.</p>
+        <p class="chart-note">The conlang score is the percentage correct with minimal clues. English is a separate control. Select a point for its score.</p>
         <p class="chart-note" id="scatter-note"></p>
         <label class="scale-check"><input type="checkbox" id="plot-scale"> Logarithmic scale</label>
       </figure>
