@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f8f9f6">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#15201d" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f8f9f6" media="(prefers-color-scheme: light)">
   <meta name="description" content="How well can two AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -44,7 +46,7 @@
       </div>
       <figure class="chart">
         <figcaption><h3>Accuracy by clue level</h3><p>Share of answers correct on 24 held-out stories</p></figcaption>
-        <div class="legend" aria-hidden="true"><span><i></i>GPT-4.1 mini</span><span><i></i>GPT-4o mini</span></div>
+        <div class="legend" aria-hidden="true"><span class="first"><i></i>GPT-4.1 mini</span><span class="second"><i></i>GPT-4o mini</span></div>
         <dl class="plot">
               <div class="chart-row ">
                 <dt>Minimal clues</dt>

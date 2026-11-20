@@ -11,10 +11,24 @@
   font-style: italic; font-weight: 400; font-display: swap;
 }
 :root {
+  color-scheme: only light;
   --paper: #f8f9f6; --ink: #182623; --muted: #4e605b; --line: #ced8d1;
   --green: #195b4d; --amber: #ad601d; --serif: "Instrument Serif", Georgia, serif;
+  --chart-green: #287e68;
+  --surface: #fff; --tint: #eaf0ea; --grid: #e4e9e5;
+  --button-ink: white; --button-hover: #104b3e; --sample-shadow: #dce6df;
   font: 100%/1.55 "DM Sans", Arial, sans-serif;
   color: var(--ink); background: var(--paper);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: only dark;
+    --paper: #15201d; --ink: #edf3ef; --muted: #bacbc3; --line: #43544c;
+    --green: #90daca; --amber: #f2ad6b;
+    --chart-green: var(--green);
+    --surface: #202d28; --tint: #273a32; --grid: #3d4e46;
+    --button-ink: #122b23; --button-hover: #b0ebd8; --sample-shadow: #293b33;
+  }
 }
 * { box-sizing: border-box }
 body { margin: 0 }
@@ -23,7 +37,7 @@ a { color: inherit; text-underline-offset: .25em }
 a:hover, summary:hover { text-decoration: underline }
 a:focus-visible, summary:focus-visible { outline: 3px solid #cc7a26; outline-offset: 4px }
 .skip, .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%) }
-.skip:focus { width: auto; height: auto; clip-path: none; background: white; padding: .6rem 1rem; z-index: 2 }
+.skip:focus { width: auto; height: auto; clip-path: none; background: var(--surface); padding: .6rem 1rem; z-index: 2 }
 .mast, footer { border-block-end: 1px solid var(--line) }
 .nav, .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem }
 .nav { min-height: 4.6rem }
@@ -47,9 +61,9 @@ h1 em, .results h2 em, .method h2 em { color: var(--green); font-weight: 400 }
 .intro { font-size: clamp(1.05rem,1.4vw,1.24rem); max-width: 40ch; margin: 1.35rem 0 1.8rem; color: var(--muted) }
 .links, .resources { gap: 1.25rem; flex-wrap: wrap }
 .button, .text-link { font-size: .95rem; font-weight: 650 }
-.button { display: inline-block; background: var(--green); color: white; padding: .7rem 1.12rem; border-radius: 4px; text-decoration: none }
-.button:hover { background: #104b3e; text-decoration: none }
-.sample { position: relative; border-radius: 8px; overflow: hidden; padding: clamp(1.5rem,3vw,2.65rem); background: #153e36; color: white; box-shadow: 7px 7px 0 #dce6df }
+.button { display: inline-block; background: var(--green); color: var(--button-ink); padding: .7rem 1.12rem; border-radius: 4px; text-decoration: none }
+.button:hover { background: var(--button-hover); text-decoration: none }
+.sample { position: relative; border-radius: 8px; overflow: hidden; padding: clamp(1.5rem,3vw,2.65rem); background: #153e36; color: white; box-shadow: 7px 7px 0 var(--sample-shadow) }
 .sample::after { content: ""; position: absolute; right: 1.65rem; top: 0; width: .9rem; height: 2rem; background: #e6b57a; clip-path: polygon(0 0,100% 0,100% 100%,50% 78%,0 100%) }
 .sample h2 { color: #c3dfd2; padding-right: 1rem }
 .lines { border-block: 1px solid #4a6a60; padding: 1.05rem 0 }
@@ -69,21 +83,26 @@ details p { color: #e4eee8; max-width: 42ch; margin-bottom: 0 }
 .scores div:nth-child(2) strong { color: var(--amber) }
 .scores strong span { font-size: .54em }
 .scores div > span, .caption, .chart-note { font-size: .875rem }
-.chart { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: clamp(1rem,2.6vw,2.3rem); --label: 7.7rem; --value: 3.9rem }
+.chart { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(1rem,2.6vw,2.3rem); --label: 7.7rem; --value: 3.9rem }
 h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .chart figcaption p, .chart-note { margin: .24rem 0 0; color: var(--muted) }
 .legend { flex-wrap: wrap; gap: .35rem 1.25rem; margin-block: 1.2rem .75rem; font-size: .9rem }
 .legend span { gap: .45rem }
-.legend i { width: .75rem; height: .75rem; background: var(--green) }
-.legend span:nth-child(2) i { background: var(--amber) }
+.chart .first { --series-fill: var(--chart-green); --series-radius: 1rem }
+.chart .second { --series-fill: var(--amber); --series-radius: 0 }
+/* Paint both sizes of mark identically, including in browsers that darken flat backgrounds. */
+.legend i, .track i {
+  background: var(--series-fill) linear-gradient(var(--series-fill), var(--series-fill));
+  border-radius: var(--series-radius);
+}
+.legend i { width: .75rem; height: .75rem }
 .plot, .plot dd { margin: 0 }
 .chart-row { display: grid; grid-template-columns: var(--label) minmax(0, 1fr); align-items: center }
 .chart-row dt { font-size: .94rem; font-weight: 600; padding-right: .4rem }
 .chart-row dd { padding-block: .42rem; position: relative }
-.chart-row dd::before { content: ""; position: absolute; inset: 0 var(--value) 0 0; background: repeating-linear-gradient(90deg,#e4e9e5 0 1px,transparent 1px 25%); border-right: 1px solid #e4e9e5 }
+.chart-row dd::before { content: ""; position: absolute; inset: 0 var(--value) 0 0; background: repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 25%); border-right: 1px solid var(--grid) }
 .series { display: grid; grid-template-columns: minmax(0,1fr) var(--value); align-items: center; position: relative }
-.track i { display: block; height: .55rem; background: var(--green) }
-.second .track i { background: var(--amber) }
+.track i { display: block; height: .55rem }
 .number { text-align: right; font-size: .875rem; font-variant-numeric: tabular-nums; font-weight: 550 }
 .control { border-block-start: 1px dashed var(--line); margin-top: .25rem }
 .axis { margin: 0 var(--value) 0 var(--label); color: var(--muted) }
@@ -95,7 +114,7 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .diagram figcaption { margin-bottom: 1rem }
 .diagram figcaption p, .settings { margin: .4rem 0 0; color: var(--muted); max-width: 80ch }
 .flow { --gap: 2.35rem; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--gap); margin: 0; padding: 0; list-style: none }
-.flow li, .inputs, .score-total { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 1.1rem 1.25rem }
+.flow li, .inputs, .score-total { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.1rem 1.25rem }
 .flow li { position: relative }
 .flow li + li::before, .score-total::before { content: "→"; position: absolute; width: var(--gap); left: calc(0px - var(--gap) - 1px); top: 50%; transform: translateY(-50%); text-align: center; font: 1.25rem/1 Arial,sans-serif; color: var(--green) }
 .flow p { margin: .35rem 0 0; color: var(--muted) }
@@ -106,7 +125,7 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .inputs dt, .inputs dd, .neighbors dt { font-weight: 650 }
 .inputs dd { margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums }
 .inputs small { display: block; color: var(--muted); font-size: .9rem; font-weight: 400 }
-.score-total { display: grid; align-content: center; position: relative; background: #eaf0ea; text-align: center }
+.score-total { display: grid; align-content: center; position: relative; background: var(--tint); text-align: center }
 .score-total strong { font: 400 clamp(3.2rem,6vw,5.5rem)/1.1 var(--serif); color: var(--green) }
 .control-note { margin: .75rem 0 1rem; color: var(--muted); max-width: 88ch }
 .control-note strong { color: var(--ink) }
@@ -114,7 +133,7 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .neighbors div { display: grid; grid-template-columns: minmax(8rem,1fr) 4fr; gap: .5rem 2rem; padding-block: 1rem }
 .neighbors dd { margin: 0; max-width: 80ch }
 .neighbors a { color: var(--green) }
-.finding { border-left: 3px solid var(--green); background: #eaf0ea; padding: 1rem 1.3rem; margin-top: 2rem }
+.finding { border-left: 3px solid var(--green); background: var(--tint); padding: 1rem 1.3rem; margin-top: 2rem }
 .finding p { margin: .25rem 0 0; max-width: 88ch }
 .reproduce { display: flex; justify-content: space-between; gap: 1.4rem; align-items: center }
 .reproduce h2 { font-size: clamp(2.3rem,3.3vw,3.3rem) }
@@ -147,6 +166,7 @@ footer { border-top: 1px solid var(--line); color: var(--muted) }
   .axis span:nth-child(even) { display: none }
 }
 @media(forced-colors: active) {
-  .track i,.legend i { background: CanvasText; forced-color-adjust: none }
-  .second .track i,.legend span:nth-child(2) i { background: Highlight; forced-color-adjust: none }
+  .chart .first { --series-fill: CanvasText }
+  .chart .second { --series-fill: Highlight }
+  .track i, .legend i { background: var(--series-fill); forced-color-adjust: none }
 }
