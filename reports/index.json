@@ -347,6 +347,102 @@
     },
     "independent_rerun_of": null
   },
+  "tier3deeperdev/gpt-6-luna-medium.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "48450099255aae9d6a249a47ae9506e702c0ea5f5842da4de427945206cf0a4e",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "temperature": null,
+      "max_completion_tokens": 8192,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 95.83333333333334,
+      "english": 91.66666666666666
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 83.33333333333334,
+      "english": 83.33333333333334
+    },
+    "usage": {
+      "input_tokens": 6325,
+      "output_tokens": 13278,
+      "reasoning_tokens": 12935,
+      "list_price_usd": 0.0072715,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
+  "tier3dev/gpt-6-luna-medium.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "9d8a22490eb0ed2c54bac44e5a514265c73f870b5a535f0ea77953191efc3f52",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "temperature": null,
+      "max_completion_tokens": 2048,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 56.25,
+      "english": 93.75
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 50.0,
+      "english": 83.33333333333334
+    },
+    "usage": {
+      "input_tokens": 5559,
+      "output_tokens": 15099,
+      "reasoning_tokens": 14709,
+      "list_price_usd": 0.0081054,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
+  "tier3longdev/gpt-6-luna-medium.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "a67d9c3b088f0c764a44b2fd9f003019ecf4d52c716a7ec517ee6f16cc1f1d75",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "temperature": null,
+      "max_completion_tokens": 4096,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 84.375,
+      "english": 96.875
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 75.0,
+      "english": 87.5
+    },
+    "usage": {
+      "input_tokens": 5292,
+      "output_tokens": 14299,
+      "reasoning_tokens": 13952,
+      "list_price_usd": 0.0076787,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
   "transfer4/gpt-4.1-mini-2025-04-14.json": {
     "status": "regraded",
     "scorer_version": "0.1.1",
