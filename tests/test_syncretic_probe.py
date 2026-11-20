@@ -40,6 +40,10 @@ class TestSyncreticProbe(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, 'exceed budget'):
                     run_case_probes()
                 network.assert_not_called()
+                (Path(directory) / 'run' / 'uncertain.pending').write_text('{}')
+                with self.assertRaisesRegex(ValueError, 'uncertain requests'):
+                    run_case_probes()
+                network.assert_not_called()
 
 
 if __name__ == '__main__':
