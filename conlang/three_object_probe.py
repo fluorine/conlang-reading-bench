@@ -7,7 +7,7 @@ OBJECTS = ("coin", "key", "book")
 CONTEXTS = ("giver", "recipient", "other")
 
 
-def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS):
+def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False):
     world = Random(world_seed)
     initial = dict(zip(objects, world.sample(PEOPLE, len(objects))))
     state = initial.copy()
@@ -20,8 +20,12 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS):
         state[obj] = recipient
     gold = state["coin"]
     rng = Random(language_seed)
-    suffixes = rng.sample([a + b for a in "ptkmns" for b in "aeiou"], len(objects) * 6)
     meanings = list(product(objects, CONTEXTS, ("giver", "recipient")))
+    suffix_count = len(meanings) // 2 if syncretism else len(meanings)
+    suffixes = rng.sample([a + b for a in "ptkmns" for b in "aeiou"], suffix_count)
+    if syncretism:
+        suffixes = [suffix for suffix in suffixes for _ in range(2)]
+        rng.shuffle(suffixes)
     markers = dict(zip(meanings, suffixes))
     roots = dict(zip((*objects, "holds"), rng.sample(
         [a + b for a in ("lu", "zo", "mi", "ve", "ka", "po") for b in ("ma", "to", "ki", "se")], len(objects) + 1)))
@@ -59,12 +63,13 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS):
             reference = "book" if obj == "key" else "key"
             context = "giver" if state[reference] == giver else "recipient" if state[reference] == recipient else "other"
             required = ((gm, (obj, context, "giver")), (rm, (obj, context, "recipient")))
-            updated = mapping.copy()
+            updated = {key: set(value) for key, value in mapping.items()}
             for marker, meaning in required:
-                if (marker in updated and updated[marker] != meaning
-                        or marker not in updated and meaning in updated.values()):
+                if (any(meaning in known for key, known in updated.items() if key != marker)
+                        or meaning not in updated.get(marker, set())
+                        and len(updated.get(marker, set())) >= (2 if syncretism else 1)):
                     break
-                updated[marker] = meaning
+                updated.setdefault(marker, set()).add(meaning)
             else:
                 next_state = state.copy()
                 next_state[obj] = recipient
@@ -100,11 +105,14 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS):
             + (f", {roots['cup']} = cup" if "cup" in objects else "")
             + ". Initial statements are holder, holds, object. "
             "Each later line is a transfer, with two marked names in either order. Each suffix "
-            "uniquely indicates the object transferred, the person's role, and whether the "
+            + ("may indicate " if syncretism else "uniquely indicates ")
+            + "the object transferred, the person's role, and whether the "
             "reference object is held by the giver, recipient, or someone else immediately before "
             "the transfer. The reference is the key, except when the key moves it is the book. "
-            f"Each of the {'eighteen' if len(objects) == 3 else str(len(objects) * 6)} object, context, and role combinations has a different suffix. "
-            "Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological.")
+            + ("Each suffix represents exactly two different object, context, and role combinations. "
+               "Each combination has exactly one suffix. " if syncretism else
+               f"Each of the {'eighteen' if len(objects) == 3 else str(len(objects) * 6)} object, context, and role combinations has a different suffix. ")
+            + "Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological.")
     initial_lines = [f"{person} {roots['holds']} {roots[obj]}" for obj, person in initial.items()]
     return "\n\n".join([instruction, clue, "Story:\n" + "\n".join(initial_lines + encoded),
                            question]), gold
