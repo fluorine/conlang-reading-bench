@@ -347,6 +347,70 @@
     },
     "independent_rerun_of": null
   },
+  "sixdev/gpt-6-luna-medium.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "032697344782e4ba2237479f9681fd5b55e5c3abac10e81f78b5e25f56be4668",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "temperature": null,
+      "max_completion_tokens": 4096,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 93.75,
+      "english": 100.0
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 87.5,
+      "english": 100
+    },
+    "usage": {
+      "input_tokens": 5431,
+      "output_tokens": 8839,
+      "reasoning_tokens": 8481,
+      "list_price_usd": 0.0049626,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
+  "sixlongdev/gpt-6-luna-medium.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "1343a4da7f2115f2e60be30ae723eb9a9739e348bc4a8807498699d659ca3f43",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "temperature": null,
+      "max_completion_tokens": 8192,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 100.0,
+      "english": 100.0
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 100,
+      "english": 100
+    },
+    "usage": {
+      "input_tokens": 8532,
+      "output_tokens": 16491,
+      "reasoning_tokens": 16031,
+      "list_price_usd": 0.0090987,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
   "tier3deeperdev/gpt-6-luna-medium.json": {
     "status": "regraded",
     "scorer_version": "0.1.1",
