@@ -21,3 +21,7 @@ Run python -m conlang verify-results to regrade the saved answers. The manifests
 Six-person stories increase the answer space to six names, so uniform guessing gives 16.67%. The same deterministic checker validates the intended answers. The eight-story 24-transfer development run scored 93.75% in the conlang and 100% in English. The eight-story 48-transfer development run scored 100% in both. Neither produced empty responses. Both used GPT-6 Luna with medium reasoning and 4,096 and 8,192 completion-token caps, respectively. They cost $0.00496 and $0.00910 at list price. These exploratory candidates remain far from the 25% target.
 
 A further six-story candidate with 96 transfers scored 100% in the conlang and 91.67% in English for Luna medium. It cost $0.00555. This remains a development run, and the 25% target is not met.
+
+## Alternating grammar candidates
+
+The six-person candidate supplies explicit rules whose word order and role suffix meanings reverse on alternating transfers. The 12-transfer development set scored 96.88% conlang and 100% English across eight stories. The 48-transfer set scored 93.75% conlang and 96.88% English across eight stories. Luna used medium reasoning with 4,096 and 8,192 completion-token caps. The runs cost $0.00711 and $0.01169 respectively. Neither candidate reached the low-score calibration target. The transformed text is independently decoded against the explicit grammar before admission.
