@@ -39,3 +39,7 @@ A 24-transfer candidate assigns each of six names four unique role-and-object en
 ## Historical questions with opaque names
 
 A 48-transfer development candidate combines individually irregular endings, invented names, and four questions about holders at different points within the story. The eight-story Luna medium run scored 100% conlang and 90.625% English, with no empty outputs, at $0.00715 list price. The target remains unmet and the English control fell below near-ceiling accuracy.
+
+## Matched grammar-feature experiment
+
+Six development stories were rendered in four matched versions: fused role-and-object endings, the same endings with a context-dependent internal vowel change, an irregular class for one name, and all three features combined. The English control used the same stories and questions. The complete examples and sound-change rule were supplied, and an independent decoder checked the answers. GPT-6 Luna at medium effort answered 24/24 questions in each grammar version and 24/24 in English. All 30 responses were complete. The five runs cost $0.00877 at list price. None entered the 25–50% target range, so no held-out suite was selected for this experiment. These scores do not establish performance for sparse or ambiguous clue settings.
