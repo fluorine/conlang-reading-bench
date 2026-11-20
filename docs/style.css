@@ -130,10 +130,23 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .scatter-model { position: absolute; top: calc(100% + .3rem); width: 100%; text-align: center; font-size: .8rem; padding-inline: .1rem }
 .scatter-point { position: absolute; left: var(--x,50%); bottom: var(--y); transform: translate(-50%,50%); width: 2rem; height: 1.65rem; cursor: pointer; border: 0; padding: 0; background: transparent; display: grid; place-items: center; color: var(--chart-green) }
 .scatter-point::before { content: ""; width: .82rem; height: .82rem; border-radius: 50%; background: currentColor; border: 1px solid var(--surface) }
+.scatter .english { color: var(--violet) }
+.scatter-key span[hidden] { display: none }
+.scatter-key .minimal i { background: var(--chart-green); border-radius: 50% }
+.scatter-key .english i, .scatter-point.english::before { background: var(--violet); border-radius: 2px }
+.scatter-key .english { color: var(--ink) }
+.paired .scatter-point { width: 1.4rem }
+.paired .minimal { --x: calc(50% - .7rem) }
+.paired .english { --x: calc(50% + .7rem) }
+.scatter-connector { position: absolute; left: 50%; width: 1px; background: var(--muted); pointer-events: none }
+.paired .scatter-point::after { content: ""; position: absolute; top: 50%; width: .7rem; border-top: 1px solid var(--muted); z-index: -1 }
+.paired .minimal::after { left: 50% }
+.paired .english::after { right: 50% }
 .scatter-point:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; z-index: 1 }
 .scatter-detail { min-height: 3em; margin: 0; color: var(--ink); font-weight: 600 }
 @media (forced-colors: active) {
-  .scatter-point::before { forced-color-adjust: none; background: LinkText; border-color: Canvas }
+  .scatter-point::before, .scatter-point.english::before, .scatter-key .minimal i, .scatter-key .english i { forced-color-adjust: none; background: LinkText; border-color: Canvas }
+  .scatter-connector { forced-color-adjust: none; background: CanvasText }
 }
 .diagram { margin: 2rem 0 0 }
 .diagram figcaption { margin-bottom: 1rem }

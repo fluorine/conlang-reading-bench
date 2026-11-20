@@ -40,12 +40,20 @@ const condition = document.querySelector("#plot-condition");
 const grid = plot.querySelector(".scatter-grid");
 const detail = plot.querySelector(".scatter-detail");
 const note = plot.querySelector("#scatter-note");
+const legend = plot.querySelector(".scatter-key");
+const conditionNames = { minimal: "Minimal clues", english: "English" };
 
 function render() {
   grid.replaceChildren();
   const isFour = tier.value === "four";
   const questionCount = isFour ? 192 : 96;
   const storyCount = questionCount / 4;
+  const both = condition.value === "both";
+  const selected = both ? Object.keys(conditionNames) : [condition.value];
+  grid.classList.toggle("paired", both);
+  for (const key of Object.keys(conditionNames)) {
+    legend.querySelector("." + key).hidden = !selected.includes(key);
+  }
   detail.textContent = "Select a point to see the exact score.";
   note.textContent = isFour
     ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap. Empty columns indicate no published run."
@@ -69,15 +77,25 @@ function render() {
     label.className = "scatter-model";
     label.textContent = shortNames[i];
     column.append(label);
-    const result = accuracy[tier.value][i]?.[condition.value];
-    if (result !== undefined) {
+    const scores = accuracy[tier.value][i];
+    if (scores && both) {
+      const connector = document.createElement("span");
+      connector.className = "scatter-connector";
+      connector.setAttribute("aria-hidden", "true");
+      connector.style.bottom = Math.min(scores.minimal, scores.english) + "%";
+      connector.style.height = Math.abs(scores.minimal - scores.english) + "%";
+      column.append(connector);
+    }
+    for (const key of selected) {
+      if (!scores) break;
+      const result = scores[key];
       const point = document.createElement("button");
       point.type = "button";
-      point.className = "scatter-point";
+      point.className = "scatter-point " + key;
       point.style.setProperty("--y", result + "%");
       const count = Math.round(result * questionCount / 100);
       const name = i === 3 ? model + " (low)" : model;
-      const message = `${name} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
+      const message = `${name} · ${conditionNames[key]} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
       point.setAttribute("aria-label", message);
       point.addEventListener("focus", () => { detail.textContent = message; });
       point.addEventListener("click", () => { detail.textContent = message; });

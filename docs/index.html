@@ -8,8 +8,8 @@
   <meta name="theme-color" content="#f8f9f6" media="(prefers-color-scheme: light)">
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
-  <link rel="stylesheet" href="style.css?v=6">
-  <script defer src="accuracy-plot.js?v=2"></script>
+  <link rel="stylesheet" href="style.css?v=7">
+  <script defer src="accuracy-plot.js?v=3"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -88,10 +88,11 @@
       <h2 id="accuracy-heading">Accuracy by <em>model release order.</em></h2>
       <div class="scatter-controls">
         <label>Story tier <select id="plot-tier"><option value="two">Tier 1 · Two transfers</option><option value="four">Tier 2 · Four transfers</option></select></label>
-        <label>Reading condition <select id="plot-condition"><option value="minimal">Minimal clues</option><option value="english">English</option></select></label>
+        <label>Reading condition <select id="plot-condition"><option value="both">Both conditions</option><option value="minimal">Minimal clues</option><option value="english">English</option></select></label>
       </div>
       <figure class="chart scatter">
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
+        <div class="legend scatter-key"><span class="minimal"><i aria-hidden="true"></i>Minimal clues</span><span class="english"><i aria-hidden="true"></i>English</span></div>
         <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
         <p class="scatter-detail" aria-live="polite"></p>
         <p class="chart-note">Models run left to right from oldest to newest. Spacing is equal. Select a point for its score.</p>
