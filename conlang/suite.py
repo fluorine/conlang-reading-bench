@@ -35,7 +35,7 @@ def write(path, value):
 
 
 def build(manifest):
-    if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4):
+    if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12):
         raise ValueError("unsupported protocol or transfer count")
     prompts, keys, rejected = {}, {}, []
     for index, (world, lex) in enumerate(manifest["pairs"]):
@@ -82,8 +82,8 @@ def load_suite(name):
 
 def sample_manifest(name, seed, count, length):
     """Balance person-name frequencies per question across both candidate forms."""
-    if count < 1 or length not in (2, 3, 4) or not name.isalnum():
-        raise ValueError("use a positive story count, alphanumeric name and 2, 3 or 4 transfers")
+    if count < 1 or length not in (2, 3, 4, 12) or not name.isalnum():
+        raise ValueError("use a positive story count, alphanumeric name and 2, 3, 4 or 12 transfers")
     rng = Random(seed)
     counts = Counter()
     used = set()
@@ -91,7 +91,7 @@ def sample_manifest(name, seed, count, length):
     for index in range(count):
         def answer_cells(world):
             cells = []
-            for size in ((4,) if length == 4 else (2, 3)):
+            for size in ((length,) if length >= 4 else (2, 3)):
                 initial, events = make_world(world, size, index % 3)
                 query, _ = questions(world + 1729, events)
                 cells.extend((size, slot, person)
@@ -104,5 +104,5 @@ def sample_manifest(name, seed, count, length):
         counts.update(answer_cells(selected))
         used.add(selected)
         pairs.append([selected, rng.randrange(2**31)])
-    conditions = ("minimal", "english") if length == 4 else CONDITIONS
+    conditions = ("minimal", "english") if length >= 4 else CONDITIONS
     return dict(name=name, version=VERSION, length=length, pairs=pairs, conditions=list(conditions))

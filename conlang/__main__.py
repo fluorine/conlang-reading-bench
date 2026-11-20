@@ -30,7 +30,7 @@ def main(argv=None):
     sample.add_argument("--name", required=True)
     sample.add_argument("--seed", required=True, type=int)
     sample.add_argument("--count", required=True, type=int)
-    sample.add_argument("--length", type=int, choices=(2, 3, 4), required=True)
+    sample.add_argument("--length", type=int, choices=(2, 3, 4, 12), required=True)
     sample.add_argument("--out", type=Path, required=True)
     gen = commands.add_parser("generate", help="export model prompts separately from evaluator data")
     gen.add_argument("--suite", default="smoke")

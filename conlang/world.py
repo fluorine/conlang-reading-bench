@@ -24,12 +24,12 @@ def make_world(seed, length, rotation):
     rng.shuffle(names)
     names = [PEOPLE[(PEOPLE.index(p) + rotation) % 3] for p in names]
     initial = dict(zip(OBJECTS, names))
-    if length == 4 and rng.randrange(2):
+    if length >= 4 and rng.randrange(2):
         initial = dict(reversed(list(initial.items())))
     state = initial.copy()
     events = []
     for step in range(length):
-        obj = rng.choice(OBJECTS) if length != 4 or step == 0 else next(
+        obj = rng.choice(OBJECTS) if length < 4 or step == 0 else next(
             item for item in OBJECTS if item != events[-1][0]
         )
         giver = state[obj]
@@ -52,6 +52,14 @@ def questions(seed, events=()):
             f"Who holds the {first} at the end?",
             f"Who holds the {second} at the end?",
         ]
+    if len(events) > 4:
+        past, anchor = events[-2][0], events[-1][0]
+        return (direct, past, first, second), [
+            f"Who received an object in transfer {direct + 1}?",
+            f"Who held the {past} immediately before the final transfer of the {anchor}?",
+            f"Who holds the {first} at the end?",
+            f"Who holds the {second} at the end?",
+        ]
     return (direct, past, first, second), [
         f"Who received an object in transfer {direct + 1}?",
         f"Who held the {past} immediately before transfer 2?",
@@ -63,7 +71,7 @@ def questions(seed, events=()):
 def answers(initial, events, query):
     direct, past, first, second = query
     states = simulate(initial, events)
-    before_anchor = 3 if len(events) == 4 else 1
+    before_anchor = len(events) - 1 if len(events) >= 4 else 1
     return (events[direct][2], states[before_anchor][past], states[-1][first], states[-1][second])
 
 
