@@ -38,8 +38,8 @@ const accuracy = {
   ]
 };
 
-const models = ["GPT-4o mini", "GPT-4.1 mini", "GPT-5.4 nano", "GPT-6 Luna"];
-const shortNames = ["4o mini", "4.1 mini", "5.4 nano", "Luna"];
+const models = ["GPT-4o mini (default)", "GPT-4.1 mini (default)", "GPT-5.4 nano (default)", "GPT-6 Luna (low)"];
+const shortNames = ["4o mini (default)", "4.1 mini (default)", "5.4 nano (default)", "Luna (low)"];
 const releaseDates = ["2024-07-18", "2025-04-14", "2026-03-17", "2026-09-22"];
 const releaseTimes = releaseDates.map(date => Date.parse(date));
 const dateLabel = new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" });
@@ -128,7 +128,7 @@ function render() {
       point.className = "scatter-point " + key;
       point.style.setProperty("--y", position(result) + "%");
       const count = Math.round(result * questionCount / 100);
-      const name = i === 3 ? model + " (low)" : model;
+      const name = model;
       const message = `${name} · ${releaseDates[i]} · ${conditionNames[key]} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
       point.setAttribute("aria-label", message);
       point.addEventListener("focus", () => { detail.textContent = message; });
