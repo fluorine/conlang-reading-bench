@@ -7,7 +7,7 @@ OBJECTS = ("coin", "key", "book")
 CONTEXTS = ("giver", "recipient", "other")
 
 
-def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False):
+def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False, revealed=0):
     world = Random(world_seed)
     initial = dict(zip(objects, world.sample(PEOPLE, len(objects))))
     state = initial.copy()
@@ -27,6 +27,14 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
         suffixes = [suffix for suffix in suffixes for _ in range(2)]
         rng.shuffle(suffixes)
     markers = dict(zip(meanings, suffixes))
+    if revealed and not syncretism:
+        raise ValueError('revealed meanings require syncretism')
+    distinct_suffixes = sorted(set(suffixes))
+    if not 0 <= revealed <= len(distinct_suffixes):
+        raise ValueError('invalid number of revealed suffixes')
+    revealed_suffixes = Random(language_seed ^ 0x51F).sample(distinct_suffixes, revealed)
+    known = {suffix: {meaning for meaning, marker in markers.items() if marker == suffix}
+             for suffix in revealed_suffixes}
     roots = dict(zip((*objects, "holds"), rng.sample(
         [a + b for a in ("lu", "zo", "mi", "ve", "ka", "po") for b in ("ma", "to", "ki", "se")], len(objects) + 1)))
     state = initial.copy()
@@ -74,7 +82,7 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
                 next_state = state.copy()
                 next_state[obj] = recipient
                 search(index + 1, next_state, updated)
-    search(0, initial, {})
+    search(0, initial, known)
     if outcomes != {gold}:
         raise ValueError("clues do not determine the answer")
     blind_states = {tuple(initial[obj] for obj in objects)}
@@ -113,6 +121,13 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
                "Each combination has exactly one suffix. " if syncretism else
                f"Each of the {'eighteen' if len(objects) == 3 else str(len(objects) * 6)} object, context, and role combinations has a different suffix. ")
             + "Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological.")
+    if known:
+        examples = []
+        for marker, marker_meanings in known.items():
+            options = ['/'.join(meaning) for meaning in sorted(marker_meanings)]
+            examples.append(f"-{marker}: " + ' or '.join(options))
+        clue += (' Known suffix meanings (object/reference holder/role): '
+                 + '; '.join(examples) + '.')
     initial_lines = [f"{person} {roots['holds']} {roots[obj]}" for obj, person in initial.items()]
     return "\n\n".join([instruction, clue, "Story:\n" + "\n".join(initial_lines + encoded),
                            question]), gold
