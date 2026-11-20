@@ -1,13 +1,21 @@
 """Offline, exact, per-question grading and paired uncertainty."""
 import json
 import random
+import re
 from statistics import mean
 
 from . import VERSION
 from .suite import TIERS, certified, digest
 
 
-def parse(raw):
+SCORER = "0.1.1"
+
+
+def parse(raw, *, strict=False):
+    if isinstance(raw, str) and not strict:
+        fence = re.fullmatch(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n```", raw.strip(), re.DOTALL | re.IGNORECASE)
+        if fence:
+            raw = fence.group(1)
     try:
         values = json.loads(raw)
     except (ValueError, TypeError):
@@ -17,7 +25,7 @@ def parse(raw):
     return [v.strip().casefold() if isinstance(v, str) else "" for v in values]
 
 
-def grade(manifest, bundle):
+def grade(manifest, bundle, *, strict=False):
     prompts, keys = certified(manifest)
     if bundle["version"] != VERSION or bundle["suite_hash"] != digest([manifest, prompts]):
         raise ValueError("protocol or suite hash mismatch")
@@ -35,7 +43,7 @@ def grade(manifest, bundle):
         else:
             if row["prompt_hash"] != digest(prompt) or not isinstance(row["raw"], str):
                 raise ValueError(f"invalid response for {item}")
-            predicted = parse(row["raw"])
+            predicted = parse(row["raw"], strict=strict)
         marks = [i < len(predicted) and predicted[i] == name.casefold()
                  for i, name in enumerate(keys[story]["answers"])]
         outcomes[item] = marks
@@ -43,7 +51,8 @@ def grade(manifest, bundle):
     accuracy = {t: 100 * mean(sum(m) / 4 for m in rows) for t, rows in by_tier.items()}
     solved = {t: 100 * mean(all(m) for m in rows) for t, rows in by_tier.items()}
     headline = mean(accuracy[t] for t in TIERS) if all(t in accuracy for t in TIERS) else None
-    return dict(version=VERSION, complete=not missing, missing=missing, accuracy=accuracy,
+    return dict(version=VERSION, scorer_version="0.1.0" if strict else SCORER,
+                complete=not missing, missing=missing, accuracy=accuracy,
                 all_four_correct=solved, headline=headline, outcomes=outcomes,
                 english_minus_grammar=accuracy["english"] - accuracy["grammar"]
                 if "grammar" in accuracy and "english" in accuracy else None)

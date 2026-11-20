@@ -1,0 +1,87 @@
+{
+  "selected_length": null,
+  "reference_length": 2,
+  "forms": {
+    "2": {
+      "passes": false,
+      "models": [
+        "gpt-4o-mini-2024-07-18",
+        "gpt-4.1-mini-2025-04-14"
+      ],
+      "headline": [
+        43.75,
+        72.22222222222221
+      ],
+      "english": [
+        66.66666666666666,
+        83.33333333333334
+      ],
+      "half_differences_pp": [
+        30.555555555555564,
+        26.388888888888893
+      ],
+      "questions_only": [
+        31.25,
+        35.41666666666667
+      ],
+      "last_person": 56.25
+    },
+    "3": {
+      "passes": false,
+      "models": [
+        "gpt-4o-mini-2024-07-18",
+        "gpt-4.1-mini-2025-04-14"
+      ],
+      "headline": [
+        45.833333333333336,
+        66.66666666666667
+      ],
+      "english": [
+        62.5,
+        81.25
+      ],
+      "half_differences_pp": [
+        30.555555555555564,
+        11.111111111111114
+      ],
+      "questions_only": [
+        33.33333333333333,
+        41.66666666666667
+      ],
+      "last_person": 25.0
+    }
+  },
+  "decision": "neither passed; shortest exploratory reference",
+  "strict_development": {
+    "dev2/gpt-4.1-mini-2025-04-14": {
+      "minimal": 62.5,
+      "glossary": 66.66666666666666,
+      "grammar": 87.5,
+      "english": 83.33333333333334
+    },
+    "dev2/gpt-4o-mini-2024-07-18": {
+      "minimal": 0.0,
+      "glossary": 0.0,
+      "grammar": 0.0,
+      "english": 0.0
+    },
+    "dev3/gpt-4.1-mini-2025-04-14": {
+      "minimal": 52.083333333333336,
+      "glossary": 60.416666666666664,
+      "grammar": 87.5,
+      "english": 81.25
+    },
+    "dev3/gpt-4o-mini-2024-07-18": {
+      "minimal": 0.0,
+      "glossary": 0.0,
+      "grammar": 0.0,
+      "english": 0.0
+    },
+    "questions/gpt-4.1-mini-2025-04-14": {
+      "questions": 35.41666666666667
+    },
+    "questions/gpt-4o-mini-2024-07-18": {
+      "questions": 0.0
+    }
+  }
+}
