@@ -1,0 +1,44 @@
+name: Benchmark verification
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  protocol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+  regrade:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
+          path: protocol
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          path: submission
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Regrade submissions using the base protocol
+        working-directory: protocol
+        shell: bash
+        run: |
+          if [[ -d ../submission/results ]]; then
+            python -m conlang verify-results --results ../submission/results --index "$RUNNER_TEMP/regraded.json"
+            echo "Regraded from raw responses with the base revision's generator and scorer." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('submission/results/*/*.json') != ''
+        with:
+          name: regraded-index
+          path: ${{ runner.temp }}/regraded.json

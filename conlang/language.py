@@ -48,14 +48,31 @@ def interpretations(lines, example, gives, query):
     """Use only visible tokens, the public rules, the glossary anchor and the example."""
     initial_lines = [line.split() for line in lines[:2]]
     transfer_lines = [line.split() for line in lines[2:]]
-    _, holds, coin = example.split()
-    objects = {row[2] for row in initial_lines}
-    if len(objects) != 2 or coin not in objects:
+    if len(initial_lines) != 2 or any(len(row) != 3 for row in initial_lines):
         return set()
-    vocab = {coin: "coin", next(iter(objects - {coin})): "key"}
+    if not transfer_lines or any(len(row) != 4 for row in transfer_lines):
+        return set()
+    holds = initial_lines[0][1]
+    objects = {row[2] for row in initial_lines}
+    if len(objects) != 2:
+        return set()
     if any(p not in PEOPLE or pred != holds for p, pred, _ in initial_lines):
         return set()
-    initial = {vocab[word]: p for p, _, word in initial_lines}
+    coins = objects
+    if example is not None:
+        name, predicate, coin = example.split()
+        if name != "Ivy" or predicate != holds or coin not in objects:
+            return set()
+        coins = {coin}
+    possible = set()
+    for coin in coins:
+        vocab = {coin: "coin", next(iter(objects - {coin})): "key"}
+        initial = {vocab[word]: p for p, _, word in initial_lines}
+        possible.update(decode_transfers(transfer_lines, gives, query, vocab, initial))
+    return possible
+
+
+def decode_transfers(transfer_lines, gives, query, vocab, initial):
     suffixes = sorted({w.split("-")[1] for row in transfer_lines for w in row if "-" in w})
     if len(suffixes) != 2:
         return set()

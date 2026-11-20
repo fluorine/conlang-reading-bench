@@ -45,6 +45,7 @@ def main(argv=None):
     p = commands.add_parser("score")
     p.add_argument("bundle", type=Path)
     p.add_argument("--out", type=Path)
+    p.add_argument("--strict", action="store_true", help="audit original bare-JSON scoring")
     p = commands.add_parser("compare")
     p.add_argument("first", type=Path)
     p.add_argument("second", type=Path)
@@ -52,6 +53,7 @@ def main(argv=None):
     p.add_argument("--results", type=Path, default=ROOT / "results")
     p = commands.add_parser("verify-results")
     p.add_argument("--results", type=Path, default=ROOT / "results")
+    p.add_argument("--index", type=Path, help="write the independently recomputed index")
 
     args = parser.parse_args(argv)
     if args.command == "generate":
@@ -61,6 +63,10 @@ def main(argv=None):
         write(args.out / "evaluator" / "keys.json", keys)
         write(args.out / "evaluator" / "rejected.json", rejected)
         write(args.out / "manifest.json", m)
+        template = new_bundle(m, prompts, dict(provider="replace", model="replace", effort="default",
+                                               temperature=None, max_completion_tokens=64))
+        template["responses"] = {i: dict(prompt_hash=digest(p), raw="") for i, p in prompts.items()}
+        write(args.out / "adapter-template.json", template)
         if rejected:
             raise ValueError(f"{len(rejected)} rejected pairs; see evaluator/rejected.json")
         print_json(dict(items=len(prompts), suite_hash=digest([m, prompts])))
@@ -84,7 +90,7 @@ def main(argv=None):
             print_json(run(m, conf, args.out, args.budget)["usage_summary"])
     elif args.command == "score":
         b = read(args.bundle)
-        report = grade(bundle_manifest(b), b)
+        report = grade(bundle_manifest(b), b, strict=args.strict)
         if args.out:
             write(args.out, report)
         else:
@@ -98,6 +104,7 @@ def main(argv=None):
         paths = sorted(args.results.glob("*/*.json"))
         if not paths:
             raise ValueError("no results found")
+        index = {}
         for path in paths:
             b = read(path)
             if path.parent.name != b["suite"]:
@@ -105,7 +112,20 @@ def main(argv=None):
             report = validate_bundle(b)
             if not report["complete"]:
                 raise ValueError(f"incomplete submission: {path.name}")
+            index[path.relative_to(args.results).as_posix()] = dict(
+                status="regraded", scorer_version=report["scorer_version"],
+                suite_hash=b["suite_hash"], settings=b["settings"], accuracy=report["accuracy"],
+                headline=report["headline"], all_four_correct=report["all_four_correct"],
+                usage=b.get("usage_summary"), independent_rerun_of=b.get("independent_rerun_of"))
             print(f"regraded {path.parent.name}/{path.name}  headline={report['headline']}")
+        for name, row in index.items():
+            previous = row["independent_rerun_of"]
+            if previous is not None and (previous not in index or previous == name
+                    or index[previous]["suite_hash"] != row["suite_hash"]
+                    or index[previous]["settings"] != row["settings"]):
+                raise ValueError(f"invalid independent rerun reference: {name}")
+        if args.index:
+            write(args.index, index)
 
 
 def validate_bundle(b):
@@ -114,6 +134,8 @@ def validate_bundle(b):
     for k in ("provider", "model", "effort", "temperature", "max_completion_tokens"):
         if k not in b["settings"]:
             raise ValueError(f"missing settings field: {k}")
+    if any(b["settings"][k] in ("", "replace", None) for k in ("model", "provider", "effort")):
+        raise ValueError("provide actual adapter settings")
     return grade(bundle_manifest(b), b)
 
 
