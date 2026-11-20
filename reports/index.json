@@ -251,6 +251,42 @@
     },
     "independent_rerun_of": null
   },
+  "holdout2/gpt-6-luna-low.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "fa2e0ed0c64ac087d7787e908e9b41d75a2964e173910d9c97277f10051a5664",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "temperature": null,
+      "max_completion_tokens": 512,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 98.95833333333334,
+      "glossary": 97.91666666666666,
+      "grammar": 98.95833333333334,
+      "english": 100.0
+    },
+    "headline": 98.61111111111111,
+    "all_four_correct": {
+      "minimal": 95.83333333333334,
+      "glossary": 95.83333333333334,
+      "grammar": 95.83333333333334,
+      "english": 100
+    },
+    "usage": {
+      "input_tokens": 18266,
+      "output_tokens": 17022,
+      "reasoning_tokens": 15284,
+      "list_price_usd": 0.0103376,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
   "questions/gpt-4.1-mini-2025-04-14.json": {
     "status": "regraded",
     "scorer_version": "0.1.1",

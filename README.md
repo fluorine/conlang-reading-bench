@@ -8,6 +8,8 @@ A small **conlang comprehension benchmark** for language models. Its research ta
 
 **Follow-up comparison.** GPT-5.4 nano scored **46.88%** on the same reference stories, with **62.50%** on the English control. [Paired comparisons and reproduction commands](reports/GPT-5.4-nano.md)
 
+**Luna follow-up.** GPT-6 Luna with low reasoning scored **98.61%** overall and **100.00%** on the English control. [Run settings and paired comparisons](reports/GPT-6-Luna-low.md)
+
 ## Replicate the benchmark
 
 ### Copy a prompt for your AI agent
