@@ -70,7 +70,8 @@ def main():
     for world, language in manifest['pairs']:
         for english in (False, True):
             prompt, gold = build(world, language, length=manifest['length'], english=english,
-                                 syncretism=True, revealed=manifest.get('revealed', 0))
+                                 syncretism=True, revealed=manifest.get('revealed', 0),
+                                 objects=tuple(manifest.get('objects', ('coin', 'key', 'book'))))
             path = directory / f'{world}-{language}-{int(english)}.json'
             if path.with_suffix('.pending').exists():
                 raise ValueError(f'uncertain request requires manual reconciliation: {path}')
