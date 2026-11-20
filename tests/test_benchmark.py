@@ -22,6 +22,22 @@ def fixture():
 
 
 class TestProtocol(unittest.TestCase):
+    def test_four_transfer_history_and_rendering(self):
+        manifest = load_suite("transfer4")
+        prompts, keys = certified(manifest)
+        self.assertEqual(len(prompts), 48)
+        self.assertEqual({next(iter(k["initial"])) for k in keys.values()}, {"coin", "key"})
+        for story, key in keys.items():
+            first, second, third, fourth = key["events"]
+            self.assertEqual(first[0], third[0])
+            self.assertEqual(second[0], fourth[0])
+            self.assertNotEqual(third[0], fourth[0])
+            self.assertEqual(key["answers"][1], third[2])
+            self.assertIn(f"before the {fourth[0]} was given away for the second time",
+                          prompts[story + "/minimal"])
+            self.assertEqual(prompts[story + "/minimal"].split("\n\n")[-1],
+                             prompts[story + "/english"].split("\n\n")[-1])
+
     def test_frozen_suites(self):
         for path in sorted((ROOT / "suites").glob("*.json")):
             m = read(path)
