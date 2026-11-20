@@ -36,7 +36,7 @@ const models = ["GPT-4o mini", "GPT-4.1 mini", "GPT-5.4 nano", "GPT-6 Luna"];
 const shortNames = ["4o mini", "4.1 mini", "5.4 nano", "Luna"];
 const plot = document.querySelector("#accuracy-overview");
 const tier = document.querySelector("#plot-tier");
-const condition = document.querySelector("#plot-condition");
+const conditions = document.querySelector("#plot-conditions");
 const grid = plot.querySelector(".scatter-grid");
 const detail = plot.querySelector(".scatter-detail");
 const note = plot.querySelector("#scatter-note");
@@ -48,13 +48,13 @@ function render() {
   const isFour = tier.value === "four";
   const questionCount = isFour ? 192 : 96;
   const storyCount = questionCount / 4;
-  const both = condition.value === "both";
-  const selected = both ? Object.keys(conditionNames) : [condition.value];
+  const selected = Array.from(conditions.querySelectorAll("input:checked"), input => input.value);
+  const both = selected.length === 2;
   grid.classList.toggle("paired", both);
   for (const key of Object.keys(conditionNames)) {
     legend.querySelector("." + key).hidden = !selected.includes(key);
   }
-  detail.textContent = "Select a point to see the exact score.";
+  detail.textContent = selected.length ? "Select a point to see the exact score." : "Choose a reading condition to show scores.";
   note.textContent = isFour
     ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap. Empty columns indicate no published run."
     : "24 reference stories per model. Luna used low reasoning with a 512-token cap.";
@@ -82,8 +82,8 @@ function render() {
       const connector = document.createElement("span");
       connector.className = "scatter-connector";
       connector.setAttribute("aria-hidden", "true");
-      connector.style.bottom = Math.min(scores.minimal, scores.english) + "%";
-      connector.style.height = Math.abs(scores.minimal - scores.english) + "%";
+      connector.style.bottom = (scores.minimal + scores.english) / 2 + "%";
+      connector.style.setProperty("--rise", (scores.minimal - scores.english) / 100);
       column.append(connector);
     }
     for (const key of selected) {
@@ -106,6 +106,6 @@ function render() {
 }
 
 tier.addEventListener("change", render);
-condition.addEventListener("change", render);
+conditions.addEventListener("change", render);
 render();
 plot.hidden = false;

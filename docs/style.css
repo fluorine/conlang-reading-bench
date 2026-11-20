@@ -121,9 +121,13 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .scatter-controls { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin-block: 1.4rem 1rem }
 .scatter-controls label { display: grid; gap: .3rem; font-weight: 600 }
 .scatter-controls select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: .45rem }
+.scatter-controls fieldset { min-width: 0; display: flex; flex-wrap: wrap; gap: 0 1rem; align-items: center; padding: 0; margin: 0; border: 0 }
+.scatter-controls legend { padding: 0; font-weight: 600 }
+.scatter-controls fieldset label { display: flex; align-items: center; min-height: 2.5rem; font-weight: 400 }
+.scatter-controls input { width: 1rem; height: 1rem; margin: 0; accent-color: var(--green) }
 .scatter { max-width: 54rem }
 .scatter figcaption { font-weight: 650 }
-.scatter-grid { height: 16rem; margin: 1.4rem 0 3.2rem 2.35rem; position: relative; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); border-left: 1px solid var(--line); border-bottom: 1px solid var(--line) }
+.scatter-grid { --plot-height: 16rem; --point-offset: .7rem; height: var(--plot-height); box-sizing: content-box; margin: 1.4rem 0 3.2rem 2.35rem; position: relative; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); border-left: 1px solid var(--line); border-bottom: 1px solid var(--line) }
 .scatter-tick { position: absolute; width: 100%; bottom: var(--y); border-bottom: 1px solid var(--grid) }
 .scatter-tick span { position: absolute; right: calc(100% + .35rem); transform: translateY(-50%); font-size: .78rem; color: var(--muted) }
 .scatter-column { position: relative; border-right: 1px solid var(--grid) }
@@ -136,12 +140,19 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .scatter-key .english i, .scatter-point.english::before { background: var(--violet); border-radius: 2px }
 .scatter-key .english { color: var(--ink) }
 .paired .scatter-point { width: 1.4rem }
-.paired .minimal { --x: calc(50% - .7rem) }
-.paired .english { --x: calc(50% + .7rem) }
-.scatter-connector { position: absolute; left: 50%; width: 1px; background: var(--muted); pointer-events: none }
-.paired .scatter-point::after { content: ""; position: absolute; top: 50%; width: .7rem; border-top: 1px solid var(--muted); z-index: -1 }
-.paired .minimal::after { left: 50% }
-.paired .english::after { right: 50% }
+.paired .minimal { --x: calc(50% - var(--point-offset)) }
+.paired .english { --x: calc(50% + var(--point-offset)) }
+.scatter-connector {
+  --dx: calc(2 * var(--point-offset));
+  --dy: calc(var(--rise) * var(--plot-height));
+  position: absolute;
+  left: 50%;
+  width: hypot(var(--dx), var(--dy));
+  height: 1px;
+  transform: translate(-50%, 50%) rotate(atan2(var(--dy), var(--dx)));
+  background: var(--muted);
+  pointer-events: none;
+}
 .scatter-point:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; z-index: 1 }
 .scatter-detail { min-height: 3em; margin: 0; color: var(--ink); font-weight: 600 }
 @media (forced-colors: active) {

@@ -8,8 +8,8 @@
   <meta name="theme-color" content="#f8f9f6" media="(prefers-color-scheme: light)">
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
-  <link rel="stylesheet" href="style.css?v=7">
-  <script defer src="accuracy-plot.js?v=3"></script>
+  <link rel="stylesheet" href="style.css?v=8">
+  <script defer src="accuracy-plot.js?v=4"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -88,7 +88,11 @@
       <h2 id="accuracy-heading">Accuracy by <em>model release order.</em></h2>
       <div class="scatter-controls">
         <label>Story tier <select id="plot-tier"><option value="two">Tier 1 · Two transfers</option><option value="four">Tier 2 · Four transfers</option></select></label>
-        <label>Reading condition <select id="plot-condition"><option value="both">Both conditions</option><option value="minimal">Minimal clues</option><option value="english">English</option></select></label>
+        <fieldset id="plot-conditions">
+          <legend>Reading conditions</legend>
+          <label><input type="checkbox" value="minimal" checked> Minimal clues</label>
+          <label><input type="checkbox" value="english" checked> English</label>
+        </fieldset>
       </div>
       <figure class="chart scatter">
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
