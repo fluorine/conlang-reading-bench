@@ -4,6 +4,8 @@ Goal: approximately 25% accuracy for GPT-6 Luna at medium reasoning, with an Eng
 
 The objective is to measure how models interpret unfamiliar vocabulary and grammatical rules and reason about the resulting story. For each candidate, the English control uses the same events and questions. Prefer candidates where Luna completes the English control near 100%, then examine how the conlang score changes as language features become more demanding. Report both scores and completion rates, and verify each question is determined by the supplied clues.
 
+Future calibration should vary linguistic difficulty as well as narrative length. Candidate features include fused markers that encode more than one grammatical property, productive sound changes inspired by language evolution, and explicitly evidenced irregular forms. Generate each form from a deterministic grammar and provide enough rules or examples to determine each scored answer. Verify possible interpretations against the clues before admitting an item. Compare changes on development stories with matched English controls, then freeze new held-out stories for the selected design. Report unresolved ambiguity, token exhaustion, and chance or shortcut baselines alongside accuracy.
+
 | Transfers | Stories | Completion cap | Conlang accuracy | English accuracy | Empty at cap | Estimated USD |
 |---|---:|---:|---:|---:|---:|---:|
 | 12 | 12 | 2048 | 56.25% | 93.75% | 4 | $0.00811 |
