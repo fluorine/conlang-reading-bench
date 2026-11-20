@@ -99,3 +99,60 @@ def verify_alternating(initial, lines, lang, gold):
         state[obj] = recipient
         events.append((obj, giver, recipient))
     return [events[0][2], events[-2][2], state["coin"], state["key"]] == gold
+
+
+def fusional(seed, events, initial_lines):
+    """Encode role and object together; Fay has separately evidenced irregular forms."""
+    rng = Random(seed ^ 0x5F123)
+    syllables = ("ak", "em", "ir", "os", "ul", "av", "en", "iz")
+    suffixes = rng.sample(syllables, 8)
+    meanings = [(role, obj) for obj in OBJECTS for role in ("giver", "recipient")]
+    regular = dict(zip(meanings, suffixes[:4]))
+    irregular = dict(zip(meanings, suffixes[4:]))
+    lines = list(initial_lines[:2])
+    for obj, giver, recipient in events:
+        first = irregular if giver == "Fay" else regular
+        second = irregular if recipient == "Fay" else regular
+        lines.append(f"{giver}-{first[('giver', obj)]} {recipient}-{second[('recipient', obj)]}")
+    examples = []
+    for obj in OBJECTS:
+        for giver, recipient in (("Ada", "Bo"), ("Fay", "Cy"), ("Cy", "Fay")):
+            a = irregular if giver == "Fay" else regular
+            b = irregular if recipient == "Fay" else regular
+            examples.append(f"{giver}-{a[('giver', obj)]} {recipient}-{b[('recipient', obj)]}"
+                            f" = {giver} gives the {obj} to {recipient}")
+    return lines, examples
+
+
+def verify_fusional(initial, lines, examples, gold):
+    """Derive marker meanings from visible examples and replay every event."""
+    marker_meanings = {}
+    for example in examples:
+        encoded, meaning = example.split(" = ")
+        words = meaning.split()
+        giver, recipient = encoded.split()
+        for marked, role in ((giver, "giver"), (recipient, "recipient")):
+            name, suffix = marked.split("-")
+            key = ("Fay" if name == "Fay" else "regular", suffix)
+            value = (role, words[3])
+            if key in marker_meanings and marker_meanings[key] != value:
+                return False
+            marker_meanings[key] = value
+    state = initial.copy()
+    events = []
+    for line in lines[2:]:
+        interpretations = []
+        for marked in line.split():
+            name, suffix = marked.split("-")
+            key = ("Fay" if name == "Fay" else "regular", suffix)
+            if name not in PEOPLE or key not in marker_meanings:
+                return False
+            interpretations.append((name, *marker_meanings[key]))
+        if len(interpretations) != 2:
+            return False
+        (giver, role_a, obj), (recipient, role_b, obj_b) = interpretations
+        if role_a != "giver" or role_b != "recipient" or obj != obj_b or state[obj] != giver or giver == recipient:
+            return False
+        state[obj] = recipient
+        events.append((obj, giver, recipient))
+    return [events[0][2], events[-2][2], state["coin"], state["key"]] == gold

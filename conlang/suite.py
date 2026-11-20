@@ -36,7 +36,7 @@ def write(path, value):
 
 
 def build(manifest):
-    if manifest.get("family") in ("six_people", "alternating_grammar"):
+    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional"):
         return build_six_people(manifest)
     if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12, 24, 48):
         raise ValueError("unsupported protocol or transfer count")
@@ -104,6 +104,16 @@ def build_six_people(manifest):
                     f"the giver has suffix -{gs} and the recipient has suffix -{rs}. "
                     "For even-numbered transfers, reverse that order and swap the two suffix meanings. "
                     "Only the current holder can give an object. Events are chronological.")
+        if manifest.get("family") == "fusional":
+            lines, examples = tier3.fusional(lex, events, lines)
+            if not tier3.verify_fusional(initial, lines, examples, gold):
+                raise ValueError("fusional grammar failed independent decoding")
+            clue = (f"Initially: {roots['holds']} means holds, {roots['coin']} means coin, "
+                    f"and {roots['key']} means key. Initial statements use holder, holds, object. "
+                    "The following examples show the language's complete transfer pattern; Fay's "
+                    "endings are irregular and all other names share the regular endings. "
+                    "Names are unchanged. Transfers are chronological and "
+                    "only the current holder gives an object.\nExamples:\n" + "\n".join(examples))
         english_lines = [f"{p} starts with the {o}." for o, p in initial.items()] + [
             f"{g} gives the {o} to {r}." for o,g,r in events]
         for condition in manifest["conditions"]:
