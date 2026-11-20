@@ -9,10 +9,10 @@ from .tier3 import OBJECTS
 ENTRY = re.compile(r"^(coin|key), other object held by (giver|recipient|other): giver -(\w+), recipient -(\w+)$")
 
 
-def build(world_seed, language_seed, examples=3, english=False):
+def build(world_seed, language_seed, examples=3, english=False, length=12):
     if english:
-        return full_case(world_seed, language_seed, english=True)
-    prompt, gold = full_case(world_seed, language_seed)
+        return full_case(world_seed, language_seed, length=length, english=True)
+    prompt, gold = full_case(world_seed, language_seed, length=length)
     instruction, clue, story, question = prompt.split("\n\n")
     clue_lines = clue.splitlines()
     entries = clue_lines[1:]
