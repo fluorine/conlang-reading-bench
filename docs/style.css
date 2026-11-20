@@ -82,9 +82,9 @@ details p { color: #e4eee8; max-width: 42ch; margin-bottom: 0 }
 .scores { display: flex; flex-wrap: wrap; gap: 1rem clamp(1rem,2vw,2rem); margin-top: 1.35rem }
 .scores div { display: grid }
 .scores strong { font: 400 clamp(2.3rem,3.5vw,3.6rem)/1.1 var(--serif); color: var(--green) }
-.scores div:nth-child(2) strong { color: var(--amber) }
-.scores div:nth-child(3) strong { color: var(--violet) }
-.scores div:nth-child(4) strong { color: var(--blue) }
+.scores .second strong { color: var(--amber) }
+.scores .third strong { color: var(--violet) }
+.scores .fourth strong { color: var(--blue) }
 .scores strong span { font-size: .54em }
 .scores div > span, .caption, .chart-note { font-size: .875rem }
 .chart { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(1rem,2.6vw,2.3rem); --label: 7.7rem; --value: 3.9rem }
