@@ -97,6 +97,7 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS):
     clue = (f"Initial words: {roots['holds']} = initially holds, {roots['coin']} = coin, "
             f"{roots['key']} = key, {roots['book']} = book"
             + (f", {roots['ring']} = ring" if "ring" in objects else "")
+            + (f", {roots['cup']} = cup" if "cup" in objects else "")
             + ". Initial statements are holder, holds, object. "
             "Each later line is a transfer, with two marked names in either order. Each suffix "
             "uniquely indicates the object transferred, the person's role, and whether the "
