@@ -2,6 +2,8 @@
 
 Goal: approximately 25% accuracy for GPT-6 Luna at medium reasoning, with an English control. The candidates use longer alternating transfer stories. These are development results.
 
+The objective is to measure how models interpret unfamiliar vocabulary and grammatical rules and reason about the resulting story. For each candidate, the English control uses the same events and questions. Prefer candidates where Luna completes the English control near 100%, then examine how the conlang score changes as language features become more demanding. Report both scores and completion rates, and verify each question is determined by the supplied clues.
+
 | Transfers | Stories | Completion cap | Conlang accuracy | English accuracy | Empty at cap | Estimated USD |
 |---|---:|---:|---:|---:|---:|---:|
 | 12 | 12 | 2048 | 56.25% | 93.75% | 4 | $0.00811 |
