@@ -41,7 +41,7 @@ const grid = plot.querySelector(".scatter-grid");
 const detail = plot.querySelector(".scatter-detail");
 const note = plot.querySelector("#scatter-note");
 const legend = plot.querySelector(".scatter-key");
-const conditionNames = { minimal: "Minimal clues", english: "English" };
+const conditionNames = { minimal: "Minimal clues", english: "English control" };
 
 function render() {
   grid.replaceChildren();

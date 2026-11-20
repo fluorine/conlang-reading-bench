@@ -9,7 +9,7 @@
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
   <link rel="stylesheet" href="style.css?v=8">
-  <script defer src="accuracy-plot.js?v=4"></script>
+  <script defer src="accuracy-plot.js?v=5"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -91,12 +91,12 @@
         <fieldset id="plot-conditions">
           <legend>Reading conditions</legend>
           <label><input type="checkbox" value="minimal" checked> Minimal clues</label>
-          <label><input type="checkbox" value="english" checked> English</label>
+          <label><input type="checkbox" value="english" checked> English control</label>
         </fieldset>
       </div>
       <figure class="chart scatter">
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
-        <div class="legend scatter-key"><span class="minimal"><i aria-hidden="true"></i>Minimal clues</span><span class="english"><i aria-hidden="true"></i>English</span></div>
+        <div class="legend scatter-key"><span class="minimal"><i aria-hidden="true"></i>Minimal clues</span><span class="english"><i aria-hidden="true"></i>English control</span></div>
         <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
         <p class="scatter-detail" aria-live="polite"></p>
         <p class="chart-note">Models run left to right from oldest to newest. Spacing is equal. Select a point for its score.</p>
