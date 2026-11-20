@@ -13,3 +13,7 @@ None of these candidates achieved the 25% target. The candidates use different s
 The existing verifier checks whether all allowed interpretations give the same answers. The generator retains the two-object, three-person task, and every story alternates the objects. The three possible answer names give a uniform-guess baseline of 33.33%, so a 25% accuracy target is below that baseline. A future candidate should use a larger answer space and a preregistered held-out suite to make 25% an informative target.
 
 Run python -m conlang verify-results to regrade the saved answers. The manifests and prompts were frozen on main before each run.
+
+## Six-person candidates
+
+Six-person stories increase the answer space to six names, so uniform guessing gives 16.67%. The same deterministic checker validates the intended answers. The eight-story 24-transfer development run scored 93.75% in the conlang and 100% in English. The eight-story 48-transfer development run scored 100% in both. Neither produced empty responses. Both used GPT-6 Luna with medium reasoning and 4,096 and 8,192 completion-token caps, respectively. They cost $0.00496 and $0.00910 at list price. These exploratory candidates remain far from the 25% target.
