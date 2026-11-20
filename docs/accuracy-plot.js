@@ -18,28 +18,16 @@ const accuracy = {
       "english": 100
     }
   ],
-  "original": [
+  "four": [
     null,
     {
-      "minimal": 35.41666666666667,
-      "english": 71.875
+      "minimal": 100 * 76 / 192,
+      "english": 100 * 143 / 192
     },
     null,
     {
       "minimal": 100,
-      "english": 98.95833333333334
-    }
-  ],
-  "fresh": [
-    null,
-    {
-      "minimal": 43.75,
-      "english": 77.08333333333334
-    },
-    null,
-    {
-      "minimal": 100,
-      "english": 100
+      "english": 100 * 191 / 192
     }
   ]
 };
@@ -56,11 +44,11 @@ const note = plot.querySelector("#scatter-note");
 function render() {
   grid.replaceChildren();
   const isFour = tier.value === "four";
-  const sets = isFour ? [["original", "Original stories"], ["fresh", "Fresh stories"]]
-                      : [["two", "Reference stories"]];
+  const questionCount = isFour ? 192 : 96;
+  const storyCount = questionCount / 4;
   detail.textContent = "Select a point to see the exact score.";
   note.textContent = isFour
-    ? "Circles show original stories. Squares show fresh stories. Luna used low reasoning with a 2,048-token cap. Empty columns indicate no published run."
+    ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap. Empty columns indicate no published run."
     : "24 reference stories per model. Luna used low reasoning with a 512-token cap.";
 
   for (const value of [0, 25, 50, 75, 100]) {
@@ -81,22 +69,20 @@ function render() {
     label.className = "scatter-model";
     label.textContent = shortNames[i];
     column.append(label);
-    sets.forEach(([key, title], j) => {
-      const result = accuracy[key][i]?.[condition.value];
-      if (result === undefined) return;
+    const result = accuracy[tier.value][i]?.[condition.value];
+    if (result !== undefined) {
       const point = document.createElement("button");
       point.type = "button";
-      point.className = key === "fresh" ? "scatter-point fresh" : "scatter-point";
+      point.className = "scatter-point";
       point.style.setProperty("--y", result + "%");
-      if (isFour) point.style.setProperty("--x", j === 0 ? "30%" : "70%");
-      const count = Math.round(result * 96 / 100);
+      const count = Math.round(result * questionCount / 100);
       const name = i === 3 ? model + " (low)" : model;
-      const message = `${name} · ${title} · ${(count / 96 * 100 + 1e-10).toFixed(2)}% (${count}/96)`;
+      const message = `${name} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
       point.setAttribute("aria-label", message);
       point.addEventListener("focus", () => { detail.textContent = message; });
       point.addEventListener("click", () => { detail.textContent = message; });
       column.append(point);
-    });
+    }
     grid.append(column);
   });
 }

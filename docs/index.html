@@ -9,7 +9,7 @@
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
   <link rel="stylesheet" href="style.css?v=6">
-  <script defer src="accuracy-plot.js"></script>
+  <script defer src="accuracy-plot.js?v=2"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -99,18 +99,12 @@
       </figure>
     </section>
     <section class="method" id="four-transfers" aria-labelledby="four-transfers-heading">
-      <h2 id="four-transfers-heading">Can Luna track <em>four transfers?</em></h2>
+      <h2 id="four-transfers-heading">Tier 2 · <em>Four transfers.</em></h2>
       <p class="settings">The coin and key change hands in alternating events. One question asks who held an object when the other was given away for the second time.</p>
-      <div class="scores">
-        <div><strong>85.42<span>%</span></strong><span>Minimal clues · 82 of 96</span></div>
-        <div><strong>100.00<span>%</span></strong><span>English · 96 of 96</span></div>
-      </div>
-      <p class="caption">GPT-6 Luna (low) on 24 fresh stories. The English control uses the same stories and questions.</p>
-      <p class="settings">Three minimal-clue requests exhausted the 512-token cap before returning answers. Luna answered 82 of 84 questions correctly on the other 21 stories.</p>
-      <p class="settings"><strong>Original stories</strong> &nbsp; Luna at 2,048 tokens scored 100.00% with minimal clues and 98.96% in English. GPT-4.1 mini scored 35.42% and 71.88%.</p>
-      <p class="settings"><strong>Fresh stories</strong> &nbsp; Luna at 2,048 tokens scored 100.00% with minimal clues and 100.00% in English. GPT-4.1 mini scored 43.75% and 77.08%.</p>
-      <p><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FOUR-TRANSFERS-FOLLOWUP.md">See completion, token costs, and the shortcut baseline</a></p>
-      <a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FOUR-TRANSFERS.md">See the results by question type</a>
+      <p class="settings">Each model was scored on 192 questions per condition across the same 48 stories.</p>
+      <p><strong>GPT-4.1 mini</strong> scored 39.58% with minimal clues and 74.48% in English.</p>
+      <p><strong>GPT-6 Luna (low)</strong> at 2,048 tokens scored 100% with minimal clues and 99.48% in English.</p>
+      <p><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FOUR-TRANSFERS-FOLLOWUP.md">See combined scores, run details, and the token-cap comparison</a></p>
     </section>
     <section class="method" id="method" aria-labelledby="method-heading">
       <p class="eyebrow"><span class="rule"></span> The method</p>

@@ -1,5 +1,18 @@
 # Four-transfer follow-up
 
+## Combined Tier 2 results
+
+Tier 2 combines all 48 stories for each model configuration that ran both sets. The totals below add correct answers across the two sets and divide by 192 questions per condition.
+
+| Configuration | Minimal clues | English |
+|---|---:|---:|
+| GPT-4.1 mini, 64 tokens | 76/192 (39.58%) | 143/192 (74.48%) |
+| GPT-6 Luna low, 2,048 tokens | 192/192 (100%) | 191/192 (99.48%) |
+
+## Run details
+
+The 512-token Luna run covers the first 24 stories and serves as a token-cap comparison.
+
 Luna's minimal-clue accuracy on the original stories was **85.42%** with the 512-token cap and **100.00%** with the 2,048-token cap. GPT-4.1 mini scored **35.42%** on those prompts. On fresh stories, Luna scored **100.00%** and GPT-4.1 mini scored **43.75%** with minimal clues.
 
 The two suites each pair 24 minimal-clue prompts with 24 English prompts. The fresh suite samples new stories and languages from the same generator. The English version uses the same four questions. All Luna runs used low reasoning with the cap shown below. GPT-4.1 mini used its earlier temperature-zero configuration. The token caps refer to completions and include reasoning tokens where the model uses them.
