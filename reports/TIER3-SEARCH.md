@@ -26,6 +26,7 @@ The [raw response archive](tier3-search-responses.json) records prompts, model-r
 | Shared endings, one disclosed, 18 transfers | 6/8 | 8/8 |
 | Shared endings, one disclosed, 24 transfers | 4/8 | 8/8 |
 | Shared endings, five objects, one disclosed, 18 transfers | 3/8 | 8/8 |
+| Shared endings, five objects, five disclosed, 18 transfers | 7/8 | 8/8 |
 
 The 18-transfer shared-ending run with none disclosed included two empty responses at the output cap; its 1/8 accuracy combines those failures with wrong answers. Its score should not be interpreted as a pure measure of comprehension. Increasing or decreasing the number of transfers is not necessarily monotonic in difficulty. All development cases were selected for formal answer uniqueness; the three- and higher-object probes additionally reject stories whose answer is determined after erasing all suffixes.
 
@@ -41,9 +42,11 @@ On these same fresh stories, the last-name heuristic scores **6/24 (25%)**, the 
 
 The 48 completed requests used approximately **$0.1200** at the stated rates. One additional request returned HTTP 520 without a usable response; the cause and any charge are unknown. Its retry is included among the 48 completed responses. The raw archive separately preserves that failed attempt and a **$0.00834** maximum-cost reservation, so $0.1200 is observed-usage valuation rather than a complete verified bill.
 
+The three-object holdout manifest was committed at `6a23c2b`; the initial requests used runner revision `1d7b1f9`, with the failed request and remaining calls resumed using `b20ca64`. The change between these runner revisions added explicit recovery of uncertain attempts; it did not change the generated prompts.
+
 ## Five-object development candidate
 
-The five-object variant scored **3/8 (37.5%)** on the conlang and **8/8** on its English control, with no completion-limit failures. A uniform random choice among suffix-blind possible holders has **17.9% expected accuracy**; the last-name heuristic scored **2/8**, and the alphabetical suffix-blind heuristic scored **1/8**. This small adaptive-development sample is not a calibrated score. A separately frozen 24-story evaluation is in progress, with an expected suffix-blind random baseline of **18.8%**. The expanded language also increases the number of distinct marker meanings, not just story length.
+The five-object variant scored **3/8 (37.5%)** on the conlang and **8/8** on its English control, with no completion-limit failures. A uniform random choice among suffix-blind possible holders has **17.9% expected accuracy**; the last-name heuristic scored **2/8**, and the alphabetical suffix-blind heuristic scored **1/8**. With five endings disclosed, another sample scored 7/8 with 8/8 English; because the stories differ, this is not a paired estimate of the effect of disclosing more grammar. These small adaptive-development samples are not calibrated scores. A separately frozen 24-story evaluation of the one-disclosure version is in progress, with an expected suffix-blind random baseline of **18.8%**. The expanded language also increases the number of distinct marker meanings, not just story length.
 
 ## How the shared-ending probe works
 
