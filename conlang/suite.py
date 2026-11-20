@@ -36,7 +36,7 @@ def write(path, value):
 
 
 def build(manifest):
-    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional", "irregular_forms"):
+    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional", "irregular_forms", "opaque_names"):
         return build_six_people(manifest)
     if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12, 24, 48):
         raise ValueError("unsupported protocol or transfer count")
@@ -114,7 +114,7 @@ def build_six_people(manifest):
                     "endings are irregular and all other names share the regular endings. "
                     "Names are unchanged. Transfers are chronological and "
                     "only the current holder gives an object.\nExamples:\n" + "\n".join(examples))
-        if manifest.get("family") == "irregular_forms":
+        if manifest.get("family") in ("irregular_forms", "opaque_names"):
             lines, examples = tier3.irregular_forms(lex, events, lines)
             if not tier3.verify_irregular(initial, lines, examples, gold):
                 raise ValueError("irregular grammar failed independent decoding")
@@ -124,6 +124,28 @@ def build_six_people(manifest):
                     "the role and object. Each transfer has two marked names in giver, recipient "
                     "order. Only the current holder can give. All endings are shown below.\n"
                     "Examples:\n" + "\n".join(examples))
+            if manifest.get("family") == "opaque_names":
+                import re
+                from .language import WORDS
+                rng = Random(lex ^ 0xA142)
+                tokens = rng.sample([word for word in WORDS if word not in roots.values()], len(tier3.PEOPLE))
+                mapping = dict(zip(tier3.PEOPLE, tokens))
+                pattern = re.compile(r"\b(?:" + "|".join(tier3.PEOPLE) + r")\b")
+                def encode(text):
+                    return pattern.sub(lambda match: mapping[match.group()], text)
+                lines = [encode(line) for line in lines]
+                encoded_examples = []
+                for example in examples:
+                    form, meaning = example.split(" = ")
+                    encoded_examples.append(encode(form) + " = " + meaning)
+                dictionary = ", ".join(f"{word} = {name}" for name, word in mapping.items())
+                clue = (f"Names: {dictionary}. Initially: {roots['holds']} means holds, "
+                        f"{roots['coin']} means coin, and {roots['key']} means key. "
+                        "Initial statements use holder, holds, object. In transfers, each person "
+                        "has their own irregular endings identifying their role and the object. "
+                        "Each transfer has two marked names in giver, recipient order. Only the "
+                        "current holder can give. All endings are shown below.\nExamples:\n"
+                        + "\n".join(encoded_examples))
         english_lines = [f"{p} starts with the {o}." for o, p in initial.items()] + [
             f"{g} gives the {o} to {r}." for o,g,r in events]
         for condition in manifest["conditions"]:
