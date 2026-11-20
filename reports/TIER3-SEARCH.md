@@ -25,6 +25,7 @@ The [raw response archive](tier3-search-responses.json) records prompts, model-r
 | Shared endings, three disclosed, 18 transfers | 6/8 | 8/8 |
 | Shared endings, one disclosed, 18 transfers | 6/8 | 8/8 |
 | Shared endings, one disclosed, 24 transfers | 4/8 | 8/8 |
+| Shared endings, five objects, one disclosed, 18 transfers | 3/8 | 8/8 |
 
 The 18-transfer shared-ending run with none disclosed included two empty responses at the output cap; its 1/8 accuracy combines those failures with wrong answers. Its score should not be interpreted as a pure measure of comprehension. Increasing or decreasing the number of transfers is not necessarily monotonic in difficulty. All development cases were selected for formal answer uniqueness; the three- and higher-object probes additionally reject stories whose answer is determined after erasing all suffixes.
 
@@ -40,9 +41,15 @@ On these same fresh stories, the last-name heuristic scores **6/24 (25%)**, the 
 
 The 48 completed requests used approximately **$0.1200** at the stated rates. One additional request returned HTTP 520 without a usable response; the cause and any charge are unknown. Its retry is included among the 48 completed responses. The raw archive separately preserves that failed attempt and a **$0.00834** maximum-cost reservation, so $0.1200 is observed-usage valuation rather than a complete verified bill.
 
+## Five-object development candidate
+
+The five-object variant scored **3/8 (37.5%)** on the conlang and **8/8** on its English control, with no completion-limit failures. A uniform random choice among suffix-blind possible holders has **17.9% expected accuracy**; the last-name heuristic scored **2/8**, and the alphabetical suffix-blind heuristic scored **1/8**. This small adaptive-development sample is not a calibrated score. A separately frozen 24-story evaluation is in progress, with an expected suffix-blind random baseline of **18.8%**. The expanded language also increases the number of distinct marker meanings, not just story length.
+
 ## How the shared-ending probe works
 
 Three objects start with known holders. Each later sentence records a legal transfer using two participant names with artificial endings in arbitrary order. Each ending represents exactly two combinations of the moved object, the participant's role, and who holds a reference object immediately beforehand. One ending and both its meanings are disclosed in the selected candidate; the other meanings must be inferred from the story. The final question asks who holds the coin.
+
+The five-object variant applies the same rules to five tracked objects; the key remains the reference except when the key itself moves, when the book is used. Its complete set of possible object, context and role meanings is larger.
 
 The generator tracks the actual events, then independently enumerates legal histories and marker assignments consistent with the visible information. It rejects a story if the possible final answers differ or the search exceeds its limit. A separate check erases all endings and rejects stories whose answer remains uniquely determined. This is a finite formal guarantee under the specified rules, not a guarantee that the artificial grammar is natural or that humans find the instructions easy to understand. The meanings were designed abstractly; no claim is made that they are attested or unattested in natural languages.
 
