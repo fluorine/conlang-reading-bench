@@ -1,9 +1,12 @@
 """Rebuild and compare matched five-object research responses offline."""
 import json
+import hashlib
+import math
 import random
 from pathlib import Path
 
 from conlang.scoring import parse
+from conlang.runner import price, settings
 from conlang.three_object_probe import build
 from conlang.verify_tier3_search import suffix_blind_answers
 
@@ -28,7 +31,16 @@ def main():
         seen_pairs.update(pairs)
         outcomes = {}
         for model, identifier in CONFIGS.items():
-            rows = archive['runs'][f'{model}-{suite}']['responses']
+            bundle = archive['runs'][f'{model}-{suite}']
+            rows = bundle['responses']
+            metadata = bundle['metadata']
+            fingerprint = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
+            expected_rates = [0.1, 0.5] if model == 'luna' else [1.0, 5.0]
+            if (metadata.get('manifest_sha256') != fingerprint or metadata.get('model') != identifier
+                    or metadata.get('effort') != 'medium' or metadata.get('max_output') != 16384
+                    or metadata.get('rates') != expected_rates):
+                raise ValueError(f'{model}-{suite}: manifest or run metadata mismatch')
+            conf = settings(identifier, 'medium', 16384, expected_rates)
             expected = {(world, language, english) for world, language in pairs for english in (False, True)}
             actual = {(row['world'], row['language'], row['english']) for row in rows}
             if actual != expected or len(rows) != len(expected):
@@ -43,6 +55,10 @@ def main():
                 if (row.get('requested_model') != identifier or row.get('effort') != 'medium'
                         or row.get('max_output') != 16384):
                     raise ValueError(f'{model}-{suite}: unexpected configuration')
+                usage = row['usage']
+                expected_cost = price(conf, usage['prompt_tokens'], usage['completion_tokens'])
+                if not math.isclose(row['cost'], expected_cost, abs_tol=1e-10):
+                    raise ValueError(f'{model}-{suite}: token cost mismatch')
                 outcomes[(model, row['world'], row['language'], row['english'])] = row['correct']
             print(f'{model}-{suite}:', *(f'{sum(row["correct"] for row in rows if row["english"] == english)}/{len(pairs)}' for english in (False, True)))
             print(f'  capped: {sum(row.get("finish_reason") == "length" for row in rows)}; '
