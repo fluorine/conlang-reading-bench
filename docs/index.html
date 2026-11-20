@@ -73,13 +73,37 @@
     </section>
     <section class="method" id="method" aria-labelledby="method-heading">
       <p class="eyebrow"><span class="rule"></span> The method</p>
-      <h2 id="method-heading">One story, <em>four ways to read it.</em></h2>
-      <div class="columns">
-        <div><h3>Follow the objects</h3><p>Three people exchange two objects in two transfers. Four questions check who received an object, who held it earlier, and who holds each object at the end. A simulator records every change and supplies the answer key.</p></div>
-        <div><h3>Change the clues</h3><p>Each story gets invented words, word order, and word endings. Minimal clues give one word meaning and an example. A glossary adds every word meaning. Full grammar explains word order and who gives and receives. An English version checks ordinary story tracking.</p></div>
-        <div><h3>Compare fairly</h3><p>Both models see identical stories and questions, with a fresh conversation for each condition. The pilot used GPT-4.1 mini (April 2025) and GPT-4o mini (July 2024) at default effort, temperature zero, and a 64-token answer limit.</p></div>
-      </div>
+      <h2 id="method-heading">From a story <em>to a score.</em></h2>
+      <figure class="diagram">
+        <figcaption><h3>How a story is made</h3></figcaption>
+        <ol class="flow" role="list">
+          <li><strong>Simulate the handoffs</strong><p>In the example above, Ada gives the key to Bo, then Bo gives it to Cy. The simulator records the holder after each handoff.</p></li>
+          <li><strong>Invent the language</strong><p>A separate seed picks words, word order, and endings. “Bo gives the key to Cy” becomes <i lang="art">Bo-ak kato Cy-es poma</i>.</p></li>
+          <li><strong>Check the clues</strong><p>A checker tries every reading allowed by the clues. The story qualifies only if all readings agree with the simulator on all four answers.</p></li>
+        </ol>
+      </figure>
+      <figure class="diagram">
+        <figcaption><h3>How GPT-4.1 mini earned 65.63%</h3><p>Each clue level gets a fresh conversation. The model answers four questions per story, and the scorer checks each name against the recorded answer.</p></figcaption>
+        <div class="score-map">
+          <dl class="inputs">
+            <div><dt>Minimal clues <small>One word meaning and an example</small></dt><dd>47 / 96</dd></div>
+            <div><dt>Glossary <small>Add every word meaning</small></dt><dd>67 / 96</dd></div>
+            <div><dt>Full grammar <small>Add word order and role endings</small></dt><dd>75 / 96</dd></div>
+          </dl>
+          <div class="score-total"><span>Three equally weighted levels</span><strong>65.63%</strong><span>189 of 288 answers correct</span></div>
+        </div>
+        <p class="control-note"><strong>English control</strong> &nbsp;81 of 96 correct (84.38%). This separate score shows how well the model follows the same events in English.</p>
+      </figure>
+      <p class="settings">Both models saw the same stories. The pilot used GPT-4.1 mini (April 2025) and GPT-4o mini (July 2024) at default effort, temperature zero, and a 64-token answer limit.</p>
       <aside class="finding"><strong>How to read the gap</strong><p>GPT-4.1 mini led by 19.79 percentage points overall. The 95% interval across these stories was 11.46 to 28.13 points. Both models fell short of the 90% English target during development, so the comparison is exploratory.</p></aside>
+    </section>
+    <section class="method related" id="related" aria-labelledby="related-heading">
+      <h2 id="related-heading">How do other <em>benchmarks compare?</em></h2>
+      <dl class="neighbors">
+        <div><dt>Dyna-bAbI</dt><dd>Generates stories and questions to test reasoning about events. Here, the same events also appear in an invented language, so we can measure what grammar clues add. <a href="https://aclanthology.org/2022.starsem-1.9/">Dyna-bAbI paper</a></dd></div>
+        <div><dt>ConlangBench</dt><dd>Tests models on 21 existing constructed languages. Here, each test story gets a freshly generated language with its own vocabulary and grammar. <a href="https://arxiv.org/abs/2608.03505">ConlangBench paper</a></dd></div>
+        <div><dt>SILICA</dt><dd>Asks models to recognize when clues leave a language puzzle unsettled. Here, the generator applies that check before a story reaches the model, so every scored question has a definite answer. <a href="https://explcre.github.io/silica/">SILICA examples</a></dd></div>
+      </dl>
     </section>
     <section class="reproduce" aria-labelledby="replicate-heading">
       <div><h2 id="replicate-heading">Check the results yourself.</h2><p>All 408 pilot calls together cost about $0.026 at list price. Regrading the saved answers is free.</p></div>

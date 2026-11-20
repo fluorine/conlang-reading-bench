@@ -61,7 +61,7 @@ details p { color: #e4eee8; max-width: 42ch; margin-bottom: 0 }
 .results, .method, .reproduce { border-top: 1px solid var(--line); padding-block: clamp(2.5rem,5vw,4.9rem) }
 .results { grid-template-columns: .85fr 1.4fr }
 .results h2, .method h2 { font-size: clamp(2.7rem,4.5vw,4.5rem) }
-.results-copy > p:not(.eyebrow), .method .columns p, .reproduce p { color: var(--muted) }
+.results-copy > p:not(.eyebrow), .reproduce p { color: var(--muted) }
 .results-copy > p:not(.eyebrow) { max-width: 44ch }
 .scores { display: flex; gap: clamp(1.25rem,3vw,3rem); margin-top: 1.35rem }
 .scores div { display: grid }
@@ -91,8 +91,29 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .axis span { position: absolute; transform: translateX(-50%) }
 .axis span:nth-child(2) { left: 25% }.axis span:nth-child(3) { left: 50% }.axis span:nth-child(4) { left: 75% }.axis span:last-child { left: 100% }
 .chart-note { margin-top: .8rem }
-.columns { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(1.5rem,4vw,4rem); margin-top: 2.2rem }
-.columns p { margin: .6rem 0 0 }
+.diagram { margin: 2rem 0 0 }
+.diagram figcaption { margin-bottom: 1rem }
+.diagram figcaption p, .settings { margin: .4rem 0 0; color: var(--muted); max-width: 80ch }
+.flow { --gap: 2.35rem; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: var(--gap); margin: 0; padding: 0; list-style: none }
+.flow li, .inputs, .score-total { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 1.1rem 1.25rem }
+.flow li { position: relative }
+.flow li + li::before, .score-total::before { content: "→"; position: absolute; width: var(--gap); left: calc(0px - var(--gap) - 1px); top: 50%; transform: translateY(-50%); text-align: center; font: 1.25rem/1 Arial,sans-serif; color: var(--green) }
+.flow p { margin: .35rem 0 0; color: var(--muted) }
+.score-map { --gap: 2.35rem; display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); gap: var(--gap) }
+.inputs, .neighbors { margin: 0 }
+.inputs div { display: flex; justify-content: space-between; gap: .75rem; align-items: center; padding-block: .5rem }
+.inputs div + div, .neighbors div + div { border-top: 1px solid var(--line) }
+.inputs dt, .inputs dd, .neighbors dt { font-weight: 650 }
+.inputs dd { margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums }
+.inputs small { display: block; color: var(--muted); font-size: .9rem; font-weight: 400 }
+.score-total { display: grid; align-content: center; position: relative; background: #eaf0ea; text-align: center }
+.score-total strong { font: 400 clamp(3.2rem,6vw,5.5rem)/1.1 var(--serif); color: var(--green) }
+.control-note { margin: .75rem 0 1rem; color: var(--muted); max-width: 88ch }
+.control-note strong { color: var(--ink) }
+.neighbors { margin-top: 1.5rem }
+.neighbors div { display: grid; grid-template-columns: minmax(8rem,1fr) 4fr; gap: .5rem 2rem; padding-block: 1rem }
+.neighbors dd { margin: 0; max-width: 80ch }
+.neighbors a { color: var(--green) }
 .finding { border-left: 3px solid var(--green); background: #eaf0ea; padding: 1rem 1.3rem; margin-top: 2rem }
 .finding p { margin: .25rem 0 0; max-width: 88ch }
 .reproduce { display: flex; justify-content: space-between; gap: 1.4rem; align-items: center }
@@ -113,12 +134,13 @@ footer { border-top: 1px solid var(--line); color: var(--muted) }
   .nav { flex-wrap: wrap; gap: .4rem 1rem; padding-block: .85rem; min-height: auto }
   nav { gap: .9rem }
   .brand { font-size: 1.03rem }
-  .hero, .columns { grid-template-columns: 1fr }
+  .hero, .flow, .score-map, .neighbors div { grid-template-columns: 1fr }
+  .flow, .score-map { --gap: 1.9rem }
+  .flow li + li::before, .score-total::before { content: "↓"; width: 100%; height: var(--gap); display: grid; place-items: center; left: 0; top: calc(0px - var(--gap) - 1px); transform: none }
   h1 { max-width: 14ch }
   .sample { margin-right: 5px }
   .chart { --label: 6rem; --value: 3.5rem }
   .chart-row dt { font-size: .875rem }
-  .columns { margin-top: 1.5rem }
 }
 @media(max-width: 23rem) {
   .chart { --label: 4.8rem; --value: 3.2rem; padding: .85rem }
