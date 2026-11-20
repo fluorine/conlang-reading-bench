@@ -95,6 +95,8 @@ def build_six_people(manifest):
         if manifest.get("family") == "alternating_grammar":
             roots, gs, rs, order = lang
             lines = tier3.alternating_lines(events, lang, lines)
+            if not tier3.verify_alternating(initial, lines, lang, gold):
+                raise ValueError("alternating grammar failed independent decoding")
             clue = (f"Word meanings: {roots['coin']} = coin, {roots['key']} = key, "
                     f"{roots['holds']} = holds initially, {roots['gives']} = gives. "
                     "Initial statements use holder, predicate, object. "

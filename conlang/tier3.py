@@ -75,3 +75,27 @@ def alternating_lines(events, lang, initial_lines):
                      object=roots[obj], verb=roots["gives"])
         lines.append(" ".join(parts[role] for role in roles))
     return lines
+
+
+def verify_alternating(initial, lines, lang, gold):
+    roots, gs, rs, order = lang
+    objects = {roots[obj]: obj for obj in OBJECTS}
+    state = initial.copy()
+    events = []
+    for index, line in enumerate(lines[2:]):
+        odd = index % 2 == 0
+        roles = order if odd else list(reversed(order))
+        parts = dict(zip(roles, line.split()))
+        giver_suffix, recipient_suffix = (gs, rs) if odd else (rs, gs)
+        if (parts["verb"] != roots["gives"] or parts["object"] not in objects
+                or not parts["giver"].endswith("-" + giver_suffix)
+                or not parts["recipient"].endswith("-" + recipient_suffix)):
+            return False
+        obj = objects[parts["object"]]
+        giver = parts["giver"].split("-")[0]
+        recipient = parts["recipient"].split("-")[0]
+        if giver not in PEOPLE or recipient not in PEOPLE or state[obj] != giver or giver == recipient:
+            return False
+        state[obj] = recipient
+        events.append((obj, giver, recipient))
+    return [events[0][2], events[-2][2], state["coin"], state["key"]] == gold
