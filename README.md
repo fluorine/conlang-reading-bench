@@ -12,6 +12,8 @@ A small **conlang comprehension benchmark** for language models. Its research ta
 
 **Four-transfer diagnostic.** GPT-6 Luna scored **85.42%** with minimal clues and **100.00%** on the same longer stories in English. [Diagnostic results and reproduction commands](reports/FOUR-TRANSFERS.md)
 
+[Four-transfer follow-up](reports/FOUR-TRANSFERS-FOLLOWUP.md) compares GPT-4.1 mini and higher-cap Luna on the original and fresh stories.
+
 ## Replicate the benchmark
 
 ### Copy a prompt for your AI agent

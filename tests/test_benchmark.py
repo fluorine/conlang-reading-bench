@@ -9,6 +9,7 @@ from conlang.language import evidence, interpretations, language, render
 from conlang.runner import MODELS, new_bundle, run, settings
 from conlang.scoring import compare, grade, parse
 from conlang.suite import ROOT, certified, digest, load_suite, read
+from conlang.transfer_diagnostics import summarize
 from conlang.world import answers, english, simulate
 
 
@@ -22,6 +23,14 @@ def fixture():
 
 
 class TestProtocol(unittest.TestCase):
+    def test_diagnostics_count_capped_blanks_as_unanswered(self):
+        bundle = read(ROOT / "results/transfer4/gpt-6-luna-low.json")
+        report = summarize(load_suite("transfer4"), [bundle])
+        minimal = report["results"][0]["conditions"]["minimal"]
+        self.assertEqual(minimal, dict(correct=82, answered=84, wrong=2, full_responses=21,
+                                      empty_responses=3, empty_at_cap=3))
+        self.assertEqual(report["last_person_correct"], {"minimal": 28, "english": 47})
+
     def test_four_transfer_history_and_rendering(self):
         manifest = load_suite("transfer4")
         prompts, keys = certified(manifest)
