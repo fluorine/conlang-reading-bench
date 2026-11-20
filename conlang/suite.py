@@ -35,7 +35,7 @@ def write(path, value):
 
 
 def build(manifest):
-    if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12):
+    if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12, 24):
         raise ValueError("unsupported protocol or transfer count")
     prompts, keys, rejected = {}, {}, []
     for index, (world, lex) in enumerate(manifest["pairs"]):
@@ -82,7 +82,7 @@ def load_suite(name):
 
 def sample_manifest(name, seed, count, length):
     """Balance person-name frequencies per question across both candidate forms."""
-    if count < 1 or length not in (2, 3, 4, 12) or not name.isalnum():
+    if count < 1 or length not in (2, 3, 4, 12, 24) or not name.isalnum():
         raise ValueError("use a positive story count, alphanumeric name and 2, 3, 4 or 12 transfers")
     rng = Random(seed)
     counts = Counter()
