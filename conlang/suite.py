@@ -10,6 +10,7 @@ from random import Random
 from . import VERSION
 from .language import evidence, interpretations, language, render
 from .world import answers, english, make_world, questions, simulate
+from . import tier3
 
 TIERS = ("minimal", "glossary", "grammar")
 CONDITIONS = (*TIERS, "english")
@@ -35,6 +36,8 @@ def write(path, value):
 
 
 def build(manifest):
+    if manifest.get("family") == "six_people":
+        return build_six_people(manifest)
     if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12, 24, 48):
         raise ValueError("unsupported protocol or transfer count")
     prompts, keys, rejected = {}, {}, []
@@ -66,6 +69,42 @@ def build(manifest):
                 raise ValueError("unknown condition")
             prompt = "\n\n".join(instructions + ["\n".join(f"{i}. {q}" for i, q in enumerate(qs, 1))])
             prompts[f"{story}/{condition}"] = prompt
+    return prompts, keys, rejected
+
+
+def build_six_people(manifest):
+    if manifest["version"] != VERSION or manifest["length"] not in (12, 24, 48):
+        raise ValueError("unsupported six-person suite")
+    prompts, keys, rejected = {}, {}, []
+    for world, lex in manifest["pairs"]:
+        story = f"w{world}-l{lex}"
+        if story in keys:
+            raise ValueError("duplicate seed pair")
+        initial, events, gold, qs, lang, lines = tier3.make(world, lex, manifest["length"])
+        if not tier3.verify(initial, lines, lang, gold):
+            rejected.append(dict(world=world, language=lex, reason="ambiguous"))
+            continue
+        keys[story] = dict(answers=gold, initial=initial, events=events)
+        roots = lang[0]
+        clue = ("There are two objects (coin, key) and two predicates (holds initially, gives). "
+                "Each has its own word. Initial statements use holder, predicate, object. "
+                "Transfers use the same four positions in some order. Each name has a role suffix "
+                "after a hyphen. Only the current holder may give an object. Events are chronological. "
+                f"Key word: {roots['gives']} means gives. Separate example: "
+                f"Ivy {roots['holds']} {roots['coin']} means Ivy starts with the coin.")
+        english_lines = [f"{p} starts with the {o}." for o, p in initial.items()] + [
+            f"{g} gives the {o} to {r}." for o,g,r in events]
+        for condition in manifest["conditions"]:
+            if condition not in ("minimal", "english"):
+                raise ValueError("unknown condition")
+            sections = ["Answer four reading questions. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. "
+                        "Return only a JSON array of four names in question order."]
+            if condition == "minimal":
+                sections += [clue, "Story:\n" + "\n".join(lines)]
+            else:
+                sections += ["Story:\n" + "\n".join(english_lines)]
+            sections += ["\n".join(f"{i}. {q}" for i,q in enumerate(qs, 1))]
+            prompts[f"{story}/{condition}"] = "\n\n".join(sections)
     return prompts, keys, rejected
 
 
