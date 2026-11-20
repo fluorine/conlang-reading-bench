@@ -27,6 +27,8 @@ DATASETS = {
                                                         'objects': ('coin', 'key', 'book', 'ring', 'cup')}),
     'syncretic-five-object-clues-dev': (three_object_probe, {'syncretism': True, 'length': 18, 'revealed': 5,
                                                               'objects': ('coin', 'key', 'book', 'ring', 'cup')}),
+    'syncretic-five-object-holdout': (three_object_probe, {'syncretism': True, 'length': 18, 'revealed': 1,
+                                                            'objects': ('coin', 'key', 'book', 'ring', 'cup')}),
 }
 
 def suffix_blind_answers(prompt, objects):

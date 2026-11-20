@@ -46,7 +46,15 @@ The three-object holdout manifest was committed at `6a23c2b`; the initial reques
 
 ## Five-object development candidate
 
-The five-object variant scored **3/8 (37.5%)** on the conlang and **8/8** on its English control, with no completion-limit failures. A uniform random choice among suffix-blind possible holders has **17.9% expected accuracy**; the last-name heuristic scored **2/8**, and the alphabetical suffix-blind heuristic scored **1/8**. With five endings disclosed, another sample scored 7/8 with 8/8 English; because the stories differ, this is not a paired estimate of the effect of disclosing more grammar. These small adaptive-development samples are not calibrated scores. A separately frozen 24-story evaluation of the one-disclosure version is in progress, with an expected suffix-blind random baseline of **18.8%**. The expanded language also increases the number of distinct marker meanings, not just story length.
+The five-object variant scored **3/8 (37.5%)** on the conlang and **8/8** on its English control, with no completion-limit failures. A uniform random choice among suffix-blind possible holders has **17.9% expected accuracy**; the last-name heuristic scored **2/8**, and the alphabetical suffix-blind heuristic scored **1/8**. With five endings disclosed, another sample scored 7/8 with 8/8 English; because the stories differ, this is not a paired estimate of the effect of disclosing more grammar. The expanded language also increases the number of distinct marker meanings, not just story length.
+
+### Fresh five-object evaluation
+
+On the separately frozen 24-story one-disclosure sample, Luna medium scored **9/24 (37.5%)**, with **24/24 (100%)** on the English controls. All conlang responses completed within the 16,384-token cap. The 95% Wilson interval for the conlang percentage is approximately **21.2–57.3%**. The 48 completed calls used about **$0.08864** at the stated token rates. The manifest and runner were frozen at `43ac3b6` before the calls.
+
+The suffix-blind uniform random baseline is **18.8% expected accuracy**. The alphabetical suffix-blind heuristic scores **5/24 (20.8%)**, and the last-name-mentioned heuristic scores **7/24 (29.2%)**. On paired stories, Luna and the last-name heuristic were both right on six; Luna alone was right on three, and the heuristic alone was right on one. The difference is too small and the sample too limited to establish a reliable advantage over this shortcut. The uniform baseline also ignores the disclosed ending.
+
+This is a **preliminary candidate** in the intended low-score range with a strong English control and no capped outputs. It is not yet an established Tier 3 calibration: the interval is wide, the difference from the strongest checked shortcut is small, and fresh stories use the same grammar family. A larger independently seeded sample, additional shortcut checks, and comparisons with stronger models are needed before making claims about model rankings or general language comprehension. Keep this research result separate from the official tier scores until a protocol and comparison group are frozen.
 
 ## How the shared-ending probe works
 
