@@ -73,7 +73,7 @@ def build(manifest):
 
 
 def build_six_people(manifest):
-    if manifest["version"] != VERSION or manifest["length"] not in (12, 24, 48):
+    if manifest["version"] != VERSION or manifest["length"] not in (12, 24, 48, 96):
         raise ValueError("unsupported six-person suite")
     prompts, keys, rejected = {}, {}, []
     for world, lex in manifest["pairs"]:
