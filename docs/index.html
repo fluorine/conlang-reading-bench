@@ -6,9 +6,9 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#15201d" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f8f9f6" media="(prefers-color-scheme: light)">
-  <meta name="description" content="How well can three AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
+  <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -37,41 +37,46 @@
       <div class="results-copy">
         <p class="eyebrow"><span class="rule"></span> Pilot results</p>
         <h2 id="results-heading">What changed <em>with clues?</em></h2>
-        <p>GPT-4.1 mini answered about half the questions with minimal clues and over three quarters with the full grammar. With full grammar, GPT-4o mini reached 50% and GPT-5.4 nano reached 46.88%.</p>
+        <p>GPT-6 Luna with low reasoning scored 98.61% across all three clue levels and 100.00% on the separate English control.</p>
         <div class="scores">
           <div><strong>65.63<span>%</span></strong><span>GPT-4.1 mini</span></div>
           <div><strong>45.83<span>%</span></strong><span>GPT-4o mini</span></div>
           <div><strong>46.88<span>%</span></strong><span>GPT-5.4 nano</span></div>
+          <div><strong>98.61<span>%</span></strong><span>GPT-6 Luna (low)</span></div>
         </div>
         <p class="caption">Overall scores average the three invented-language conditions equally. English is scored separately.</p>
       </div>
       <figure class="chart">
         <figcaption><h3>Accuracy by clue level</h3><p>Share of answers correct on 24 held-out stories</p></figcaption>
-        <div class="legend" aria-hidden="true"><span class="first"><i></i>GPT-4.1 mini</span><span class="second"><i></i>GPT-4o mini</span><span class="third"><i></i>GPT-5.4 nano</span></div>
+        <div class="legend" aria-hidden="true"><span class="first"><i></i>GPT-4.1 mini</span><span class="second"><i></i>GPT-4o mini</span><span class="third"><i></i>GPT-5.4 nano</span><span class="fourth"><i></i>GPT-6 Luna (low)</span></div>
         <dl class="plot">
               <div class="chart-row ">
                 <dt>Minimal clues</dt>
                 <dd><div class="series first"><span class="track" aria-hidden="true"><i style="width:48.95833333333333%"></i></span><span class="number"><span class="sr-only">GPT-4.1 mini </span>48.96%</span></div>
                   <div class="series second"><span class="track" aria-hidden="true"><i style="width:43.75%"></i></span><span class="number"><span class="sr-only">GPT-4o mini </span>43.75%</span></div>
-                  <div class="series third"><span class="track" aria-hidden="true"><i style="width:44.79166666666667%"></i></span><span class="number"><span class="sr-only">GPT-5.4 nano </span>44.79%</span></div></dd>
+                  <div class="series third"><span class="track" aria-hidden="true"><i style="width:44.79166666666667%"></i></span><span class="number"><span class="sr-only">GPT-5.4 nano </span>44.79%</span></div>
+                  <div class="series fourth"><span class="track" aria-hidden="true"><i style="width:98.95833333333334%"></i></span><span class="number"><span class="sr-only">GPT-6 Luna (low) </span>98.96%</span></div></dd>
               </div>
               <div class="chart-row ">
                 <dt>Glossary</dt>
                 <dd><div class="series first"><span class="track" aria-hidden="true"><i style="width:69.79166666666666%"></i></span><span class="number"><span class="sr-only">GPT-4.1 mini </span>69.79%</span></div>
                   <div class="series second"><span class="track" aria-hidden="true"><i style="width:43.75%"></i></span><span class="number"><span class="sr-only">GPT-4o mini </span>43.75%</span></div>
-                  <div class="series third"><span class="track" aria-hidden="true"><i style="width:48.95833333333333%"></i></span><span class="number"><span class="sr-only">GPT-5.4 nano </span>48.96%</span></div></dd>
+                  <div class="series third"><span class="track" aria-hidden="true"><i style="width:48.95833333333333%"></i></span><span class="number"><span class="sr-only">GPT-5.4 nano </span>48.96%</span></div>
+                  <div class="series fourth"><span class="track" aria-hidden="true"><i style="width:97.91666666666666%"></i></span><span class="number"><span class="sr-only">GPT-6 Luna (low) </span>97.92%</span></div></dd>
               </div>
               <div class="chart-row ">
                 <dt>Full grammar</dt>
                 <dd><div class="series first"><span class="track" aria-hidden="true"><i style="width:78.125%"></i></span><span class="number"><span class="sr-only">GPT-4.1 mini </span>78.13%</span></div>
                   <div class="series second"><span class="track" aria-hidden="true"><i style="width:50%"></i></span><span class="number"><span class="sr-only">GPT-4o mini </span>50.00%</span></div>
-                  <div class="series third"><span class="track" aria-hidden="true"><i style="width:46.875%"></i></span><span class="number"><span class="sr-only">GPT-5.4 nano </span>46.88%</span></div></dd>
+                  <div class="series third"><span class="track" aria-hidden="true"><i style="width:46.875%"></i></span><span class="number"><span class="sr-only">GPT-5.4 nano </span>46.88%</span></div>
+                  <div class="series fourth"><span class="track" aria-hidden="true"><i style="width:98.95833333333334%"></i></span><span class="number"><span class="sr-only">GPT-6 Luna (low) </span>98.96%</span></div></dd>
               </div>
               <div class="chart-row control">
                 <dt>English control</dt>
                 <dd><div class="series first"><span class="track" aria-hidden="true"><i style="width:84.375%"></i></span><span class="number"><span class="sr-only">GPT-4.1 mini </span>84.38%</span></div>
                   <div class="series second"><span class="track" aria-hidden="true"><i style="width:69.79166666666666%"></i></span><span class="number"><span class="sr-only">GPT-4o mini </span>69.79%</span></div>
-                  <div class="series third"><span class="track" aria-hidden="true"><i style="width:62.5%"></i></span><span class="number"><span class="sr-only">GPT-5.4 nano </span>62.50%</span></div></dd>
+                  <div class="series third"><span class="track" aria-hidden="true"><i style="width:62.5%"></i></span><span class="number"><span class="sr-only">GPT-5.4 nano </span>62.50%</span></div>
+                  <div class="series fourth"><span class="track" aria-hidden="true"><i style="width:100.0%"></i></span><span class="number"><span class="sr-only">GPT-6 Luna (low) </span>100.00%</span></div></dd>
               </div>
         </dl>
         <div class="axis" aria-hidden="true"><div><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div></div>
@@ -101,7 +106,7 @@
         </div>
         <p class="control-note"><strong>English control</strong> &nbsp;81 of 96 correct (84.38%). This separate score shows how well the model follows the same events in English.</p>
       </figure>
-      <p class="settings">All three models saw the same held-out stories at default effort, temperature zero, and a 64-token answer limit. The original pilot used GPT-4.1 mini (April 2025) and GPT-4o mini (July 2024). The follow-up used GPT-5.4 nano (March 2026).</p>
+      <p class="settings">All four models saw the same held-out stories. The earlier models used default effort, temperature zero, and a 64-token cap. The original pilot used GPT-4.1 mini (April 2025) and GPT-4o mini (July 2024). The follow-ups used GPT-5.4 nano (March 2026) and GPT-6 Luna with low reasoning and a 512-token cap that includes reasoning.</p>
       <aside class="finding"><strong>How to read the gap</strong><p>In the original pilot, GPT-4.1 mini led GPT-4o mini by 19.79 percentage points overall. The 95% interval across these stories was 11.46 to 28.13 points. Both original models fell short of the 90% English target during development, so the comparison is exploratory.</p></aside>
     </section>
     <section class="method related" id="related" aria-labelledby="related-heading">
@@ -113,8 +118,8 @@
       </dl>
     </section>
     <section class="reproduce" aria-labelledby="replicate-heading">
-      <div><h2 id="replicate-heading">Check the results yourself.</h2><p>The original 408 calls cost about $0.026 at list price. Adding GPT-5.4 nano took 96 calls and about $0.0051. Regrading the saved answers is free.</p></div>
-      <div class="resources"><a class="button" href="https://github.com/fluorine/conlang-reading-bench#replicate-the-benchmark">Replication guide</a><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/v0.1.0/reports/PILOT.md">Pilot report</a><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/GPT-5.4-nano.md">Nano comparison</a></div>
+      <div><h2 id="replicate-heading">Check the results yourself.</h2><p>The original 408 calls cost about $0.026 at list price. Adding GPT-5.4 nano took 96 calls and about $0.0051. The Luna run took 96 calls and about $0.01034. Regrading the saved answers is free.</p></div>
+      <div class="resources"><a class="button" href="https://github.com/fluorine/conlang-reading-bench#replicate-the-benchmark">Replication guide</a><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/v0.1.0/reports/PILOT.md">Pilot report</a><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/GPT-5.4-nano.md">Nano comparison</a><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/GPT-6-Luna-low.md">Luna comparison</a></div>
     </section>
   </main>
   <footer><div class="wrap footer-inner"><span>Conlang Reading Bench · v0.1.0</span><a href="https://github.com/fluorine/conlang-reading-bench/tree/main/results/holdout2">Raw responses</a></div></footer>
