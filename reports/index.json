@@ -379,6 +379,70 @@
     },
     "independent_rerun_of": null
   },
+  "transfer4/gpt-4o-mini-2024-07-18.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "eeb1d404359c0244332e0ff40b761324dc89a9dc99181f82bd3d61cfbb76d59a",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-4o-mini-2024-07-18",
+      "effort": "default",
+      "temperature": 0,
+      "max_completion_tokens": 64,
+      "input_usd_per_million": 0.15,
+      "output_usd_per_million": 0.6,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 40.625,
+      "english": 75.0
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 4.166666666666666,
+      "english": 20.833333333333336
+    },
+    "usage": {
+      "input_tokens": 8257,
+      "output_tokens": 768,
+      "reasoning_tokens": 0,
+      "list_price_usd": 0.00169935,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
+  "transfer4/gpt-5.4-nano-2026-03-17.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "eeb1d404359c0244332e0ff40b761324dc89a9dc99181f82bd3d61cfbb76d59a",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-5.4-nano-2026-03-17",
+      "effort": "default",
+      "temperature": 0,
+      "max_completion_tokens": 64,
+      "input_usd_per_million": 0.2,
+      "output_usd_per_million": 1.25,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 35.41666666666667,
+      "english": 59.375
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 0,
+      "english": 12.5
+    },
+    "usage": {
+      "input_tokens": 8209,
+      "output_tokens": 576,
+      "reasoning_tokens": 0,
+      "list_price_usd": 0.0023618000000000003,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
   "transfer4/gpt-6-luna-low-2048.json": {
     "status": "regraded",
     "scorer_version": "0.1.1",
@@ -471,6 +535,70 @@
       "output_tokens": 478,
       "reasoning_tokens": 0,
       "list_price_usd": 0.0040784,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
+  "transfer4fresh/gpt-4o-mini-2024-07-18.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "a287640dfd85f8d72a284adb1d35d87b491139e29048d85ad76ee40a2ed4d61d",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-4o-mini-2024-07-18",
+      "effort": "default",
+      "temperature": 0,
+      "max_completion_tokens": 64,
+      "input_usd_per_million": 0.15,
+      "output_usd_per_million": 0.6,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 44.79166666666667,
+      "english": 84.375
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 8.333333333333332,
+      "english": 41.66666666666667
+    },
+    "usage": {
+      "input_tokens": 8284,
+      "output_tokens": 768,
+      "reasoning_tokens": 0,
+      "list_price_usd": 0.0017034,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
+  "transfer4fresh/gpt-5.4-nano-2026-03-17.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "a287640dfd85f8d72a284adb1d35d87b491139e29048d85ad76ee40a2ed4d61d",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-5.4-nano-2026-03-17",
+      "effort": "default",
+      "temperature": 0,
+      "max_completion_tokens": 64,
+      "input_usd_per_million": 0.2,
+      "output_usd_per_million": 1.25,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 34.375,
+      "english": 63.541666666666664
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 0,
+      "english": 4.166666666666666
+    },
+    "usage": {
+      "input_tokens": 8236,
+      "output_tokens": 576,
+      "reasoning_tokens": 0,
+      "list_price_usd": 0.0023672,
       "outstanding_reservations_usd": 0
     },
     "independent_rerun_of": null

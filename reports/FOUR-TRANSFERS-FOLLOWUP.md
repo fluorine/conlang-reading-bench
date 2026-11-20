@@ -6,8 +6,21 @@ Tier 2 combines all 48 stories for each model configuration that ran both sets. 
 
 | Configuration | Minimal clues | English |
 |---|---:|---:|
+| GPT-4o mini, 64 tokens | 82/192 (42.71%) | 153/192 (79.69%) |
 | GPT-4.1 mini, 64 tokens | 76/192 (39.58%) | 143/192 (74.48%) |
-| GPT-6 Luna low, 2,048 tokens | 192/192 (100%) | 191/192 (99.48%) |
+| GPT-5.4 nano, 64 tokens | 67/192 (34.90%) | 118/192 (61.46%) |
+| GPT-6 Luna (low), 2,048 tokens | 192/192 (100.00%) | 191/192 (99.48%) |
+
+## GPT-4o mini and GPT-5.4 nano
+
+These pinned models completed 48 requests per seed set at temperature zero and a 64-token completion cap. The 192 requests cost about $0.00813 at list price. Each missing or invalid answer counts against the accuracy percentage.
+
+| Model | Seed set | Input tokens | Completion tokens | Unanswered questions / 192 | Empty requests at cap | Estimated USD |
+|---|---|---:|---:|---:|---:|---:|
+| GPT-4o mini | [`transfer4`](../results/transfer4/gpt-4o-mini-2024-07-18.json) | 8,257 | 768 | 0 | 0 | $0.00170 |
+| GPT-4o mini | [`transfer4fresh`](../results/transfer4fresh/gpt-4o-mini-2024-07-18.json) | 8,284 | 768 | 0 | 0 | $0.00170 |
+| GPT-5.4 nano | [`transfer4`](../results/transfer4/gpt-5.4-nano-2026-03-17.json) | 8,209 | 576 | 0 | 0 | $0.00236 |
+| GPT-5.4 nano | [`transfer4fresh`](../results/transfer4fresh/gpt-5.4-nano-2026-03-17.json) | 8,236 | 576 | 0 | 0 | $0.00237 |
 
 ## Run details
 
