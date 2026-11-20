@@ -111,6 +111,20 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .chart-row dd::before { content: ""; position: absolute; inset: 0 var(--value) 0 0; background: repeating-linear-gradient(90deg,var(--grid) 0 1px,transparent 1px 25%); border-right: 1px solid var(--grid) }
 .series { display: grid; grid-template-columns: minmax(0,1fr) var(--value); align-items: center; position: relative }
 .track i { display: block; height: .55rem }
+@media (prefers-reduced-motion: no-preference) {
+  h1 { animation: heading-arrive .65s ease-out both }
+  .motion-ready:not(.chart) { transition: opacity .55s ease, transform .55s ease; opacity: 0; transform: translateY(.65rem) }
+  .motion-ready.motion-visible:not(.chart) { opacity: 1; transform: translateY(0) }
+  .motion-ready.chart .track i { transform: scaleX(0); transform-origin: left; transition: transform .8s cubic-bezier(.2,.7,.2,1) }
+  .motion-ready.chart.motion-visible .track i { transform: scaleX(1) }
+  .motion-ready.chart .chart-row:nth-child(2) .track i { transition-delay: .08s }
+  .motion-ready.chart .chart-row:nth-child(3) .track i { transition-delay: .16s }
+  .motion-ready.chart .chart-row:nth-child(4) .track i { transition-delay: .24s }
+  @keyframes heading-arrive { from { opacity: 0; transform: translateY(.6rem) } to { opacity: 1; transform: translateY(0) } }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important }
+}
 .number { text-align: right; font-size: .875rem; font-variant-numeric: tabular-nums; font-weight: 550 }
 .control { border-block-start: 1px dashed var(--line); margin-top: .25rem }
 .axis { margin: 0 var(--value) 0 var(--label); color: var(--muted) }
