@@ -12,6 +12,8 @@ A small **conlang comprehension benchmark** for language models. Its research ta
 
 **Tier 2 uses 48 four-transfer stories.** All four models ran both the minimal-clue and English control conditions. [Combined results and run details](reports/FOUR-TRANSFERS-FOLLOWUP.md)
 
+**Tier 3 research** explores harder artificial grammar with formally checked answers and matched English controls. Its development runs are separate from the published tiers. [Search methods, results, and replication](reports/TIER3-SEARCH.md)
+
 ## Replicate the benchmark
 
 ### Copy a prompt for your AI agent
