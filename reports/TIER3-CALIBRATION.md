@@ -27,3 +27,7 @@ A further six-story candidate with 96 transfers scored 100% in the conlang and 9
 ## Alternating grammar candidates
 
 The six-person candidate supplies explicit rules whose word order and role suffix meanings reverse on alternating transfers. The 12-transfer development set scored 96.88% conlang and 100% English across eight stories. The 48-transfer set scored 93.75% conlang and 96.88% English across eight stories. Luna used medium reasoning with 4,096 and 8,192 completion-token caps. The runs cost $0.00711 and $0.01169 respectively. Neither candidate reached the low-score calibration target. The transformed text is independently decoded against the explicit grammar before admission.
+
+## Fusional markers and an irregular name
+
+A six-person candidate uses endings that jointly encode giver or recipient and the object transferred. Fay has irregular endings, and worked examples establish all endings. An independent decoder derives the marker meanings from those examples and checks the event history and answers. On eight 12-transfer development stories, GPT-6 Luna at medium effort scored 100% on the conlang and 100% on the matched English control. All 16 requests produced answers. The run used a 4,096-token completion cap and cost $0.00337 at list price. This candidate remains above the calibration target.
