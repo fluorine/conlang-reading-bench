@@ -10,7 +10,7 @@ from random import Random
 from . import VERSION
 from .language import evidence, interpretations, language, render
 from .world import answers, english, make_world, questions, simulate
-from . import tier3
+from . import tier3, grammar_experiment
 
 TIERS = ("minimal", "glossary", "grammar")
 CONDITIONS = (*TIERS, "english")
@@ -36,7 +36,7 @@ def write(path, value):
 
 
 def build(manifest):
-    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional", "irregular_forms", "opaque_names", "opaque_history"):
+    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional", "irregular_forms", "opaque_names", "opaque_history", "grammar_experiment"):
         return build_six_people(manifest)
     if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12, 24, 48):
         raise ValueError("unsupported protocol or transfer count")
@@ -104,6 +104,14 @@ def build_six_people(manifest):
                 "after a hyphen. Only the current holder may give an object. Events are chronological. "
                 f"Key word: {roots['gives']} means gives. Separate example: "
                 f"Ivy {roots['holds']} {roots['coin']} means Ivy starts with the coin.")
+        if manifest.get("family") == "grammar_experiment":
+            variant = manifest["variant"]
+            if variant not in grammar_experiment.VARIANTS:
+                raise ValueError("unknown grammar variant")
+            lines, transfer_clue = grammar_experiment.render(lex, initial, events, lines, gold, variant)
+            clue = (f"Initially: {roots['holds']} means holds, {roots['coin']} means coin, "
+                    f"and {roots['key']} means key. Initial statements use holder, holds, object. "
+                    + transfer_clue)
         if manifest.get("family") == "alternating_grammar":
             roots, gs, rs, order = lang
             lines = tier3.alternating_lines(events, lang, lines)

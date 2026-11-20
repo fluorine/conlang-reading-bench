@@ -23,6 +23,18 @@ def fixture():
 
 
 class TestProtocol(unittest.TestCase):
+    def test_matched_grammar_variants(self):
+        suites = [load_suite("grammar" + name) for name in
+                  ("fused", "sound", "irregular", "combined", "english")]
+        self.assertTrue(all(suite["pairs"] == suites[0]["pairs"] for suite in suites))
+        generated = [certified(suite) for suite in suites]
+        for _, keys in generated[1:]:
+            self.assertEqual(keys, generated[0][1])
+        for prompts, _ in generated[:-1]:
+            for item, prompt in prompts.items():
+                self.assertEqual(prompt.split("\n\n")[-1],
+                                 generated[-1][0][item.replace("/minimal", "/english")].split("\n\n")[-1])
+
     def test_diagnostics_count_capped_blanks_as_unanswered(self):
         bundle = read(ROOT / "results/transfer4/gpt-6-luna-low.json")
         report = summarize(load_suite("transfer4"), [bundle])
