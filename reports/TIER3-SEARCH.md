@@ -49,3 +49,7 @@ python -m experiments.run_case_probes --manifest experiments/syncretic-24-one-cl
 ```
 
 The two rates are USD per million input and output tokens, and the budget covers a conservative upper bound for all remaining requests plus recorded completed costs. The runner sends only the visible prompt in a fresh context. It records new transcripts and usage; the provider's actual bill can differ. It creates a pending marker before each request and refuses to resume if a request may have been billed but did not complete locally. Reconcile such requests manually before proceeding; never silently delete a pending marker and retry as though no request occurred. Use a new output directory for an independent rerun, retain the repository commit and model settings, and do not expose API keys. These research files are not official suite submissions.
+
+To ask an agent to corroborate the saved evidence without paid calls, use:
+
+> Clone https://github.com/fluorine/conlang-reading-bench and read `reports/TIER3-SEARCH.md`. Record the checked-out commit, run the unit tests and `python -m conlang.verify_tier3_search`, then report each development accuracy, shortcut baseline, incomplete or capped response, and any verification failure. Explain that regrading saved answers is not a new independent model run. Do not send API requests or expose credentials.
