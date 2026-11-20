@@ -36,7 +36,7 @@ def write(path, value):
 
 
 def build(manifest):
-    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional", "irregular_forms", "opaque_names"):
+    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional", "irregular_forms", "opaque_names", "opaque_history"):
         return build_six_people(manifest)
     if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12, 24, 48):
         raise ValueError("unsupported protocol or transfer count")
@@ -84,6 +84,18 @@ def build_six_people(manifest):
         if not tier3.verify(initial, lines, lang, gold):
             rejected.append(dict(world=world, language=lex, reason="ambiguous"))
             continue
+        queries = None
+        if manifest.get("family") == "opaque_history":
+            rng = Random(world ^ 0x71429)
+            indices = rng.sample(range(1, len(events)), 4)
+            queries = [(index, rng.choice(tier3.OBJECTS)) for index in indices]
+            state = initial.copy()
+            history = [state.copy()]
+            for obj, giver, recipient in events:
+                state[obj] = recipient
+                history.append(state.copy())
+            gold = [history[index][obj] for index, obj in queries]
+            qs = [f"Who held the {obj} immediately after transfer {index}?" for index, obj in queries]
         keys[story] = dict(answers=gold, initial=initial, events=events)
         roots = lang[0]
         clue = ("There are two objects (coin, key) and two predicates (holds initially, gives). "
@@ -114,9 +126,9 @@ def build_six_people(manifest):
                     "endings are irregular and all other names share the regular endings. "
                     "Names are unchanged. Transfers are chronological and "
                     "only the current holder gives an object.\nExamples:\n" + "\n".join(examples))
-        if manifest.get("family") in ("irregular_forms", "opaque_names"):
+        if manifest.get("family") in ("irregular_forms", "opaque_names", "opaque_history"):
             lines, examples = tier3.irregular_forms(lex, events, lines)
-            if not tier3.verify_irregular(initial, lines, examples, gold):
+            if not tier3.verify_irregular(initial, lines, examples, gold, queries):
                 raise ValueError("irregular grammar failed independent decoding")
             clue = (f"Initially: {roots['holds']} means holds, {roots['coin']} means coin, "
                     f"and {roots['key']} means key. Initial statements use holder, holds, object. "
@@ -124,7 +136,7 @@ def build_six_people(manifest):
                     "the role and object. Each transfer has two marked names in giver, recipient "
                     "order. Only the current holder can give. All endings are shown below.\n"
                     "Examples:\n" + "\n".join(examples))
-            if manifest.get("family") == "opaque_names":
+            if manifest.get("family") in ("opaque_names", "opaque_history"):
                 import re
                 from .language import WORDS
                 rng = Random(lex ^ 0xA142)
@@ -138,7 +150,7 @@ def build_six_people(manifest):
                 reverse = dict(zip(tokens, tier3.PEOPLE))
                 token_pattern = re.compile(r"\b(?:" + "|".join(tokens) + r")\b")
                 decoded = [token_pattern.sub(lambda match: reverse[match.group()], line) for line in lines]
-                if decoded != original_lines or not tier3.verify_irregular(initial, decoded, examples, gold):
+                if decoded != original_lines or not tier3.verify_irregular(initial, decoded, examples, gold, queries):
                     raise ValueError("opaque names failed independent decoding")
                 encoded_examples = []
                 for example in examples:

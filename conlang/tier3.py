@@ -180,7 +180,7 @@ def irregular_forms(seed, events, initial_lines):
     return lines, examples
 
 
-def verify_irregular(initial, lines, examples, gold):
+def verify_irregular(initial, lines, examples, gold, queries=None):
     forms = {}
     for example in examples:
         form, meaning = example.split(" = ")
@@ -191,6 +191,7 @@ def verify_irregular(initial, lines, examples, gold):
             return False
         forms[key] = value
     state = initial.copy()
+    history = [state.copy()]
     events = []
     for line in lines[2:]:
         decoded = []
@@ -205,5 +206,8 @@ def verify_irregular(initial, lines, examples, gold):
         if a != "giver" or b != "recipient" or obj != other or state[obj] != giver or giver == recipient:
             return False
         state[obj] = recipient
+        history.append(state.copy())
         events.append((obj, giver, recipient))
+    if queries is not None:
+        return [history[index][obj] for index, obj in queries] == gold
     return [events[0][2], events[-2][2], state["coin"], state["key"]] == gold
