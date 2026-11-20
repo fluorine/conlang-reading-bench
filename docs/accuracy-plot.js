@@ -44,7 +44,9 @@ const releaseDates = ["2024-07-18", "2025-04-14", "2026-03-17", "2026-09-22"];
 const releaseTimes = releaseDates.map(date => Date.parse(date));
 const dateLabel = new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" });
 const plot = document.querySelector("#accuracy-overview");
-const tier = document.querySelector("#plot-tier");
+const tabs = Array.from(document.querySelectorAll("[role=tab][data-tier]"));
+let tier = tabs.at(-1).dataset.tier;
+const storageKey = "conlang-chart-settings-v1";
 const conditions = document.querySelector("#plot-conditions");
 const scale = document.querySelector("#plot-scale");
 const grid = plot.querySelector(".scatter-grid");
@@ -55,7 +57,7 @@ const conditionNames = { minimal: "Minimal clues", english: "English control" };
 
 function render() {
   grid.replaceChildren();
-  const isFour = tier.value === "four";
+  const isFour = tier === "four";
   const questionCount = isFour ? 192 : 96;
   const storyCount = questionCount / 4;
   const selected = Array.from(conditions.querySelectorAll("input:checked"), input => input.value);
@@ -88,15 +90,16 @@ function render() {
   models.forEach((model, i) => {
     const column = document.createElement("div");
     column.className = "scatter-column";
-    const elapsed = releaseTimes[i] - releaseTimes[0];
-    const span = releaseTimes.at(-1) - releaseTimes[0];
+    const firstRelease = Math.min(...releaseTimes);
+    const elapsed = releaseTimes[i] - firstRelease;
+    const span = Math.max(...releaseTimes) - firstRelease || 1;
     column.style.left = (10 + 80 * elapsed / span) + "%";
     const date = document.createElement("time");
     date.className = "scatter-date";
     date.dateTime = releaseDates[i];
     date.textContent = dateLabel.format(releaseTimes[i]);
     column.append(date);
-    const scores = accuracy[tier.value][i];
+    const scores = accuracy[tier][i];
     const label = document.createElement("span");
     label.className = "scatter-model";
     label.textContent = shortNames[i];
@@ -136,8 +139,49 @@ function render() {
   });
 }
 
-tier.addEventListener("change", render);
-conditions.addEventListener("change", render);
-scale.addEventListener("change", render);
+function saveSettings() {
+  try {
+    localStorage.setItem(storageKey, JSON.stringify({
+      tier, scale: scale.value,
+      conditions: Array.from(conditions.querySelectorAll("input:checked"), input => input.value)
+    }));
+  } catch (_) { /* Storage can be unavailable in private browsing. */ }
+}
+function selectTier(value) {
+  tier = value;
+  tabs.forEach(tab => {
+    const active = tab.dataset.tier === tier;
+    tab.setAttribute("aria-selected", String(active));
+    tab.tabIndex = active ? 0 : -1;
+  });
+  render();
+  saveSettings();
+}
+try {
+  const saved = JSON.parse(localStorage.getItem(storageKey));
+  if (saved && tabs.some(tab => tab.dataset.tier === saved.tier)) tier = saved.tier;
+  if (saved && Array.from(scale.options).some(option => option.value === saved.scale)) scale.value = saved.scale;
+  if (saved && Array.isArray(saved.conditions)) {
+    conditions.querySelectorAll("input").forEach(input => { input.checked = saved.conditions.includes(input.value); });
+  }
+} catch (_) { /* Use defaults when storage is unavailable or malformed. */ }
+tabs.forEach((tab, index) => {
+  tab.addEventListener("click", () => selectTier(tab.dataset.tier));
+  tab.addEventListener("keydown", event => {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1
+      : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+    tabs[next].focus();
+    selectTier(tabs[next].dataset.tier);
+  });
+});
+conditions.addEventListener("change", () => { render(); saveSettings(); });
+scale.addEventListener("change", () => { render(); saveSettings(); });
+tabs.forEach(tab => {
+  const active = tab.dataset.tier === tier;
+  tab.setAttribute("aria-selected", String(active));
+  tab.tabIndex = active ? 0 : -1;
+});
 render();
 plot.hidden = false;
