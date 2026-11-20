@@ -1,0 +1,50 @@
+{
+  "direction": "second minus first, percentage points",
+  "paired_stories": 24,
+  "difference": 19.791666666666664,
+  "interval95": [
+    11.458333333333332,
+    28.125
+  ],
+  "resolved": true,
+  "runs": [
+    {
+      "settings": {
+        "provider": "OpenAI",
+        "model": "gpt-4o-mini-2024-07-18",
+        "effort": "default",
+        "temperature": 0,
+        "max_completion_tokens": 64,
+        "input_usd_per_million": 0.15,
+        "output_usd_per_million": 0.6,
+        "price_date": "2026-11-19"
+      },
+      "usage": {
+        "input_tokens": 18362,
+        "output_tokens": 1536,
+        "reasoning_tokens": 0,
+        "list_price_usd": 0.0036759,
+        "outstanding_reservations_usd": 0
+      }
+    },
+    {
+      "settings": {
+        "provider": "OpenAI",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "effort": "default",
+        "temperature": 0,
+        "max_completion_tokens": 64,
+        "input_usd_per_million": 0.4,
+        "output_usd_per_million": 1.6,
+        "price_date": "2026-11-19"
+      },
+      "usage": {
+        "input_tokens": 18362,
+        "output_tokens": 930,
+        "reasoning_tokens": 0,
+        "list_price_usd": 0.0088328,
+        "outstanding_reservations_usd": 0
+      }
+    }
+  ]
+}
