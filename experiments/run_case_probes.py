@@ -8,6 +8,7 @@ import json
 import math
 import os
 import urllib.request
+import uuid
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,6 +28,8 @@ def main():
     parser.add_argument('--effort', default='medium')
     parser.add_argument('--max-output', type=int, default=16384)
     parser.add_argument('--rates', nargs=2, type=float, required=True, metavar=('INPUT', 'OUTPUT'))
+    parser.add_argument('--retry-uncertain', action='store_true',
+                        help='preserve pending attempts and reserve their maximum cost before retrying')
     args = parser.parse_args()
     if (not all(math.isfinite(value) and value >= 0 for value in [args.budget, *args.rates])
             or args.max_output < 1):
@@ -50,10 +53,20 @@ def main():
         raise ValueError('output directory must be empty for a new run')
     else:
         write(metadata_path, metadata)
-    if list(directory.glob('*.pending')):
-        raise ValueError('uncertain requests require manual reconciliation before continuing')
+    pending_paths = list(directory.glob('*.pending'))
+    if pending_paths and not args.retry_uncertain:
+        raise ValueError('uncertain requests require manual reconciliation or an explicit reserved retry')
+    if pending_paths:
+        expected = {f'{world}-{language}-{int(english)}' for world, language in manifest['pairs']
+                    for english in (False, True)}
+        if any(path.stem not in expected for path in pending_paths):
+            raise ValueError('unknown pending request in output directory')
+        uncertain = directory / 'uncertain'
+        uncertain.mkdir(exist_ok=True)
+        for path in pending_paths:
+            path.rename(uncertain / f'{path.stem}-{uuid.uuid4().hex}.json')
     work = []
-    committed = 0.0
+    committed = sum(read(path)['reservation'] for path in (directory / 'uncertain').glob('*.json'))
     for world, language in manifest['pairs']:
         for english in (False, True):
             prompt, gold = build(world, language, length=manifest['length'], english=english,

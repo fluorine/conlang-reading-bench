@@ -1,5 +1,6 @@
 import unittest
 import tempfile
+import json
 from pathlib import Path
 from unittest.mock import patch
 
@@ -43,6 +44,15 @@ class TestSyncreticProbe(unittest.TestCase):
                 (Path(directory) / 'run' / 'uncertain.pending').write_text('{}')
                 with self.assertRaisesRegex(ValueError, 'uncertain requests'):
                     run_case_probes()
+                network.assert_not_called()
+                marker = Path(directory) / 'run' / 'uncertain.pending'
+                marker.unlink()
+                pair = json.loads(Path('experiments/syncretic-one-clue-dev.json').read_text())['pairs'][0]
+                (marker.parent / f'{pair[0]}-{pair[1]}-0.pending').write_text('{"reservation": 0.01}')
+                with patch('sys.argv', arguments + ['--retry-uncertain']):
+                    with self.assertRaisesRegex(ValueError, 'exceed budget'):
+                        run_case_probes()
+                self.assertEqual(len(list((marker.parent / 'uncertain').glob('*.json'))), 1)
                 network.assert_not_called()
 
 
