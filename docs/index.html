@@ -8,8 +8,8 @@
   <meta name="theme-color" content="#f8f9f6" media="(prefers-color-scheme: light)">
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
-  <link rel="stylesheet" href="style.css?v=10">
-  <script defer src="accuracy-plot.js?v=8"></script>
+  <link rel="stylesheet" href="style.css?v=11">
+  <script defer src="accuracy-plot.js?v=9"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -93,7 +93,7 @@
           <label><input type="checkbox" value="minimal" checked> Minimal clues</label>
           <label><input type="checkbox" value="english" checked> English control</label>
         </fieldset>
-        <label>Accuracy scale <select id="plot-scale"><option value="linear">Linear</option><option value="log">Logarithmic</option></select></label>
+        <label class="scale-check"><input type="checkbox" id="plot-scale"> Logarithmic scale</label>
       </div>
       <figure class="chart scatter" id="tier-plot">
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>

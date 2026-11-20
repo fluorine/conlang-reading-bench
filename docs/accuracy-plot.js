@@ -62,7 +62,7 @@ function render() {
   const storyCount = questionCount / 4;
   const selected = Array.from(conditions.querySelectorAll("input:checked"), input => input.value);
   const both = selected.length === 2;
-  const logarithmic = scale.value === "log";
+  const logarithmic = scale.checked;
   const position = value => logarithmic ? 100 * (Math.log10(value) - 1) : value;
   const ticks = logarithmic ? [10, 20, 40, 60, 100] : [0, 25, 50, 75, 100];
   plot.querySelector("#scatter-label").textContent = logarithmic
@@ -142,7 +142,7 @@ function render() {
 function saveSettings() {
   try {
     localStorage.setItem(storageKey, JSON.stringify({
-      tier, scale: scale.value,
+      tier, scale: scale.checked ? "log" : "linear",
       conditions: Array.from(conditions.querySelectorAll("input:checked"), input => input.value)
     }));
   } catch (_) { /* Storage can be unavailable in private browsing. */ }
@@ -160,7 +160,7 @@ function selectTier(value) {
 try {
   const saved = JSON.parse(localStorage.getItem(storageKey));
   if (saved && tabs.some(tab => tab.dataset.tier === saved.tier)) tier = saved.tier;
-  if (saved && Array.from(scale.options).some(option => option.value === saved.scale)) scale.value = saved.scale;
+  if (saved && ["linear", "log"].includes(saved.scale)) scale.checked = saved.scale === "log";
   if (saved && Array.isArray(saved.conditions)) {
     conditions.querySelectorAll("input").forEach(input => { input.checked = saved.conditions.includes(input.value); });
   }
