@@ -35,3 +35,7 @@ A six-person candidate uses endings that jointly encode giver or recipient and t
 ## Individually irregular and opaque names
 
 A 24-transfer candidate assigns each of six names four unique role-and-object endings, all evidenced in examples. Luna medium scored 100% on both conditions across eight development stories. A second candidate also replaces the names with invented words and supplies a name dictionary. It scored 100% in both conditions on eight stories. Both used an 8,192-token cap and had no empty outputs. Costs were $0.00378 and $0.00575 at list price. These development candidates did not reach the target.
+
+## Historical questions with opaque names
+
+A 48-transfer development candidate combines individually irregular endings, invented names, and four questions about holders at different points within the story. The eight-story Luna medium run scored 100% conlang and 90.625% English, with no empty outputs, at $0.00715 list price. The target remains unmet and the English control fell below near-ceiling accuracy.
