@@ -4,7 +4,6 @@ import json
 import math
 import os
 import subprocess
-import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -26,12 +25,13 @@ def now():
 
 
 def settings(model, effort, limit, rates=None):
+    price_date = now()[:10] if rates is not None else PRICE_DATE
     rates = rates or MODELS.get(model)
     if not rates or any(not math.isfinite(x) or x < 0 for x in rates) or limit <= 0:
         raise ValueError("provide valid prices per million tokens and a positive output limit")
     return dict(provider="OpenAI", model=model, effort=effort, temperature=0 if effort == "default" else None,
                 max_completion_tokens=limit, input_usd_per_million=rates[0],
-                output_usd_per_million=rates[1], price_date=PRICE_DATE if model in MODELS else now()[:10])
+                output_usd_per_million=rates[1], price_date=price_date)
 
 
 def price(conf, inputs, outputs):

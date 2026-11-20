@@ -9,7 +9,7 @@ from . import VERSION
 from .calibrate import select
 from .runner import MODELS, bound, new_bundle, price, run, settings, summarize
 from .scoring import compare, grade
-from .suite import ROOT, build, certified, digest, load_suite, read, write
+from .suite import ROOT, build, certified, digest, load_suite, read, sample_manifest, write
 
 
 def bundle_manifest(bundle):
@@ -26,6 +26,12 @@ def print_json(data):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
+    sample = commands.add_parser("sample", help="create a new answer-balanced seed manifest")
+    sample.add_argument("--name", required=True)
+    sample.add_argument("--seed", required=True, type=int)
+    sample.add_argument("--count", required=True, type=int)
+    sample.add_argument("--length", type=int, choices=(2, 3), required=True)
+    sample.add_argument("--out", type=Path, required=True)
     gen = commands.add_parser("generate", help="export model prompts separately from evaluator data")
     gen.add_argument("--suite", default="smoke")
     gen.add_argument("--manifest", type=Path, help="use a custom seed manifest")
@@ -57,7 +63,11 @@ def main(argv=None):
     p.add_argument("--index", type=Path, help="write the independently recomputed index")
 
     args = parser.parse_args(argv)
-    if args.command == "generate":
+    if args.command == "sample":
+        if args.out.exists():
+            raise ValueError("choose a new manifest path")
+        write(args.out, sample_manifest(args.name, args.seed, args.count, args.length))
+    elif args.command == "generate":
         m = read(args.manifest) if args.manifest else load_suite(args.suite)
         prompts, keys, rejected = build(m)
         write(args.out / "public" / "prompts.json", prompts)

@@ -4,6 +4,8 @@ import json
 import os
 import tempfile
 from pathlib import Path
+from collections import Counter
+from random import Random
 
 from . import VERSION
 from .language import evidence, interpretations, language, render
@@ -76,3 +78,26 @@ def certified(manifest):
 
 def load_suite(name):
     return read(ROOT / "suites" / (name + ".json"))
+
+
+def sample_manifest(name, seed, count, length):
+    """Balance person-name frequencies per question across both candidate forms."""
+    if count < 1 or length not in (2, 3) or not name.isalnum():
+        raise ValueError("use a positive story count, alphanumeric name and 2 or 3 transfers")
+    rng = Random(seed)
+    counts = Counter()
+    used = set()
+    pairs = []
+    for index in range(count):
+        def answer_cells(world):
+            query, _ = questions(world + 1729)
+            return [(size, slot, person) for size in (2, 3)
+                    for slot, person in enumerate(answers(*make_world(world, size, index % 3), query))]
+
+        candidates = [rng.randrange(2**31) for _ in range(600)]
+        selected = min((w for w in candidates if w not in used),
+                       key=lambda w: sum(counts[cell] for cell in answer_cells(w)))
+        counts.update(answer_cells(selected))
+        used.add(selected)
+        pairs.append([selected, rng.randrange(2**31)])
+    return dict(name=name, version=VERSION, length=length, pairs=pairs, conditions=list(CONDITIONS))

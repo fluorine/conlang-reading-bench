@@ -16,6 +16,8 @@ Run `python -m unittest discover -s tests -v`. Generate a smoke suite with `pyth
 
 ## Use a different model adapter
 
+For a fresh seed set, run `python -m conlang sample --name fresh --seed 1234 --count 24 --length 2 --out .work/fresh.json`, then `python -m conlang generate --manifest .work/fresh.json --out .work/fresh`. To run or grade it by name in your research checkout, place the manifest at `suites/fresh.json`. Publish a new suite through a protocol PR before submitting scores for it, so that the trusted base scorer can load the manifest.
+
 Export `reference` into a fresh directory. An external adapter receives only `public/prompts.json`, which maps item IDs to the exact user prompts. Send each prompt in an independent context, with no additional demonstrations, tools, gold answers or answer feedback. Copy `adapter-template.json` and replace the provider, model, effort, temperature and output cap with the actual settings. Record the actual start timestamp, benchmark commit, adapter/version, any additional decoding settings, and provider-reported revision and usage where available. Store each model's verbatim text in the matching `raw` field, retaining the prompt hash. Remove entries for unexecuted calls. Report unavailable billing or token data as unknown. A word processor, human, or model silently repairing answers invalidates the comparison.
 
 Import using `python -m conlang run --suite reference --import .work/external.json --out .work/accepted.json`. Reuse the standard scorer. Generation, provider invocation, and grading are separate modules and an adapter can be published independently.
