@@ -14,7 +14,7 @@
   color-scheme: only light;
   --paper: #f8f9f6; --ink: #182623; --muted: #4e605b; --line: #ced8d1;
   --green: #195b4d; --amber: #ad601d; --serif: "Instrument Serif", Georgia, serif;
-  --chart-green: #287e68;
+  --chart-green: #287e68; --violet: #7773ad;
   --surface: #fff; --tint: #eaf0ea; --grid: #e4e9e5;
   --button-ink: white; --button-hover: #104b3e; --sample-shadow: #dce6df;
   font: 100%/1.55 "DM Sans", Arial, sans-serif;
@@ -25,7 +25,7 @@
     color-scheme: only dark;
     --paper: #15201d; --ink: #edf3ef; --muted: #bacbc3; --line: #43544c;
     --green: #90daca; --amber: #f2ad6b;
-    --chart-green: var(--green);
+    --chart-green: var(--green); --violet: #c8baf5;
     --surface: #202d28; --tint: #273a32; --grid: #3d4e46;
     --button-ink: #122b23; --button-hover: #b0ebd8; --sample-shadow: #293b33;
   }
@@ -77,10 +77,11 @@ details p { color: #e4eee8; max-width: 42ch; margin-bottom: 0 }
 .results h2, .method h2 { font-size: clamp(2.7rem,4.5vw,4.5rem) }
 .results-copy > p:not(.eyebrow), .reproduce p { color: var(--muted) }
 .results-copy > p:not(.eyebrow) { max-width: 44ch }
-.scores { display: flex; gap: clamp(1.25rem,3vw,3rem); margin-top: 1.35rem }
+.scores { display: flex; flex-wrap: wrap; gap: 1rem clamp(1rem,2vw,2rem); margin-top: 1.35rem }
 .scores div { display: grid }
 .scores strong { font: 400 clamp(2.3rem,3.5vw,3.6rem)/1.1 var(--serif); color: var(--green) }
 .scores div:nth-child(2) strong { color: var(--amber) }
+.scores div:nth-child(3) strong { color: var(--violet) }
 .scores strong span { font-size: .54em }
 .scores div > span, .caption, .chart-note { font-size: .875rem }
 .chart { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: clamp(1rem,2.6vw,2.3rem); --label: 7.7rem; --value: 3.9rem }
@@ -90,6 +91,8 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .legend span { gap: .45rem }
 .chart .first { --series-fill: var(--chart-green); --series-radius: 1rem }
 .chart .second { --series-fill: var(--amber); --series-radius: 0 }
+.chart .third { --series-fill: var(--violet); --series-radius: 0 }
+.third i { clip-path: polygon(0 0,calc(100% - .25rem) 0,100% 50%,calc(100% - .25rem) 100%,0 100%) }
 /* Paint both sizes of mark identically, including in browsers that darken flat backgrounds. */
 .legend i, .track i {
   background: var(--series-fill) linear-gradient(var(--series-fill), var(--series-fill));
@@ -168,5 +171,6 @@ footer { border-top: 1px solid var(--line); color: var(--muted) }
 @media(forced-colors: active) {
   .chart .first { --series-fill: CanvasText }
   .chart .second { --series-fill: Highlight }
+  .chart .third { --series-fill: LinkText }
   .track i, .legend i { background: var(--series-fill); forced-color-adjust: none }
 }

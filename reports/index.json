@@ -215,6 +215,42 @@
     },
     "independent_rerun_of": null
   },
+  "holdout2/gpt-5.4-nano-2026-03-17.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "fa2e0ed0c64ac087d7787e908e9b41d75a2964e173910d9c97277f10051a5664",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-5.4-nano-2026-03-17",
+      "effort": "default",
+      "temperature": 0,
+      "max_completion_tokens": 64,
+      "input_usd_per_million": 0.2,
+      "output_usd_per_million": 1.25,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 44.79166666666667,
+      "glossary": 48.95833333333333,
+      "grammar": 46.875,
+      "english": 62.5
+    },
+    "headline": 46.875,
+    "all_four_correct": {
+      "minimal": 0,
+      "glossary": 0,
+      "grammar": 0,
+      "english": 8.333333333333332
+    },
+    "usage": {
+      "input_tokens": 18266,
+      "output_tokens": 1152,
+      "reasoning_tokens": 0,
+      "list_price_usd": 0.0050932,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
   "questions/gpt-4.1-mini-2025-04-14.json": {
     "status": "regraded",
     "scorer_version": "0.1.1",
