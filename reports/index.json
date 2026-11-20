@@ -347,6 +347,38 @@
     },
     "independent_rerun_of": null
   },
+  "six96dev/gpt-6-luna-medium.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "bc1d9f40e888aac3753d381909d5a6a37e46e0d7471f8369b0b8c4403ffeb14c",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-6-luna",
+      "effort": "medium",
+      "temperature": null,
+      "max_completion_tokens": 8192,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 100.0,
+      "english": 91.66666666666666
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 100,
+      "english": 83.33333333333334
+    },
+    "usage": {
+      "input_tokens": 11071,
+      "output_tokens": 8892,
+      "reasoning_tokens": 8590,
+      "list_price_usd": 0.0055531,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
   "sixdev/gpt-6-luna-medium.json": {
     "status": "regraded",
     "scorer_version": "0.1.1",
