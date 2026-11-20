@@ -99,7 +99,8 @@ def main():
         print(path, 'correct' if row['correct'] else 'incorrect', flush=True)
 
     with ThreadPoolExecutor(max_workers=3) as pool:
-        list(pool.map(run, work))
+        for offset in range(0, len(work), 3):
+            list(pool.map(run, work[offset:offset + 3]))
 
 
 if __name__ == '__main__':
