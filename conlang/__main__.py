@@ -2,11 +2,12 @@
 import argparse
 import json
 import sys
+from math import isclose
 from pathlib import Path
 
 from . import VERSION
 from .calibrate import select
-from .runner import MODELS, bound, new_bundle, run, settings
+from .runner import MODELS, bound, new_bundle, price, run, settings, summarize
 from .scoring import compare, grade
 from .suite import ROOT, build, certified, digest, load_suite, read, write
 
@@ -136,6 +137,15 @@ def validate_bundle(b):
             raise ValueError(f"missing settings field: {k}")
     if any(b["settings"][k] in ("", "replace", None) for k in ("model", "provider", "effort")):
         raise ValueError("provide actual adapter settings")
+    if b.get("usage_summary") and "list_price_usd" in b["usage_summary"]:
+        for row in b["responses"].values():
+            usage = row["usage"]
+            expected = price(b["settings"], usage["prompt_tokens"], usage["completion_tokens"])
+            if not isclose(expected, row["cost_usd"]):
+                raise ValueError("response token cost mismatch")
+        calculated = summarize(b)
+        if any(not isclose(v, b["usage_summary"][k]) for k, v in calculated.items()):
+            raise ValueError("bundle usage summary mismatch")
     return grade(bundle_manifest(b), b)
 
 
