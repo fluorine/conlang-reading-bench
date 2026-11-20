@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#f8f9f6" media="(prefers-color-scheme: light)">
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
   <script defer src="accuracy-plot.js?v=9"></script>
 </head>
 <body id="top">
@@ -87,12 +87,12 @@
     <section class="method" id="accuracy-overview" aria-labelledby="accuracy-heading" hidden>
       <h2 id="accuracy-heading">Accuracy by <em>model release date.</em></h2>
       <div class="scatter-controls">
-        <div class="tier-tabs" role="tablist" aria-label="Story tier"><button type="button" role="tab" data-tier="two" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 1 · Two transfers</button><button type="button" role="tab" data-tier="four" aria-controls="tier-plot" aria-selected="true" tabindex="0">Tier 2 · Four transfers</button></div>
         <fieldset id="plot-conditions">
           <legend>Reading conditions</legend>
           <label><input type="checkbox" value="minimal" checked> Minimal clues</label>
           <label><input type="checkbox" value="english" checked> English control</label>
         </fieldset>
+        <div class="tier-tabs" role="tablist" aria-label="Story tier"><button type="button" role="tab" data-tier="two" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 1 · Two transfers</button><button type="button" role="tab" data-tier="four" aria-controls="tier-plot" aria-selected="true" tabindex="0">Tier 2 · Four transfers</button></div>
       </div>
       <figure class="chart scatter" id="tier-plot">
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
