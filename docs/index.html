@@ -8,7 +8,8 @@
   <meta name="theme-color" content="#f8f9f6" media="(prefers-color-scheme: light)">
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
+  <script defer src="accuracy-plot.js"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -80,7 +81,21 @@
               </div>
         </dl>
         <div class="axis" aria-hidden="true"><div><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div></div>
-        <p class="chart-note">Models are shown in release order, oldest first. Each condition has 96 questions per model.</p>
+        <p class="chart-note">Models are shown in release order, oldest first. Each condition has 96 questions per model. <a href="#accuracy-overview">Explore both tiers in the scatter plot</a>.</p>
+      </figure>
+    </section>
+    <section class="method" id="accuracy-overview" aria-labelledby="accuracy-heading" hidden>
+      <h2 id="accuracy-heading">Accuracy by <em>model release order.</em></h2>
+      <div class="scatter-controls">
+        <label>Story tier <select id="plot-tier"><option value="two">Tier 1 · Two transfers</option><option value="four">Tier 2 · Four transfers</option></select></label>
+        <label>Reading condition <select id="plot-condition"><option value="minimal">Minimal clues</option><option value="english">English</option></select></label>
+      </div>
+      <figure class="chart scatter">
+        <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
+        <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
+        <p class="scatter-detail" aria-live="polite"></p>
+        <p class="chart-note">Models run left to right from oldest to newest. Spacing is equal. Select a point for its score.</p>
+        <p class="chart-note" id="scatter-note"></p>
       </figure>
     </section>
     <section class="method" id="four-transfers" aria-labelledby="four-transfers-heading">

@@ -118,6 +118,25 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .axis span { position: absolute; transform: translateX(-50%) }
 .axis span:nth-child(2) { left: 25% }.axis span:nth-child(3) { left: 50% }.axis span:nth-child(4) { left: 75% }.axis span:last-child { left: 100% }
 .chart-note { margin-top: .8rem }
+.scatter-controls { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin-block: 1.4rem 1rem }
+.scatter-controls label { display: grid; gap: .3rem; font-weight: 600 }
+.scatter-controls select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: .45rem }
+.scatter { max-width: 54rem }
+.scatter figcaption { font-weight: 650 }
+.scatter-grid { height: 16rem; margin: 1.4rem 0 3.2rem 2.35rem; position: relative; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); border-left: 1px solid var(--line); border-bottom: 1px solid var(--line) }
+.scatter-tick { position: absolute; width: 100%; bottom: var(--y); border-bottom: 1px solid var(--grid) }
+.scatter-tick span { position: absolute; right: calc(100% + .35rem); transform: translateY(-50%); font-size: .78rem; color: var(--muted) }
+.scatter-column { position: relative; border-right: 1px solid var(--grid) }
+.scatter-model { position: absolute; top: calc(100% + .3rem); width: 100%; text-align: center; font-size: .8rem; padding-inline: .1rem }
+.scatter-point { position: absolute; left: var(--x,50%); bottom: var(--y); transform: translate(-50%,50%); width: 2rem; height: 1.65rem; cursor: pointer; border: 0; padding: 0; background: transparent; display: grid; place-items: center; color: var(--chart-green) }
+.scatter-point::before { content: ""; width: .82rem; height: .82rem; border-radius: 50%; background: currentColor; border: 1px solid var(--surface) }
+.scatter-point.fresh { color: var(--violet) }
+.scatter-point.fresh::before { border-radius: 2px }
+.scatter-point:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; z-index: 1 }
+.scatter-detail { min-height: 3em; margin: 0; color: var(--ink); font-weight: 600 }
+@media (forced-colors: active) {
+  .scatter-point::before { forced-color-adjust: none; background: LinkText; border-color: Canvas }
+}
 .diagram { margin: 2rem 0 0 }
 .diagram figcaption { margin-bottom: 1rem }
 .diagram figcaption p, .settings { margin: .4rem 0 0; color: var(--muted); max-width: 80ch }
