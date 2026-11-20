@@ -7,15 +7,15 @@ VOWELS = "aeiou"
 
 
 def build(layers):
-    if not 0 <= layers <= 12:
-        raise ValueError("layer count must be between 0 and 12")
+    if not 0 <= layers <= 48:
+        raise ValueError("layer count must be between 0 and 48")
     prompts, keys = certified(load_suite(SOURCE))
     prompt = prompts[STORY + "/minimal"]
     parts = prompt.split("\n\n")
     story = parts[2].splitlines()
     rules = []
     for layer in range(layers):
-        divisor = layer + 2
+        divisor = 2 + layer % 11
         rules.append(f"On transfers divisible by {divisor}, advance each ending vowel "
                      "one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.")
         for index in range(3, len(story)):
@@ -28,7 +28,7 @@ def build(layers):
     # The rendering has an exact inverse; names and initial statements are unchanged.
     restored = story.copy()
     for layer in reversed(range(layers)):
-        divisor = layer + 2
+        divisor = 2 + layer % 11
         for index in range(3, len(restored)):
             if (index - 2) % divisor == 0:
                 words = []
