@@ -6,11 +6,11 @@ STORY = "w1459502337-l803843998"
 VOWELS = "aeiou"
 
 
-def build(layers):
+def build(layers, source=SOURCE, story_id=STORY):
     if not 0 <= layers <= 48:
         raise ValueError("layer count must be between 0 and 48")
-    prompts, keys = certified(load_suite(SOURCE))
-    prompt = prompts[STORY + "/minimal"]
+    prompts, keys = certified(load_suite(source))
+    prompt = prompts[story_id + "/minimal"]
     parts = prompt.split("\n\n")
     story = parts[2].splitlines()
     rules = []
@@ -42,4 +42,4 @@ def build(layers):
                    "Return only a JSON array containing the one name.")
     question = "Who holds the coin at the end?"
     full = "\n\n".join([instruction, parts[1], "\n".join(rules), "\n".join(story), question])
-    return full, keys[STORY]["answers"][2]
+    return full, keys[story_id]["answers"][2]
