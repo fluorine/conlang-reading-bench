@@ -1,0 +1,1044 @@
+{
+  "development": [
+    {
+      "level": 0,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\n\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-in Ada-ek\nAda-iz Eli-ir\nAda-al Cy-ek\nEli-iz Fay-av\nCy-al Fay-im\nFay-os Dee-ir\nFay-in Eli-ek\nDee-iz Fay-av\nEli-al Bo-ek\nFay-os Bo-ir\nBo-al Ada-ek\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 311,
+        "completion_tokens": 555,
+        "total_tokens": 866,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 537,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0003086,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:08:37.249292+00:00"
+    },
+    {
+      "level": 1,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-iz Eli-ir\nAda-el Cy-ik\nEli-iz Fay-av\nCy-el Fay-om\nFay-os Dee-ir\nFay-on Eli-ik\nDee-iz Fay-av\nEli-el Bo-ik\nFay-os Bo-ir\nBo-el Ada-ik\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 352,
+        "completion_tokens": 3285,
+        "total_tokens": 3637,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3237,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0016777,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:09:05.146907+00:00"
+    },
+    {
+      "level": 2,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-el Cy-ik\nEli-iz Fay-av\nCy-il Fay-um\nFay-os Dee-ir\nFay-on Eli-ik\nDee-oz Fay-ev\nEli-el Bo-ik\nFay-os Bo-ir\nBo-il Ada-ok\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 387,
+        "completion_tokens": 2863,
+        "total_tokens": 3250,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2821,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0014702,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:09:29.393238+00:00"
+    },
+    {
+      "level": 3,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-iz Fay-av\nCy-il Fay-um\nFay-os Dee-ir\nFay-un Eli-ok\nDee-oz Fay-ev\nEli-el Bo-ik\nFay-os Bo-ir\nBo-ol Ada-uk\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 422,
+        "completion_tokens": 965,
+        "total_tokens": 1387,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 947,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0005247,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:09:38.055408+00:00"
+    },
+    {
+      "level": 4,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-il Fay-um\nFay-os Dee-ir\nFay-un Eli-ok\nDee-oz Fay-ev\nEli-il Bo-ok\nFay-os Bo-ir\nBo-ol Ada-uk\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 457,
+        "completion_tokens": 1602,
+        "total_tokens": 2059,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1571,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0008467,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:09:50.927715+00:00"
+    },
+    {
+      "level": 5,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-os Dee-ir\nFay-un Eli-ok\nDee-oz Fay-ev\nEli-il Bo-ok\nFay-os Bo-ir\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "",
+      "correct": false,
+      "usage": {
+        "prompt_tokens": 490,
+        "completion_tokens": 4096,
+        "total_tokens": 4586,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4096,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.002097,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:10:24.364243+00:00"
+    },
+    {
+      "level": 6,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-us Dee-or\nFay-un Eli-ok\nDee-oz Fay-ev\nEli-il Bo-ok\nFay-os Bo-ir\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 525,
+        "completion_tokens": 1164,
+        "total_tokens": 1689,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1140,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0006345,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:11:13.579809+00:00"
+    },
+    {
+      "level": 7,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-us Dee-or\nFay-an Eli-uk\nDee-oz Fay-ev\nEli-il Bo-ok\nFay-os Bo-ir\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 561,
+        "completion_tokens": 3632,
+        "total_tokens": 4193,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3584,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0018720999999999998,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:11:49.592678+00:00"
+    },
+    {
+      "level": 8,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-us Dee-or\nFay-an Eli-uk\nDee-uz Fay-iv\nEli-il Bo-ok\nFay-os Bo-ir\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 596,
+        "completion_tokens": 2410,
+        "total_tokens": 3006,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2374,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0012645999999999998,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:12:10.168194+00:00"
+    },
+    {
+      "level": 9,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-us Dee-or\nFay-an Eli-uk\nDee-uz Fay-iv\nEli-ol Bo-uk\nFay-os Bo-ir\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 633,
+        "completion_tokens": 1864,
+        "total_tokens": 2497,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1834,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009953,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:12:27.375476+00:00"
+    },
+    {
+      "level": 10,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-us Dee-or\nFay-an Eli-uk\nDee-uz Fay-iv\nEli-ol Bo-uk\nFay-us Bo-or\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 668,
+        "completion_tokens": 2058,
+        "total_tokens": 2726,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2028,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010957999999999999,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:12:44.556493+00:00"
+    },
+    {
+      "level": 11,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-us Dee-or\nFay-an Eli-uk\nDee-uz Fay-iv\nEli-ol Bo-uk\nFay-us Bo-or\nBo-al Ada-ek\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 703,
+        "completion_tokens": 2913,
+        "total_tokens": 3616,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2871,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0015268,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:13:09.229125+00:00"
+    },
+    {
+      "level": 12,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 13, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-us Dee-or\nFay-an Eli-uk\nDee-uz Fay-iv\nEli-ol Bo-uk\nFay-us Bo-or\nBo-al Ada-ek\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 738,
+        "completion_tokens": 1412,
+        "total_tokens": 2150,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1388,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0007798,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:13:21.684266+00:00"
+    },
+    {
+      "level": 12,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-oz Eli-or\nAda-ol Cy-uk\nEli-oz Fay-ev\nCy-ul Fay-em\nFay-us Dee-or\nFay-en Eli-ak\nDee-uz Fay-iv\nEli-ul Bo-ak\nFay-us Bo-or\nBo-el Ada-ik\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 736,
+        "completion_tokens": 2147,
+        "total_tokens": 2883,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2111,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0011470999999999999,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:14:04.151938+00:00"
+    },
+    {
+      "level": 13,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ol Cy-uk\nEli-oz Fay-ev\nCy-al Fay-im\nFay-us Dee-or\nFay-en Eli-ak\nDee-az Fay-ov\nEli-ul Bo-ak\nFay-us Bo-or\nBo-il Ada-ok\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 771,
+        "completion_tokens": 4171,
+        "total_tokens": 4942,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4110,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0021625999999999998,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:14:39.483060+00:00"
+    },
+    {
+      "level": 14,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-oz Fay-ev\nCy-al Fay-im\nFay-us Dee-or\nFay-in Eli-ek\nDee-az Fay-ov\nEli-ul Bo-ak\nFay-us Bo-or\nBo-ol Ada-uk\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 806,
+        "completion_tokens": 3378,
+        "total_tokens": 4184,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3330,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0017695999999999999,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:15:08.709906+00:00"
+    },
+    {
+      "level": 15,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-uz Fay-iv\nCy-al Fay-im\nFay-us Dee-or\nFay-in Eli-ek\nDee-az Fay-ov\nEli-al Bo-ek\nFay-us Bo-or\nBo-ol Ada-uk\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 841,
+        "completion_tokens": 3522,
+        "total_tokens": 4363,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3473,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0018451,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:15:40.180314+00:00"
+    },
+    {
+      "level": 16,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-uz Fay-iv\nCy-el Fay-om\nFay-us Dee-or\nFay-in Eli-ek\nDee-az Fay-ov\nEli-al Bo-ek\nFay-us Bo-or\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 875,
+        "completion_tokens": 2937,
+        "total_tokens": 3812,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2894,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.001556,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:16:06.288254+00:00"
+    },
+    {
+      "level": 17,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-uz Fay-iv\nCy-el Fay-om\nFay-as Dee-ur\nFay-in Eli-ek\nDee-az Fay-ov\nEli-al Bo-ek\nFay-us Bo-or\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 911,
+        "completion_tokens": 2542,
+        "total_tokens": 3453,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2506,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0013621,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:16:27.662556+00:00"
+    },
+    {
+      "level": 18,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-uz Fay-iv\nCy-el Fay-om\nFay-as Dee-ur\nFay-on Eli-ik\nDee-az Fay-ov\nEli-al Bo-ek\nFay-us Bo-or\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 947,
+        "completion_tokens": 2037,
+        "total_tokens": 2984,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2007,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0011132,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:16:45.814632+00:00"
+    },
+    {
+      "level": 19,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-uz Fay-iv\nCy-el Fay-om\nFay-as Dee-ur\nFay-on Eli-ik\nDee-ez Fay-uv\nEli-al Bo-ek\nFay-us Bo-or\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 982,
+        "completion_tokens": 1732,
+        "total_tokens": 2714,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1702,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009642,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:17:01.102491+00:00"
+    },
+    {
+      "level": 20,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-uz Fay-iv\nCy-el Fay-om\nFay-as Dee-ur\nFay-on Eli-ik\nDee-ez Fay-uv\nEli-el Bo-ik\nFay-us Bo-or\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1018,
+        "completion_tokens": 2894,
+        "total_tokens": 3912,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2852,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0015488,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:17:27.590020+00:00"
+    },
+    {
+      "level": 21,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-uz Fay-iv\nCy-el Fay-om\nFay-as Dee-ur\nFay-on Eli-ik\nDee-ez Fay-uv\nEli-el Bo-ik\nFay-as Bo-ur\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1054,
+        "completion_tokens": 2822,
+        "total_tokens": 3876,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1051,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2779,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0015164,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:17:52.379328+00:00"
+    },
+    {
+      "level": 22,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-un Ada-ok\nAda-uz Eli-ur\nAda-ul Cy-ak\nEli-uz Fay-iv\nCy-el Fay-om\nFay-as Dee-ur\nFay-on Eli-ik\nDee-ez Fay-uv\nEli-el Bo-ik\nFay-as Bo-ur\nBo-al Ada-ek\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1089,
+        "completion_tokens": 3404,
+        "total_tokens": 4493,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1086,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3356,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0018109,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:18:23.685703+00:00"
+    },
+    {
+      "level": 23,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-an Ada-uk\nAda-uz Eli-ur\nAda-al Cy-ek\nEli-uz Fay-iv\nCy-il Fay-um\nFay-as Dee-ur\nFay-un Eli-ok\nDee-ez Fay-uv\nEli-il Bo-ok\nFay-as Bo-ur\nBo-el Ada-ik\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Ada\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1124,
+        "completion_tokens": 1683,
+        "total_tokens": 2807,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1121,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1653,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009538999999999999,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:18:38.479885+00:00"
+    },
+    {
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-an Ada-uk\nAda-az Eli-ar\nAda-al Cy-ek\nEli-uz Fay-iv\nCy-ol Fay-am\nFay-as Dee-ur\nFay-un Eli-ok\nDee-iz Fay-av\nEli-il Bo-ok\nFay-as Bo-ur\nBo-il Ada-ok\n\nWho holds the coin at the end?",
+      "gold": "Ada",
+      "raw": "[\"Bo\"]",
+      "correct": false,
+      "usage": {
+        "prompt_tokens": 1156,
+        "completion_tokens": 4009,
+        "total_tokens": 5165,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1153,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3957,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0021200999999999998,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:19:17.929793+00:00"
+    }
+  ],
+  "retry": {
+    "level": 5,
+    "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: lupa means holds, pose means coin, and numa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-en = Fay gives the coin\nAda-ak = Ada receives the coin\nFay-em = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-av = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay lupa pose\nCy lupa numa\nCy-iz Ada-ir\nFay-on Ada-ik\nAda-oz Eli-or\nAda-il Cy-ok\nEli-oz Fay-ev\nCy-ol Fay-am\nFay-os Dee-ir\nFay-un Eli-ok\nDee-oz Fay-ev\nEli-il Bo-ok\nFay-os Bo-ir\nBo-ul Ada-ak\n\nWho holds the coin at the end?",
+    "gold": "Ada",
+    "raw": "[\"Ada\"]",
+    "correct": true,
+    "usage": {
+      "prompt_tokens": 490,
+      "completion_tokens": 1251,
+      "total_tokens": 1741,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 1227,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "cost": 0.0006745,
+    "model": "gpt-6-luna",
+    "time": "2026-11-20T19:10:45.337178+00:00"
+  },
+  "validation": [
+    {
+      "story": "w1439608454-l864669049",
+      "condition": "english",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nStory:\nFay starts with the coin.\nAda starts with the key.\nAda gives the key to Cy.\nFay gives the coin to Dee.\nCy gives the key to Ada.\nDee gives the coin to Bo.\nAda gives the key to Bo.\nBo gives the coin to Dee.\nBo gives the key to Ada.\nDee gives the coin to Bo.\nAda gives the key to Bo.\nBo gives the coin to Ada.\nBo gives the key to Ada.\nAda gives the coin to Fay.\n\nWho holds the coin at the end?",
+      "gold": "Fay",
+      "raw": "[\"Fay\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 146,
+        "completion_tokens": 40,
+        "total_tokens": 186,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 27,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 3.46e-05,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:43.013750+00:00"
+    },
+    {
+      "story": "w1439608454-l864669049",
+      "condition": "minimal",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: rivu means holds, veto means coin, and rise means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-av = Ada gives the coin\nFay-iz = Fay gives the coin\nAda-os = Ada receives the coin\nFay-ul = Fay receives the coin\nAda-ir = Ada gives the key\nFay-ak = Fay gives the key\nAda-en = Ada receives the key\nFay-em = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay rivu veto\nAda rivu rise\nAda-ir Cy-en\nFay-ez Dee-is\nCy-ar Ada-un\nDee-ev Bo-us\nAda-ur Bo-on\nBo-uv Dee-is\nBo-ur Ada-on\nDee-ov Bo-es\nAda-ir Bo-en\nBo-ov Ada-es\nBo-ur Ada-on\nAda-ov Fay-il\n\nWho holds the coin at the end?",
+      "gold": "Fay",
+      "raw": "[\"Fay\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1155,
+        "completion_tokens": 3838,
+        "total_tokens": 4993,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1152,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3783,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0020345,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:21:14.650616+00:00"
+    },
+    {
+      "story": "w237433685-l254172111",
+      "condition": "english",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nStory:\nAda starts with the coin.\nFay starts with the key.\nAda gives the coin to Bo.\nFay gives the key to Bo.\nBo gives the coin to Eli.\nBo gives the key to Ada.\nEli gives the coin to Bo.\nAda gives the key to Bo.\nBo gives the coin to Eli.\nBo gives the key to Cy.\nEli gives the coin to Bo.\nCy gives the key to Fay.\nBo gives the coin to Fay.\nFay gives the key to Eli.\n\nWho holds the coin at the end?",
+      "gold": "Fay",
+      "raw": "[\"Fay\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 147,
+        "completion_tokens": 51,
+        "total_tokens": 198,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 38,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 4.02e-05,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:31.184612+00:00"
+    },
+    {
+      "story": "w237433685-l254172111",
+      "condition": "minimal",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: nupa means holds, povu means coin, and vema means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ul = Ada gives the coin\nFay-ak = Fay gives the coin\nAda-av = Ada receives the coin\nFay-os = Fay receives the coin\nAda-em = Ada gives the key\nFay-en = Fay gives the key\nAda-ir = Ada receives the key\nFay-iz = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nAda nupa povu\nFay nupa vema\nAda-ul Bo-av\nFay-an Bo-er\nBo-il Eli-ov\nBo-im Ada-or\nEli-el Bo-iv\nAda-am Bo-er\nBo-el Eli-iv\nBo-um Cy-ar\nEli-ul Bo-av\nCy-um Fay-az\nBo-el Fay-as\nFay-un Eli-ar\n\nWho holds the coin at the end?",
+      "gold": "Fay",
+      "raw": "[\"Fay\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1157,
+        "completion_tokens": 1750,
+        "total_tokens": 2907,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1154,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1719,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009907,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:42.102688+00:00"
+    },
+    {
+      "story": "w238607106-l91577288",
+      "condition": "english",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nStory:\nAda starts with the coin.\nEli starts with the key.\nEli gives the key to Bo.\nAda gives the coin to Eli.\nBo gives the key to Ada.\nEli gives the coin to Ada.\nAda gives the key to Cy.\nAda gives the coin to Eli.\nCy gives the key to Dee.\nEli gives the coin to Bo.\nDee gives the key to Fay.\nBo gives the coin to Ada.\nFay gives the key to Cy.\nAda gives the coin to Eli.\n\nWho holds the coin at the end?",
+      "gold": "Eli",
+      "raw": "[\"Eli\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 148,
+        "completion_tokens": 61,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 48,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 4.5299999999999997e-05,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:19:58.958839+00:00"
+    },
+    {
+      "story": "w238607106-l91577288",
+      "condition": "minimal",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: luki means holds, kama means coin, and zopa means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-os = Ada gives the coin\nFay-em = Fay gives the coin\nAda-ul = Ada receives the coin\nFay-av = Fay receives the coin\nAda-ak = Ada gives the key\nFay-ir = Fay gives the key\nAda-en = Ada receives the key\nFay-iz = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nAda luki kama\nEli luki zopa\nEli-ak Bo-en\nAda-is Eli-ol\nBo-ok Ada-un\nEli-us Ada-al\nAda-ik Cy-on\nAda-is Eli-ol\nCy-ik Dee-on\nEli-es Bo-il\nDee-ak Fay-iz\nBo-es Ada-il\nFay-ur Cy-on\nAda-es Eli-il\n\nWho holds the coin at the end?",
+      "gold": "Eli",
+      "raw": "[\"Eli\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1156,
+        "completion_tokens": 3793,
+        "total_tokens": 4949,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1153,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3738,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0020120999999999997,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:26.438567+00:00"
+    },
+    {
+      "story": "w511765741-l494408834",
+      "condition": "english",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nStory:\nDee starts with the coin.\nEli starts with the key.\nDee gives the coin to Cy.\nEli gives the key to Cy.\nCy gives the coin to Bo.\nCy gives the key to Dee.\nBo gives the coin to Eli.\nDee gives the key to Ada.\nEli gives the coin to Dee.\nAda gives the key to Fay.\nDee gives the coin to Ada.\nFay gives the key to Cy.\nAda gives the coin to Eli.\nCy gives the key to Eli.\n\nWho holds the coin at the end?",
+      "gold": "Eli",
+      "raw": "[\"Eli\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 150,
+        "completion_tokens": 39,
+        "total_tokens": 189,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 26,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 3.45e-05,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:27.818603+00:00"
+    },
+    {
+      "story": "w511765741-l494408834",
+      "condition": "minimal",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: zovu means holds, vema means coin, and luki means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ir = Ada gives the coin\nFay-iz = Fay gives the coin\nAda-ul = Ada receives the coin\nFay-os = Fay receives the coin\nAda-av = Ada gives the key\nFay-en = Fay gives the key\nAda-ak = Ada receives the key\nFay-em = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nDee zovu vema\nEli zovu luki\nDee-ir Cy-ul\nEli-uv Cy-uk\nCy-ar Bo-il\nCy-ev Dee-ek\nBo-ur Eli-el\nDee-uv Ada-uk\nEli-ur Dee-el\nAda-ov Fay-um\nDee-ir Ada-ul\nFay-un Cy-ok\nAda-ur Eli-el\nCy-ov Eli-ok\n\nWho holds the coin at the end?",
+      "gold": "Eli",
+      "raw": "[\"Eli\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1165,
+        "completion_tokens": 4336,
+        "total_tokens": 5501,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1162,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 4275,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0022845,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:37.992757+00:00"
+    },
+    {
+      "story": "w622007233-l2020456031",
+      "condition": "english",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nStory:\nFay starts with the key.\nDee starts with the coin.\nDee gives the coin to Ada.\nFay gives the key to Eli.\nAda gives the coin to Dee.\nEli gives the key to Dee.\nDee gives the coin to Ada.\nDee gives the key to Ada.\nAda gives the coin to Dee.\nAda gives the key to Bo.\nDee gives the coin to Fay.\nBo gives the key to Eli.\nFay gives the coin to Eli.\nEli gives the key to Ada.\n\nWho holds the coin at the end?",
+      "gold": "Eli",
+      "raw": "[\"Eli\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 152,
+        "completion_tokens": 68,
+        "total_tokens": 220,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 55,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 4.92e-05,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:39.916577+00:00"
+    },
+    {
+      "story": "w622007233-l2020456031",
+      "condition": "minimal",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: mito means holds, poto means coin, and mise means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-em = Ada gives the coin\nFay-av = Fay gives the coin\nAda-ul = Ada receives the coin\nFay-ak = Fay receives the coin\nAda-iz = Ada gives the key\nFay-os = Fay gives the key\nAda-ir = Ada receives the key\nFay-en = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nFay mito mise\nDee mito poto\nDee-em Ada-ul\nFay-is Eli-er\nAda-um Dee-il\nEli-oz Dee-or\nDee-om Ada-el\nDee-ez Ada-er\nAda-om Dee-el\nAda-az Bo-ar\nDee-em Fay-ak\nBo-az Eli-ar\nFay-iv Eli-el\nEli-az Ada-ar\n\nWho holds the coin at the end?",
+      "gold": "Eli",
+      "raw": "[\"Eli\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1158,
+        "completion_tokens": 1737,
+        "total_tokens": 2895,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1155,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1706,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009843,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:46.068577+00:00"
+    },
+    {
+      "story": "w684653923-l1293874695",
+      "condition": "english",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nStory:\nCy starts with the coin.\nEli starts with the key.\nEli gives the key to Cy.\nCy gives the coin to Eli.\nCy gives the key to Ada.\nEli gives the coin to Cy.\nAda gives the key to Fay.\nCy gives the coin to Fay.\nFay gives the key to Cy.\nFay gives the coin to Cy.\nCy gives the key to Dee.\nCy gives the coin to Eli.\nDee gives the key to Fay.\nEli gives the coin to Cy.\n\nWho holds the coin at the end?",
+      "gold": "Cy",
+      "raw": "[\"Cy\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 149,
+        "completion_tokens": 70,
+        "total_tokens": 219,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 58,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 4.99e-05,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:19:57.570353+00:00"
+    },
+    {
+      "story": "w684653923-l1293874695",
+      "condition": "minimal",
+      "level": 24,
+      "prompt": "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing the one name.\n\nInitially: povu means holds, vevu means coin, and kaki means key. Initial statements use holder, holds, object. Transfer sentences contain a giver followed by a recipient. Each ending combines the person's role and object. Only the current holder can give. Examples show all base endings. All names use Ada's pattern except Fay, whose endings are shown separately. On even-numbered transfers, change every vowel in an ending once using a→e, e→i, i→o, o→u, u→a. Odd-numbered transfers use the base endings.\nExamples:\nAda-ir = Ada gives the coin\nFay-av = Fay gives the coin\nAda-os = Ada receives the coin\nFay-ul = Fay receives the coin\nAda-em = Ada gives the key\nFay-ak = Fay gives the key\nAda-en = Ada receives the key\nFay-iz = Fay receives the key\n\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 4, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 5, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 6, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 7, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 8, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 9, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 10, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 11, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 12, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 2, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\nOn transfers divisible by 3, advance each ending vowel one step around a→e→i→o→u→a. Apply this rule after all earlier sound rules.\n\nStory:\nCy povu vevu\nEli povu kaki\nEli-em Cy-en\nCy-er Eli-is\nCy-um Ada-un\nEli-or Cy-us\nAda-om Fay-uz\nCy-er Fay-ol\nFay-ik Cy-on\nFay-ov Cy-es\nCy-em Dee-en\nCy-ar Eli-es\nDee-om Fay-uz\nEli-ar Cy-es\n\nWho holds the coin at the end?",
+      "gold": "Cy",
+      "raw": "[\"Cy\"]",
+      "correct": true,
+      "usage": {
+        "prompt_tokens": 1159,
+        "completion_tokens": 3919,
+        "total_tokens": 5078,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1156,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 3864,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0020754000000000002,
+      "model": "gpt-6-luna",
+      "time": "2026-11-20T19:20:29.934321+00:00"
+    }
+  ]
+}
