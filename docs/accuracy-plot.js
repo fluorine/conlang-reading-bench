@@ -19,14 +19,20 @@ const accuracy = {
     }
   ],
   "four": [
-    null,
+    {
+      "minimal": 100 * 82 / 192,
+      "english": 100 * 153 / 192
+    },
     {
       "minimal": 100 * 76 / 192,
       "english": 100 * 143 / 192
     },
-    null,
     {
-      "minimal": 100,
+      "minimal": 100 * 67 / 192,
+      "english": 100 * 118 / 192
+    },
+    {
+      "minimal": 100 * 192 / 192,
       "english": 100 * 191 / 192
     }
   ]
@@ -56,7 +62,7 @@ function render() {
   }
   detail.textContent = selected.length ? "Select a point to see the exact score." : "Choose a reading condition to show scores.";
   note.textContent = isFour
-    ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap. Empty columns indicate no published run."
+    ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap."
     : "24 reference stories per model. Luna used low reasoning with a 512-token cap.";
 
   for (const value of [0, 25, 50, 75, 100]) {

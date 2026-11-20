@@ -10,7 +10,7 @@ A small **conlang comprehension benchmark** for language models. Its research ta
 
 **Luna follow-up.** GPT-6 Luna with low reasoning scored **98.61%** overall and **100.00%** on the English control. [Run settings and paired comparisons](reports/GPT-6-Luna-low.md)
 
-**Tier 2 uses 48 four-transfer stories.** With minimal clues, GPT-4.1 mini scored **39.58%** and GPT-6 Luna (low, 2,048-token cap) scored **100%**. Their English scores were **74.48%** and **99.48%**, respectively. [Combined results and run details](reports/FOUR-TRANSFERS-FOLLOWUP.md)
+**Tier 2 uses 48 four-transfer stories.** All four models ran both the minimal-clue and English control conditions. [Combined results and run details](reports/FOUR-TRANSFERS-FOLLOWUP.md)
 
 ## Replicate the benchmark
 
