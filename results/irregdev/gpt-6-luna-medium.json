@@ -1,0 +1,492 @@
+{
+  "version": "0.1.0",
+  "suite": "irregdev",
+  "suite_hash": "7294571d85da5c63193aa87731b4c809b5d33e809508111d3136eb0586ae226a",
+  "benchmark_commit": "04d169d4198e8b6cacc16b202c939377c0886923",
+  "started": "2026-11-20T18:36:28.676815+00:00",
+  "settings": {
+    "provider": "OpenAI",
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "temperature": null,
+    "max_completion_tokens": 8192,
+    "input_usd_per_million": 0.1,
+    "output_usd_per_million": 0.5,
+    "price_date": "2026-11-20"
+  },
+  "responses": {
+    "w1436442270-l1140626463/minimal": {
+      "prompt_hash": "a04a131063d20f934f5b76802d7647d5a133f058795bc9ed63c691f975aa3470",
+      "raw": "[\"Dee\",\"Fay\",\"Eli\",\"Fay\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 530,
+        "completion_tokens": 729,
+        "total_tokens": 1259,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 701,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0004175,
+      "time": "2026-11-20T18:36:34.488698+00:00"
+    },
+    "w1436442270-l1140626463/english": {
+      "prompt_hash": "671de5c57c300fa8469f6a139bef3d9d0324e4bdbc8ca525c94c188a9331206d",
+      "raw": "[\"Dee\",\"Fay\",\"Eli\",\"Fay\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 285,
+        "completion_tokens": 132,
+        "total_tokens": 417,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 110,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 9.45e-05,
+      "time": "2026-11-20T18:36:36.322048+00:00"
+    },
+    "w1843052487-l872286921/minimal": {
+      "prompt_hash": "d6f018debaf40d4a3699219ad6a7c3b5960bd3bbd8407df84290b4ac13cf3cc0",
+      "raw": "[\"Dee\",\"Bo\",\"Bo\",\"Fay\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 523,
+        "completion_tokens": 452,
+        "total_tokens": 975,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 432,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0002783,
+      "time": "2026-11-20T18:36:40.093180+00:00"
+    },
+    "w1843052487-l872286921/english": {
+      "prompt_hash": "7ed0c6ffccfab41d7a5f6a711caea7bc07d315c1efa229d8e95b5aa17a789b49",
+      "raw": "[\"Dee\",\"Bo\",\"Bo\",\"Fay\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 283,
+        "completion_tokens": 222,
+        "total_tokens": 505,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 202,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0001393,
+      "time": "2026-11-20T18:36:42.479452+00:00"
+    },
+    "w1658362352-l960355711/minimal": {
+      "prompt_hash": "4bc190efd5364fba20556fc94385d25b08fc1842092bdd60976d5ea22c475fab",
+      "raw": "[\"Ada\",\"Bo\",\"Eli\",\"Bo\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 518,
+        "completion_tokens": 680,
+        "total_tokens": 1198,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 655,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.00039180000000000004,
+      "time": "2026-11-20T18:36:47.735942+00:00"
+    },
+    "w1658362352-l960355711/english": {
+      "prompt_hash": "99dd15c45927dbf93085f3c1517c49806955e906f980b731c605a7106e9a4aee",
+      "raw": "[\"Ada\",\"Bo\",\"Eli\",\"Bo\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 282,
+        "completion_tokens": 106,
+        "total_tokens": 388,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 87,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 8.120000000000001e-05,
+      "time": "2026-11-20T18:36:49.442363+00:00"
+    },
+    "w1687939455-l1716962638/minimal": {
+      "prompt_hash": "63906d700dec2b005ee152fd9bec0a9a7b0aea56963e26264a8d7a428f1cd00b",
+      "raw": "[\"Ada\",\"Cy\",\"Eli\",\"Cy\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 503,
+        "completion_tokens": 370,
+        "total_tokens": 873,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 351,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0002353,
+      "time": "2026-11-20T18:36:52.811012+00:00"
+    },
+    "w1687939455-l1716962638/english": {
+      "prompt_hash": "73d43a8f0b141f2c9f370085fa21cac91bdad32fd5fe1707b7f9d8c938b3d8b7",
+      "raw": "[\"Ada\",\"Cy\",\"Eli\",\"Cy\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 279,
+        "completion_tokens": 155,
+        "total_tokens": 434,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 136,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0001054,
+      "time": "2026-11-20T18:36:54.754491+00:00"
+    },
+    "w819648462-l36781688/minimal": {
+      "prompt_hash": "c448be32542db15796ebe19d3bccf90a0b7d9ff7674eebaa28d293980eab52ff",
+      "raw": "[\"Ada\",\"Eli\",\"Eli\",\"Dee\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 513,
+        "completion_tokens": 397,
+        "total_tokens": 910,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 376,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0002498,
+      "time": "2026-11-20T18:36:58.553028+00:00"
+    },
+    "w819648462-l36781688/english": {
+      "prompt_hash": "d3b97dd474bcdc0c36f986fb3ed41e7efb9236446864f100b6943a271bfc069b",
+      "raw": "[\"Ada\",\"Eli\",\"Eli\",\"Dee\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 279,
+        "completion_tokens": 430,
+        "total_tokens": 709,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 409,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0002429,
+      "time": "2026-11-20T18:37:02.309775+00:00"
+    },
+    "w581075194-l177707385/minimal": {
+      "prompt_hash": "6fb63dec39ae1efc9df1d77ad032932ac2f4f5cad98c662eff58e5d4459c68d3",
+      "raw": "[\"Eli\",\"Fay\",\"Fay\",\"Dee\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 509,
+        "completion_tokens": 503,
+        "total_tokens": 1012,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 481,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0003024,
+      "time": "2026-11-20T18:37:06.776977+00:00"
+    },
+    "w581075194-l177707385/english": {
+      "prompt_hash": "2c36e4f99e8defe975c0b0869c5f597be85285b5cfb272388fd4753dbf3268a4",
+      "raw": "[\"Eli\",\"Fay\",\"Fay\",\"Dee\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 275,
+        "completion_tokens": 244,
+        "total_tokens": 519,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 222,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0001495,
+      "time": "2026-11-20T18:37:09.250295+00:00"
+    },
+    "w909488916-l247541667/minimal": {
+      "prompt_hash": "45e608fe085e5d368b3d67159629d8a0205855d427e3a605e1a1e500e497d2c4",
+      "raw": "[\"Bo\",\"Cy\",\"Cy\",\"Fay\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 528,
+        "completion_tokens": 419,
+        "total_tokens": 947,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 400,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.00026230000000000003,
+      "time": "2026-11-20T18:37:12.730382+00:00"
+    },
+    "w909488916-l247541667/english": {
+      "prompt_hash": "a162b17e3cbb6c5604401b28cb2a278f4e1a35ce69faa0bdf4d87d6b7c951b66",
+      "raw": "[\"Bo\",\"Cy\",\"Cy\",\"Fay\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 279,
+        "completion_tokens": 216,
+        "total_tokens": 495,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 197,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0001359,
+      "time": "2026-11-20T18:37:14.917412+00:00"
+    },
+    "w1616047281-l909194986/minimal": {
+      "prompt_hash": "06c2afc2bd71e566c12274260ed55c45c43a4cd9f319415d390b79a41a8156a3",
+      "raw": "[\"Eli\",\"Dee\",\"Dee\",\"Dee\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 524,
+        "completion_tokens": 930,
+        "total_tokens": 1454,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 902,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0005174,
+      "time": "2026-11-20T18:37:22.196619+00:00"
+    },
+    "w1616047281-l909194986/english": {
+      "prompt_hash": "2c5981669b0ee253a7e43365fe4b145192b767b96e77704dee26fdf848ab0361",
+      "raw": "[\"Eli\",\"Dee\",\"Dee\",\"Dee\"]",
+      "model_revision": "gpt-6-luna",
+      "usage": {
+        "prompt_tokens": 277,
+        "completion_tokens": 294,
+        "total_tokens": 571,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 272,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost_usd": 0.0001747,
+      "time": "2026-11-20T18:37:24.861829+00:00"
+    }
+  },
+  "attempts": [
+    {
+      "item": "w1436442270-l1140626463/minimal",
+      "time": "2026-11-20T18:36:28.676815+00:00",
+      "reserved_usd": 0.0042786000000000005,
+      "status": "completed"
+    },
+    {
+      "item": "w1436442270-l1140626463/english",
+      "time": "2026-11-20T18:36:34.492708+00:00",
+      "reserved_usd": 0.0042087,
+      "status": "completed"
+    },
+    {
+      "item": "w1843052487-l872286921/minimal",
+      "time": "2026-11-20T18:36:36.325346+00:00",
+      "reserved_usd": 0.0042781,
+      "status": "completed"
+    },
+    {
+      "item": "w1843052487-l872286921/english",
+      "time": "2026-11-20T18:36:40.098184+00:00",
+      "reserved_usd": 0.0042082,
+      "status": "completed"
+    },
+    {
+      "item": "w1658362352-l960355711/minimal",
+      "time": "2026-11-20T18:36:42.482913+00:00",
+      "reserved_usd": 0.0042783000000000005,
+      "status": "completed"
+    },
+    {
+      "item": "w1658362352-l960355711/english",
+      "time": "2026-11-20T18:36:47.739768+00:00",
+      "reserved_usd": 0.004208399999999999,
+      "status": "completed"
+    },
+    {
+      "item": "w1687939455-l1716962638/minimal",
+      "time": "2026-11-20T18:36:49.445990+00:00",
+      "reserved_usd": 0.004277899999999999,
+      "status": "completed"
+    },
+    {
+      "item": "w1687939455-l1716962638/english",
+      "time": "2026-11-20T18:36:52.815173+00:00",
+      "reserved_usd": 0.004208,
+      "status": "completed"
+    },
+    {
+      "item": "w819648462-l36781688/minimal",
+      "time": "2026-11-20T18:36:54.758603+00:00",
+      "reserved_usd": 0.004278,
+      "status": "completed"
+    },
+    {
+      "item": "w819648462-l36781688/english",
+      "time": "2026-11-20T18:36:58.556177+00:00",
+      "reserved_usd": 0.0042081,
+      "status": "completed"
+    },
+    {
+      "item": "w581075194-l177707385/minimal",
+      "time": "2026-11-20T18:37:02.315291+00:00",
+      "reserved_usd": 0.004277,
+      "status": "completed"
+    },
+    {
+      "item": "w581075194-l177707385/english",
+      "time": "2026-11-20T18:37:06.782678+00:00",
+      "reserved_usd": 0.0042071,
+      "status": "completed"
+    },
+    {
+      "item": "w909488916-l247541667/minimal",
+      "time": "2026-11-20T18:37:09.254269+00:00",
+      "reserved_usd": 0.0042773,
+      "status": "completed"
+    },
+    {
+      "item": "w909488916-l247541667/english",
+      "time": "2026-11-20T18:37:12.735656+00:00",
+      "reserved_usd": 0.0042074,
+      "status": "completed"
+    },
+    {
+      "item": "w1616047281-l909194986/minimal",
+      "time": "2026-11-20T18:37:14.922440+00:00",
+      "reserved_usd": 0.0042776,
+      "status": "completed"
+    },
+    {
+      "item": "w1616047281-l909194986/english",
+      "time": "2026-11-20T18:37:22.200929+00:00",
+      "reserved_usd": 0.0042077,
+      "status": "completed"
+    }
+  ],
+  "usage_summary": {
+    "input_tokens": 6387,
+    "output_tokens": 6279,
+    "reasoning_tokens": 5933,
+    "list_price_usd": 0.0037782000000000002,
+    "outstanding_reservations_usd": 0
+  }
+}

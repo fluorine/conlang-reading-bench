@@ -31,3 +31,7 @@ The six-person candidate supplies explicit rules whose word order and role suffi
 ## Fusional markers and an irregular name
 
 A six-person candidate uses endings that jointly encode giver or recipient and the object transferred. Fay has irregular endings, and worked examples establish all endings. An independent decoder derives the marker meanings from those examples and checks the event history and answers. On eight 12-transfer development stories, GPT-6 Luna at medium effort scored 100% on the conlang and 100% on the matched English control. All 16 requests produced answers. The run used a 4,096-token completion cap and cost $0.00337 at list price. This candidate remains above the calibration target.
+
+## Individually irregular and opaque names
+
+A 24-transfer candidate assigns each of six names four unique role-and-object endings, all evidenced in examples. Luna medium scored 100% on both conditions across eight development stories. A second candidate also replaces the names with invented words and supplies a name dictionary. It scored 100% in both conditions on eight stories. Both used an 8,192-token cap and had no empty outputs. Costs were $0.00378 and $0.00575 at list price. These development candidates did not reach the target.
