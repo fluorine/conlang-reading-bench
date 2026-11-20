@@ -66,6 +66,11 @@ def main():
                        for row, answers in zip(conlang_rows, possible))
             random_baseline = sum(1 / len(answers) for answers in possible) / len(possible)
             print(f'  suffix-blind uniform baseline (expected): {random_baseline:.1%}')
+            alphabetical = sum(min(answers) == row['gold'] for row, answers in zip(conlang_rows, possible))
+            last_mentioned = sum(row['prompt'].split('\n\n')[2].splitlines()[-1].split()[-1].split('-')[0]
+                                 == row['gold'] for row in conlang_rows)
+            print(f'  suffix-blind alphabetical: {alphabetical}/{len(possible)}; '
+                  f'last mentioned: {last_mentioned}/{len(possible)}')
     evolution = archive['evolution']
     for generation in range(2):
         candidates = evolution['manifests'][generation]

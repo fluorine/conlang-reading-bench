@@ -30,7 +30,7 @@ The 18-transfer shared-ending run with none disclosed included two empty respons
 
 Two seeded generations of six sound-rule mutations each were also explored on one story. All 12 were correct. That search did not establish a generally difficult sound-change construction; its candidate rules and responses are in the archive.
 
-The 24-transfer, one-disclosure candidate has been selected for a separately frozen 24-story fresh evaluation. Until that matched conlang and English run is complete, the development result is not a calibrated Tier 3 score.
+The 24-transfer, one-disclosure candidate has been selected for a separately frozen 24-story fresh evaluation. On its development sample, a model-free heuristic that always chooses the last name mentioned also scores 4/8; a uniform random choice among holders still possible after erasing suffixes has expected accuracy 32.3%. On the frozen fresh stories those two baselines are 6/24 and an expected 33.3%, respectively. The random baseline ignores the one disclosed meaning and is therefore not the strongest possible shortcut. Until the matched fresh run is complete, the development result is not a calibrated Tier 3 score.
 
 ## How the shared-ending probe works
 
