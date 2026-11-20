@@ -346,5 +346,37 @@
       "outstanding_reservations_usd": 0
     },
     "independent_rerun_of": null
+  },
+  "transfer4/gpt-6-luna-low.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "eeb1d404359c0244332e0ff40b761324dc89a9dc99181f82bd3d61cfbb76d59a",
+    "settings": {
+      "provider": "OpenAI",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "temperature": null,
+      "max_completion_tokens": 512,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-20"
+    },
+    "accuracy": {
+      "minimal": 85.41666666666666,
+      "english": 100.0
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 79.16666666666666,
+      "english": 100
+    },
+    "usage": {
+      "input_tokens": 8209,
+      "output_tokens": 11390,
+      "reasoning_tokens": 10577,
+      "list_price_usd": 0.0065159,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
   }
 }
