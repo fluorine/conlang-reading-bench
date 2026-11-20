@@ -36,7 +36,7 @@ def write(path, value):
 
 
 def build(manifest):
-    if manifest.get("family") == "six_people":
+    if manifest.get("family") in ("six_people", "alternating_grammar"):
         return build_six_people(manifest)
     if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12, 24, 48):
         raise ValueError("unsupported protocol or transfer count")
@@ -92,6 +92,16 @@ def build_six_people(manifest):
                 "after a hyphen. Only the current holder may give an object. Events are chronological. "
                 f"Key word: {roots['gives']} means gives. Separate example: "
                 f"Ivy {roots['holds']} {roots['coin']} means Ivy starts with the coin.")
+        if manifest.get("family") == "alternating_grammar":
+            roots, gs, rs, order = lang
+            lines = tier3.alternating_lines(events, lang, lines)
+            clue = (f"Word meanings: {roots['coin']} = coin, {roots['key']} = key, "
+                    f"{roots['holds']} = holds initially, {roots['gives']} = gives. "
+                    "Initial statements use holder, predicate, object. "
+                    f"For odd-numbered transfers, order is {', '.join(order)}, "
+                    f"the giver has suffix -{gs} and the recipient has suffix -{rs}. "
+                    "For even-numbered transfers, reverse that order and swap the two suffix meanings. "
+                    "Only the current holder can give an object. Events are chronological.")
         english_lines = [f"{p} starts with the {o}." for o, p in initial.items()] + [
             f"{g} gives the {o} to {r}." for o,g,r in events]
         for condition in manifest["conditions"]:

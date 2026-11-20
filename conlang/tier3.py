@@ -61,3 +61,17 @@ def verify(initial, lines, lang, gold):
         else:
             possible.add((events[0][2], events[-2][2], state["coin"], state["key"]))
     return possible == {tuple(gold)}
+
+
+def alternating_lines(events, lang, initial_lines):
+    """Render alternating role order and suffix meanings under explicit rules."""
+    roots, gs, rs, order = lang
+    lines = list(initial_lines[:2])
+    for index, (obj, giver, recipient) in enumerate(events):
+        odd = index % 2 == 0
+        roles = order if odd else list(reversed(order))
+        parts = dict(giver=giver + "-" + (gs if odd else rs),
+                     recipient=recipient + "-" + (rs if odd else gs),
+                     object=roots[obj], verb=roots["gives"])
+        lines.append(" ".join(parts[role] for role in roles))
+    return lines
