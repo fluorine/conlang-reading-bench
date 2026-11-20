@@ -10,6 +10,8 @@ A small **conlang comprehension benchmark** for language models. Its research ta
 
 **Luna follow-up.** GPT-6 Luna with low reasoning scored **98.61%** overall and **100.00%** on the English control. [Run settings and paired comparisons](reports/GPT-6-Luna-low.md)
 
+**Four-transfer diagnostic.** GPT-6 Luna scored **85.42%** with minimal clues and **100.00%** on the same longer stories in English. [Diagnostic results and reproduction commands](reports/FOUR-TRANSFERS.md)
+
 ## Replicate the benchmark
 
 ### Copy a prompt for your AI agent
