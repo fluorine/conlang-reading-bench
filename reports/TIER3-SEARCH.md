@@ -30,7 +30,15 @@ The 18-transfer shared-ending run with none disclosed included two empty respons
 
 Two seeded generations of six sound-rule mutations each were also explored on one story. All 12 were correct. That search did not establish a generally difficult sound-change construction; its candidate rules and responses are in the archive.
 
-The 24-transfer, one-disclosure candidate has been selected for a separately frozen 24-story fresh evaluation. On its development sample, a model-free heuristic that always chooses the last name mentioned also scores 4/8; a uniform random choice among holders still possible after erasing suffixes has expected accuracy 32.3%. On the frozen fresh stories those two baselines are 6/24 and an expected 33.3%, respectively. The random baseline ignores the one disclosed meaning and is therefore not the strongest possible shortcut. Until the matched fresh run is complete, the development result is not a calibrated Tier 3 score.
+The 24-transfer, one-disclosure candidate was selected for a separately frozen 24-story fresh evaluation. On its development sample, a model-free heuristic that always chooses the last name mentioned also scores 4/8; a uniform random choice among holders still possible after erasing suffixes has expected accuracy 32.3%. The fresh evaluation below checks a new sample from the same generator.
+
+## Fresh evaluation of the three-object candidate
+
+Luna medium answered **14/24 (58.3%)** conlang questions and **24/24 (100%)** matched English controls correctly. The conlang score has a 95% Wilson interval of approximately **38.8–75.5%**; this is an interval for this generator and configuration, not a measure of overall model capability. Three of the 24 conlang responses exhausted the 16,384-token completion limit and were empty. Among the 21 that produced an answer, 14 were correct; this conditional rate is descriptive and must not replace the 14/24 score.
+
+On these same fresh stories, the last-name heuristic scores **6/24 (25%)**, the first alphabetically sorted suffix-blind possibility scores **7/24 (29.2%)**, and a uniform random choice among suffix-blind possible holders has **33.3% expected accuracy**. The random baseline ignores the one disclosed meaning and is therefore not the strongest possible shortcut. These scores and the wide interval make this a promising but preliminary candidate, not proof of robust discrimination or the desired roughly 25% Luna calibration. Fresh stories share the development grammar family.
+
+The 48 completed requests used approximately **$0.1200** at the stated rates. One additional request returned HTTP 520 without a usable response; the cause and any charge are unknown. Its retry is included among the 48 completed responses. The raw archive separately preserves that failed attempt and a **$0.00834** maximum-cost reservation, so $0.1200 is observed-usage valuation rather than a complete verified bill.
 
 ## How the shared-ending probe works
 
