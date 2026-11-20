@@ -1,0 +1,130 @@
+@font-face {
+  font-family: "DM Sans"; src: url("fonts/dm-sans.woff2") format("woff2");
+  font-weight: 400 700; font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif"; src: url("fonts/instrument-serif.woff2") format("woff2");
+  font-weight: 400; font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif"; src: url("fonts/instrument-serif-italic.woff2") format("woff2");
+  font-style: italic; font-weight: 400; font-display: swap;
+}
+:root {
+  --paper: #f8f9f6; --ink: #182623; --muted: #4e605b; --line: #ced8d1;
+  --green: #195b4d; --amber: #ad601d; --serif: "Instrument Serif", Georgia, serif;
+  font: 100%/1.55 "DM Sans", Arial, sans-serif;
+  color: var(--ink); background: var(--paper);
+}
+* { box-sizing: border-box }
+body { margin: 0 }
+.wrap { width: min(72rem, calc(100% - 5rem)); margin-inline: auto }
+a { color: inherit; text-underline-offset: .25em }
+a:hover, summary:hover { text-decoration: underline }
+a:focus-visible, summary:focus-visible { outline: 3px solid #cc7a26; outline-offset: 4px }
+.skip, .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%) }
+.skip:focus { width: auto; height: auto; clip-path: none; background: white; padding: .6rem 1rem; z-index: 2 }
+.mast, footer { border-block-end: 1px solid var(--line) }
+.nav, .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 1rem }
+.nav { min-height: 4.6rem }
+.brand, nav, .legend, .legend span, .links, .resources { display: flex; align-items: center }
+.brand { gap: .65rem; font-weight: 700; letter-spacing: -.035em; font-size: 1.13rem; text-decoration: none }
+.bookmark { display: inline-flex; gap: 3px; align-items: end; height: 1.6rem; color: var(--green) }
+.bookmark i { width: 4px; height: 70%; background: currentColor; transform: skewY(-15deg) }
+.bookmark i:nth-child(2) { height: 98% }
+.bookmark i:last-child { height: 83% }
+nav { gap: 1.65rem }
+nav a, .footer-inner { font-size: .9rem }
+nav a { text-decoration: none }
+.repo { border: 1px solid #aab9b1; border-radius: 4px; padding: .29rem .8rem }
+.hero, .results { display: grid; align-items: center; gap: clamp(2rem,6vw,6.5rem) }
+.hero { grid-template-columns: 1.25fr 1fr; padding-block: clamp(2.8rem,6vw,5.75rem) }
+.eyebrow, .sample h2 { display: flex; align-items: center; gap: .7rem; font: 650 .8rem/1.4 "DM Sans", sans-serif; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 1.3rem }
+.rule { width: 1.9rem; height: 2px; background: var(--green) }
+h1, .results h2, .method h2, .reproduce h2 { font-family: var(--serif); font-weight: 400; line-height: 1; letter-spacing: -.025em; margin: 0 }
+h1 { font-size: clamp(4.1rem,7.2vw,7.3rem); max-width: 11ch }
+h1 em, .results h2 em, .method h2 em { color: var(--green); font-weight: 400 }
+.intro { font-size: clamp(1.05rem,1.4vw,1.24rem); max-width: 40ch; margin: 1.35rem 0 1.8rem; color: var(--muted) }
+.links, .resources { gap: 1.25rem; flex-wrap: wrap }
+.button, .text-link { font-size: .95rem; font-weight: 650 }
+.button { display: inline-block; background: var(--green); color: white; padding: .7rem 1.12rem; border-radius: 4px; text-decoration: none }
+.button:hover { background: #104b3e; text-decoration: none }
+.sample { position: relative; border-radius: 8px; overflow: hidden; padding: clamp(1.5rem,3vw,2.65rem); background: #153e36; color: white; box-shadow: 7px 7px 0 #dce6df }
+.sample::after { content: ""; position: absolute; right: 1.65rem; top: 0; width: .9rem; height: 2rem; background: #e6b57a; clip-path: polygon(0 0,100% 0,100% 100%,50% 78%,0 100%) }
+.sample h2 { color: #c3dfd2; padding-right: 1rem }
+.lines { border-block: 1px solid #4a6a60; padding: 1.05rem 0 }
+.lines p { margin: 0; font: 400 clamp(1.55rem,2.7vw,2.6rem)/1.23 var(--serif); letter-spacing: .005em }
+.lines p:nth-child(n+3) { color: #efcc98 }
+.question { margin: 1rem 0 .2rem; font-weight: 600 }
+summary { color: #d3e4da; cursor: pointer; font-size: .94rem; width: fit-content }
+details p { color: #e4eee8; max-width: 42ch; margin-bottom: 0 }
+.results, .method, .reproduce { border-top: 1px solid var(--line); padding-block: clamp(2.5rem,5vw,4.9rem) }
+.results { grid-template-columns: .85fr 1.4fr }
+.results h2, .method h2 { font-size: clamp(2.7rem,4.5vw,4.5rem) }
+.results-copy > p:not(.eyebrow), .method .columns p, .reproduce p { color: var(--muted) }
+.results-copy > p:not(.eyebrow) { max-width: 44ch }
+.scores { display: flex; gap: clamp(1.25rem,3vw,3rem); margin-top: 1.35rem }
+.scores div { display: grid }
+.scores strong { font: 400 clamp(2.3rem,3.5vw,3.6rem)/1.1 var(--serif); color: var(--green) }
+.scores div:nth-child(2) strong { color: var(--amber) }
+.scores strong span { font-size: .54em }
+.scores div > span, .caption, .chart-note { font-size: .875rem }
+.chart { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: clamp(1rem,2.6vw,2.3rem); --label: 7.7rem; --value: 3.9rem }
+h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
+.chart figcaption p, .chart-note { margin: .24rem 0 0; color: var(--muted) }
+.legend { flex-wrap: wrap; gap: .35rem 1.25rem; margin-block: 1.2rem .75rem; font-size: .9rem }
+.legend span { gap: .45rem }
+.legend i { width: .75rem; height: .75rem; background: var(--green) }
+.legend span:nth-child(2) i { background: var(--amber) }
+.plot, .plot dd { margin: 0 }
+.chart-row { display: grid; grid-template-columns: var(--label) minmax(0, 1fr); align-items: center }
+.chart-row dt { font-size: .94rem; font-weight: 600; padding-right: .4rem }
+.chart-row dd { padding-block: .42rem; position: relative }
+.chart-row dd::before { content: ""; position: absolute; inset: 0 var(--value) 0 0; background: repeating-linear-gradient(90deg,#e4e9e5 0 1px,transparent 1px 25%); border-right: 1px solid #e4e9e5 }
+.series { display: grid; grid-template-columns: minmax(0,1fr) var(--value); align-items: center; position: relative }
+.track i { display: block; height: .55rem; background: var(--green) }
+.second .track i { background: var(--amber) }
+.number { text-align: right; font-size: .875rem; font-variant-numeric: tabular-nums; font-weight: 550 }
+.control { border-block-start: 1px dashed var(--line); margin-top: .25rem }
+.axis { margin: 0 var(--value) 0 var(--label); color: var(--muted) }
+.axis div { position: relative; height: 1.4rem; font-size: .78rem }
+.axis span { position: absolute; transform: translateX(-50%) }
+.axis span:nth-child(2) { left: 25% }.axis span:nth-child(3) { left: 50% }.axis span:nth-child(4) { left: 75% }.axis span:last-child { left: 100% }
+.chart-note { margin-top: .8rem }
+.columns { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(1.5rem,4vw,4rem); margin-top: 2.2rem }
+.columns p { margin: .6rem 0 0 }
+.finding { border-left: 3px solid var(--green); background: #eaf0ea; padding: 1rem 1.3rem; margin-top: 2rem }
+.finding p { margin: .25rem 0 0; max-width: 88ch }
+.reproduce { display: flex; justify-content: space-between; gap: 1.4rem; align-items: center }
+.reproduce h2 { font-size: clamp(2.3rem,3.3vw,3.3rem) }
+.reproduce p { max-width: 53ch; margin: .65rem 0 0 }
+footer { border-top: 1px solid var(--line); color: var(--muted) }
+.footer-inner { padding-block: 1.3rem }
+@media(max-width: 54rem) {
+  .wrap { width: min(100% - 3rem, 47rem) }
+  .hero { gap: 1.7rem; grid-template-columns: 1.05fr 1fr }
+  h1 { font-size: clamp(3.35rem,8vw,5.5rem) }
+  .results { grid-template-columns: 1fr }
+  .results-copy > p:not(.eyebrow) { max-width: 65ch }
+  .reproduce { display: grid }
+}
+@media(max-width: 38rem) {
+  .wrap { width: calc(100% - 2.3rem) }
+  .nav { flex-wrap: wrap; gap: .4rem 1rem; padding-block: .85rem; min-height: auto }
+  nav { gap: .9rem }
+  .brand { font-size: 1.03rem }
+  .hero, .columns { grid-template-columns: 1fr }
+  h1 { max-width: 14ch }
+  .sample { margin-right: 5px }
+  .chart { --label: 6rem; --value: 3.5rem }
+  .chart-row dt { font-size: .875rem }
+  .columns { margin-top: 1.5rem }
+}
+@media(max-width: 23rem) {
+  .chart { --label: 4.8rem; --value: 3.2rem; padding: .85rem }
+  .axis span:nth-child(even) { display: none }
+}
+@media(forced-colors: active) {
+  .track i,.legend i { background: CanvasText; forced-color-adjust: none }
+  .second .track i,.legend span:nth-child(2) i { background: Highlight; forced-color-adjust: none }
+}

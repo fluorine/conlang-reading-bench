@@ -1,5 +1,7 @@
 # Conlang Reading Bench
 
+[Explore the benchmark and results on GitHub Pages](https://fluorine.github.io/conlang-reading-bench/).
+
 A small **conlang comprehension benchmark** for language models. Its research task is *machine reading comprehension in procedurally generated constructed languages under progressive grammatical disclosure*. Can a model read a new language, work out who gave what to whom, and track the result? Four short answers score an entire story. Generation and scoring run locally with Python 3.12 and its standard library.
 
 **Stage 1 result.** On 24 paired, held-out stories, GPT‑4.1 mini scored **65.63%** and GPT‑4o mini scored **45.83%**. Both models fell below the planned English-control threshold during development. These are exploratory task results. The full two-model pilot used 408 calls and an estimated **$0.026** at the published token rates. [Pilot report](reports/PILOT.md) · [Raw responses](results) · [Machine-readable scores](reports/index.json)

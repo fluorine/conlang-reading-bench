@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f9f6">
+  <meta name="description" content="How well can two AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
+  <title>Conlang Reading Bench · Stage 1 results</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="mast">
+    <div class="wrap nav">
+      <a class="brand" href="#top"><span class="bookmark" aria-hidden="true"><i></i><i></i><i></i></span>Conlang Reading Bench</a>
+      <nav aria-label="Primary"><a href="#results">Results</a><a href="#method">Method</a><a class="repo" href="https://github.com/fluorine/conlang-reading-bench">GitHub</a></nav>
+    </div>
+  </header>
+  <main id="main" class="wrap">
+    <section class="hero" aria-labelledby="heading">
+      <div>
+        <p class="eyebrow"><span class="rule"></span> Stage 1 pilot</p>
+        <h1 id="heading">Can AI read a <em>new language?</em></h1>
+        <p class="intro">Give a model a tiny story in a made-up language, then ask who has the key. How much help does it need to follow the story?</p>
+        <div class="links"><a class="button" href="#results">Explore the results</a><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench">View repository</a></div>
+      </div>
+      <article class="sample" aria-labelledby="sample-heading">
+        <h2 id="sample-heading">A story from the test</h2>
+        <div class="lines" lang="art"><p>Cy numa vema</p><p>Ada numa kato</p><p>Ada-ak kato Bo-es poma</p><p>Bo-ak kato Cy-es poma</p></div>
+        <p class="question">Who holds the key at the end?</p>
+        <details><summary>Reveal the answer</summary><p><strong>Cy.</strong> Ada starts with the key, gives it to Bo, and Bo gives it to Cy. The coin stays with Cy the whole time.</p></details>
+      </article>
+    </section>
+    <section class="results" id="results" aria-labelledby="results-heading">
+      <div class="results-copy">
+        <p class="eyebrow"><span class="rule"></span> Pilot results</p>
+        <h2 id="results-heading">What changed <em>with clues?</em></h2>
+        <p>GPT-4.1 mini answered about half the questions with minimal clues and over three quarters with the full grammar. GPT-4o mini reached half with the full grammar.</p>
+        <div class="scores">
+          <div><strong>65.63<span>%</span></strong><span>GPT-4.1 mini</span></div>
+          <div><strong>45.83<span>%</span></strong><span>GPT-4o mini</span></div>
+        </div>
+        <p class="caption">Overall scores average the three invented-language conditions equally. English is scored separately.</p>
+      </div>
+      <figure class="chart">
+        <figcaption><h3>Accuracy by clue level</h3><p>Share of answers correct on 24 held-out stories</p></figcaption>
+        <div class="legend" aria-hidden="true"><span><i></i>GPT-4.1 mini</span><span><i></i>GPT-4o mini</span></div>
+        <dl class="plot">
+              <div class="chart-row ">
+                <dt>Minimal clues</dt>
+                <dd><div class="series first"><span class="track" aria-hidden="true"><i style="width:48.95833333333333%"></i></span><span class="number"><span class="sr-only">GPT-4.1 mini </span>48.96%</span></div>
+                  <div class="series second"><span class="track" aria-hidden="true"><i style="width:43.75%"></i></span><span class="number"><span class="sr-only">GPT-4o mini </span>43.75%</span></div></dd>
+              </div>
+              <div class="chart-row ">
+                <dt>Glossary</dt>
+                <dd><div class="series first"><span class="track" aria-hidden="true"><i style="width:69.79166666666666%"></i></span><span class="number"><span class="sr-only">GPT-4.1 mini </span>69.79%</span></div>
+                  <div class="series second"><span class="track" aria-hidden="true"><i style="width:43.75%"></i></span><span class="number"><span class="sr-only">GPT-4o mini </span>43.75%</span></div></dd>
+              </div>
+              <div class="chart-row ">
+                <dt>Full grammar</dt>
+                <dd><div class="series first"><span class="track" aria-hidden="true"><i style="width:78.125%"></i></span><span class="number"><span class="sr-only">GPT-4.1 mini </span>78.13%</span></div>
+                  <div class="series second"><span class="track" aria-hidden="true"><i style="width:50%"></i></span><span class="number"><span class="sr-only">GPT-4o mini </span>50.00%</span></div></dd>
+              </div>
+              <div class="chart-row control">
+                <dt>English control</dt>
+                <dd><div class="series first"><span class="track" aria-hidden="true"><i style="width:84.375%"></i></span><span class="number"><span class="sr-only">GPT-4.1 mini </span>84.38%</span></div>
+                  <div class="series second"><span class="track" aria-hidden="true"><i style="width:69.79166666666666%"></i></span><span class="number"><span class="sr-only">GPT-4o mini </span>69.79%</span></div></dd>
+              </div>
+        </dl>
+        <div class="axis" aria-hidden="true"><div><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div></div>
+        <p class="chart-note">96 questions per model in each condition.</p>
+      </figure>
+    </section>
+    <section class="method" id="method" aria-labelledby="method-heading">
+      <p class="eyebrow"><span class="rule"></span> The method</p>
+      <h2 id="method-heading">One story, <em>four ways to read it.</em></h2>
+      <div class="columns">
+        <div><h3>Follow the objects</h3><p>Three people exchange two objects in two transfers. Four questions check who received an object, who held it earlier, and who holds each object at the end. A simulator records every change and supplies the answer key.</p></div>
+        <div><h3>Change the clues</h3><p>Each story gets invented words, word order, and word endings. Minimal clues give one word meaning and an example. A glossary adds every word meaning. Full grammar explains word order and who gives and receives. An English version checks ordinary story tracking.</p></div>
+        <div><h3>Compare fairly</h3><p>Both models see identical stories and questions, with a fresh conversation for each condition. The pilot used GPT-4.1 mini (April 2025) and GPT-4o mini (July 2024) at default effort, temperature zero, and a 64-token answer limit.</p></div>
+      </div>
+      <aside class="finding"><strong>How to read the gap</strong><p>GPT-4.1 mini led by 19.79 percentage points overall. The 95% interval across these stories was 11.46 to 28.13 points. Both models fell short of the 90% English target during development, so the comparison is exploratory.</p></aside>
+    </section>
+    <section class="reproduce" aria-labelledby="replicate-heading">
+      <div><h2 id="replicate-heading">Check the results yourself.</h2><p>All 408 pilot calls together cost about $0.026 at list price. Regrading the saved answers is free.</p></div>
+      <div class="resources"><a class="button" href="https://github.com/fluorine/conlang-reading-bench#replicate-the-benchmark">Replication guide</a><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/v0.1.0/reports/PILOT.md">Read the pilot report</a></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>Conlang Reading Bench · v0.1.0</span><a href="https://github.com/fluorine/conlang-reading-bench/tree/v0.1.0/results/holdout2">Raw responses</a></div></footer>
+</body>
+</html>
