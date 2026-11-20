@@ -1,0 +1,21 @@
+{
+  "name": "smoke",
+  "version": "0.1.0",
+  "length": 2,
+  "pairs": [
+    [
+      1593978213,
+      613790712
+    ],
+    [
+      504839467,
+      1604001925
+    ]
+  ],
+  "conditions": [
+    "minimal",
+    "glossary",
+    "grammar",
+    "english"
+  ]
+}
