@@ -36,7 +36,7 @@ def write(path, value):
 
 
 def build(manifest):
-    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional"):
+    if manifest.get("family") in ("six_people", "alternating_grammar", "fusional", "irregular_forms"):
         return build_six_people(manifest)
     if manifest["version"] != VERSION or manifest["length"] not in (2, 3, 4, 12, 24, 48):
         raise ValueError("unsupported protocol or transfer count")
@@ -114,6 +114,16 @@ def build_six_people(manifest):
                     "endings are irregular and all other names share the regular endings. "
                     "Names are unchanged. Transfers are chronological and "
                     "only the current holder gives an object.\nExamples:\n" + "\n".join(examples))
+        if manifest.get("family") == "irregular_forms":
+            lines, examples = tier3.irregular_forms(lex, events, lines)
+            if not tier3.verify_irregular(initial, lines, examples, gold):
+                raise ValueError("irregular grammar failed independent decoding")
+            clue = (f"Initially: {roots['holds']} means holds, {roots['coin']} means coin, "
+                    f"and {roots['key']} means key. Initial statements use holder, holds, object. "
+                    "In transfers each person has their own irregular endings, which identify "
+                    "the role and object. Each transfer has two marked names in giver, recipient "
+                    "order. Only the current holder can give. All endings are shown below.\n"
+                    "Examples:\n" + "\n".join(examples))
         english_lines = [f"{p} starts with the {o}." for o, p in initial.items()] + [
             f"{g} gives the {o} to {r}." for o,g,r in events]
         for condition in manifest["conditions"]:

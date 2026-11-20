@@ -156,3 +156,54 @@ def verify_fusional(initial, lines, examples, gold):
         state[obj] = recipient
         events.append((obj, giver, recipient))
     return [events[0][2], events[-2][2], state["coin"], state["key"]] == gold
+
+
+def irregular_forms(seed, events, initial_lines):
+    """Every name has four independently sampled object-and-role endings."""
+    rng = Random(seed ^ 0xAC938)
+    syllables = [a + b for a in "ptkmns" for b in "aeiou"]
+    endings = {}
+    examples = []
+    for name in PEOPLE:
+        markers = rng.sample(syllables, 4)
+        for (role, obj), marker in zip(product(("giver", "recipient"), OBJECTS), markers):
+            endings[name, role, obj] = marker
+            if role == "giver":
+                examples.append(f"{name}-{marker} = {name} gives the {obj}")
+            else:
+                examples.append(f"{name}-{marker} = {name} receives the {obj}")
+    rng.shuffle(examples)
+    lines = list(initial_lines[:2])
+    for obj, giver, recipient in events:
+        lines.append(f"{giver}-{endings[giver, 'giver', obj]} "
+                     f"{recipient}-{endings[recipient, 'recipient', obj]}")
+    return lines, examples
+
+
+def verify_irregular(initial, lines, examples, gold):
+    forms = {}
+    for example in examples:
+        form, meaning = example.split(" = ")
+        name, verb, _, obj = meaning.split()
+        key = name, form.split("-")[1]
+        value = ("giver" if verb == "gives" else "recipient", obj)
+        if key in forms and forms[key] != value:
+            return False
+        forms[key] = value
+    state = initial.copy()
+    events = []
+    for line in lines[2:]:
+        decoded = []
+        for word in line.split():
+            name, suffix = word.split("-")
+            if name not in PEOPLE or (name, suffix) not in forms:
+                return False
+            decoded.append((name, *forms[name, suffix]))
+        if len(decoded) != 2:
+            return False
+        (giver, a, obj), (recipient, b, other) = decoded
+        if a != "giver" or b != "recipient" or obj != other or state[obj] != giver or giver == recipient:
+            return False
+        state[obj] = recipient
+        events.append((obj, giver, recipient))
+    return [events[0][2], events[-2][2], state["coin"], state["key"]] == gold
