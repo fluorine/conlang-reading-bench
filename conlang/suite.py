@@ -133,7 +133,13 @@ def build_six_people(manifest):
                 pattern = re.compile(r"\b(?:" + "|".join(tier3.PEOPLE) + r")\b")
                 def encode(text):
                     return pattern.sub(lambda match: mapping[match.group()], text)
-                lines = [encode(line) for line in lines]
+                original_lines = lines
+                lines = [encode(line) for line in original_lines]
+                reverse = dict(zip(tokens, tier3.PEOPLE))
+                token_pattern = re.compile(r"\b(?:" + "|".join(tokens) + r")\b")
+                decoded = [token_pattern.sub(lambda match: reverse[match.group()], line) for line in lines]
+                if decoded != original_lines or not tier3.verify_irregular(initial, decoded, examples, gold):
+                    raise ValueError("opaque names failed independent decoding")
                 encoded_examples = []
                 for example in examples:
                     form, meaning = example.split(" = ")
