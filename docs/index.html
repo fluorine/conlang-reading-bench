@@ -8,8 +8,8 @@
   <meta name="theme-color" content="#f8f9f6" media="(prefers-color-scheme: light)">
   <meta name="description" content="How well can four AI models follow a story in a made-up language? Explore the Conlang Reading Bench pilot, its four test conditions and reproducible scores.">
   <title>Conlang Reading Bench · Stage 1 results</title>
-  <link rel="stylesheet" href="style.css?v=8">
-  <script defer src="accuracy-plot.js?v=6"></script>
+  <link rel="stylesheet" href="style.css?v=9">
+  <script defer src="accuracy-plot.js?v=7"></script>
 </head>
 <body id="top">
   <a class="skip" href="#main">Skip to content</a>
@@ -85,7 +85,7 @@
       </figure>
     </section>
     <section class="method" id="accuracy-overview" aria-labelledby="accuracy-heading" hidden>
-      <h2 id="accuracy-heading">Accuracy by <em>model release order.</em></h2>
+      <h2 id="accuracy-heading">Accuracy by <em>model release date.</em></h2>
       <div class="scatter-controls">
         <label>Story tier <select id="plot-tier"><option value="two">Tier 1 · Two transfers</option><option value="four">Tier 2 · Four transfers</option></select></label>
         <fieldset id="plot-conditions">
@@ -93,13 +93,14 @@
           <label><input type="checkbox" value="minimal" checked> Minimal clues</label>
           <label><input type="checkbox" value="english" checked> English control</label>
         </fieldset>
+        <label>Accuracy scale <select id="plot-scale"><option value="linear">Linear</option><option value="log">Logarithmic</option></select></label>
       </div>
       <figure class="chart scatter">
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
         <div class="legend scatter-key"><span class="minimal"><i aria-hidden="true"></i>Minimal clues</span><span class="english"><i aria-hidden="true"></i>English control</span></div>
         <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
         <p class="scatter-detail" aria-live="polite"></p>
-        <p class="chart-note">Models run left to right from oldest to newest. Spacing is equal. Select a point for its score.</p>
+        <p class="chart-note">Horizontal spacing shows time between model releases. Select a point for its score.</p>
         <p class="chart-note" id="scatter-note"></p>
       </figure>
     </section>
