@@ -6,6 +6,8 @@ A small **conlang comprehension benchmark** for language models. Its research ta
 
 **Stage 1 result.** On 24 paired, held-out stories, GPT‑4.1 mini scored **65.63%** and GPT‑4o mini scored **45.83%**. Both models fell below the planned English-control threshold during development. These are exploratory task results. The full two-model pilot used 408 calls and an estimated **$0.026** at the published token rates. [Pilot report](reports/PILOT.md) · [Raw responses](results) · [Machine-readable scores](reports/index.json)
 
+**Follow-up comparison.** GPT-5.4 nano scored **46.88%** on the same reference stories, with **62.50%** on the English control. [Paired comparisons and reproduction commands](reports/GPT-5.4-nano.md)
+
 ## Replicate the benchmark
 
 ### Copy a prompt for your AI agent
