@@ -1,6 +1,7 @@
 import unittest
 import tempfile
 import json
+import io
 from pathlib import Path
 from unittest.mock import patch
 
@@ -54,6 +55,23 @@ class TestSyncreticProbe(unittest.TestCase):
                         run_case_probes()
                 self.assertEqual(len(list((marker.parent / 'uncertain').glob('*.json'))), 1)
                 network.assert_not_called()
+
+    def test_budgeted_batches_resume_with_same_manifest(self):
+        result = {'model': 'gpt-6-luna', 'choices': [{'message': {'content': '["Ada"]'}, 'finish_reason': 'stop'}],
+                  'usage': {'prompt_tokens': 20, 'completion_tokens': 10}}
+        def response(*args, **kwargs):
+            return io.BytesIO(json.dumps(result).encode())
+        with tempfile.TemporaryDirectory() as directory:
+            arguments = ['probe', '--manifest', 'experiments/syncretic-one-clue-dev.json',
+                         '--out', directory, '--budget', '0.02', '--rates', '0.1', '0.5',
+                         '--max-new-requests', '1']
+            with patch('sys.argv', arguments), patch.dict('os.environ', {'OPENAI_API_KEY': 'test'}), \
+                    patch('urllib.request.urlopen', side_effect=response) as network:
+                run_case_probes()
+                run_case_probes()
+                self.assertEqual(network.call_count, 2)
+            rows = [p for p in Path(directory).glob('*.json') if p.name != 'run.json']
+            self.assertEqual(len(rows), 2)
 
 
 if __name__ == '__main__':

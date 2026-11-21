@@ -28,11 +28,13 @@ def main():
     parser.add_argument('--effort', default='medium')
     parser.add_argument('--max-output', type=int, default=16384)
     parser.add_argument('--rates', nargs=2, type=float, required=True, metavar=('INPUT', 'OUTPUT'))
+    parser.add_argument('--max-new-requests', type=int,
+                        help='run at most this many missing prompts, reserving only those requests')
     parser.add_argument('--retry-uncertain', action='store_true',
                         help='preserve pending attempts and reserve their maximum cost before retrying')
     args = parser.parse_args()
     if (not all(math.isfinite(value) and value >= 0 for value in [args.budget, *args.rates])
-            or args.max_output < 1):
+            or args.max_output < 1 or (args.max_new_requests is not None and args.max_new_requests < 1)):
         parser.error('budget and rates must be non-negative; max-output must be positive')
     manifest = read(args.manifest)
     if not manifest.get('syncretism') or not manifest.get('pairs'):
@@ -81,7 +83,7 @@ def main():
                     row.get('max_output')) != (prompt, gold, args.model, args.effort, args.max_output):
                     raise ValueError(f'existing file does not match this run: {path}')
                 committed += row['cost']
-            else:
+            elif args.max_new_requests is None or len(work) < args.max_new_requests:
                 work.append((world, language, english, prompt, gold, path))
                 committed += bound(conf, prompt)
     if committed > args.budget:
