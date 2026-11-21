@@ -41,7 +41,6 @@ const accuracy = {
 const models = ["GPT-4o mini (default)", "GPT-4.1 mini (default)", "GPT-5.4 nano (default)", "GPT-6 Luna (low)"];
 const shortNames = ["4o mini (default)", "4.1 mini (default)", "5.4 nano (default)", "Luna (low)"];
 const releaseDates = ["2024-07-18", "2025-04-14", "2026-03-17", "2026-09-22"];
-const releaseTimes = releaseDates.map(date => Date.parse(date));
 const dateLabel = new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" });
 const plot = document.querySelector("#accuracy-overview");
 const tabs = Array.from(document.querySelectorAll("[role=tab][data-tier]"));
@@ -58,8 +57,13 @@ const conditionNames = { minimal: "Conlang score", english: "English control" };
 function render() {
   grid.replaceChildren();
   const isFour = tier === "four";
-  const questionCount = isFour ? 192 : 96;
-  const storyCount = questionCount / 4;
+  const isResearch = tier === "research";
+  const questionCount = isResearch ? 48 : isFour ? 192 : 96;
+  const storyCount = isResearch ? 48 : questionCount / 4;
+  const activeModels = isResearch ? tier3Research.models.map(model => model.name) : models;
+  const activeShortNames = isResearch ? tier3Research.models.map(model => model.shortName) : shortNames;
+  const activeDates = isResearch ? tier3Research.models.map(model => model.releaseDate) : releaseDates;
+  const activeTimes = activeDates.map(date => Date.parse(date));
   const selected = Array.from(conditions.querySelectorAll("input:checked"), input => input.value);
   const both = selected.length === 2;
   const logarithmic = scale.checked;
@@ -72,9 +76,15 @@ function render() {
     legend.querySelector("." + key).hidden = !selected.includes(key);
   }
   detail.textContent = selected.length ? "Select a point to see the exact score." : "Choose a reading condition to show scores.";
-  note.textContent = isFour
+  note.textContent = isResearch
+    ? "Exploratory five-object grammar: 48 stories per model, medium effort, one question per story. Scores are preliminary and not directly comparable with earlier tiers."
+    : isFour
     ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap."
     : "24 reference stories per model. Luna used low reasoning with a 512-token cap.";
+  plot.querySelector("#condition-description").textContent = isResearch
+    ? "The conlang score is the percentage correct. English is a separate control. Select a point for its score."
+    : "The conlang score is the percentage correct with minimal clues. English is a separate control. Select a point for its score.";
+  plot.querySelector("#research-note").hidden = !isResearch;
 
   for (const value of ticks) {
     const tick = document.createElement("div");
@@ -87,22 +97,22 @@ function render() {
     grid.append(tick);
   }
 
-  models.forEach((model, i) => {
+  activeModels.forEach((model, i) => {
     const column = document.createElement("div");
     column.className = "scatter-column";
-    const firstRelease = Math.min(...releaseTimes);
-    const elapsed = releaseTimes[i] - firstRelease;
-    const span = Math.max(...releaseTimes) - firstRelease || 1;
-    column.style.left = (10 + 80 * elapsed / span) + "%";
+    const firstRelease = Math.min(...activeTimes);
+    const elapsed = activeTimes[i] - firstRelease;
+    const span = Math.max(...activeTimes) - firstRelease || 1;
+    column.style.left = (isResearch ? 25 + 50 * elapsed / span : 10 + 80 * elapsed / span) + "%";
     const date = document.createElement("time");
     date.className = "scatter-date";
-    date.dateTime = releaseDates[i];
-    date.textContent = dateLabel.format(releaseTimes[i]);
+    date.dateTime = activeDates[i];
+    date.textContent = dateLabel.format(activeTimes[i]);
     column.append(date);
-    const scores = accuracy[tier][i];
+    const scores = isResearch ? tier3Research.models[i].scores : accuracy[tier][i];
     const label = document.createElement("span");
     label.className = "scatter-model";
-    label.textContent = shortNames[i];
+    label.textContent = activeShortNames[i];
     if (selected.length && scores) {
       const heights = selected.map(key => position(scores[key]));
       const above = Math.max(...heights) < 87;
@@ -129,7 +139,7 @@ function render() {
       point.style.setProperty("--y", position(result) + "%");
       const count = Math.round(result * questionCount / 100);
       const name = model;
-      const message = `${name} · ${releaseDates[i]} · ${conditionNames[key]} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
+      const message = `${name} · ${activeDates[i]} · ${conditionNames[key]} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
       point.setAttribute("aria-label", message);
       point.addEventListener("focus", () => { detail.textContent = message; });
       point.addEventListener("click", () => { detail.textContent = message; });
