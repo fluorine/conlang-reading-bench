@@ -77,7 +77,7 @@ function render() {
   }
   detail.textContent = selected.length ? "Select a point to see the exact score." : "Choose a reading condition to show scores.";
   note.textContent = isResearch
-    ? "Exploratory five-object grammar: 48 stories per model, medium effort, one question per story. Scores are preliminary and not directly comparable with earlier tiers."
+    ? "Exploratory five-object grammar: 48 stories per model, one question per story. The effort is shown with each model. Scores are preliminary and not directly comparable with earlier tiers."
     : isFour
     ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap."
     : "24 reference stories per model. Luna used low reasoning with a 512-token cap.";
@@ -103,7 +103,14 @@ function render() {
     const firstRelease = Math.min(...activeTimes);
     const elapsed = activeTimes[i] - firstRelease;
     const span = Math.max(...activeTimes) - firstRelease || 1;
-    column.style.left = (isResearch ? 25 + 50 * elapsed / span : 10 + 80 * elapsed / span) + "%";
+    const sameDate = activeTimes.map((time, index) => time === activeTimes[i] ? index : -1).filter(index => index >= 0);
+    const base = isResearch && activeModels.length > 2 ? 35 + 40 * elapsed / span
+      : isResearch ? 25 + 50 * elapsed / span : 10 + 80 * elapsed / span;
+    column.style.left = base + "%";
+    if (sameDate.length > 1) {
+      const offset = (sameDate.indexOf(i) - (sameDate.length - 1) / 2) * 5;
+      column.style.transform = `translateX(${offset}rem)`;
+    }
     const date = document.createElement("time");
     date.className = "scatter-date";
     date.dateTime = activeDates[i];

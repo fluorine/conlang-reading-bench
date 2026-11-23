@@ -10,8 +10,8 @@
   <title>Conlang Reading Bench · Results</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="style.css?v=14">
-  <script defer src="tier3-results.js?v=1"></script>
-  <script defer src="accuracy-plot.js?v=12"></script>
+  <script defer src="tier3-results.js?v=2"></script>
+  <script defer src="accuracy-plot.js?v=14"></script>
   <script defer src="motion.js?v=1"></script>
 </head>
 <body id="top">
@@ -104,7 +104,7 @@
         <p class="scatter-detail" aria-live="polite"></p>
         <p class="chart-note" id="condition-description">The conlang score is the percentage correct. English is a separate control. Select a point for its score.</p>
         <p class="chart-note" id="scatter-note"></p>
-        <p class="chart-note" id="research-note" hidden>The test requires inferring a new grammar. On these 48 stories, choosing the last name mentioned scores 31.25%; random choice among suffix-blind possibilities has 18.8% expected accuracy. Scores are preliminary. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/TIER3-COMPARISON.md">Explore the methods and limitations</a>.</p>
+        <p class="chart-note" id="research-note" hidden>The test requires inferring a new grammar. On these 48 stories, choosing the last name mentioned scores 31.25%; random choice among suffix-blind possibilities has 18.8% expected accuracy. Models released on the same date are offset slightly for readability. Scores are preliminary. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/SOL-LOW-COMPARISON.md">Explore the methods and limitations</a>.</p>
         <label class="scale-check"><input type="checkbox" id="plot-scale"> Logarithmic scale</label>
       </figure>
     </section>
@@ -122,7 +122,7 @@
       <h2 id="tier3-heading">Tier 3 · <em>New grammar.</em></h2>
       <p class="settings">In this exploratory test, five objects change hands in a made-up language. The model must work out how shared word endings convey who gave which object, then answer one question about the final holder.</p>
       <p class="settings">Each accepted story is checked for one answer under the stated rules. English versions tell the same stories. The scores use 48 stories per model and should not be compared directly with the earlier tiers.</p>
-      <p><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/TIER3-COMPARISON.md">See the comparison, shortcut baselines, and full limitations</a></p>
+      <p><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/SOL-LOW-COMPARISON.md">See the comparison, shortcut baselines, and full limitations</a></p>
     </section>
     <section class="method" id="method" aria-labelledby="method-heading">
       <p class="eyebrow"><span class="rule"></span> The method</p>

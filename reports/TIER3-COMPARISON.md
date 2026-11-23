@@ -1,5 +1,7 @@
 # Exploratory Tier 3: paired five-object comparison
 
+Follow-up: [GPT-6 Sol with low reasoning on the same stories](SOL-LOW-COMPARISON.md).
+
 GPT-6 Luna and GPT-6.1 Terra were each tested at **medium** reasoning effort on the same 48 constructed-language stories and their matched English versions. Each condition has one question per story. The test measures success at inferring and applying this particular artificial grammar while tracking object transfers. It is not a general measure of language comprehension, and these results are not directly comparable to the earlier two- and four-transfer tiers.
 
 | Model and effort | Conlang: all 48 | English control | Original 24 | Fresh 24 |

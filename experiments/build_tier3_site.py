@@ -3,16 +3,24 @@ import json
 from pathlib import Path
 
 from conlang.verify_tier3_comparison import ARCHIVE, CONFIGS, SUITES, main as verify
+from conlang.verify_sol_comparison import ARCHIVE as SOL_ARCHIVE, main as verify_sol
 
 
 def main():
-    verify()
+    if SOL_ARCHIVE.exists():
+        verify_sol()
+    else:
+        verify()
     archive = json.loads(ARCHIVE.read_text(encoding='utf-8'))
     details = {'luna': ('GPT-6 Luna (medium)', 'Luna (medium)', '2026-09-22'),
+               'sol': ('GPT-6 Sol (low)', 'Sol (low)', '2026-09-22'),
                'terra': ('GPT-6.1 Terra (medium)', 'Terra (medium)', '2026-10-26')}
+    sol = json.loads(SOL_ARCHIVE.read_text(encoding='utf-8')) if SOL_ARCHIVE.exists() else None
     models = []
-    for model in CONFIGS:
-        rows = [row for suite in SUITES for row in archive['runs'][f'{model}-{suite}']['responses']]
+    for model in ('luna', 'sol', 'terra') if sol else CONFIGS:
+        rows = [row for suite in SUITES for row in
+                (sol['runs'][suite]['responses'] if model == 'sol'
+                 else archive['runs'][f'{model}-{suite}']['responses'])]
         scores = {}
         for key, english in [('minimal', False), ('english', True)]:
             selected = [row for row in rows if row['english'] == english]

@@ -11,6 +11,15 @@ const tier3Research = {
       }
     },
     {
+      "name": "GPT-6 Sol (low)",
+      "shortName": "Sol (low)",
+      "releaseDate": "2026-09-22",
+      "scores": {
+        "minimal": 37.5,
+        "english": 100.0
+      }
+    },
+    {
       "name": "GPT-6.1 Terra (medium)",
       "shortName": "Terra (medium)",
       "releaseDate": "2026-10-26",

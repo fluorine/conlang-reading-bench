@@ -38,7 +38,12 @@ vm.runInContext(fs.readFileSync('docs/accuracy-plot.js', 'utf8'), context);
 assert.equal(plot.hidden, false);
 assert.equal(tabs[2].attrs['aria-selected'], 'true');
 let columns = () => grid.children.filter(child => child.className === 'scatter-column');
-assert.equal(columns().length, 2);
+const researchModelCount = vm.runInContext('tier3Research.models.length', context);
+assert.equal(columns().length, researchModelCount);
+if (researchModelCount === 3) {
+  assert.equal(columns()[0].style.transform, 'translateX(-2.5rem)');
+  assert.equal(columns()[1].style.transform, 'translateX(2.5rem)');
+}
 assert.equal(columns()[0].children.filter(child => child.className?.startsWith('scatter-point')).length, 2);
 checks[1].checked = false;
 conditions.listeners.change();
