@@ -2,6 +2,15 @@
 const tier3Research = {
   "models": [
     {
+      "name": "GPT-6 Luna (low)",
+      "shortName": "Luna (low)",
+      "releaseDate": "2026-09-22",
+      "scores": {
+        "minimal": 29.166666666666668,
+        "english": 100.0
+      }
+    },
+    {
       "name": "GPT-6 Luna (medium)",
       "shortName": "Luna (medium)",
       "releaseDate": "2026-09-22",

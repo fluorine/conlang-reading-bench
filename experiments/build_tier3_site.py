@@ -4,6 +4,7 @@ from pathlib import Path
 
 from conlang.verify_tier3_comparison import ARCHIVE, CONFIGS, SUITES, main as verify
 from conlang.verify_sol_comparison import ARCHIVE as SOL_ARCHIVE, main as verify_sol
+from conlang.verify_luna_low_comparison import ARCHIVE as LUNA_LOW_ARCHIVE, main as verify_luna_low
 
 
 def main():
@@ -11,15 +12,22 @@ def main():
         verify_sol()
     else:
         verify()
+    if LUNA_LOW_ARCHIVE.exists():
+        verify_luna_low()
     archive = json.loads(ARCHIVE.read_text(encoding='utf-8'))
     details = {'luna': ('GPT-6 Luna (medium)', 'Luna (medium)', '2026-09-22'),
+               'luna-low': ('GPT-6 Luna (low)', 'Luna (low)', '2026-09-22'),
                'sol': ('GPT-6 Sol (low)', 'Sol (low)', '2026-09-22'),
                'terra': ('GPT-6.1 Terra (medium)', 'Terra (medium)', '2026-10-26')}
     sol = json.loads(SOL_ARCHIVE.read_text(encoding='utf-8')) if SOL_ARCHIVE.exists() else None
+    luna_low = json.loads(LUNA_LOW_ARCHIVE.read_text(encoding='utf-8')) if LUNA_LOW_ARCHIVE.exists() else None
     models = []
-    for model in ('luna', 'sol', 'terra') if sol else CONFIGS:
+    order = [name for name in ('luna-low', 'luna', 'sol', 'terra')
+             if name in CONFIGS or (name == 'sol' and sol) or (name == 'luna-low' and luna_low)]
+    for model in order:
         rows = [row for suite in SUITES for row in
-                (sol['runs'][suite]['responses'] if model == 'sol'
+                (luna_low['runs'][suite]['responses'] if model == 'luna-low'
+                 else sol['runs'][suite]['responses'] if model == 'sol'
                  else archive['runs'][f'{model}-{suite}']['responses'])]
         scores = {}
         for key, english in [('minimal', False), ('english', True)]:

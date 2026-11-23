@@ -13,12 +13,12 @@ from conlang.verify_tier3_comparison import ARCHIVE as BASE_ARCHIVE, SUITES, mai
 ARCHIVE = Path('reports/sol-comparison-responses.json')
 
 
-def main():
+def verify_extra(archive_path, identifier, effort, rates, label):
     verify_base()
-    archive = json.loads(ARCHIVE.read_text(encoding='utf-8'))
+    archive = json.loads(archive_path.read_text(encoding='utf-8'))
     base = json.loads(BASE_ARCHIVE.read_text(encoding='utf-8'))
     if set(archive['runs']) != set(SUITES):
-        raise ValueError('Sol comparison requires both frozen samples')
+        raise ValueError(f'{label} comparison requires both frozen samples')
     differences = {'luna': [], 'terra': []}
     for suite, manifest_name in SUITES.items():
         manifest = json.loads(Path(f'experiments/{manifest_name}.json').read_text(encoding='utf-8'))
@@ -26,15 +26,15 @@ def main():
         bundle = archive['runs'][suite]
         metadata, rows = bundle['metadata'], bundle['responses']
         fingerprint = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
-        if (metadata.get('manifest_sha256') != fingerprint or metadata.get('model') != 'gpt-6-sol'
-                or metadata.get('effort') != 'low' or metadata.get('max_output') != 16384
-                or metadata.get('rates') != [2, 10]):
+        if (metadata.get('manifest_sha256') != fingerprint or metadata.get('model') != identifier
+                or metadata.get('effort') != effort or metadata.get('max_output') != 16384
+                or metadata.get('rates') != rates):
             raise ValueError(f'{suite}: manifest or configuration mismatch')
         expected = {(world, language, english) for world, language in pairs for english in (False, True)}
         actual = {(row['world'], row['language'], row['english']) for row in rows}
         if actual != expected or len(rows) != len(expected):
             raise ValueError(f'{suite}: incomplete or repeated items')
-        conf = settings('gpt-6-sol', 'low', 16384, [2, 10])
+        conf = settings(identifier, effort, 16384, rates)
         result = {}
         for row in rows:
             prompt, gold = build(row['world'], row['language'], length=manifest['length'],
@@ -43,12 +43,12 @@ def main():
             usage = row['usage']
             if (row['prompt'] != prompt or row['gold'] != gold
                     or row['correct'] != (parse(row['raw']) == [gold.casefold()])
-                    or row.get('requested_model') != 'gpt-6-sol' or row.get('effort') != 'low'
+                    or row.get('requested_model') != identifier or row.get('effort') != effort
                     or row.get('max_output') != 16384
                     or not math.isclose(row['cost'], price(conf, usage['prompt_tokens'], usage['completion_tokens']), abs_tol=1e-10)):
                 raise ValueError(f'{suite}: response, configuration or cost mismatch')
             result[(row['world'], row['language'], row['english'])] = row['correct']
-        print(f'sol-{suite}:', *(f'{sum(row["correct"] for row in rows if row["english"] == english)}/{len(pairs)}' for english in (False, True)))
+        print(f'{label}-{suite}:', *(f'{sum(row["correct"] for row in rows if row["english"] == english)}/{len(pairs)}' for english in (False, True)))
         print(f'  capped: {sum(row.get("finish_reason") == "length" for row in rows)}; '
               f'empty: {sum(not row["raw"] for row in rows)}; '
               f'observed token-valued cost: ${sum(row["cost"] for row in rows):.5f}')
@@ -65,8 +65,12 @@ def main():
         rng = random.Random(492014)
         samples = sorted(sum(stratum[rng.randrange(len(stratum))] for stratum in strata for _ in stratum)
                          / count for _ in range(10000))
-        print(f'Sol minus {model} paired accuracy: {observed:+.1%}; suite-stratified bootstrap '
+        print(f'{label} minus {model} paired accuracy: {observed:+.1%}; suite-stratified bootstrap '
               f'95% interval {samples[249]:+.1%} to {samples[9749]:+.1%}')
+
+
+def main():
+    verify_extra(ARCHIVE, 'gpt-6-sol', 'low', [2, 10], 'Sol')
 
 
 if __name__ == '__main__':

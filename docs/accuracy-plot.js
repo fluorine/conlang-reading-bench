@@ -104,17 +104,20 @@ function render() {
     const elapsed = activeTimes[i] - firstRelease;
     const span = Math.max(...activeTimes) - firstRelease || 1;
     const sameDate = activeTimes.map((time, index) => time === activeTimes[i] ? index : -1).filter(index => index >= 0);
+    const dateRank = sameDate.indexOf(i);
     const base = isResearch && activeModels.length > 2 ? 35 + 40 * elapsed / span
       : isResearch ? 25 + 50 * elapsed / span : 10 + 80 * elapsed / span;
     column.style.left = base + "%";
     if (sameDate.length > 1) {
-      const offset = (sameDate.indexOf(i) - (sameDate.length - 1) / 2) * 5;
+      const spacing = sameDate.length > 2 ? 3.3 : 5;
+      const offset = (dateRank - (sameDate.length - 1) / 2) * spacing;
       column.style.transform = `translateX(${offset}rem)`;
     }
     const date = document.createElement("time");
     date.className = "scatter-date";
     date.dateTime = activeDates[i];
     date.textContent = dateLabel.format(activeTimes[i]);
+    if (sameDate.length > 2 && dateRank !== Math.floor(sameDate.length / 2)) date.hidden = true;
     column.append(date);
     const scores = isResearch ? tier3Research.models[i].scores : accuracy[tier][i];
     const label = document.createElement("span");
@@ -124,7 +127,15 @@ function render() {
       const heights = selected.map(key => position(scores[key]));
       const above = Math.max(...heights) < 87;
       const edge = above ? Math.max(...heights) : Math.min(...heights);
-      label.style.bottom = `calc(${edge}% + ${above ? ".65rem" : "-1.9rem"})`;
+      if (isResearch && sameDate.length > 2) {
+        const groupHeights = sameDate.flatMap(index => selected.map(key => position(tier3Research.models[index].scores[key])));
+        const groupAbove = Math.max(...groupHeights) < 87;
+        const anchor = groupAbove ? Math.max(...groupHeights) : Math.min(...groupHeights);
+        const offset = groupAbove ? .65 + dateRank * 1.1 : -.65 - (sameDate.length - dateRank) * 1.1;
+        label.style.bottom = `calc(${anchor}% + ${offset}rem)`;
+      } else {
+        label.style.bottom = `calc(${edge}% + ${above ? .65 : -1.9}rem)`;
+      }
       column.append(label);
     }
     if (scores && both) {

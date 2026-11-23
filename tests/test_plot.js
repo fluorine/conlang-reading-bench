@@ -44,6 +44,11 @@ if (researchModelCount === 3) {
   assert.equal(columns()[0].style.transform, 'translateX(-2.5rem)');
   assert.equal(columns()[1].style.transform, 'translateX(2.5rem)');
 }
+if (researchModelCount === 4) {
+  assert.equal(columns()[0].style.transform, 'translateX(-3.3rem)');
+  assert.equal(columns()[1].style.transform, 'translateX(0rem)');
+  assert.equal(columns()[2].style.transform, 'translateX(3.3rem)');
+}
 assert.equal(columns()[0].children.filter(child => child.className?.startsWith('scatter-point')).length, 2);
 checks[1].checked = false;
 conditions.listeners.change();
