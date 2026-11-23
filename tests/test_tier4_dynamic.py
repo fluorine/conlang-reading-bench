@@ -61,6 +61,9 @@ class TestTier4Dynamic(unittest.TestCase):
         self.assertEqual(base['prompts'][0].split('\n\n')[2:], tuned['prompts'][0].split('\n\n')[2:])
         with self.assertRaisesRegex(ValueError, 'increasing'):
             build_story(363756058, 1106497454, scheme='unique', hint_levels=(10, 10, 20))
+        with self.assertRaisesRegex(ValueError, 'too few observed markers'):
+            build_story(160070927, 655509745, scheme='unique', observed_hints=True,
+                        min_observed_markers=20)
 
     def test_repeated_questions_use_saved_history_without_feedback(self):
         pair = [363756058, 1106497454]

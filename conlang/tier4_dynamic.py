@@ -18,7 +18,8 @@ def _parts(prompt):
     return instruction, header, meanings.removesuffix('.').split('; '), story, questions
 
 
-def build_story(world_seed, language_seed, scheme='shared', observed_hints=False, hint_levels=None):
+def build_story(world_seed, language_seed, scheme='shared', observed_hints=False, hint_levels=None,
+                min_observed_markers=0):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
@@ -26,6 +27,9 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
     """
     if scheme not in ('shared', 'unique'):
         raise ValueError('unknown marker scheme')
+    if (type(min_observed_markers) is not int or min_observed_markers < 0
+            or (min_observed_markers and not observed_hints)):
+        raise ValueError('invalid observed-marker minimum')
     shared = scheme == 'shared'
     maximum = 15 if shared else 30
     hint_levels = tuple(hint_levels) if hint_levels is not None else (HINT_LEVELS if shared else SIMPLE_HINT_LEVELS)
@@ -51,6 +55,8 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
     if observed_hints:
         observed = {word.split('-', 1)[1] for line in parts[0][3].splitlines()
                     for word in line.split() if '-' in word}
+        if len(observed) < min_observed_markers:
+            raise ValueError('too few observed markers')
         first_hints = [entry.split(':', 1)[0].removeprefix('-') for entry in parts[1][2]]
         if any(marker not in observed for marker in first_hints[:min(len(observed), len(first_hints))]):
             raise ValueError('an early disclosed marker is absent from the story')

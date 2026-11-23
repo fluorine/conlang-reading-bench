@@ -6,9 +6,7 @@ from conlang.verify_tier4_dynamic import verify_run
 from conlang.tier4_dynamic import build_story
 
 
-def main():
-    archive_path = Path('reports/tier4-observed-fresh-responses.json')
-    manifest_path = Path('experiments/tier4-observed-fresh.json')
+def analyze(archive_path, manifest_path):
     verify_run(archive_path, manifest_path)
     archive = json.loads(archive_path.read_text(encoding='utf-8'))
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
@@ -28,6 +26,11 @@ def main():
         samples = sorted(sum(rng.choice(values) for _ in values) / len(values) for _ in range(10000))
         print(f'{label}: {100 * sum(values) / len(values):+.1f} points; '
               f'95% story bootstrap {100 * samples[249]:+.1f} to {100 * samples[9749]:+.1f}')
+
+
+def main():
+    analyze(Path('reports/tier4-observed-fresh-responses.json'),
+            Path('experiments/tier4-observed-fresh.json'))
 
 
 if __name__ == '__main__':

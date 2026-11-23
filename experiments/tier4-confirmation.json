@@ -1,0 +1,70 @@
+{
+  "name": "tier4-confirmation",
+  "seed": 430012,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    10,
+    20,
+    30
+  ],
+  "scheme": "unique",
+  "observed_hints": true,
+  "min_observed_markers": 20,
+  "pairs": [
+    [
+      1907078801,
+      1406322485
+    ],
+    [
+      73625741,
+      1930053151
+    ],
+    [
+      1535626003,
+      1531533306
+    ],
+    [
+      1382851805,
+      1578707558
+    ],
+    [
+      1899683653,
+      1554646429
+    ],
+    [
+      463970882,
+      37930686
+    ],
+    [
+      1899506575,
+      1399884515
+    ],
+    [
+      1053350222,
+      998759436
+    ],
+    [
+      1659430474,
+      2130021692
+    ],
+    [
+      1255916025,
+      251592696
+    ],
+    [
+      880024827,
+      1526909876
+    ],
+    [
+      892057718,
+      1668296921
+    ]
+  ],
+  "purpose": "untouched confirmation of ten-hint candidate selected on prior development data",
+  "analysis_plan": {
+    "primary": "fresh_conlang stage 0, ten disclosed endings",
+    "decision": "Report under-40% accuracy, English >=90%, missing/capped calls, and paired difference versus last-name shortcut; do not claim advantage if the 95% story-bootstrap interval includes zero.",
+    "secondary": "fresh full minus initial; continued hints versus no-new-hint at final stage; all accuracy rates and shortcut baselines."
+  }
+}
