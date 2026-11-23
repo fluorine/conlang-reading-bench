@@ -17,9 +17,11 @@ def verify_run(archive_path, manifest_path):
     archive = json.loads(archive_path.read_text(encoding='utf-8'))
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     scheme = manifest.get('scheme', 'shared')
+    observed_hints = manifest.get('observed_hints', False)
     hint_levels = HINT_LEVELS if scheme == 'shared' else SIMPLE_HINT_LEVELS if scheme == 'unique' else ()
     if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
-            or not hint_levels or manifest.get('hint_levels') != list(hint_levels)):
+            or type(observed_hints) is not bool or not hint_levels
+            or manifest.get('hint_levels') != list(hint_levels)):
         raise ValueError('manifest does not match Tier 4 prototype')
     metadata, rows = archive['metadata'], archive['responses']
     fingerprint = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
@@ -37,7 +39,7 @@ def verify_run(archive_path, manifest_path):
     conf = settings('gpt-6-luna', 'low', 8192, [0.1, 0.5])
     uniform, last, initial_holder, questions = 0.0, 0, 0, 0
     for world, language in sorted(pairs):
-        case = build_story(world, language, scheme=scheme)
+        case = build_story(world, language, scheme=scheme, observed_hints=observed_hints)
         english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(OBJECTS)]
         starting = {line.split()[-1].removesuffix('.'): line.split()[0] for line in english_story}
         for i, target in enumerate(TARGETS):

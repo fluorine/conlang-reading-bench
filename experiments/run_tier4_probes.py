@@ -35,9 +35,11 @@ def main():
         parser.error('invalid budget, rates or output limit')
     manifest = read(args.manifest)
     scheme = manifest.get('scheme', 'shared')
+    observed_hints = manifest.get('observed_hints', False)
     hint_levels = HINT_LEVELS if scheme == 'shared' else SIMPLE_HINT_LEVELS if scheme == 'unique' else ()
     if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
-            or not hint_levels or manifest.get('hint_levels') != list(hint_levels)):
+            or type(observed_hints) is not bool or not hint_levels
+            or manifest.get('hint_levels') != list(hint_levels)):
         parser.error('manifest does not match the frozen Tier 4 prototype')
     pairs = [tuple(pair) for pair in manifest['pairs']]
     if not pairs or len(set(pairs)) != len(pairs):
@@ -79,7 +81,7 @@ def main():
     def episode(item):
         nonlocal spent, reserved
         (world, language), mode = item
-        case = build_story(world, language, scheme=scheme)
+        case = build_story(world, language, scheme=scheme, observed_hints=observed_hints)
         history = []
         for stage in range(len(hint_levels)):
             if mode == 'fresh_conlang':

@@ -18,7 +18,7 @@ def _parts(prompt):
     return instruction, header, meanings.removesuffix('.').split('; '), story, questions
 
 
-def build_story(world_seed, language_seed, scheme='shared'):
+def build_story(world_seed, language_seed, scheme='shared', observed_hints=False):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
@@ -32,7 +32,8 @@ def build_story(world_seed, language_seed, scheme='shared'):
     for count in hint_levels:
         prompt, gold = build(world_seed, language_seed, length=LENGTH, objects=OBJECTS,
                              syncretism=shared, revealed=count, query_objects=TARGETS,
-                             nested_hints=True, allow_simple_hints=not shared)
+                             nested_hints=True, allow_simple_hints=not shared,
+                             observed_hints=observed_hints)
         if answer is not None and gold != answer:
             raise ValueError('gold changed across hint stages')
         prompts.append(prompt)
@@ -43,9 +44,16 @@ def build_story(world_seed, language_seed, scheme='shared'):
         raise ValueError('story, question or grammar changed across stages')
     if any(parts[i][2] != parts[i + 1][2][:len(parts[i][2])] for i in range(len(parts) - 1)):
         raise ValueError('hint stages are not cumulative')
+    if observed_hints:
+        observed = {word.split('-', 1)[1] for line in parts[0][3].splitlines()
+                    for word in line.split() if '-' in word}
+        first_hints = [entry.split(':', 1)[0].removeprefix('-') for entry in parts[1][2]]
+        if any(marker not in observed for marker in first_hints):
+            raise ValueError('an early disclosed marker is absent from the story')
     english, english_gold = build(world_seed, language_seed, length=LENGTH, objects=OBJECTS,
                                   syncretism=shared, revealed=hint_levels[0], query_objects=TARGETS,
-                                  nested_hints=True, allow_simple_hints=not shared, english=True)
+                                  nested_hints=True, allow_simple_hints=not shared,
+                                  observed_hints=observed_hints, english=True)
     if english_gold != answer:
         raise ValueError('English control does not match')
     questions = parts[0][4]

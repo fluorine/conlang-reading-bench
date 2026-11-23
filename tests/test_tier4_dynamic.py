@@ -6,6 +6,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 from conlang.tier4_dynamic import OBJECTS, TARGETS, build_story, score
+from conlang.suite import read
 from conlang.verify_tier3_search import suffix_blind_answers
 from experiments.run_tier4_probes import main as run_probes
 
@@ -36,6 +37,15 @@ class TestTier4Dynamic(unittest.TestCase):
         self.assertEqual(unique['english'], shared['english'])
         self.assertIn('Each of the 30 object, context, and role combinations has a different suffix', unique['prompts'][0])
         self.assertEqual(unique['prompts'][0].split('\n\n')[-1], unique['prompts'][2].split('\n\n')[-1])
+
+    def test_early_hints_come_from_observed_endings(self):
+        # This previously frozen example had an undisplayed initial ending.
+        world, language = read('experiments/tier4-unique-dev.json')['pairs'][2]
+        revised = build_story(world, language, scheme='unique', observed_hints=True)
+        story = revised['prompts'][0].split('\n\n')[2]
+        clue = revised['prompts'][1].split('\n\n')[1].split('Known suffix meanings (object/reference holder/role): ')[1]
+        for entry in clue.rstrip('.').split('; '):
+            self.assertIn(entry.split(':', 1)[0], story)
 
     def test_repeated_questions_use_saved_history_without_feedback(self):
         pair = [363756058, 1106497454]
