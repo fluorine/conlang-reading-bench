@@ -22,6 +22,16 @@ class Tier4CheckpointTest(unittest.TestCase):
             build_story(334440644, 1573348965, scheme='unique', observed_hints=True,
                         hint_levels=(10, 20, 30), query_after=31)
 
+    def test_guidance_preserves_story_answers_and_english(self):
+        options = dict(scheme='unique', observed_hints=True, hint_levels=(10, 20, 30),
+                       min_observed_markers=20, query_after=15)
+        plain = build_story(334440644, 1573348965, **options)
+        guided = build_story(334440644, 1573348965, reasoning_guide=True, **options)
+        self.assertEqual(plain['answers'], guided['answers'])
+        self.assertEqual(plain['english'], guided['english'])
+        self.assertEqual(plain['prompts'][0].split('\n\n')[1:], guided['prompts'][0].split('\n\n')[1:])
+        self.assertIn('later transfers can constrain earlier ones', guided['prompts'][0])
+
 
 if __name__ == '__main__':
     unittest.main()

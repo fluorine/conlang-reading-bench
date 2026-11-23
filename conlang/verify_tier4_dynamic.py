@@ -22,6 +22,7 @@ def verify_run(archive_path, manifest_path):
     minimum_observed = manifest.get('min_observed_markers', 0)
     defer_target_final = manifest.get('defer_target_final', False)
     query_after = manifest.get('query_after')
+    reasoning_guide = manifest.get('reasoning_guide', False)
     hint_levels = tuple(manifest.get('hint_levels', ()))
     maximum = 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
     modes = tuple(manifest.get('modes', MODES))
@@ -30,6 +31,7 @@ def verify_run(archive_path, manifest_path):
             or (defer_target_final and (not observed_hints or scheme != 'unique'))
             or (query_after is not None and (type(query_after) is not int or not 1 <= query_after <= LENGTH))
             or (query_after is not None and defer_target_final)
+            or type(reasoning_guide) is not bool
             or type(minimum_observed) is not int
             or minimum_observed < 0 or (minimum_observed and not observed_hints) or len(hint_levels) != 3
             or any(type(count) is not int or not 1 <= count <= maximum for count in hint_levels)
@@ -54,12 +56,14 @@ def verify_run(archive_path, manifest_path):
     for world, language in sorted(pairs):
         case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
                            hint_levels=hint_levels, min_observed_markers=minimum_observed,
-                           defer_target_final=defer_target_final, query_after=query_after)
+                           defer_target_final=defer_target_final, query_after=query_after,
+                           reasoning_guide=reasoning_guide)
         if scheme == 'unique':
             audit_case = case if hint_levels[-1] == 30 else build_story(
                 world, language, scheme=scheme, observed_hints=observed_hints,
                 hint_levels=(hint_levels[0], 29, 30), min_observed_markers=minimum_observed,
-                defer_target_final=defer_target_final, query_after=query_after)
+                defer_target_final=defer_target_final, query_after=query_after,
+                reasoning_guide=reasoning_guide)
             if decode_full(audit_case['prompts'][2], query_after=query_after) != case['answers']:
                 raise ValueError('independent fully disclosed replay disagrees with gold')
         english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(OBJECTS)]

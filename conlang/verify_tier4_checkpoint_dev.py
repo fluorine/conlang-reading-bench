@@ -1,0 +1,12 @@
+"""Regrade the midpoint-question development run."""
+from pathlib import Path
+from .verify_tier4_hint_baseline import analyze
+
+
+def main():
+    analyze(Path('reports/tier4-checkpoint-dev-responses.json'),
+            Path('experiments/tier4-checkpoint-dev.json'))
+
+
+if __name__ == '__main__':
+    main()

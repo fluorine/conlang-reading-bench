@@ -19,7 +19,8 @@ def _parts(prompt):
 
 
 def build_story(world_seed, language_seed, scheme='shared', observed_hints=False, hint_levels=None,
-                min_observed_markers=0, defer_target_final=False, query_after=None):
+                min_observed_markers=0, defer_target_final=False, query_after=None,
+                reasoning_guide=False):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
@@ -30,6 +31,7 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
     if (type(min_observed_markers) is not int or min_observed_markers < 0
             or (min_observed_markers and not observed_hints)
             or type(defer_target_final) is not bool
+            or type(reasoning_guide) is not bool
             or (defer_target_final and (not observed_hints or scheme != 'unique'))):
         raise ValueError('invalid observed-marker minimum')
     shared = scheme == 'shared'
@@ -49,6 +51,12 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
             raise ValueError('gold changed across hint stages')
         prompts.append(prompt)
         answer = gold
+    if reasoning_guide:
+        guide = (' Consider the entire story when inferring suffixes: the current holder must '
+                 'be the giver, each suffix has the same meaning wherever it appears, and '
+                 'later transfers can constrain earlier ones. Track the four requested '
+                 'holders at the specified time before returning the JSON array.')
+        prompts = [prompt.replace('\n\n', guide + '\n\n', 1) for prompt in prompts]
     parts = [_parts(prompt) for prompt in prompts]
     if any((p[0], p[1], p[3], p[4]) != (parts[0][0], parts[0][1], parts[0][3], parts[0][4])
            for p in parts[1:]):
