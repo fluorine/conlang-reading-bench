@@ -24,7 +24,8 @@ def analyze(archive_path, manifest_path):
                 case = build_compact(world, language, hint_levels=manifest['hint_levels'],
                                      min_observed_markers=manifest.get('min_observed_markers', 0),
                                      focus_index=manifest.get('focus_index'),
-                                     role_hints=manifest.get('role_hints', False))
+                                     role_hints=manifest.get('role_hints', False),
+                                     object_hint_counts=manifest.get('object_hint_counts'))
                 prediction = last_disclosed_transfer(case['prompts'][stage], targets=compact_targets)
             else:
                 case = build_story(world, language, scheme=manifest['scheme'],

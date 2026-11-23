@@ -1,0 +1,88 @@
+{
+  "name": "tier4-compact-objects-dev",
+  "variant": "compact-three",
+  "seed": 430018,
+  "length": 30,
+  "question_count": 3,
+  "hint_levels": [
+    1,
+    3,
+    18
+  ],
+  "scheme": "unique",
+  "observed_hints": true,
+  "min_observed_markers": 10,
+  "modes": [
+    "fresh_conlang"
+  ],
+  "pairs": [
+    [
+      1248966195,
+      1588568127
+    ],
+    [
+      1212070202,
+      698324054
+    ],
+    [
+      95346264,
+      1475995768
+    ],
+    [
+      728997903,
+      218830175
+    ],
+    [
+      1061560181,
+      165650581
+    ],
+    [
+      623143976,
+      1413734315
+    ],
+    [
+      1452855147,
+      1222162881
+    ],
+    [
+      17308732,
+      818374480
+    ],
+    [
+      914932310,
+      1968838998
+    ],
+    [
+      535878370,
+      807620137
+    ],
+    [
+      82457811,
+      1983376753
+    ],
+    [
+      1728347039,
+      182346196
+    ]
+  ],
+  "attempts": 12,
+  "rejections": {},
+  "excluded_manifests": [
+    "tier4-confirmation.json",
+    "tier4-observed-fresh.json",
+    "tier4-deferred-dev.json",
+    "tier4-policy-audit.json",
+    "tier4-paired-random.json",
+    "tier4-checkpoint-dev.json",
+    "tier4-focus-fresh-0.json",
+    "tier4-focus-fresh-1.json",
+    "tier4-focus-fresh-2.json",
+    "tier4-focus-fresh-3.json"
+  ],
+  "purpose": "adaptive object-only inventory comparison on reused stories; inventory counts chosen after shortcut inspection",
+  "object_hint_counts": [
+    2,
+    4,
+    18
+  ]
+}

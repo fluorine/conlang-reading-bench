@@ -1,7 +1,7 @@
 import unittest
 
 from conlang.tier4_audit import decode_full
-from conlang.tier4_baselines import last_disclosed_transfer, last_role_recipient
+from conlang.tier4_baselines import last_disclosed_transfer, last_role_recipient, object_inventory_tracker
 from conlang.tier4_compact import OBJECTS, build_story
 
 
@@ -27,6 +27,15 @@ class Tier4CompactTest(unittest.TestCase):
         self.assertIn(name, ('Ada', 'Bo', 'Cy', 'Dee', 'Eli', 'Fay'))
         with self.assertRaises(ValueError):
             decode_full(case['prompts'][2].replace('giver suffixes -', 'giver suffixes -bad, -', 1),
+                        objects=OBJECTS, targets=OBJECTS)
+
+    def test_object_inventory_and_tracker(self):
+        case = build_story(123, 456, object_hint_counts=(6, 9, 18))
+        self.assertEqual(decode_full(case['prompts'][2], objects=OBJECTS, targets=OBJECTS), case['answers'])
+        self.assertEqual(object_inventory_tracker(case['prompts'][2], OBJECTS), case['answers'])
+        self.assertEqual(len(object_inventory_tracker(case['prompts'][0], OBJECTS)), 3)
+        with self.assertRaises(ValueError):
+            decode_full(case['prompts'][2].replace(': coin', ': book', 1),
                         objects=OBJECTS, targets=OBJECTS)
 
 

@@ -7,13 +7,20 @@ LENGTH = 30
 
 
 def build_story(world_seed, language_seed, hint_levels=(1, 3, 18),
-                min_observed_markers=0, focus_index=None, role_hints=False):
+                min_observed_markers=0, focus_index=None, role_hints=False,
+                object_hint_counts=None):
     if (len(hint_levels) != 3 or tuple(sorted(set(hint_levels))) != tuple(hint_levels)
             or any(type(n) is not int or not 1 <= n <= 18 for n in hint_levels)):
         raise ValueError('invalid compact hint levels')
     if (type(min_observed_markers) is not int or min_observed_markers < 0 or type(role_hints) is not bool
             or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < 3))):
         raise ValueError('invalid compact options')
+    if object_hint_counts is not None and (not isinstance(object_hint_counts, (list, tuple))
+            or len(object_hint_counts) != 3
+            or any(type(n) is not int or not 0 <= n <= 18 for n in object_hint_counts)
+            or list(object_hint_counts) != sorted(object_hint_counts) or role_hints
+            or hint_levels[-1] != 18):
+        raise ValueError('invalid object-only inventory')
     prompts, answers = [], None
     for count in hint_levels:
         prompt, gold = build(world_seed, language_seed, length=LENGTH, objects=OBJECTS,
@@ -56,6 +63,16 @@ def build_story(world_seed, language_seed, hint_levels=(1, 3, 18),
                 'This identifies roles only, not objects or reference contexts.')
         prefix = ' Known suffix meanings (object/reference holder/role): '
         prompts = [p.replace(prefix, note + prefix, 1) for p in prompts]
+    if object_hint_counts is not None:
+        full = [entry.split(': ', 1) for entry in parts[-1][2]]
+        prefix = ' Known suffix meanings (object/reference holder/role): '
+        revised = []
+        for prompt, count in zip(prompts, object_hint_counts):
+            entries = '; '.join(f'{marker}: {meaning.split("/")[0]}' for marker, meaning in full[:count])
+            note = (f' Object-only inventory: {entries}. '
+                    'These identify objects only, not roles or reference contexts.')
+            revised.append(prompt.replace(prefix, note + prefix, 1))
+        prompts = revised
     if focus_index is not None:
         def focus(prompt):
             sections = prompt.split('\n\n')

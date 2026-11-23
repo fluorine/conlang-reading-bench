@@ -31,6 +31,15 @@ def decode_full(prompt, query_after=None, objects=OBJECTS, targets=TARGETS, leng
             actual = {'-' + marker for marker, meaning in mapping.items() if meaning[2] == role}
             if claimed != actual:
                 raise ValueError('role-only inventory disagrees with full suffix table')
+    object_note = re.search(r' Object-only inventory: (.*?)\.', clue)
+    if object_note and object_note.group(1):
+        seen = set()
+        for entry in object_note.group(1).split('; '):
+            marker, obj = entry.split(': ', 1)
+            if (not marker.startswith('-') or marker in seen or marker[1:] not in mapping
+                    or mapping[marker[1:]][0] != obj):
+                raise ValueError('object-only inventory disagrees with full suffix table')
+            seen.add(marker)
     lines = story.splitlines()
     if lines[0] != 'Story:' or len(lines) != 1 + len(objects) + length:
         raise ValueError('invalid story length')

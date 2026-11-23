@@ -44,12 +44,14 @@ def main():
     focus_index = manifest.get('focus_index')
     compact = manifest.get('variant') == 'compact-three'
     role_hints = manifest.get('role_hints', False)
+    object_hint_counts = manifest.get('object_hint_counts')
     target_count = 3 if compact else len(TARGETS)
     hint_levels = tuple(manifest.get('hint_levels', ()))
     maximum = 18 if compact and scheme == 'unique' else 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
     modes = tuple(manifest.get('modes', MODES))
     if (manifest.get('variant', 'standard') not in ('standard', 'compact-three')
             or type(role_hints) is not bool or (role_hints and not compact)
+            or (object_hint_counts is not None and not compact)
             or (compact and (scheme != 'unique' or not observed_hints or defer_target_final
                              or query_after is not None or reasoning_guide or response_format != 'array'
                              or any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes)))
@@ -113,7 +115,7 @@ def main():
             from conlang.tier4_compact import build_story as build_compact
             case = build_compact(world, language, hint_levels=hint_levels,
                                  min_observed_markers=minimum_observed, focus_index=focus_index,
-                                 role_hints=role_hints)
+                                 role_hints=role_hints, object_hint_counts=object_hint_counts)
         else:
             case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
                                hint_levels=hint_levels, min_observed_markers=minimum_observed,

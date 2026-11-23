@@ -99,3 +99,51 @@ def last_role_recipient(prompt):
     if len(recipients) != 1:
         raise ValueError('final transfer does not have exactly one recipient')
     return recipients[0]
+
+
+def object_inventory_tracker(prompt, targets):
+    """Track partially disclosed objects, inferring direction from the last tracked holder.
+
+    An unrecognized transfer can make the internal holder stale; this is a
+    deterministic heuristic using only the visible prompt, not an oracle.
+    """
+    _, header, meanings, story, _ = _parts(prompt)
+    match = re.search(r' Object-only inventory: (.*?)\.', header)
+    if not match:
+        raise ValueError('no object-only inventory')
+    objects = {}
+    if match.group(1):
+        for entry in match.group(1).split('; '):
+            marker, obj = entry.split(': ', 1)
+            objects[marker.removeprefix('-')] = obj
+    roles = {}
+    for entry in meanings:
+        marker, meaning = entry.split(': ', 1)
+        obj, _, role = meaning.split('/')
+        objects[marker.removeprefix('-')] = obj
+        roles[marker.removeprefix('-')] = role
+    roots = {word: obj for word, obj in re.findall(r'([a-z]+) = (coin|key|book|ring|cup)', header)}
+    holders = {}
+    for line in story.splitlines()[1:]:
+        words = line.split()
+        if len(words) == 3 and words[2] in roots:
+            holders[roots[words[2]]] = words[0]
+            continue
+        if len(words) != 2 or not all('-' in word for word in words):
+            raise ValueError('invalid story line')
+        pairs = [word.split('-', 1) for word in words]
+        candidates = {objects[suffix] for _, suffix in pairs if suffix in objects}
+        if len(candidates) != 1:
+            continue
+        obj = next(iter(candidates))
+        explicit = [pairs[i if roles[suffix] == 'recipient' else 1-i][0]
+                    for i, (_, suffix) in enumerate(pairs) if suffix in roles]
+        if explicit and len(set(explicit)) == 1:
+            holders[obj] = explicit[0]
+        elif not explicit:
+            matches = [i for i, (name, _) in enumerate(pairs) if name == holders[obj]]
+            if len(matches) == 1:
+                holders[obj] = pairs[1 - matches[0]][0]
+    if any(target not in holders for target in targets):
+        raise ValueError('missing initial holder')
+    return [holders[target] for target in targets]
