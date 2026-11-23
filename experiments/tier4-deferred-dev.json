@@ -1,0 +1,51 @@
+{
+  "name": "tier4-deferred-dev",
+  "seed": 430013,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    10,
+    20,
+    30
+  ],
+  "scheme": "unique",
+  "observed_hints": true,
+  "min_observed_markers": 20,
+  "defer_target_final": true,
+  "modes": [
+    "fresh_conlang",
+    "fresh_english"
+  ],
+  "pairs": [
+    [
+      1538297922,
+      86143699
+    ],
+    [
+      198667839,
+      1643039577
+    ],
+    [
+      1876837292,
+      2079336335
+    ],
+    [
+      1185133767,
+      490778107
+    ],
+    [
+      792552036,
+      1582369946
+    ],
+    [
+      751960372,
+      578163698
+    ]
+  ],
+  "attempts": 8,
+  "rejections": {
+    "too few observed markers": 1,
+    "clues do not determine the answer": 1
+  },
+  "purpose": "exploratory development; defer markers on target final transfers; not an independent confirmation"
+}

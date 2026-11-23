@@ -9,7 +9,7 @@ CONTEXTS = ("giver", "recipient", "other")
 
 def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False,
           revealed=0, query_objects=None, nested_hints=False, allow_simple_hints=False,
-          observed_hints=False):
+          observed_hints=False, defer_target_final=False):
     multiple_questions = query_objects is not None
     targets = tuple(query_objects) if multiple_questions else ('coin',)
     if not targets or len(set(targets)) != len(targets) or any(obj not in objects for obj in targets):
@@ -58,8 +58,20 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
         order = hint_rng.sample(distinct_suffixes, len(distinct_suffixes))
         observed = {word.split('-')[1] for line in encoded for word in line.split()}
         order = [marker for marker in order if marker in observed] + [marker for marker in order if marker not in observed]
+        if defer_target_final:
+            deferred = set()
+            for target in targets:
+                indices = [i for i, event in enumerate(events) if event[0] == target]
+                if not indices:
+                    raise ValueError('target has no transfer')
+                deferred.update(word.split('-')[1] for word in encoded[indices[-1]].split())
+            order = ([marker for marker in order if marker in observed and marker not in deferred]
+                     + [marker for marker in order if marker in observed and marker in deferred]
+                     + [marker for marker in order if marker not in observed])
         revealed_suffixes = order[:revealed]
     else:
+        if defer_target_final:
+            raise ValueError('deferring final transfers requires observed hints')
         revealed_suffixes = (hint_rng.sample(distinct_suffixes, len(distinct_suffixes))[:revealed]
                              if nested_hints else hint_rng.sample(distinct_suffixes, revealed))
     known = {suffix: {meaning for meaning, marker in markers.items() if marker == suffix}

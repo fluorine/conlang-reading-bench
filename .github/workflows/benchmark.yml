@@ -20,6 +20,7 @@ jobs:
       - run: python -m conlang.verify_tier4_observed
       - run: python -m conlang.verify_tier4_tuning
       - run: python -m conlang.verify_tier4_confirmation
+      - run: python -m conlang.verify_tier4_hint_baseline
       - run: python -m experiments.build_tier3_site
       - run: git diff --exit-code -- docs/tier3-results.js
       - run: node tests/test_plot.js
