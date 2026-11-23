@@ -18,6 +18,14 @@ class Tier4RegularTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             build_story(123, 456, scheme='shared', context_free=True)
 
+    def test_zero_hint_regular_story_has_consistent_gold(self):
+        case = build_story(123, 456, scheme='unique', observed_hints=True,
+                           hint_levels=(0, 1, 10), context_free=True)
+        self.assertNotIn('Known suffix meanings', case['prompts'][0])
+        self.assertIn('Known suffix meanings', case['prompts'][1])
+        self.assertEqual(decode_full(case['prompts'][2], context_free=True), case['answers'])
+        self.assertEqual(len(last_disclosed_transfer(case['prompts'][0])), 4)
+
 
 if __name__ == '__main__':
     unittest.main()

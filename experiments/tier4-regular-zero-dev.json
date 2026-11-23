@@ -1,0 +1,90 @@
+{
+  "name": "tier4-regular-zero-dev",
+  "seed": 430021,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    0,
+    1,
+    10
+  ],
+  "scheme": "unique",
+  "context_free": true,
+  "observed_hints": true,
+  "min_observed_markers": 10,
+  "modes": [
+    "fresh_conlang",
+    "fresh_english"
+  ],
+  "pairs": [
+    [
+      1710468187,
+      1755085795
+    ],
+    [
+      1100637353,
+      1774144232
+    ],
+    [
+      2070845047,
+      987340435
+    ],
+    [
+      384097765,
+      130847607
+    ],
+    [
+      585602550,
+      147961126
+    ],
+    [
+      882150983,
+      151445575
+    ],
+    [
+      460204145,
+      933341478
+    ],
+    [
+      2017370498,
+      1151504790
+    ],
+    [
+      95489848,
+      410584783
+    ],
+    [
+      281380444,
+      1152844187
+    ],
+    [
+      498707144,
+      1010339822
+    ],
+    [
+      790807664,
+      1216115280
+    ]
+  ],
+  "attempts": 12,
+  "rejections": {},
+  "excluded_manifests": [
+    "tier4-confirmation.json",
+    "tier4-observed-fresh.json",
+    "tier4-deferred-dev.json",
+    "tier4-policy-audit.json",
+    "tier4-paired-random.json",
+    "tier4-checkpoint-dev.json",
+    "tier4-focus-fresh-0.json",
+    "tier4-focus-fresh-1.json",
+    "tier4-focus-fresh-2.json",
+    "tier4-focus-fresh-3.json",
+    "tier4-compact-dev.json",
+    "tier4-regular-dev.json",
+    "tier4-regular-confirm-0.json",
+    "tier4-regular-confirm-1.json",
+    "tier4-regular-confirm-2.json",
+    "tier4-regular-confirm-3.json"
+  ],
+  "purpose": "adaptive zero-hint development after one-hint confirmation exceeded target"
+}

@@ -14,7 +14,7 @@ def _parts(prompt):
     instruction, clue, story, questions = prompt.split('\n\n')
     prefix = ' Known suffix meanings (object/reference holder/role): '
     if prefix not in clue:
-        raise ValueError('expected a disclosed marker')
+        return instruction, clue, [], story, questions
     header, meanings = clue.split(prefix, 1)
     return instruction, header, meanings.removesuffix('.').split('; '), story, questions
 
@@ -42,7 +42,8 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
     shared = scheme == 'shared'
     maximum = 10 if context_free else 15 if shared else 30
     hint_levels = tuple(hint_levels) if hint_levels is not None else (HINT_LEVELS if shared else SIMPLE_HINT_LEVELS)
-    if (len(hint_levels) != 3 or any(type(count) is not int or not 1 <= count <= maximum for count in hint_levels)
+    minimum = 0 if context_free else 1
+    if (len(hint_levels) != 3 or any(type(count) is not int or not minimum <= count <= maximum for count in hint_levels)
             or tuple(sorted(set(hint_levels))) != hint_levels):
         raise ValueError('hint levels must be three increasing valid counts')
     prompts, answer = [], None

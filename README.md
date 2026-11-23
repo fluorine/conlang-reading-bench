@@ -14,7 +14,7 @@ A small **conlang comprehension benchmark** for language models. Its research ta
 
 **Tier 3 research** explores harder artificial grammar with formally checked answers and matched English controls. On the same 48 five-object questions, Luna low scored **29.17%**, Luna medium and Sol low each scored **37.5%**, and Terra medium scored **83.3%**; all scored **100%** on English controls. The result is preliminary: a last-name shortcut scored 31.25%, the effort settings differ, and the stories share one grammar family. These runs are separate from the earlier published tiers. [Luna effort comparison](reports/LUNA-LOW-COMPARISON.md) · [Sol comparison](reports/SOL-LOW-COMPARISON.md) · [Search history](reports/TIER3-SEARCH.md)
 
-**Tier 4 research:** ask questions about a longer story as hints are revealed, while measuring the effects of hints separately from memory and repetition. A simpler object-and-role grammar produced a promising but uncertain pilot; a fresh evaluation is needed. This tier is not calibrated. [Regular-grammar pilot](reports/TIER4-REGULAR-DEV.md) · [Earlier fresh evaluation](reports/TIER4-FOCUS-FRESH.md) · [Design](reports/NEXT-TIER-DYNAMIC-DESIGN.md)
+**Tier 4 research:** ask questions about a longer story as hints are revealed, while measuring the effects of hints separately from memory and repetition. A 48-story regular-grammar evaluation cleared two shortcuts but Luna low scored 45.8%, above the preset difficulty target. This tier is not calibrated. [48-story evaluation](reports/TIER4-REGULAR-CONFIRM.md) · [Earlier fresh evaluation](reports/TIER4-FOCUS-FRESH.md) · [Design](reports/NEXT-TIER-DYNAMIC-DESIGN.md)
 
 ## Replicate the benchmark
 

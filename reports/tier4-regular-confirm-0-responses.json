@@ -1,0 +1,3481 @@
+{
+  "description": "Tier 4 dynamic development run; not an official benchmark.",
+  "metadata": {
+    "manifest_sha256": "8bd59e657a21058dac9346074062d7067464475223e6a57d6b7ccaaf8d2aa0e1",
+    "model": "gpt-6-luna",
+    "effort": "low",
+    "max_output": 8192,
+    "rates": [
+      0.1,
+      0.5
+    ],
+    "modes": [
+      "fresh_conlang",
+      "fresh_english"
+    ],
+    "hint_levels": [
+      1,
+      3,
+      10
+    ]
+  },
+  "responses": [
+    {
+      "world": 1051753558,
+      "language": 1615102798,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veki = initially holds, zoto = coin, pose = key, poma = book, luki = ring, poto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -pe: ring/other/giver.\n\nStory:\nFay veki zoto\nCy veki pose\nBo veki poma\nAda veki luki\nEli veki poto\nEli-ti Bo-ta\nCy-ti Eli-ta\nCy-ta Dee-ti\nAda-pe Eli-ma\nDee-mo Fay-mi\nAda-ti Dee-ta\nCy-ti Ada-ta\nEli-po Cy-ki\nEli-no Ada-nu\nEli-nu Ada-no\nCy-po Eli-ki\nDee-mi Cy-mo\nEli-po Cy-ki\nEli-pe Bo-ma\nFay-nu Eli-no\nCy-ta Fay-ti\nAda-ma Bo-pe\nCy-ti Fay-ta\nAda-mo Cy-mi\nFay-ti Cy-ta\nFay-no Eli-nu\nAda-mi Bo-mo\nAda-pe Fay-ma\nEli-ma Fay-pe\nEli-ki Ada-po\nFay-nu Eli-no\nFay-ta Eli-ti\nEli-pe Fay-ma\nFay-po Ada-ki\nBo-ti Eli-ta\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:16.089910+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 424,
+        "completion_tokens": 1761,
+        "total_tokens": 2185,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1733,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009228999999999999
+    },
+    {
+      "world": 1051753558,
+      "language": 1615102798,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veki = initially holds, zoto = coin, pose = key, poma = book, luki = ring, poto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -pe: ring/other/giver; -mo: coin/other/recipient; -no: cup/other/giver.\n\nStory:\nFay veki zoto\nCy veki pose\nBo veki poma\nAda veki luki\nEli veki poto\nEli-ti Bo-ta\nCy-ti Eli-ta\nCy-ta Dee-ti\nAda-pe Eli-ma\nDee-mo Fay-mi\nAda-ti Dee-ta\nCy-ti Ada-ta\nEli-po Cy-ki\nEli-no Ada-nu\nEli-nu Ada-no\nCy-po Eli-ki\nDee-mi Cy-mo\nEli-po Cy-ki\nEli-pe Bo-ma\nFay-nu Eli-no\nCy-ta Fay-ti\nAda-ma Bo-pe\nCy-ti Fay-ta\nAda-mo Cy-mi\nFay-ti Cy-ta\nFay-no Eli-nu\nAda-mi Bo-mo\nAda-pe Fay-ma\nEli-ma Fay-pe\nEli-ki Ada-po\nFay-nu Eli-no\nFay-ta Eli-ti\nEli-pe Fay-ma\nFay-po Ada-ki\nBo-ti Eli-ta\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[\"Bo\",\"Fay\",\"Bo\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:45.454409+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 442,
+        "completion_tokens": 1782,
+        "total_tokens": 2224,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1744,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009352000000000001
+    },
+    {
+      "world": 1051753558,
+      "language": 1615102798,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veki = initially holds, zoto = coin, pose = key, poma = book, luki = ring, poto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -pe: ring/other/giver; -mo: coin/other/recipient; -no: cup/other/giver; -ma: ring/other/recipient; -ti: book/other/recipient; -mi: coin/other/giver; -ta: book/other/giver; -po: key/other/recipient; -nu: cup/other/recipient; -ki: key/other/giver.\n\nStory:\nFay veki zoto\nCy veki pose\nBo veki poma\nAda veki luki\nEli veki poto\nEli-ti Bo-ta\nCy-ti Eli-ta\nCy-ta Dee-ti\nAda-pe Eli-ma\nDee-mo Fay-mi\nAda-ti Dee-ta\nCy-ti Ada-ta\nEli-po Cy-ki\nEli-no Ada-nu\nEli-nu Ada-no\nCy-po Eli-ki\nDee-mi Cy-mo\nEli-po Cy-ki\nEli-pe Bo-ma\nFay-nu Eli-no\nCy-ta Fay-ti\nAda-ma Bo-pe\nCy-ti Fay-ta\nAda-mo Cy-mi\nFay-ti Cy-ta\nFay-no Eli-nu\nAda-mi Bo-mo\nAda-pe Fay-ma\nEli-ma Fay-pe\nEli-ki Ada-po\nFay-nu Eli-no\nFay-ta Eli-ti\nEli-pe Fay-ma\nFay-po Ada-ki\nBo-ti Eli-ta\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[\"Bo\",\"Fay\",\"Bo\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:06.792628+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 505,
+        "completion_tokens": 640,
+        "total_tokens": 1145,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 614,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0003705
+    },
+    {
+      "world": 1051753558,
+      "language": 1615102798,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nFay starts with the coin.\nCy starts with the key.\nBo starts with the book.\nAda starts with the ring.\nEli starts with the cup.\nBo gives the book to Eli.\nEli gives the book to Cy.\nCy gives the book to Dee.\nAda gives the ring to Eli.\nFay gives the coin to Dee.\nDee gives the book to Ada.\nAda gives the book to Cy.\nCy gives the key to Eli.\nEli gives the cup to Ada.\nAda gives the cup to Eli.\nEli gives the key to Cy.\nDee gives the coin to Cy.\nCy gives the key to Eli.\nEli gives the ring to Bo.\nEli gives the cup to Fay.\nCy gives the book to Fay.\nBo gives the ring to Ada.\nFay gives the book to Cy.\nCy gives the coin to Ada.\nCy gives the book to Fay.\nFay gives the cup to Eli.\nAda gives the coin to Bo.\nAda gives the ring to Fay.\nFay gives the ring to Eli.\nEli gives the key to Ada.\nEli gives the cup to Fay.\nFay gives the book to Eli.\nEli gives the ring to Fay.\nAda gives the key to Fay.\nEli gives the book to Bo.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[\"Bo\", \"Fay\", \"Bo\", \"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:16.107812+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 341,
+        "completion_tokens": 107,
+        "total_tokens": 448,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 84,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 8.759999999999999e-05
+    },
+    {
+      "world": 1051753558,
+      "language": 1615102798,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nFay starts with the coin.\nCy starts with the key.\nBo starts with the book.\nAda starts with the ring.\nEli starts with the cup.\nBo gives the book to Eli.\nEli gives the book to Cy.\nCy gives the book to Dee.\nAda gives the ring to Eli.\nFay gives the coin to Dee.\nDee gives the book to Ada.\nAda gives the book to Cy.\nCy gives the key to Eli.\nEli gives the cup to Ada.\nAda gives the cup to Eli.\nEli gives the key to Cy.\nDee gives the coin to Cy.\nCy gives the key to Eli.\nEli gives the ring to Bo.\nEli gives the cup to Fay.\nCy gives the book to Fay.\nBo gives the ring to Ada.\nFay gives the book to Cy.\nCy gives the coin to Ada.\nCy gives the book to Fay.\nFay gives the cup to Eli.\nAda gives the coin to Bo.\nAda gives the ring to Fay.\nFay gives the ring to Eli.\nEli gives the key to Ada.\nEli gives the cup to Fay.\nFay gives the book to Eli.\nEli gives the ring to Fay.\nAda gives the key to Fay.\nEli gives the book to Bo.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[\"Bo\",\"Fay\",\"Bo\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:18.225754+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 341,
+        "completion_tokens": 138,
+        "total_tokens": 479,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 118,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001031
+    },
+    {
+      "world": 1051753558,
+      "language": 1615102798,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nFay starts with the coin.\nCy starts with the key.\nBo starts with the book.\nAda starts with the ring.\nEli starts with the cup.\nBo gives the book to Eli.\nEli gives the book to Cy.\nCy gives the book to Dee.\nAda gives the ring to Eli.\nFay gives the coin to Dee.\nDee gives the book to Ada.\nAda gives the book to Cy.\nCy gives the key to Eli.\nEli gives the cup to Ada.\nAda gives the cup to Eli.\nEli gives the key to Cy.\nDee gives the coin to Cy.\nCy gives the key to Eli.\nEli gives the ring to Bo.\nEli gives the cup to Fay.\nCy gives the book to Fay.\nBo gives the ring to Ada.\nFay gives the book to Cy.\nCy gives the coin to Ada.\nCy gives the book to Fay.\nFay gives the cup to Eli.\nAda gives the coin to Bo.\nAda gives the ring to Fay.\nFay gives the ring to Eli.\nEli gives the key to Ada.\nEli gives the cup to Fay.\nFay gives the book to Eli.\nEli gives the ring to Fay.\nAda gives the key to Fay.\nEli gives the book to Bo.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[\"Bo\", \"Fay\", \"Bo\", \"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:20.693597+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 341,
+        "completion_tokens": 160,
+        "total_tokens": 501,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 137,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001141
+    },
+    {
+      "world": 1173084247,
+      "language": 955857451,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luki = initially holds, kaki = coin, mito = key, mise = book, zoki = ring, mima = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mi: ring/other/recipient.\n\nStory:\nCy luki kaki\nEli luki mito\nAda luki mise\nDee luki zoki\nBo luki mima\nAda-tu Bo-se\nEli-ka Fay-ti\nBo-ti Fay-ka\nCy-ni Bo-si\nDee-na Cy-te\nBo-ni Cy-si\nDee-te Bo-na\nBo-mi Dee-pe\nAda-mi Bo-pe\nAda-pe Fay-mi\nBo-si Fay-ni\nFay-pe Eli-mi\nDee-se Bo-tu\nEli-ni Fay-si\nAda-mi Eli-pe\nCy-mi Ada-pe\nBo-se Dee-tu\nBo-ni Eli-si\nAda-ti Bo-ka\nAda-se Bo-tu\nDee-na Bo-te\nBo-si Fay-ni\nAda-ka Cy-ti\nDee-se Ada-tu\nDee-te Fay-na\nFay-si Bo-ni\nCy-pe Fay-mi\nCy-ka Ada-ti\nFay-te Dee-na\nFay-pe Dee-mi\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Dee",
+        "Dee"
+      ],
+      "raw": "[\"Ada\",\"Bo\",\"Cy\",\"Dee\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:17.842309+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 407,
+        "completion_tokens": 1924,
+        "total_tokens": 2331,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1887,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010027
+    },
+    {
+      "world": 1173084247,
+      "language": 955857451,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luki = initially holds, kaki = coin, mito = key, mise = book, zoki = ring, mima = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mi: ring/other/recipient; -pe: ring/other/giver; -tu: book/other/giver.\n\nStory:\nCy luki kaki\nEli luki mito\nAda luki mise\nDee luki zoki\nBo luki mima\nAda-tu Bo-se\nEli-ka Fay-ti\nBo-ti Fay-ka\nCy-ni Bo-si\nDee-na Cy-te\nBo-ni Cy-si\nDee-te Bo-na\nBo-mi Dee-pe\nAda-mi Bo-pe\nAda-pe Fay-mi\nBo-si Fay-ni\nFay-pe Eli-mi\nDee-se Bo-tu\nEli-ni Fay-si\nAda-mi Eli-pe\nCy-mi Ada-pe\nBo-se Dee-tu\nBo-ni Eli-si\nAda-ti Bo-ka\nAda-se Bo-tu\nDee-na Bo-te\nBo-si Fay-ni\nAda-ka Cy-ti\nDee-se Ada-tu\nDee-te Fay-na\nFay-si Bo-ni\nCy-pe Fay-mi\nCy-ka Ada-ti\nFay-te Dee-na\nFay-pe Dee-mi\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Dee",
+        "Dee"
+      ],
+      "raw": "[\"Fay\",\"Ada\",\"Dee\",\"Dee\"]",
+      "marks": [
+        false,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:39.917817+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 425,
+        "completion_tokens": 2390,
+        "total_tokens": 2815,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2345,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0012375
+    },
+    {
+      "world": 1173084247,
+      "language": 955857451,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luki = initially holds, kaki = coin, mito = key, mise = book, zoki = ring, mima = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mi: ring/other/recipient; -pe: ring/other/giver; -tu: book/other/giver; -na: coin/other/recipient; -ti: key/other/recipient; -ka: key/other/giver; -se: book/other/recipient; -te: coin/other/giver; -si: cup/other/giver; -ni: cup/other/recipient.\n\nStory:\nCy luki kaki\nEli luki mito\nAda luki mise\nDee luki zoki\nBo luki mima\nAda-tu Bo-se\nEli-ka Fay-ti\nBo-ti Fay-ka\nCy-ni Bo-si\nDee-na Cy-te\nBo-ni Cy-si\nDee-te Bo-na\nBo-mi Dee-pe\nAda-mi Bo-pe\nAda-pe Fay-mi\nBo-si Fay-ni\nFay-pe Eli-mi\nDee-se Bo-tu\nEli-ni Fay-si\nAda-mi Eli-pe\nCy-mi Ada-pe\nBo-se Dee-tu\nBo-ni Eli-si\nAda-ti Bo-ka\nAda-se Bo-tu\nDee-na Bo-te\nBo-si Fay-ni\nAda-ka Cy-ti\nDee-se Ada-tu\nDee-te Fay-na\nFay-si Bo-ni\nCy-pe Fay-mi\nCy-ka Ada-ti\nFay-te Dee-na\nFay-pe Dee-mi\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Dee",
+        "Dee"
+      ],
+      "raw": "[\"Dee\",\"Ada\",\"Dee\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:06.278628+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 488,
+        "completion_tokens": 876,
+        "total_tokens": 1364,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 849,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0004868
+    },
+    {
+      "world": 1173084247,
+      "language": 955857451,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nEli starts with the key.\nAda starts with the book.\nDee starts with the ring.\nBo starts with the cup.\nAda gives the book to Bo.\nEli gives the key to Fay.\nFay gives the key to Bo.\nBo gives the cup to Cy.\nCy gives the coin to Dee.\nCy gives the cup to Bo.\nDee gives the coin to Bo.\nDee gives the ring to Bo.\nBo gives the ring to Ada.\nAda gives the ring to Fay.\nBo gives the cup to Fay.\nFay gives the ring to Eli.\nBo gives the book to Dee.\nFay gives the cup to Eli.\nEli gives the ring to Ada.\nAda gives the ring to Cy.\nDee gives the book to Bo.\nEli gives the cup to Bo.\nBo gives the key to Ada.\nBo gives the book to Ada.\nBo gives the coin to Dee.\nBo gives the cup to Fay.\nAda gives the key to Cy.\nAda gives the book to Dee.\nDee gives the coin to Fay.\nFay gives the cup to Bo.\nCy gives the ring to Fay.\nCy gives the key to Ada.\nFay gives the coin to Dee.\nFay gives the ring to Dee.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Dee",
+        "Dee"
+      ],
+      "raw": "[\"Dee\", \"Ada\", \"Dee\", \"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:17.846324+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 338,
+        "completion_tokens": 152,
+        "total_tokens": 490,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 128,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00010980000000000001
+    },
+    {
+      "world": 1173084247,
+      "language": 955857451,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nEli starts with the key.\nAda starts with the book.\nDee starts with the ring.\nBo starts with the cup.\nAda gives the book to Bo.\nEli gives the key to Fay.\nFay gives the key to Bo.\nBo gives the cup to Cy.\nCy gives the coin to Dee.\nCy gives the cup to Bo.\nDee gives the coin to Bo.\nDee gives the ring to Bo.\nBo gives the ring to Ada.\nAda gives the ring to Fay.\nBo gives the cup to Fay.\nFay gives the ring to Eli.\nBo gives the book to Dee.\nFay gives the cup to Eli.\nEli gives the ring to Ada.\nAda gives the ring to Cy.\nDee gives the book to Bo.\nEli gives the cup to Bo.\nBo gives the key to Ada.\nBo gives the book to Ada.\nBo gives the coin to Dee.\nBo gives the cup to Fay.\nAda gives the key to Cy.\nAda gives the book to Dee.\nDee gives the coin to Fay.\nFay gives the cup to Bo.\nCy gives the ring to Fay.\nCy gives the key to Ada.\nFay gives the coin to Dee.\nFay gives the ring to Dee.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Dee",
+        "Dee"
+      ],
+      "raw": "[\"Dee\", \"Ada\", \"Dee\", \"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:20.304399+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 338,
+        "completion_tokens": 144,
+        "total_tokens": 482,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 120,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00010580000000000001
+    },
+    {
+      "world": 1173084247,
+      "language": 955857451,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nEli starts with the key.\nAda starts with the book.\nDee starts with the ring.\nBo starts with the cup.\nAda gives the book to Bo.\nEli gives the key to Fay.\nFay gives the key to Bo.\nBo gives the cup to Cy.\nCy gives the coin to Dee.\nCy gives the cup to Bo.\nDee gives the coin to Bo.\nDee gives the ring to Bo.\nBo gives the ring to Ada.\nAda gives the ring to Fay.\nBo gives the cup to Fay.\nFay gives the ring to Eli.\nBo gives the book to Dee.\nFay gives the cup to Eli.\nEli gives the ring to Ada.\nAda gives the ring to Cy.\nDee gives the book to Bo.\nEli gives the cup to Bo.\nBo gives the key to Ada.\nBo gives the book to Ada.\nBo gives the coin to Dee.\nBo gives the cup to Fay.\nAda gives the key to Cy.\nAda gives the book to Dee.\nDee gives the coin to Fay.\nFay gives the cup to Bo.\nCy gives the ring to Fay.\nCy gives the key to Ada.\nFay gives the coin to Dee.\nFay gives the ring to Dee.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Dee",
+        "Dee"
+      ],
+      "raw": "[\"Dee\",\"Ada\",\"Dee\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:22.523711+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 338,
+        "completion_tokens": 115,
+        "total_tokens": 453,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 94,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 9.130000000000001e-05
+    },
+    {
+      "world": 1480978940,
+      "language": 428155823,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luto = initially holds, poma = coin, poto = key, kato = book, veki = ring, zoto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -su: cup/other/recipient.\n\nStory:\nCy luto poma\nDee luto poto\nAda luto kato\nEli luto veki\nFay luto zoto\nBo-no Ada-ni\nCy-ke Eli-si\nDee-ke Cy-si\nBo-nu Cy-po\nFay-mo Ada-su\nDee-ku Ada-ta\nFay-no Bo-ni\nAda-ku Dee-ta\nBo-po Cy-nu\nBo-su Ada-mo\nFay-ta Dee-ku\nFay-ni Eli-no\nBo-mo Dee-su\nAda-ta Fay-ku\nDee-si Cy-ke\nCy-po Dee-nu\nDee-mo Eli-su\nCy-si Ada-ke\nCy-no Eli-ni\nDee-po Fay-nu\nCy-ni Eli-no\nAda-su Eli-mo\nFay-no Eli-ni\nFay-ke Ada-si\nDee-no Fay-ni\nFay-si Eli-ke\nCy-nu Fay-po\nEli-su Ada-mo\nAda-ku Dee-ta\nFay-nu Cy-po\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Dee",
+        "Dee",
+        "Eli"
+      ],
+      "raw": "[\"Ada\",\"Bo\",\"Cy\",\"Dee\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:02.244119+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 419,
+        "completion_tokens": 1452,
+        "total_tokens": 1871,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1415,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0007679
+    },
+    {
+      "world": 1480978940,
+      "language": 428155823,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luto = initially holds, poma = coin, poto = key, kato = book, veki = ring, zoto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -su: cup/other/recipient; -si: ring/other/giver; -nu: coin/other/recipient.\n\nStory:\nCy luto poma\nDee luto poto\nAda luto kato\nEli luto veki\nFay luto zoto\nBo-no Ada-ni\nCy-ke Eli-si\nDee-ke Cy-si\nBo-nu Cy-po\nFay-mo Ada-su\nDee-ku Ada-ta\nFay-no Bo-ni\nAda-ku Dee-ta\nBo-po Cy-nu\nBo-su Ada-mo\nFay-ta Dee-ku\nFay-ni Eli-no\nBo-mo Dee-su\nAda-ta Fay-ku\nDee-si Cy-ke\nCy-po Dee-nu\nDee-mo Eli-su\nCy-si Ada-ke\nCy-no Eli-ni\nDee-po Fay-nu\nCy-ni Eli-no\nAda-su Eli-mo\nFay-no Eli-ni\nFay-ke Ada-si\nDee-no Fay-ni\nFay-si Eli-ke\nCy-nu Fay-po\nEli-su Ada-mo\nAda-ku Dee-ta\nFay-nu Cy-po\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Dee",
+        "Dee",
+        "Eli"
+      ],
+      "raw": "[\"Fay\",\"Dee\",\"Dee\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:19.580977+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 437,
+        "completion_tokens": 1225,
+        "total_tokens": 1662,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1191,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0006562
+    },
+    {
+      "world": 1480978940,
+      "language": 428155823,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luto = initially holds, poma = coin, poto = key, kato = book, veki = ring, zoto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -su: cup/other/recipient; -si: ring/other/giver; -nu: coin/other/recipient; -ku: key/other/giver; -ni: book/other/giver; -ke: ring/other/recipient; -po: coin/other/giver; -no: book/other/recipient; -mo: cup/other/giver; -ta: key/other/recipient.\n\nStory:\nCy luto poma\nDee luto poto\nAda luto kato\nEli luto veki\nFay luto zoto\nBo-no Ada-ni\nCy-ke Eli-si\nDee-ke Cy-si\nBo-nu Cy-po\nFay-mo Ada-su\nDee-ku Ada-ta\nFay-no Bo-ni\nAda-ku Dee-ta\nBo-po Cy-nu\nBo-su Ada-mo\nFay-ta Dee-ku\nFay-ni Eli-no\nBo-mo Dee-su\nAda-ta Fay-ku\nDee-si Cy-ke\nCy-po Dee-nu\nDee-mo Eli-su\nCy-si Ada-ke\nCy-no Eli-ni\nDee-po Fay-nu\nCy-ni Eli-no\nAda-su Eli-mo\nFay-no Eli-ni\nFay-ke Ada-si\nDee-no Fay-ni\nFay-si Eli-ke\nCy-nu Fay-po\nEli-su Ada-mo\nAda-ku Dee-ta\nFay-nu Cy-po\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Dee",
+        "Dee",
+        "Eli"
+      ],
+      "raw": "[\"Fay\",\"Dee\",\"Dee\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:31.684058+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 500,
+        "completion_tokens": 646,
+        "total_tokens": 1146,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 618,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.000373
+    },
+    {
+      "world": 1480978940,
+      "language": 428155823,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nDee starts with the key.\nAda starts with the book.\nEli starts with the ring.\nFay starts with the cup.\nAda gives the book to Bo.\nEli gives the ring to Cy.\nCy gives the ring to Dee.\nCy gives the coin to Bo.\nFay gives the cup to Ada.\nDee gives the key to Ada.\nBo gives the book to Fay.\nAda gives the key to Dee.\nBo gives the coin to Cy.\nAda gives the cup to Bo.\nDee gives the key to Fay.\nFay gives the book to Eli.\nBo gives the cup to Dee.\nFay gives the key to Ada.\nDee gives the ring to Cy.\nCy gives the coin to Dee.\nDee gives the cup to Eli.\nCy gives the ring to Ada.\nEli gives the book to Cy.\nDee gives the coin to Fay.\nCy gives the book to Eli.\nEli gives the cup to Ada.\nEli gives the book to Fay.\nAda gives the ring to Fay.\nFay gives the book to Dee.\nFay gives the ring to Eli.\nFay gives the coin to Cy.\nAda gives the cup to Eli.\nAda gives the key to Dee.\nCy gives the coin to Fay.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Dee",
+        "Dee",
+        "Eli"
+      ],
+      "raw": "[\"Fay\",\"Dee\",\"Dee\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:02.295869+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 341,
+        "completion_tokens": 179,
+        "total_tokens": 520,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 157,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001236
+    },
+    {
+      "world": 1480978940,
+      "language": 428155823,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nDee starts with the key.\nAda starts with the book.\nEli starts with the ring.\nFay starts with the cup.\nAda gives the book to Bo.\nEli gives the ring to Cy.\nCy gives the ring to Dee.\nCy gives the coin to Bo.\nFay gives the cup to Ada.\nDee gives the key to Ada.\nBo gives the book to Fay.\nAda gives the key to Dee.\nBo gives the coin to Cy.\nAda gives the cup to Bo.\nDee gives the key to Fay.\nFay gives the book to Eli.\nBo gives the cup to Dee.\nFay gives the key to Ada.\nDee gives the ring to Cy.\nCy gives the coin to Dee.\nDee gives the cup to Eli.\nCy gives the ring to Ada.\nEli gives the book to Cy.\nDee gives the coin to Fay.\nCy gives the book to Eli.\nEli gives the cup to Ada.\nEli gives the book to Fay.\nAda gives the ring to Fay.\nFay gives the book to Dee.\nFay gives the ring to Eli.\nFay gives the coin to Cy.\nAda gives the cup to Eli.\nAda gives the key to Dee.\nCy gives the coin to Fay.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Dee",
+        "Dee",
+        "Eli"
+      ],
+      "raw": "[\"Fay\", \"Dee\", \"Dee\", \"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:05.066001+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 341,
+        "completion_tokens": 175,
+        "total_tokens": 516,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 150,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00012159999999999999
+    },
+    {
+      "world": 1480978940,
+      "language": 428155823,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nDee starts with the key.\nAda starts with the book.\nEli starts with the ring.\nFay starts with the cup.\nAda gives the book to Bo.\nEli gives the ring to Cy.\nCy gives the ring to Dee.\nCy gives the coin to Bo.\nFay gives the cup to Ada.\nDee gives the key to Ada.\nBo gives the book to Fay.\nAda gives the key to Dee.\nBo gives the coin to Cy.\nAda gives the cup to Bo.\nDee gives the key to Fay.\nFay gives the book to Eli.\nBo gives the cup to Dee.\nFay gives the key to Ada.\nDee gives the ring to Cy.\nCy gives the coin to Dee.\nDee gives the cup to Eli.\nCy gives the ring to Ada.\nEli gives the book to Cy.\nDee gives the coin to Fay.\nCy gives the book to Eli.\nEli gives the cup to Ada.\nEli gives the book to Fay.\nAda gives the ring to Fay.\nFay gives the book to Dee.\nFay gives the ring to Eli.\nFay gives the coin to Cy.\nAda gives the cup to Eli.\nAda gives the key to Dee.\nCy gives the coin to Fay.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Dee",
+        "Dee",
+        "Eli"
+      ],
+      "raw": "[\"Fay\",\"Dee\",\"Dee\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:07.441951+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 341,
+        "completion_tokens": 133,
+        "total_tokens": 474,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 111,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00010059999999999999
+    },
+    {
+      "world": 1580682654,
+      "language": 669745963,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veto = initially holds, zoma = coin, mima = key, kama = book, kase = ring, luto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ki: coin/other/giver.\n\nStory:\nCy veto zoma\nBo veto mima\nAda veto kama\nDee veto kase\nFay veto luto\nBo-so Fay-mi\nFay-ma Ada-ta\nFay-ta Eli-ma\nEli-mi Fay-so\nCy-ki Ada-te\nAda-ki Cy-te\nDee-te Cy-ki\nEli-te Dee-ki\nFay-mi Eli-so\nFay-so Ada-mi\nEli-ta Bo-ma\nAda-so Eli-mi\nEli-so Ada-mi\nBo-ta Ada-ma\nEli-ki Fay-te\nFay-pi Cy-me\nEli-me Cy-pi\nEli-pi Dee-me\nEli-te Fay-ki\nEli-mi Ada-so\nDee-pi Eli-me\nAda-me Eli-pi\nFay-te Eli-ki\nAda-ta Cy-ma\nEli-ma Cy-ta\nDee-po Eli-mu\nEli-po Dee-mu\nBo-te Fay-ki\nCy-ma Eli-ta\nCy-ta Ada-ma\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Eli",
+        "Ada",
+        "Dee"
+      ],
+      "raw": "[\"Bo\",\"Eli\",\"Cy\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:16.023862+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 426,
+        "completion_tokens": 1647,
+        "total_tokens": 2073,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1609,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0008661000000000001
+    },
+    {
+      "world": 1580682654,
+      "language": 669745963,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veto = initially holds, zoma = coin, mima = key, kama = book, kase = ring, luto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ki: coin/other/giver; -so: key/other/giver; -pi: cup/other/giver.\n\nStory:\nCy veto zoma\nBo veto mima\nAda veto kama\nDee veto kase\nFay veto luto\nBo-so Fay-mi\nFay-ma Ada-ta\nFay-ta Eli-ma\nEli-mi Fay-so\nCy-ki Ada-te\nAda-ki Cy-te\nDee-te Cy-ki\nEli-te Dee-ki\nFay-mi Eli-so\nFay-so Ada-mi\nEli-ta Bo-ma\nAda-so Eli-mi\nEli-so Ada-mi\nBo-ta Ada-ma\nEli-ki Fay-te\nFay-pi Cy-me\nEli-me Cy-pi\nEli-pi Dee-me\nEli-te Fay-ki\nEli-mi Ada-so\nDee-pi Eli-me\nAda-me Eli-pi\nFay-te Eli-ki\nAda-ta Cy-ma\nEli-ma Cy-ta\nDee-po Eli-mu\nEli-po Dee-mu\nBo-te Fay-ki\nCy-ma Eli-ta\nCy-ta Ada-ma\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Eli",
+        "Ada",
+        "Dee"
+      ],
+      "raw": "[\"Bo\",\"Eli\",\"Cy\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        false,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:34.768366+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 444,
+        "completion_tokens": 1919,
+        "total_tokens": 2363,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1881,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010039
+    },
+    {
+      "world": 1580682654,
+      "language": 669745963,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veto = initially holds, zoma = coin, mima = key, kama = book, kase = ring, luto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ki: coin/other/giver; -so: key/other/giver; -pi: cup/other/giver; -po: ring/other/giver; -ma: book/other/recipient; -mu: ring/other/recipient; -me: cup/other/recipient; -mi: key/other/recipient; -te: coin/other/recipient; -ta: book/other/giver.\n\nStory:\nCy veto zoma\nBo veto mima\nAda veto kama\nDee veto kase\nFay veto luto\nBo-so Fay-mi\nFay-ma Ada-ta\nFay-ta Eli-ma\nEli-mi Fay-so\nCy-ki Ada-te\nAda-ki Cy-te\nDee-te Cy-ki\nEli-te Dee-ki\nFay-mi Eli-so\nFay-so Ada-mi\nEli-ta Bo-ma\nAda-so Eli-mi\nEli-so Ada-mi\nBo-ta Ada-ma\nEli-ki Fay-te\nFay-pi Cy-me\nEli-me Cy-pi\nEli-pi Dee-me\nEli-te Fay-ki\nEli-mi Ada-so\nDee-pi Eli-me\nAda-me Eli-pi\nFay-te Eli-ki\nAda-ta Cy-ma\nEli-ma Cy-ta\nDee-po Eli-mu\nEli-po Dee-mu\nBo-te Fay-ki\nCy-ma Eli-ta\nCy-ta Ada-ma\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Eli",
+        "Ada",
+        "Dee"
+      ],
+      "raw": "[\"Bo\",\"Eli\",\"Ada\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:02:57.128148+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 507,
+        "completion_tokens": 1481,
+        "total_tokens": 1988,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1448,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0007912
+    },
+    {
+      "world": 1580682654,
+      "language": 669745963,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nBo starts with the key.\nAda starts with the book.\nDee starts with the ring.\nFay starts with the cup.\nBo gives the key to Fay.\nAda gives the book to Fay.\nFay gives the book to Eli.\nFay gives the key to Eli.\nCy gives the coin to Ada.\nAda gives the coin to Cy.\nCy gives the coin to Dee.\nDee gives the coin to Eli.\nEli gives the key to Fay.\nFay gives the key to Ada.\nEli gives the book to Bo.\nAda gives the key to Eli.\nEli gives the key to Ada.\nBo gives the book to Ada.\nEli gives the coin to Fay.\nFay gives the cup to Cy.\nCy gives the cup to Eli.\nEli gives the cup to Dee.\nFay gives the coin to Eli.\nAda gives the key to Eli.\nDee gives the cup to Eli.\nEli gives the cup to Ada.\nEli gives the coin to Fay.\nAda gives the book to Cy.\nCy gives the book to Eli.\nDee gives the ring to Eli.\nEli gives the ring to Dee.\nFay gives the coin to Bo.\nEli gives the book to Cy.\nCy gives the book to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Eli",
+        "Ada",
+        "Dee"
+      ],
+      "raw": "[\"Bo\",\"Eli\",\"Ada\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:15.822830+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 343,
+        "completion_tokens": 175,
+        "total_tokens": 518,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 155,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001218
+    },
+    {
+      "world": 1580682654,
+      "language": 669745963,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nBo starts with the key.\nAda starts with the book.\nDee starts with the ring.\nFay starts with the cup.\nBo gives the key to Fay.\nAda gives the book to Fay.\nFay gives the book to Eli.\nFay gives the key to Eli.\nCy gives the coin to Ada.\nAda gives the coin to Cy.\nCy gives the coin to Dee.\nDee gives the coin to Eli.\nEli gives the key to Fay.\nFay gives the key to Ada.\nEli gives the book to Bo.\nAda gives the key to Eli.\nEli gives the key to Ada.\nBo gives the book to Ada.\nEli gives the coin to Fay.\nFay gives the cup to Cy.\nCy gives the cup to Eli.\nEli gives the cup to Dee.\nFay gives the coin to Eli.\nAda gives the key to Eli.\nDee gives the cup to Eli.\nEli gives the cup to Ada.\nEli gives the coin to Fay.\nAda gives the book to Cy.\nCy gives the book to Eli.\nDee gives the ring to Eli.\nEli gives the ring to Dee.\nFay gives the coin to Bo.\nEli gives the book to Cy.\nCy gives the book to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Eli",
+        "Ada",
+        "Dee"
+      ],
+      "raw": "[\"Bo\", \"Eli\", \"Ada\", \"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:17.890599+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 343,
+        "completion_tokens": 228,
+        "total_tokens": 571,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 205,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001483
+    },
+    {
+      "world": 1580682654,
+      "language": 669745963,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nBo starts with the key.\nAda starts with the book.\nDee starts with the ring.\nFay starts with the cup.\nBo gives the key to Fay.\nAda gives the book to Fay.\nFay gives the book to Eli.\nFay gives the key to Eli.\nCy gives the coin to Ada.\nAda gives the coin to Cy.\nCy gives the coin to Dee.\nDee gives the coin to Eli.\nEli gives the key to Fay.\nFay gives the key to Ada.\nEli gives the book to Bo.\nAda gives the key to Eli.\nEli gives the key to Ada.\nBo gives the book to Ada.\nEli gives the coin to Fay.\nFay gives the cup to Cy.\nCy gives the cup to Eli.\nEli gives the cup to Dee.\nFay gives the coin to Eli.\nAda gives the key to Eli.\nDee gives the cup to Eli.\nEli gives the cup to Ada.\nEli gives the coin to Fay.\nAda gives the book to Cy.\nCy gives the book to Eli.\nDee gives the ring to Eli.\nEli gives the ring to Dee.\nFay gives the coin to Bo.\nEli gives the book to Cy.\nCy gives the book to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Eli",
+        "Ada",
+        "Dee"
+      ],
+      "raw": "[\"Bo\",\"Eli\",\"Ada\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:20.611400+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 343,
+        "completion_tokens": 134,
+        "total_tokens": 477,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 114,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00010130000000000001
+    },
+    {
+      "world": 1766700294,
+      "language": 129018902,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veto = initially holds, zose = coin, vese = key, luma = book, luse = ring, luki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ne: key/other/recipient.\n\nStory:\nBo veto zose\nFay veto vese\nAda veto luma\nDee veto luse\nCy veto luki\nFay-no Ada-ne\nAda-to Cy-so\nDee-pi Ada-ka\nFay-pe Ada-ko\nAda-pe Fay-ko\nEli-ne Ada-no\nBo-te Dee-mo\nDee-to Ada-so\nAda-to Dee-so\nEli-mo Dee-te\nEli-te Dee-mo\nEli-to Ada-so\nAda-pi Dee-ka\nCy-pe Ada-ko\nEli-so Dee-to\nDee-pi Bo-ka\nFay-ne Eli-no\nFay-no Ada-ne\nAda-to Dee-so\nCy-ne Ada-no\nBo-pi Ada-ka\nBo-ne Cy-no\nAda-so Cy-to\nAda-pi Dee-ka\nEli-pe Cy-ko\nBo-no Ada-ne\nAda-no Cy-ne\nDee-te Cy-mo\nAda-ne Cy-no\nAda-no Eli-ne\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Eli",
+        "Dee"
+      ],
+      "raw": "[\"Ada\",\"Ada\",\"Ada\",\"Ada\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:58:37.260206+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 414,
+        "completion_tokens": 1881,
+        "total_tokens": 2295,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1845,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009819
+    },
+    {
+      "world": 1766700294,
+      "language": 129018902,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veto = initially holds, zose = coin, vese = key, luma = book, luse = ring, luki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ne: key/other/recipient; -mo: coin/other/recipient; -ko: book/other/giver.\n\nStory:\nBo veto zose\nFay veto vese\nAda veto luma\nDee veto luse\nCy veto luki\nFay-no Ada-ne\nAda-to Cy-so\nDee-pi Ada-ka\nFay-pe Ada-ko\nAda-pe Fay-ko\nEli-ne Ada-no\nBo-te Dee-mo\nDee-to Ada-so\nAda-to Dee-so\nEli-mo Dee-te\nEli-te Dee-mo\nEli-to Ada-so\nAda-pi Dee-ka\nCy-pe Ada-ko\nEli-so Dee-to\nDee-pi Bo-ka\nFay-ne Eli-no\nFay-no Ada-ne\nAda-to Dee-so\nCy-ne Ada-no\nBo-pi Ada-ka\nBo-ne Cy-no\nAda-so Cy-to\nAda-pi Dee-ka\nEli-pe Cy-ko\nBo-no Ada-ne\nAda-no Cy-ne\nDee-te Cy-mo\nAda-ne Cy-no\nAda-no Eli-ne\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Eli",
+        "Dee"
+      ],
+      "raw": "[\"Cy\",\"Eli\",\"Eli\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:58:59.165534+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 432,
+        "completion_tokens": 1663,
+        "total_tokens": 2095,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1624,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0008747000000000001
+    },
+    {
+      "world": 1766700294,
+      "language": 129018902,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veto = initially holds, zose = coin, vese = key, luma = book, luse = ring, luki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ne: key/other/recipient; -mo: coin/other/recipient; -ko: book/other/giver; -to: cup/other/recipient; -ka: ring/other/recipient; -te: coin/other/giver; -no: key/other/giver; -pi: ring/other/giver; -so: cup/other/giver; -pe: book/other/recipient.\n\nStory:\nBo veto zose\nFay veto vese\nAda veto luma\nDee veto luse\nCy veto luki\nFay-no Ada-ne\nAda-to Cy-so\nDee-pi Ada-ka\nFay-pe Ada-ko\nAda-pe Fay-ko\nEli-ne Ada-no\nBo-te Dee-mo\nDee-to Ada-so\nAda-to Dee-so\nEli-mo Dee-te\nEli-te Dee-mo\nEli-to Ada-so\nAda-pi Dee-ka\nCy-pe Ada-ko\nEli-so Dee-to\nDee-pi Bo-ka\nFay-ne Eli-no\nFay-no Ada-ne\nAda-to Dee-so\nCy-ne Ada-no\nBo-pi Ada-ka\nBo-ne Cy-no\nAda-so Cy-to\nAda-pi Dee-ka\nEli-pe Cy-ko\nBo-no Ada-ne\nAda-no Cy-ne\nDee-te Cy-mo\nAda-ne Cy-no\nAda-no Eli-ne\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Eli",
+        "Dee"
+      ],
+      "raw": "[\"Cy\",\"Ada\",\"Eli\",\"Dee\"]",
+      "marks": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:16.493923+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 495,
+        "completion_tokens": 1016,
+        "total_tokens": 1511,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 990,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0005575
+    },
+    {
+      "world": 1766700294,
+      "language": 129018902,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nFay starts with the key.\nAda starts with the book.\nDee starts with the ring.\nCy starts with the cup.\nFay gives the key to Ada.\nCy gives the cup to Ada.\nDee gives the ring to Ada.\nAda gives the book to Fay.\nFay gives the book to Ada.\nAda gives the key to Eli.\nBo gives the coin to Dee.\nAda gives the cup to Dee.\nDee gives the cup to Ada.\nDee gives the coin to Eli.\nEli gives the coin to Dee.\nAda gives the cup to Eli.\nAda gives the ring to Dee.\nAda gives the book to Cy.\nEli gives the cup to Dee.\nDee gives the ring to Bo.\nEli gives the key to Fay.\nFay gives the key to Ada.\nDee gives the cup to Ada.\nAda gives the key to Cy.\nBo gives the ring to Ada.\nCy gives the key to Bo.\nAda gives the cup to Cy.\nAda gives the ring to Dee.\nCy gives the book to Eli.\nBo gives the key to Ada.\nAda gives the key to Cy.\nDee gives the coin to Cy.\nCy gives the key to Ada.\nAda gives the key to Eli.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Eli",
+        "Dee"
+      ],
+      "raw": "[\"Cy\", \"Eli\", \"Eli\", \"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:58:37.055196+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 253,
+        "total_tokens": 590,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 229,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001602
+    },
+    {
+      "world": 1766700294,
+      "language": 129018902,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nFay starts with the key.\nAda starts with the book.\nDee starts with the ring.\nCy starts with the cup.\nFay gives the key to Ada.\nCy gives the cup to Ada.\nDee gives the ring to Ada.\nAda gives the book to Fay.\nFay gives the book to Ada.\nAda gives the key to Eli.\nBo gives the coin to Dee.\nAda gives the cup to Dee.\nDee gives the cup to Ada.\nDee gives the coin to Eli.\nEli gives the coin to Dee.\nAda gives the cup to Eli.\nAda gives the ring to Dee.\nAda gives the book to Cy.\nEli gives the cup to Dee.\nDee gives the ring to Bo.\nEli gives the key to Fay.\nFay gives the key to Ada.\nDee gives the cup to Ada.\nAda gives the key to Cy.\nBo gives the ring to Ada.\nCy gives the key to Bo.\nAda gives the cup to Cy.\nAda gives the ring to Dee.\nCy gives the book to Eli.\nBo gives the key to Ada.\nAda gives the key to Cy.\nDee gives the coin to Cy.\nCy gives the key to Ada.\nAda gives the key to Eli.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Eli",
+        "Dee"
+      ],
+      "raw": "[\"Cy\",\"Eli\",\"Eli\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:58:41.181468+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 256,
+        "total_tokens": 593,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 235,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001617
+    },
+    {
+      "world": 1766700294,
+      "language": 129018902,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nFay starts with the key.\nAda starts with the book.\nDee starts with the ring.\nCy starts with the cup.\nFay gives the key to Ada.\nCy gives the cup to Ada.\nDee gives the ring to Ada.\nAda gives the book to Fay.\nFay gives the book to Ada.\nAda gives the key to Eli.\nBo gives the coin to Dee.\nAda gives the cup to Dee.\nDee gives the cup to Ada.\nDee gives the coin to Eli.\nEli gives the coin to Dee.\nAda gives the cup to Eli.\nAda gives the ring to Dee.\nAda gives the book to Cy.\nEli gives the cup to Dee.\nDee gives the ring to Bo.\nEli gives the key to Fay.\nFay gives the key to Ada.\nDee gives the cup to Ada.\nAda gives the key to Cy.\nBo gives the ring to Ada.\nCy gives the key to Bo.\nAda gives the cup to Cy.\nAda gives the ring to Dee.\nCy gives the book to Eli.\nBo gives the key to Ada.\nAda gives the key to Cy.\nDee gives the coin to Cy.\nCy gives the key to Ada.\nAda gives the key to Eli.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Eli",
+        "Dee"
+      ],
+      "raw": "[\"Cy\",\"Eli\",\"Eli\",\"Dee\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:58:44.884827+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 300,
+        "total_tokens": 637,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 279,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001837
+    },
+    {
+      "world": 1903735304,
+      "language": 971118157,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: zoto = initially holds, miki = coin, kato = key, zoki = book, poto = ring, poma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -me: coin/other/giver.\n\nStory:\nAda zoto miki\nCy zoto kato\nDee zoto zoki\nFay zoto poto\nEli zoto poma\nDee-pe Cy-ma\nDee-ku Fay-so\nAda-me Bo-sa\nFay-ka Eli-pi\nAda-pe Dee-ma\nBo-me Ada-sa\nFay-sa Ada-me\nFay-pi Eli-ka\nFay-ku Cy-so\nCy-ku Eli-so\nAda-na Fay-ti\nAda-ti Dee-na\nCy-so Eli-ku\nDee-ti Cy-na\nDee-pe Ada-ma\nEli-pi Fay-ka\nCy-ti Bo-na\nFay-pi Bo-ka\nFay-na Bo-ti\nAda-ka Bo-pi\nEli-pe Dee-ma\nBo-so Cy-ku\nFay-ka Ada-pi\nBo-ku Ada-so\nFay-pi Eli-ka\nFay-me Eli-sa\nFay-pe Eli-ma\nEli-na Fay-ti\nDee-pe Fay-ma\nAda-ku Cy-so\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[\"Ada\",\"Bo\",\"Cy\",\"Dee\"]",
+      "marks": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:07.722244+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 423,
+        "completion_tokens": 2299,
+        "total_tokens": 2722,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2255,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0011918
+    },
+    {
+      "world": 1903735304,
+      "language": 971118157,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: zoto = initially holds, miki = coin, kato = key, zoki = book, poto = ring, poma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -me: coin/other/giver; -so: book/other/recipient; -ka: cup/other/recipient.\n\nStory:\nAda zoto miki\nCy zoto kato\nDee zoto zoki\nFay zoto poto\nEli zoto poma\nDee-pe Cy-ma\nDee-ku Fay-so\nAda-me Bo-sa\nFay-ka Eli-pi\nAda-pe Dee-ma\nBo-me Ada-sa\nFay-sa Ada-me\nFay-pi Eli-ka\nFay-ku Cy-so\nCy-ku Eli-so\nAda-na Fay-ti\nAda-ti Dee-na\nCy-so Eli-ku\nDee-ti Cy-na\nDee-pe Ada-ma\nEli-pi Fay-ka\nCy-ti Bo-na\nFay-pi Bo-ka\nFay-na Bo-ti\nAda-ka Bo-pi\nEli-pe Dee-ma\nBo-so Cy-ku\nFay-ka Ada-pi\nBo-ku Ada-so\nFay-pi Eli-ka\nFay-me Eli-sa\nFay-pe Eli-ma\nEli-na Fay-ti\nDee-pe Fay-ma\nAda-ku Cy-so\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:28.692230+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 441,
+        "completion_tokens": 1924,
+        "total_tokens": 2365,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1896,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010061
+    },
+    {
+      "world": 1903735304,
+      "language": 971118157,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: zoto = initially holds, miki = coin, kato = key, zoki = book, poto = ring, poma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -me: coin/other/giver; -so: book/other/recipient; -ka: cup/other/recipient; -pi: cup/other/giver; -ma: key/other/giver; -pe: key/other/recipient; -ti: ring/other/giver; -ku: book/other/giver; -na: ring/other/recipient; -sa: coin/other/recipient.\n\nStory:\nAda zoto miki\nCy zoto kato\nDee zoto zoki\nFay zoto poto\nEli zoto poma\nDee-pe Cy-ma\nDee-ku Fay-so\nAda-me Bo-sa\nFay-ka Eli-pi\nAda-pe Dee-ma\nBo-me Ada-sa\nFay-sa Ada-me\nFay-pi Eli-ka\nFay-ku Cy-so\nCy-ku Eli-so\nAda-na Fay-ti\nAda-ti Dee-na\nCy-so Eli-ku\nDee-ti Cy-na\nDee-pe Ada-ma\nEli-pi Fay-ka\nCy-ti Bo-na\nFay-pi Bo-ka\nFay-na Bo-ti\nAda-ka Bo-pi\nEli-pe Dee-ma\nBo-so Cy-ku\nFay-ka Ada-pi\nBo-ku Ada-so\nFay-pi Eli-ka\nFay-me Eli-sa\nFay-pe Eli-ma\nEli-na Fay-ti\nDee-pe Fay-ma\nAda-ku Cy-so\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[\"Eli\",\"Dee\",\"Cy\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:53.178317+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 773,
+        "total_tokens": 1277,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 746,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0004369
+    },
+    {
+      "world": 1903735304,
+      "language": 971118157,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nAda starts with the coin.\nCy starts with the key.\nDee starts with the book.\nFay starts with the ring.\nEli starts with the cup.\nCy gives the key to Dee.\nDee gives the book to Fay.\nAda gives the coin to Bo.\nEli gives the cup to Fay.\nDee gives the key to Ada.\nBo gives the coin to Ada.\nAda gives the coin to Fay.\nFay gives the cup to Eli.\nFay gives the book to Cy.\nCy gives the book to Eli.\nFay gives the ring to Ada.\nAda gives the ring to Dee.\nEli gives the book to Cy.\nDee gives the ring to Cy.\nAda gives the key to Dee.\nEli gives the cup to Fay.\nCy gives the ring to Bo.\nFay gives the cup to Bo.\nBo gives the ring to Fay.\nBo gives the cup to Ada.\nDee gives the key to Eli.\nCy gives the book to Bo.\nAda gives the cup to Fay.\nBo gives the book to Ada.\nFay gives the cup to Eli.\nFay gives the coin to Eli.\nEli gives the key to Fay.\nFay gives the ring to Eli.\nFay gives the key to Dee.\nAda gives the book to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[\"Eli\",\"Dee\",\"Cy\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:07.722244+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 381,
+        "total_tokens": 723,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 360,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0002247
+    },
+    {
+      "world": 1903735304,
+      "language": 971118157,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nAda starts with the coin.\nCy starts with the key.\nDee starts with the book.\nFay starts with the ring.\nEli starts with the cup.\nCy gives the key to Dee.\nDee gives the book to Fay.\nAda gives the coin to Bo.\nEli gives the cup to Fay.\nDee gives the key to Ada.\nBo gives the coin to Ada.\nAda gives the coin to Fay.\nFay gives the cup to Eli.\nFay gives the book to Cy.\nCy gives the book to Eli.\nFay gives the ring to Ada.\nAda gives the ring to Dee.\nEli gives the book to Cy.\nDee gives the ring to Cy.\nAda gives the key to Dee.\nEli gives the cup to Fay.\nCy gives the ring to Bo.\nFay gives the cup to Bo.\nBo gives the ring to Fay.\nBo gives the cup to Ada.\nDee gives the key to Eli.\nCy gives the book to Bo.\nAda gives the cup to Fay.\nBo gives the book to Ada.\nFay gives the cup to Eli.\nFay gives the coin to Eli.\nEli gives the key to Fay.\nFay gives the ring to Eli.\nFay gives the key to Dee.\nAda gives the book to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[\"Eli\",\"Dee\",\"Cy\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:12.394705+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 219,
+        "total_tokens": 561,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 198,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001437
+    },
+    {
+      "world": 1903735304,
+      "language": 971118157,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nAda starts with the coin.\nCy starts with the key.\nDee starts with the book.\nFay starts with the ring.\nEli starts with the cup.\nCy gives the key to Dee.\nDee gives the book to Fay.\nAda gives the coin to Bo.\nEli gives the cup to Fay.\nDee gives the key to Ada.\nBo gives the coin to Ada.\nAda gives the coin to Fay.\nFay gives the cup to Eli.\nFay gives the book to Cy.\nCy gives the book to Eli.\nFay gives the ring to Ada.\nAda gives the ring to Dee.\nEli gives the book to Cy.\nDee gives the ring to Cy.\nAda gives the key to Dee.\nEli gives the cup to Fay.\nCy gives the ring to Bo.\nFay gives the cup to Bo.\nBo gives the ring to Fay.\nBo gives the cup to Ada.\nDee gives the key to Eli.\nCy gives the book to Bo.\nAda gives the cup to Fay.\nBo gives the book to Ada.\nFay gives the cup to Eli.\nFay gives the coin to Eli.\nEli gives the key to Fay.\nFay gives the ring to Eli.\nFay gives the key to Dee.\nAda gives the book to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[\"Eli\",\"Dee\",\"Cy\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:15.421698+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 227,
+        "total_tokens": 569,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 206,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00014769999999999999
+    },
+    {
+      "world": 210523351,
+      "language": 1194990108,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: miki = initially holds, pose = coin, mito = key, kase = book, zose = ring, luki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ku: key/other/giver.\n\nStory:\nBo miki pose\nEli miki mito\nDee miki kase\nCy miki zose\nFay miki luki\nCy-pu Bo-to\nDee-ke Eli-ku\nDee-to Bo-pu\nBo-nu Cy-ki\nCy-pa Fay-te\nDee-mu Fay-na\nBo-ke Dee-ku\nBo-ku Cy-ke\nCy-te Dee-pa\nEli-ki Cy-nu\nDee-te Bo-pa\nEli-nu Cy-ki\nAda-na Fay-mu\nBo-te Cy-pa\nAda-mu Dee-na\nDee-pu Fay-to\nBo-ki Cy-nu\nCy-te Bo-pa\nEli-pa Bo-te\nBo-to Fay-pu\nFay-pa Eli-te\nBo-na Dee-mu\nDee-ki Bo-nu\nFay-ke Cy-ku\nBo-mu Eli-na\nEli-ki Dee-nu\nBo-ke Fay-ku\nBo-ki Eli-nu\nEli-mu Fay-na\nFay-te Ada-pa\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Bo",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Bo\", \"Bo\", \"Dee\", \"Cy\"]",
+      "marks": [
+        true,
+        true,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:15.832099+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 434,
+        "completion_tokens": 1570,
+        "total_tokens": 2004,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1536,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0008284
+    },
+    {
+      "world": 210523351,
+      "language": 1194990108,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: miki = initially holds, pose = coin, mito = key, kase = book, zose = ring, luki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ku: key/other/giver; -to: ring/other/recipient; -ke: key/other/recipient.\n\nStory:\nBo miki pose\nEli miki mito\nDee miki kase\nCy miki zose\nFay miki luki\nCy-pu Bo-to\nDee-ke Eli-ku\nDee-to Bo-pu\nBo-nu Cy-ki\nCy-pa Fay-te\nDee-mu Fay-na\nBo-ke Dee-ku\nBo-ku Cy-ke\nCy-te Dee-pa\nEli-ki Cy-nu\nDee-te Bo-pa\nEli-nu Cy-ki\nAda-na Fay-mu\nBo-te Cy-pa\nAda-mu Dee-na\nDee-pu Fay-to\nBo-ki Cy-nu\nCy-te Bo-pa\nEli-pa Bo-te\nBo-to Fay-pu\nFay-pa Eli-te\nBo-na Dee-mu\nDee-ki Bo-nu\nFay-ke Cy-ku\nBo-mu Eli-na\nEli-ki Dee-nu\nBo-ke Fay-ku\nBo-ki Eli-nu\nEli-mu Fay-na\nFay-te Ada-pa\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Bo",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Ada\",\"Bo\",\"Cy\",\"Dee\"]",
+      "marks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:38.123150+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 452,
+        "completion_tokens": 2047,
+        "total_tokens": 2499,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2011,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010687000000000001
+    },
+    {
+      "world": 210523351,
+      "language": 1194990108,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: miki = initially holds, pose = coin, mito = key, kase = book, zose = ring, luki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -ku: key/other/giver; -to: ring/other/recipient; -ke: key/other/recipient; -te: cup/other/giver; -na: book/other/recipient; -pa: cup/other/recipient; -pu: ring/other/giver; -nu: coin/other/giver; -ki: coin/other/recipient; -mu: book/other/giver.\n\nStory:\nBo miki pose\nEli miki mito\nDee miki kase\nCy miki zose\nFay miki luki\nCy-pu Bo-to\nDee-ke Eli-ku\nDee-to Bo-pu\nBo-nu Cy-ki\nCy-pa Fay-te\nDee-mu Fay-na\nBo-ke Dee-ku\nBo-ku Cy-ke\nCy-te Dee-pa\nEli-ki Cy-nu\nDee-te Bo-pa\nEli-nu Cy-ki\nAda-na Fay-mu\nBo-te Cy-pa\nAda-mu Dee-na\nDee-pu Fay-to\nBo-ki Cy-nu\nCy-te Bo-pa\nEli-pa Bo-te\nBo-to Fay-pu\nFay-pa Eli-te\nBo-na Dee-mu\nDee-ki Bo-nu\nFay-ke Cy-ku\nBo-mu Eli-na\nEli-ki Dee-nu\nBo-ke Fay-ku\nBo-ki Eli-nu\nEli-mu Fay-na\nFay-te Ada-pa\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Bo",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Bo\",\"Bo\",\"Fay\",\"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:02.090452+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 515,
+        "completion_tokens": 653,
+        "total_tokens": 1168,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 628,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.000378
+    },
+    {
+      "world": 210523351,
+      "language": 1194990108,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nEli starts with the key.\nDee starts with the book.\nCy starts with the ring.\nFay starts with the cup.\nCy gives the ring to Bo.\nEli gives the key to Dee.\nBo gives the ring to Dee.\nBo gives the coin to Cy.\nFay gives the cup to Cy.\nDee gives the book to Fay.\nDee gives the key to Bo.\nBo gives the key to Cy.\nCy gives the cup to Dee.\nCy gives the coin to Eli.\nDee gives the cup to Bo.\nEli gives the coin to Cy.\nFay gives the book to Ada.\nBo gives the cup to Cy.\nAda gives the book to Dee.\nDee gives the ring to Fay.\nCy gives the coin to Bo.\nCy gives the cup to Bo.\nBo gives the cup to Eli.\nFay gives the ring to Bo.\nEli gives the cup to Fay.\nDee gives the book to Bo.\nBo gives the coin to Dee.\nCy gives the key to Fay.\nBo gives the book to Eli.\nDee gives the coin to Eli.\nFay gives the key to Bo.\nEli gives the coin to Bo.\nEli gives the book to Fay.\nFay gives the cup to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Bo",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Bo\",\"Bo\",\"Fay\",\"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:15.847191+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 227,
+        "total_tokens": 569,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 208,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00014769999999999999
+    },
+    {
+      "world": 210523351,
+      "language": 1194990108,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nEli starts with the key.\nDee starts with the book.\nCy starts with the ring.\nFay starts with the cup.\nCy gives the ring to Bo.\nEli gives the key to Dee.\nBo gives the ring to Dee.\nBo gives the coin to Cy.\nFay gives the cup to Cy.\nDee gives the book to Fay.\nDee gives the key to Bo.\nBo gives the key to Cy.\nCy gives the cup to Dee.\nCy gives the coin to Eli.\nDee gives the cup to Bo.\nEli gives the coin to Cy.\nFay gives the book to Ada.\nBo gives the cup to Cy.\nAda gives the book to Dee.\nDee gives the ring to Fay.\nCy gives the coin to Bo.\nCy gives the cup to Bo.\nBo gives the cup to Eli.\nFay gives the ring to Bo.\nEli gives the cup to Fay.\nDee gives the book to Bo.\nBo gives the coin to Dee.\nCy gives the key to Fay.\nBo gives the book to Eli.\nDee gives the coin to Eli.\nFay gives the key to Bo.\nEli gives the coin to Bo.\nEli gives the book to Fay.\nFay gives the cup to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Bo",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Bo\", \"Bo\", \"Fay\", \"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:19.252704+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 175,
+        "total_tokens": 517,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 153,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001217
+    },
+    {
+      "world": 210523351,
+      "language": 1194990108,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nEli starts with the key.\nDee starts with the book.\nCy starts with the ring.\nFay starts with the cup.\nCy gives the ring to Bo.\nEli gives the key to Dee.\nBo gives the ring to Dee.\nBo gives the coin to Cy.\nFay gives the cup to Cy.\nDee gives the book to Fay.\nDee gives the key to Bo.\nBo gives the key to Cy.\nCy gives the cup to Dee.\nCy gives the coin to Eli.\nDee gives the cup to Bo.\nEli gives the coin to Cy.\nFay gives the book to Ada.\nBo gives the cup to Cy.\nAda gives the book to Dee.\nDee gives the ring to Fay.\nCy gives the coin to Bo.\nCy gives the cup to Bo.\nBo gives the cup to Eli.\nFay gives the ring to Bo.\nEli gives the cup to Fay.\nDee gives the book to Bo.\nBo gives the coin to Dee.\nCy gives the key to Fay.\nBo gives the book to Eli.\nDee gives the coin to Eli.\nFay gives the key to Bo.\nEli gives the coin to Bo.\nEli gives the book to Fay.\nFay gives the cup to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Bo",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Bo\",\"Bo\",\"Fay\",\"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:03:21.725468+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 159,
+        "total_tokens": 501,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 140,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001137
+    },
+    {
+      "world": 274203371,
+      "language": 33582428,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luto = initially holds, luse = coin, kaki = key, luki = book, miki = ring, mito = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -sa: ring/other/recipient.\n\nStory:\nCy luto luse\nDee luto kaki\nFay luto luki\nAda luto miki\nEli luto mito\nAda-se Dee-to\nAda-to Fay-se\nBo-pe Fay-pu\nAda-no Eli-pi\nEli-pe Bo-pu\nAda-ti Cy-sa\nFay-to Ada-se\nEli-pu Ada-pe\nAda-to Fay-se\nAda-pu Fay-pe\nAda-pi Fay-no\nFay-to Cy-se\nBo-no Fay-pi\nEli-no Bo-pi\nDee-pa Cy-mo\nCy-to Bo-se\nAda-se Bo-to\nAda-no Eli-pi\nFay-sa Cy-ti\nBo-pa Dee-mo\nEli-no Ada-pi\nFay-ti Cy-sa\nBo-se Ada-to\nCy-pa Bo-mo\nDee-se Bo-to\nFay-pu Bo-pe\nCy-ti Ada-sa\nEli-pe Bo-pu\nDee-to Ada-se\nAda-to Cy-se\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Cy",
+        "Eli",
+        "Ada"
+      ],
+      "raw": "[\"Cy\", \"Cy\", \"Eli\", \"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:00:24.990071+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 423,
+        "completion_tokens": 1752,
+        "total_tokens": 2175,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1712,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009182999999999999
+    },
+    {
+      "world": 274203371,
+      "language": 33582428,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luto = initially holds, luse = coin, kaki = key, luki = book, miki = ring, mito = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -sa: ring/other/recipient; -no: cup/other/recipient; -se: key/other/recipient.\n\nStory:\nCy luto luse\nDee luto kaki\nFay luto luki\nAda luto miki\nEli luto mito\nAda-se Dee-to\nAda-to Fay-se\nBo-pe Fay-pu\nAda-no Eli-pi\nEli-pe Bo-pu\nAda-ti Cy-sa\nFay-to Ada-se\nEli-pu Ada-pe\nAda-to Fay-se\nAda-pu Fay-pe\nAda-pi Fay-no\nFay-to Cy-se\nBo-no Fay-pi\nEli-no Bo-pi\nDee-pa Cy-mo\nCy-to Bo-se\nAda-se Bo-to\nAda-no Eli-pi\nFay-sa Cy-ti\nBo-pa Dee-mo\nEli-no Ada-pi\nFay-ti Cy-sa\nBo-se Ada-to\nCy-pa Bo-mo\nDee-se Bo-to\nFay-pu Bo-pe\nCy-ti Ada-sa\nEli-pe Bo-pu\nDee-to Ada-se\nAda-to Cy-se\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Cy",
+        "Eli",
+        "Ada"
+      ],
+      "raw": "[\"Cy\", \"Cy\", \"Eli\", \"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:00:45.539326+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 441,
+        "completion_tokens": 2224,
+        "total_tokens": 2665,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2178,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0011561
+    },
+    {
+      "world": 274203371,
+      "language": 33582428,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luto = initially holds, luse = coin, kaki = key, luki = book, miki = ring, mito = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -sa: ring/other/recipient; -no: cup/other/recipient; -se: key/other/recipient; -mo: coin/other/giver; -pi: cup/other/giver; -ti: ring/other/giver; -pa: coin/other/recipient; -pe: book/other/recipient; -to: key/other/giver; -pu: book/other/giver.\n\nStory:\nCy luto luse\nDee luto kaki\nFay luto luki\nAda luto miki\nEli luto mito\nAda-se Dee-to\nAda-to Fay-se\nBo-pe Fay-pu\nAda-no Eli-pi\nEli-pe Bo-pu\nAda-ti Cy-sa\nFay-to Ada-se\nEli-pu Ada-pe\nAda-to Fay-se\nAda-pu Fay-pe\nAda-pi Fay-no\nFay-to Cy-se\nBo-no Fay-pi\nEli-no Bo-pi\nDee-pa Cy-mo\nCy-to Bo-se\nAda-se Bo-to\nAda-no Eli-pi\nFay-sa Cy-ti\nBo-pa Dee-mo\nEli-no Ada-pi\nFay-ti Cy-sa\nBo-se Ada-to\nCy-pa Bo-mo\nDee-se Bo-to\nFay-pu Bo-pe\nCy-ti Ada-sa\nEli-pe Bo-pu\nDee-to Ada-se\nAda-to Cy-se\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Cy",
+        "Eli",
+        "Ada"
+      ],
+      "raw": "[\"Cy\",\"Cy\",\"Eli\",\"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:08.856956+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 504,
+        "completion_tokens": 765,
+        "total_tokens": 1269,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 740,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00043289999999999995
+    },
+    {
+      "world": 274203371,
+      "language": 33582428,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nDee starts with the key.\nFay starts with the book.\nAda starts with the ring.\nEli starts with the cup.\nDee gives the key to Ada.\nAda gives the key to Fay.\nFay gives the book to Bo.\nEli gives the cup to Ada.\nBo gives the book to Eli.\nAda gives the ring to Cy.\nFay gives the key to Ada.\nEli gives the book to Ada.\nAda gives the key to Fay.\nAda gives the book to Fay.\nAda gives the cup to Fay.\nFay gives the key to Cy.\nFay gives the cup to Bo.\nBo gives the cup to Eli.\nCy gives the coin to Dee.\nCy gives the key to Bo.\nBo gives the key to Ada.\nEli gives the cup to Ada.\nCy gives the ring to Fay.\nDee gives the coin to Bo.\nAda gives the cup to Eli.\nFay gives the ring to Cy.\nAda gives the key to Bo.\nBo gives the coin to Cy.\nBo gives the key to Dee.\nFay gives the book to Bo.\nCy gives the ring to Ada.\nBo gives the book to Eli.\nDee gives the key to Ada.\nAda gives the key to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Cy",
+        "Eli",
+        "Ada"
+      ],
+      "raw": "[\"Cy\", \"Cy\", \"Eli\", \"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:17.791811+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 338,
+        "completion_tokens": 161,
+        "total_tokens": 499,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 139,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00011430000000000001
+    },
+    {
+      "world": 274203371,
+      "language": 33582428,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nDee starts with the key.\nFay starts with the book.\nAda starts with the ring.\nEli starts with the cup.\nDee gives the key to Ada.\nAda gives the key to Fay.\nFay gives the book to Bo.\nEli gives the cup to Ada.\nBo gives the book to Eli.\nAda gives the ring to Cy.\nFay gives the key to Ada.\nEli gives the book to Ada.\nAda gives the key to Fay.\nAda gives the book to Fay.\nAda gives the cup to Fay.\nFay gives the key to Cy.\nFay gives the cup to Bo.\nBo gives the cup to Eli.\nCy gives the coin to Dee.\nCy gives the key to Bo.\nBo gives the key to Ada.\nEli gives the cup to Ada.\nCy gives the ring to Fay.\nDee gives the coin to Bo.\nAda gives the cup to Eli.\nFay gives the ring to Cy.\nAda gives the key to Bo.\nBo gives the coin to Cy.\nBo gives the key to Dee.\nFay gives the book to Bo.\nCy gives the ring to Ada.\nBo gives the book to Eli.\nDee gives the key to Ada.\nAda gives the key to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Cy",
+        "Eli",
+        "Ada"
+      ],
+      "raw": "[\"Cy\",\"Cy\",\"Eli\",\"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:20.504924+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 338,
+        "completion_tokens": 160,
+        "total_tokens": 498,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 141,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00011380000000000001
+    },
+    {
+      "world": 274203371,
+      "language": 33582428,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nCy starts with the coin.\nDee starts with the key.\nFay starts with the book.\nAda starts with the ring.\nEli starts with the cup.\nDee gives the key to Ada.\nAda gives the key to Fay.\nFay gives the book to Bo.\nEli gives the cup to Ada.\nBo gives the book to Eli.\nAda gives the ring to Cy.\nFay gives the key to Ada.\nEli gives the book to Ada.\nAda gives the key to Fay.\nAda gives the book to Fay.\nAda gives the cup to Fay.\nFay gives the key to Cy.\nFay gives the cup to Bo.\nBo gives the cup to Eli.\nCy gives the coin to Dee.\nCy gives the key to Bo.\nBo gives the key to Ada.\nEli gives the cup to Ada.\nCy gives the ring to Fay.\nDee gives the coin to Bo.\nAda gives the cup to Eli.\nFay gives the ring to Cy.\nAda gives the key to Bo.\nBo gives the coin to Cy.\nBo gives the key to Dee.\nFay gives the book to Bo.\nCy gives the ring to Ada.\nBo gives the book to Eli.\nDee gives the key to Ada.\nAda gives the key to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Cy",
+        "Eli",
+        "Ada"
+      ],
+      "raw": "[\"Cy\",\"Cy\",\"Eli\",\"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:22.794772+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 338,
+        "completion_tokens": 155,
+        "total_tokens": 493,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 136,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00011130000000000001
+    },
+    {
+      "world": 372348733,
+      "language": 1426392649,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: zoki = initially holds, kama = coin, veto = key, luto = book, luse = ring, zose = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -su: key/other/recipient.\n\nStory:\nBo zoki kama\nCy zoki veto\nAda zoki luto\nEli zoki luse\nFay zoki zose\nDee-tu Ada-ka\nEli-ku Dee-mu\nFay-se Cy-ke\nCy-ma Ada-su\nAda-te Bo-nu\nCy-se Eli-ke\nFay-ke Eli-se\nAda-nu Bo-te\nAda-ke Fay-se\nDee-ka Cy-tu\nAda-se Eli-ke\nEli-tu Cy-ka\nBo-su Ada-ma\nBo-ma Dee-su\nEli-se Fay-ke\nDee-ke Fay-se\nAda-tu Eli-ka\nDee-se Cy-ke\nAda-mu Dee-ku\nAda-ka Cy-tu\nAda-tu Cy-ka\nAda-ka Bo-tu\nCy-se Bo-ke\nDee-te Bo-nu\nCy-ke Bo-se\nDee-nu Cy-te\nDee-ma Eli-su\nCy-se Dee-ke\nAda-ku Cy-mu\nEli-mu Cy-ku\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Bo",
+        "Eli"
+      ],
+      "raw": "[\"Cy\",\"Eli\",\"Bo\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:07.722244+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 418,
+        "completion_tokens": 1444,
+        "total_tokens": 1862,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1413,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0007637999999999999
+    },
+    {
+      "world": 372348733,
+      "language": 1426392649,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: zoki = initially holds, kama = coin, veto = key, luto = book, luse = ring, zose = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -su: key/other/recipient; -nu: coin/other/giver; -tu: book/other/recipient.\n\nStory:\nBo zoki kama\nCy zoki veto\nAda zoki luto\nEli zoki luse\nFay zoki zose\nDee-tu Ada-ka\nEli-ku Dee-mu\nFay-se Cy-ke\nCy-ma Ada-su\nAda-te Bo-nu\nCy-se Eli-ke\nFay-ke Eli-se\nAda-nu Bo-te\nAda-ke Fay-se\nDee-ka Cy-tu\nAda-se Eli-ke\nEli-tu Cy-ka\nBo-su Ada-ma\nBo-ma Dee-su\nEli-se Fay-ke\nDee-ke Fay-se\nAda-tu Eli-ka\nDee-se Cy-ke\nAda-mu Dee-ku\nAda-ka Cy-tu\nAda-tu Cy-ka\nAda-ka Bo-tu\nCy-se Bo-ke\nDee-te Bo-nu\nCy-ke Bo-se\nDee-nu Cy-te\nDee-ma Eli-su\nCy-se Dee-ke\nAda-ku Cy-mu\nEli-mu Cy-ku\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Bo",
+        "Eli"
+      ],
+      "raw": "[]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:24.444814+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 436,
+        "completion_tokens": 2076,
+        "total_tokens": 2512,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2048,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010815999999999998
+    },
+    {
+      "world": 372348733,
+      "language": 1426392649,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: zoki = initially holds, kama = coin, veto = key, luto = book, luse = ring, zose = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -su: key/other/recipient; -nu: coin/other/giver; -tu: book/other/recipient; -ma: key/other/giver; -ke: cup/other/recipient; -te: coin/other/recipient; -se: cup/other/giver; -mu: ring/other/recipient; -ku: ring/other/giver; -ka: book/other/giver.\n\nStory:\nBo zoki kama\nCy zoki veto\nAda zoki luto\nEli zoki luse\nFay zoki zose\nDee-tu Ada-ka\nEli-ku Dee-mu\nFay-se Cy-ke\nCy-ma Ada-su\nAda-te Bo-nu\nCy-se Eli-ke\nFay-ke Eli-se\nAda-nu Bo-te\nAda-ke Fay-se\nDee-ka Cy-tu\nAda-se Eli-ke\nEli-tu Cy-ka\nBo-su Ada-ma\nBo-ma Dee-su\nEli-se Fay-ke\nDee-ke Fay-se\nAda-tu Eli-ka\nDee-se Cy-ke\nAda-mu Dee-ku\nAda-ka Cy-tu\nAda-tu Cy-ka\nAda-ka Bo-tu\nCy-se Bo-ke\nDee-te Bo-nu\nCy-ke Bo-se\nDee-nu Cy-te\nDee-ma Eli-su\nCy-se Dee-ke\nAda-ku Cy-mu\nEli-mu Cy-ku\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Bo",
+        "Eli"
+      ],
+      "raw": "[\"Cy\",\"Eli\",\"Bo\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:04:48.368465+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 499,
+        "completion_tokens": 636,
+        "total_tokens": 1135,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 610,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0003679
+    },
+    {
+      "world": 372348733,
+      "language": 1426392649,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nCy starts with the key.\nAda starts with the book.\nEli starts with the ring.\nFay starts with the cup.\nAda gives the book to Dee.\nEli gives the ring to Dee.\nFay gives the cup to Cy.\nCy gives the key to Ada.\nBo gives the coin to Ada.\nCy gives the cup to Eli.\nEli gives the cup to Fay.\nAda gives the coin to Bo.\nFay gives the cup to Ada.\nDee gives the book to Cy.\nAda gives the cup to Eli.\nCy gives the book to Eli.\nAda gives the key to Bo.\nBo gives the key to Dee.\nEli gives the cup to Fay.\nFay gives the cup to Dee.\nEli gives the book to Ada.\nDee gives the cup to Cy.\nDee gives the ring to Ada.\nAda gives the book to Cy.\nCy gives the book to Ada.\nAda gives the book to Bo.\nCy gives the cup to Bo.\nBo gives the coin to Dee.\nBo gives the cup to Cy.\nDee gives the coin to Cy.\nDee gives the key to Eli.\nCy gives the cup to Dee.\nAda gives the ring to Cy.\nCy gives the ring to Eli.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Bo",
+        "Eli"
+      ],
+      "raw": "[\"Cy\",\"Eli\",\"Bo\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:02.296869+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 218,
+        "total_tokens": 555,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 198,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001427
+    },
+    {
+      "world": 372348733,
+      "language": 1426392649,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nCy starts with the key.\nAda starts with the book.\nEli starts with the ring.\nFay starts with the cup.\nAda gives the book to Dee.\nEli gives the ring to Dee.\nFay gives the cup to Cy.\nCy gives the key to Ada.\nBo gives the coin to Ada.\nCy gives the cup to Eli.\nEli gives the cup to Fay.\nAda gives the coin to Bo.\nFay gives the cup to Ada.\nDee gives the book to Cy.\nAda gives the cup to Eli.\nCy gives the book to Eli.\nAda gives the key to Bo.\nBo gives the key to Dee.\nEli gives the cup to Fay.\nFay gives the cup to Dee.\nEli gives the book to Ada.\nDee gives the cup to Cy.\nDee gives the ring to Ada.\nAda gives the book to Cy.\nCy gives the book to Ada.\nAda gives the book to Bo.\nCy gives the cup to Bo.\nBo gives the coin to Dee.\nBo gives the cup to Cy.\nDee gives the coin to Cy.\nDee gives the key to Eli.\nCy gives the cup to Dee.\nAda gives the ring to Cy.\nCy gives the ring to Eli.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Bo",
+        "Eli"
+      ],
+      "raw": "[\"Cy\",\"Eli\",\"Bo\",\"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:05.110680+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 113,
+        "total_tokens": 450,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 93,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 9.02e-05
+    },
+    {
+      "world": 372348733,
+      "language": 1426392649,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nCy starts with the key.\nAda starts with the book.\nEli starts with the ring.\nFay starts with the cup.\nAda gives the book to Dee.\nEli gives the ring to Dee.\nFay gives the cup to Cy.\nCy gives the key to Ada.\nBo gives the coin to Ada.\nCy gives the cup to Eli.\nEli gives the cup to Fay.\nAda gives the coin to Bo.\nFay gives the cup to Ada.\nDee gives the book to Cy.\nAda gives the cup to Eli.\nCy gives the book to Eli.\nAda gives the key to Bo.\nBo gives the key to Dee.\nEli gives the cup to Fay.\nFay gives the cup to Dee.\nEli gives the book to Ada.\nDee gives the cup to Cy.\nDee gives the ring to Ada.\nAda gives the book to Cy.\nCy gives the book to Ada.\nAda gives the book to Bo.\nCy gives the cup to Bo.\nBo gives the coin to Dee.\nBo gives the cup to Cy.\nDee gives the coin to Cy.\nDee gives the key to Eli.\nCy gives the cup to Dee.\nAda gives the ring to Cy.\nCy gives the ring to Eli.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Bo",
+        "Eli"
+      ],
+      "raw": "[\"Cy\", \"Eli\", \"Bo\", \"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:05:06.997009+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 102,
+        "total_tokens": 439,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 79,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 8.47e-05
+    },
+    {
+      "world": 567426344,
+      "language": 558959499,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: miki = initially holds, veki = coin, zoto = key, mima = book, vema = ring, zoma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mo: key/other/recipient.\n\nStory:\nBo miki veki\nDee miki zoto\nEli miki mima\nCy miki vema\nFay miki zoma\nEli-ne Bo-nu\nAda-ma Bo-to\nEli-se Cy-te\nFay-pu Dee-ko\nAda-ko Dee-pu\nEli-te Dee-se\nCy-nu Bo-ne\nCy-ne Bo-nu\nBo-ne Cy-nu\nDee-nu Cy-ne\nBo-mo Dee-pe\nCy-ko Ada-pu\nEli-ma Ada-to\nDee-te Cy-se\nDee-mo Bo-pe\nEli-to Dee-ma\nDee-to Fay-ma\nCy-mo Dee-pe\nCy-te Fay-se\nDee-ne Fay-nu\nEli-se Fay-te\nCy-pu Ada-ko\nFay-to Dee-ma\nEli-te Dee-se\nAda-se Dee-te\nAda-pu Eli-ko\nAda-ko Eli-pu\nBo-se Ada-te\nEli-mo Cy-pe\nEli-pe Ada-mo\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Dee\",\"Ada\",\"Fay\",\"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:58:37.260206+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 430,
+        "completion_tokens": 1917,
+        "total_tokens": 2347,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1880,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010015
+    },
+    {
+      "world": 567426344,
+      "language": 558959499,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: miki = initially holds, veki = coin, zoto = key, mima = book, vema = ring, zoma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mo: key/other/recipient; -nu: book/other/recipient; -pe: key/other/giver.\n\nStory:\nBo miki veki\nDee miki zoto\nEli miki mima\nCy miki vema\nFay miki zoma\nEli-ne Bo-nu\nAda-ma Bo-to\nEli-se Cy-te\nFay-pu Dee-ko\nAda-ko Dee-pu\nEli-te Dee-se\nCy-nu Bo-ne\nCy-ne Bo-nu\nBo-ne Cy-nu\nDee-nu Cy-ne\nBo-mo Dee-pe\nCy-ko Ada-pu\nEli-ma Ada-to\nDee-te Cy-se\nDee-mo Bo-pe\nEli-to Dee-ma\nDee-to Fay-ma\nCy-mo Dee-pe\nCy-te Fay-se\nDee-ne Fay-nu\nEli-se Fay-te\nCy-pu Ada-ko\nFay-to Dee-ma\nEli-te Dee-se\nAda-se Dee-te\nAda-pu Eli-ko\nAda-ko Eli-pu\nBo-se Ada-te\nEli-mo Cy-pe\nEli-pe Ada-mo\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Fay\",\"Ada\",\"Dee\",\"Bo\"]",
+      "marks": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:58:55.310768+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 448,
+        "completion_tokens": 1764,
+        "total_tokens": 2212,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1726,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009268
+    },
+    {
+      "world": 567426344,
+      "language": 558959499,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: miki = initially holds, veki = coin, zoto = key, mima = book, vema = ring, zoma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mo: key/other/recipient; -nu: book/other/recipient; -pe: key/other/giver; -to: coin/other/giver; -ma: coin/other/recipient; -ne: book/other/giver; -se: ring/other/recipient; -ko: cup/other/recipient; -te: ring/other/giver; -pu: cup/other/giver.\n\nStory:\nBo miki veki\nDee miki zoto\nEli miki mima\nCy miki vema\nFay miki zoma\nEli-ne Bo-nu\nAda-ma Bo-to\nEli-se Cy-te\nFay-pu Dee-ko\nAda-ko Dee-pu\nEli-te Dee-se\nCy-nu Bo-ne\nCy-ne Bo-nu\nBo-ne Cy-nu\nDee-nu Cy-ne\nBo-mo Dee-pe\nCy-ko Ada-pu\nEli-ma Ada-to\nDee-te Cy-se\nDee-mo Bo-pe\nEli-to Dee-ma\nDee-to Fay-ma\nCy-mo Dee-pe\nCy-te Fay-se\nDee-ne Fay-nu\nEli-se Fay-te\nCy-pu Ada-ko\nFay-to Dee-ma\nEli-te Dee-se\nAda-se Dee-te\nAda-pu Eli-ko\nAda-ko Eli-pu\nBo-se Ada-te\nEli-mo Cy-pe\nEli-pe Ada-mo\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Dee\",\"Ada\",\"Fay\",\"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:16.712911+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 511,
+        "completion_tokens": 723,
+        "total_tokens": 1234,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 697,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0004126
+    },
+    {
+      "world": 567426344,
+      "language": 558959499,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nDee starts with the key.\nEli starts with the book.\nCy starts with the ring.\nFay starts with the cup.\nEli gives the book to Bo.\nBo gives the coin to Ada.\nCy gives the ring to Eli.\nFay gives the cup to Dee.\nDee gives the cup to Ada.\nEli gives the ring to Dee.\nBo gives the book to Cy.\nCy gives the book to Bo.\nBo gives the book to Cy.\nCy gives the book to Dee.\nDee gives the key to Bo.\nAda gives the cup to Cy.\nAda gives the coin to Eli.\nDee gives the ring to Cy.\nBo gives the key to Dee.\nEli gives the coin to Dee.\nDee gives the coin to Fay.\nDee gives the key to Cy.\nCy gives the ring to Fay.\nDee gives the book to Fay.\nFay gives the ring to Eli.\nCy gives the cup to Ada.\nFay gives the coin to Dee.\nEli gives the ring to Dee.\nDee gives the ring to Ada.\nAda gives the cup to Eli.\nEli gives the cup to Ada.\nAda gives the ring to Bo.\nCy gives the key to Eli.\nEli gives the key to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Dee\",\"Ada\",\"Fay\",\"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:27.326913+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 165,
+        "total_tokens": 507,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 145,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001167
+    },
+    {
+      "world": 567426344,
+      "language": 558959499,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nDee starts with the key.\nEli starts with the book.\nCy starts with the ring.\nFay starts with the cup.\nEli gives the book to Bo.\nBo gives the coin to Ada.\nCy gives the ring to Eli.\nFay gives the cup to Dee.\nDee gives the cup to Ada.\nEli gives the ring to Dee.\nBo gives the book to Cy.\nCy gives the book to Bo.\nBo gives the book to Cy.\nCy gives the book to Dee.\nDee gives the key to Bo.\nAda gives the cup to Cy.\nAda gives the coin to Eli.\nDee gives the ring to Cy.\nBo gives the key to Dee.\nEli gives the coin to Dee.\nDee gives the coin to Fay.\nDee gives the key to Cy.\nCy gives the ring to Fay.\nDee gives the book to Fay.\nFay gives the ring to Eli.\nCy gives the cup to Ada.\nFay gives the coin to Dee.\nEli gives the ring to Dee.\nDee gives the ring to Ada.\nAda gives the cup to Eli.\nEli gives the cup to Ada.\nAda gives the ring to Bo.\nCy gives the key to Eli.\nEli gives the key to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Dee\",\"Ada\",\"Fay\",\"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:29.923620+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 216,
+        "total_tokens": 558,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 196,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001422
+    },
+    {
+      "world": 567426344,
+      "language": 558959499,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nBo starts with the coin.\nDee starts with the key.\nEli starts with the book.\nCy starts with the ring.\nFay starts with the cup.\nEli gives the book to Bo.\nBo gives the coin to Ada.\nCy gives the ring to Eli.\nFay gives the cup to Dee.\nDee gives the cup to Ada.\nEli gives the ring to Dee.\nBo gives the book to Cy.\nCy gives the book to Bo.\nBo gives the book to Cy.\nCy gives the book to Dee.\nDee gives the key to Bo.\nAda gives the cup to Cy.\nAda gives the coin to Eli.\nDee gives the ring to Cy.\nBo gives the key to Dee.\nEli gives the coin to Dee.\nDee gives the coin to Fay.\nDee gives the key to Cy.\nCy gives the ring to Fay.\nDee gives the book to Fay.\nFay gives the ring to Eli.\nCy gives the cup to Ada.\nFay gives the coin to Dee.\nEli gives the ring to Dee.\nDee gives the ring to Ada.\nAda gives the cup to Eli.\nEli gives the cup to Ada.\nAda gives the ring to Bo.\nCy gives the key to Eli.\nEli gives the key to Ada.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Ada",
+        "Fay",
+        "Bo"
+      ],
+      "raw": "[\"Dee\",\"Ada\",\"Fay\",\"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:32.310114+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 292,
+        "total_tokens": 634,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 272,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001802
+    },
+    {
+      "world": 591989814,
+      "language": 658611688,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luma = initially holds, kase = coin, mise = key, luki = book, kato = ring, miki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mi: cup/other/giver.\n\nStory:\nEli luma kase\nBo luma mise\nFay luma luki\nAda luma kato\nDee luma miki\nAda-no Fay-nu\nDee-mi Fay-ta\nBo-se Eli-mu\nCy-si Fay-pu\nDee-mu Eli-se\nCy-ni Eli-pe\nCy-pe Eli-ni\nAda-ta Fay-mi\nAda-mi Bo-ta\nAda-si Cy-pu\nEli-nu Fay-no\nEli-no Cy-nu\nEli-pe Bo-ni\nAda-pu Fay-si\nDee-se Fay-mu\nDee-ta Bo-mi\nFay-se Cy-mu\nBo-si Fay-pu\nBo-pu Dee-si\nAda-mu Cy-se\nAda-se Cy-mu\nCy-no Fay-nu\nFay-no Dee-nu\nDee-mu Cy-se\nDee-mi Ada-ta\nDee-no Fay-nu\nCy-nu Fay-no\nAda-mi Fay-ta\nDee-pu Eli-si\nCy-no Fay-nu\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Eli",
+        "Fay"
+      ],
+      "raw": "[\"Ada\", \"Bo\", \"Cy\", \"Dee\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:27.326913+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 430,
+        "completion_tokens": 2235,
+        "total_tokens": 2665,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2189,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0011605
+    },
+    {
+      "world": 591989814,
+      "language": 658611688,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luma = initially holds, kase = coin, mise = key, luki = book, kato = ring, miki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mi: cup/other/giver; -nu: ring/other/recipient; -se: key/other/giver.\n\nStory:\nEli luma kase\nBo luma mise\nFay luma luki\nAda luma kato\nDee luma miki\nAda-no Fay-nu\nDee-mi Fay-ta\nBo-se Eli-mu\nCy-si Fay-pu\nDee-mu Eli-se\nCy-ni Eli-pe\nCy-pe Eli-ni\nAda-ta Fay-mi\nAda-mi Bo-ta\nAda-si Cy-pu\nEli-nu Fay-no\nEli-no Cy-nu\nEli-pe Bo-ni\nAda-pu Fay-si\nDee-se Fay-mu\nDee-ta Bo-mi\nFay-se Cy-mu\nBo-si Fay-pu\nBo-pu Dee-si\nAda-mu Cy-se\nAda-se Cy-mu\nCy-no Fay-nu\nFay-no Dee-nu\nDee-mu Cy-se\nDee-mi Ada-ta\nDee-no Fay-nu\nCy-nu Fay-no\nAda-mi Fay-ta\nDee-pu Eli-si\nCy-no Fay-nu\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Eli",
+        "Fay"
+      ],
+      "raw": "[\"Ada\",\"Bo\",\"Cy\",\"Dee\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:51.530673+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 448,
+        "completion_tokens": 1976,
+        "total_tokens": 2424,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1939,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010328
+    },
+    {
+      "world": 591989814,
+      "language": 658611688,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: luma = initially holds, kase = coin, mise = key, luki = book, kato = ring, miki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -mi: cup/other/giver; -nu: ring/other/recipient; -se: key/other/giver; -pe: coin/other/giver; -si: book/other/recipient; -mu: key/other/recipient; -ta: cup/other/recipient; -pu: book/other/giver; -ni: coin/other/recipient; -no: ring/other/giver.\n\nStory:\nEli luma kase\nBo luma mise\nFay luma luki\nAda luma kato\nDee luma miki\nAda-no Fay-nu\nDee-mi Fay-ta\nBo-se Eli-mu\nCy-si Fay-pu\nDee-mu Eli-se\nCy-ni Eli-pe\nCy-pe Eli-ni\nAda-ta Fay-mi\nAda-mi Bo-ta\nAda-si Cy-pu\nEli-nu Fay-no\nEli-no Cy-nu\nEli-pe Bo-ni\nAda-pu Fay-si\nDee-se Fay-mu\nDee-ta Bo-mi\nFay-se Cy-mu\nBo-si Fay-pu\nBo-pu Dee-si\nAda-mu Cy-se\nAda-se Cy-mu\nCy-no Fay-nu\nFay-no Dee-nu\nDee-mu Cy-se\nDee-mi Ada-ta\nDee-no Fay-nu\nCy-nu Fay-no\nAda-mi Fay-ta\nDee-pu Eli-si\nCy-no Fay-nu\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Eli",
+        "Fay"
+      ],
+      "raw": "[\"Bo\",\"Dee\",\"Eli\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:00:16.101928+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 511,
+        "completion_tokens": 736,
+        "total_tokens": 1247,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 709,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00041910000000000005
+    },
+    {
+      "world": 591989814,
+      "language": 658611688,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nEli starts with the coin.\nBo starts with the key.\nFay starts with the book.\nAda starts with the ring.\nDee starts with the cup.\nAda gives the ring to Fay.\nDee gives the cup to Fay.\nBo gives the key to Eli.\nFay gives the book to Cy.\nEli gives the key to Dee.\nEli gives the coin to Cy.\nCy gives the coin to Eli.\nFay gives the cup to Ada.\nAda gives the cup to Bo.\nCy gives the book to Ada.\nFay gives the ring to Eli.\nEli gives the ring to Cy.\nEli gives the coin to Bo.\nAda gives the book to Fay.\nDee gives the key to Fay.\nBo gives the cup to Dee.\nFay gives the key to Cy.\nFay gives the book to Bo.\nBo gives the book to Dee.\nCy gives the key to Ada.\nAda gives the key to Cy.\nCy gives the ring to Fay.\nFay gives the ring to Dee.\nCy gives the key to Dee.\nDee gives the cup to Ada.\nDee gives the ring to Fay.\nFay gives the ring to Cy.\nAda gives the cup to Fay.\nDee gives the book to Eli.\nCy gives the ring to Fay.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Eli",
+        "Fay"
+      ],
+      "raw": "[\"Bo\",\"Dee\",\"Eli\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:27.326913+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 174,
+        "total_tokens": 516,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 153,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001212
+    },
+    {
+      "world": 591989814,
+      "language": 658611688,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nEli starts with the coin.\nBo starts with the key.\nFay starts with the book.\nAda starts with the ring.\nDee starts with the cup.\nAda gives the ring to Fay.\nDee gives the cup to Fay.\nBo gives the key to Eli.\nFay gives the book to Cy.\nEli gives the key to Dee.\nEli gives the coin to Cy.\nCy gives the coin to Eli.\nFay gives the cup to Ada.\nAda gives the cup to Bo.\nCy gives the book to Ada.\nFay gives the ring to Eli.\nEli gives the ring to Cy.\nEli gives the coin to Bo.\nAda gives the book to Fay.\nDee gives the key to Fay.\nBo gives the cup to Dee.\nFay gives the key to Cy.\nFay gives the book to Bo.\nBo gives the book to Dee.\nCy gives the key to Ada.\nAda gives the key to Cy.\nCy gives the ring to Fay.\nFay gives the ring to Dee.\nCy gives the key to Dee.\nDee gives the cup to Ada.\nDee gives the ring to Fay.\nFay gives the ring to Cy.\nAda gives the cup to Fay.\nDee gives the book to Eli.\nCy gives the ring to Fay.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Eli",
+        "Fay"
+      ],
+      "raw": "[\"Bo\",\"Dee\",\"Eli\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:30.205758+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 141,
+        "total_tokens": 483,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 120,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001047
+    },
+    {
+      "world": 591989814,
+      "language": 658611688,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nEli starts with the coin.\nBo starts with the key.\nFay starts with the book.\nAda starts with the ring.\nDee starts with the cup.\nAda gives the ring to Fay.\nDee gives the cup to Fay.\nBo gives the key to Eli.\nFay gives the book to Cy.\nEli gives the key to Dee.\nEli gives the coin to Cy.\nCy gives the coin to Eli.\nFay gives the cup to Ada.\nAda gives the cup to Bo.\nCy gives the book to Ada.\nFay gives the ring to Eli.\nEli gives the ring to Cy.\nEli gives the coin to Bo.\nAda gives the book to Fay.\nDee gives the key to Fay.\nBo gives the cup to Dee.\nFay gives the key to Cy.\nFay gives the book to Bo.\nBo gives the book to Dee.\nCy gives the key to Ada.\nAda gives the key to Cy.\nCy gives the ring to Fay.\nFay gives the ring to Dee.\nCy gives the key to Dee.\nDee gives the cup to Ada.\nDee gives the ring to Fay.\nFay gives the ring to Cy.\nAda gives the cup to Fay.\nDee gives the book to Eli.\nCy gives the ring to Fay.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Eli",
+        "Fay"
+      ],
+      "raw": "[\"Bo\", \"Dee\", \"Eli\", \"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T15:59:32.850351+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 342,
+        "completion_tokens": 175,
+        "total_tokens": 517,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 151,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001217
+    },
+    {
+      "world": 972607209,
+      "language": 2113317659,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veki = initially holds, vema = coin, luse = key, mima = book, miki = ring, luma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -pi: coin/other/giver.\n\nStory:\nDee veki vema\nCy veki luse\nEli veki mima\nFay veki miki\nBo veki luma\nDee-ko Bo-te\nEli-mi Fay-ta\nAda-ka Dee-pi\nCy-po Ada-ke\nAda-mi Eli-ta\nDee-te Bo-ko\nEli-me Cy-pe\nCy-me Ada-pe\nBo-ke Ada-po\nBo-te Fay-ko\nFay-te Cy-ko\nBo-po Ada-ke\nAda-pi Fay-ka\nCy-te Ada-ko\nCy-pe Ada-me\nCy-me Bo-pe\nFay-pi Bo-ka\nFay-pe Bo-me\nCy-pe Fay-me\nAda-ta Fay-mi\nBo-pi Cy-ka\nFay-pe Cy-me\nCy-ke Ada-po\nAda-pe Fay-me\nAda-te Dee-ko\nDee-te Ada-ko\nCy-po Dee-ke\nCy-pi Dee-ka\nBo-ke Dee-po\nAda-me Cy-pe\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Bo",
+        "Cy",
+        "Fay"
+      ],
+      "raw": "[]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:00:25.039590+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 416,
+        "completion_tokens": 1745,
+        "total_tokens": 2161,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1717,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009141
+    },
+    {
+      "world": 972607209,
+      "language": 2113317659,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veki = initially holds, vema = coin, luse = key, mima = book, miki = ring, luma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -pi: coin/other/giver; -pe: book/other/recipient; -te: cup/other/giver.\n\nStory:\nDee veki vema\nCy veki luse\nEli veki mima\nFay veki miki\nBo veki luma\nDee-ko Bo-te\nEli-mi Fay-ta\nAda-ka Dee-pi\nCy-po Ada-ke\nAda-mi Eli-ta\nDee-te Bo-ko\nEli-me Cy-pe\nCy-me Ada-pe\nBo-ke Ada-po\nBo-te Fay-ko\nFay-te Cy-ko\nBo-po Ada-ke\nAda-pi Fay-ka\nCy-te Ada-ko\nCy-pe Ada-me\nCy-me Bo-pe\nFay-pi Bo-ka\nFay-pe Bo-me\nCy-pe Fay-me\nAda-ta Fay-mi\nBo-pi Cy-ka\nFay-pe Cy-me\nCy-ke Ada-po\nAda-pe Fay-me\nAda-te Dee-ko\nDee-te Ada-ko\nCy-po Dee-ke\nCy-pi Dee-ka\nBo-ke Dee-po\nAda-me Cy-pe\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Bo",
+        "Cy",
+        "Fay"
+      ],
+      "raw": "[\"Dee\",\"Bo\",\"Cy\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:00:47.271171+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 434,
+        "completion_tokens": 1742,
+        "total_tokens": 2176,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1705,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009144
+    },
+    {
+      "world": 972607209,
+      "language": 2113317659,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nInitial words: veki = initially holds, vema = coin, luse = key, mima = book, miki = ring, luma = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred and the person's role; the middle field in each meaning is always 'other' and carries no information. Each of the 10 object and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. Known suffix meanings (object/reference holder/role): -pi: coin/other/giver; -pe: book/other/recipient; -te: cup/other/giver; -po: key/other/giver; -ta: ring/other/giver; -ka: coin/other/recipient; -ke: key/other/recipient; -ko: cup/other/recipient; -mi: ring/other/recipient; -me: book/other/giver.\n\nStory:\nDee veki vema\nCy veki luse\nEli veki mima\nFay veki miki\nBo veki luma\nDee-ko Bo-te\nEli-mi Fay-ta\nAda-ka Dee-pi\nCy-po Ada-ke\nAda-mi Eli-ta\nDee-te Bo-ko\nEli-me Cy-pe\nCy-me Ada-pe\nBo-ke Ada-po\nBo-te Fay-ko\nFay-te Cy-ko\nBo-po Ada-ke\nAda-pi Fay-ka\nCy-te Ada-ko\nCy-pe Ada-me\nCy-me Bo-pe\nFay-pi Bo-ka\nFay-pe Bo-me\nCy-pe Fay-me\nAda-ta Fay-mi\nBo-pi Cy-ka\nFay-pe Cy-me\nCy-ke Ada-po\nAda-pe Fay-me\nAda-te Dee-ko\nDee-te Ada-ko\nCy-po Dee-ke\nCy-pi Dee-ka\nBo-ke Dee-po\nAda-me Cy-pe\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Bo",
+        "Cy",
+        "Fay"
+      ],
+      "raw": "[\"Dee\",\"Bo\",\"Cy\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:01:06.958848+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 497,
+        "completion_tokens": 552,
+        "total_tokens": 1049,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 526,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0003257
+    },
+    {
+      "world": 972607209,
+      "language": 2113317659,
+      "mode": "fresh_english",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nDee starts with the coin.\nCy starts with the key.\nEli starts with the book.\nFay starts with the ring.\nBo starts with the cup.\nBo gives the cup to Dee.\nFay gives the ring to Eli.\nDee gives the coin to Ada.\nCy gives the key to Ada.\nEli gives the ring to Ada.\nDee gives the cup to Bo.\nEli gives the book to Cy.\nCy gives the book to Ada.\nAda gives the key to Bo.\nBo gives the cup to Fay.\nFay gives the cup to Cy.\nBo gives the key to Ada.\nAda gives the coin to Fay.\nCy gives the cup to Ada.\nAda gives the book to Cy.\nCy gives the book to Bo.\nFay gives the coin to Bo.\nBo gives the book to Fay.\nFay gives the book to Cy.\nAda gives the ring to Fay.\nBo gives the coin to Cy.\nCy gives the book to Fay.\nAda gives the key to Cy.\nFay gives the book to Ada.\nAda gives the cup to Dee.\nDee gives the cup to Ada.\nCy gives the key to Dee.\nCy gives the coin to Dee.\nDee gives the key to Bo.\nAda gives the book to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Bo",
+        "Cy",
+        "Fay"
+      ],
+      "raw": "[\"Dee\", \"Bo\", \"Cy\", \"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:00:25.081659+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 164,
+        "total_tokens": 501,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 141,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00011570000000000001
+    },
+    {
+      "world": 972607209,
+      "language": 2113317659,
+      "mode": "fresh_english",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nDee starts with the coin.\nCy starts with the key.\nEli starts with the book.\nFay starts with the ring.\nBo starts with the cup.\nBo gives the cup to Dee.\nFay gives the ring to Eli.\nDee gives the coin to Ada.\nCy gives the key to Ada.\nEli gives the ring to Ada.\nDee gives the cup to Bo.\nEli gives the book to Cy.\nCy gives the book to Ada.\nAda gives the key to Bo.\nBo gives the cup to Fay.\nFay gives the cup to Cy.\nBo gives the key to Ada.\nAda gives the coin to Fay.\nCy gives the cup to Ada.\nAda gives the book to Cy.\nCy gives the book to Bo.\nFay gives the coin to Bo.\nBo gives the book to Fay.\nFay gives the book to Cy.\nAda gives the ring to Fay.\nBo gives the coin to Cy.\nCy gives the book to Fay.\nAda gives the key to Cy.\nFay gives the book to Ada.\nAda gives the cup to Dee.\nDee gives the cup to Ada.\nCy gives the key to Dee.\nCy gives the coin to Dee.\nDee gives the key to Bo.\nAda gives the book to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Bo",
+        "Cy",
+        "Fay"
+      ],
+      "raw": "[\"Dee\", \"Bo\", \"Cy\", \"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:00:28.083120+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 156,
+        "total_tokens": 493,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 133,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001117
+    },
+    {
+      "world": 972607209,
+      "language": 2113317659,
+      "mode": "fresh_english",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order.\n\nStory:\nDee starts with the coin.\nCy starts with the key.\nEli starts with the book.\nFay starts with the ring.\nBo starts with the cup.\nBo gives the cup to Dee.\nFay gives the ring to Eli.\nDee gives the coin to Ada.\nCy gives the key to Ada.\nEli gives the ring to Ada.\nDee gives the cup to Bo.\nEli gives the book to Cy.\nCy gives the book to Ada.\nAda gives the key to Bo.\nBo gives the cup to Fay.\nFay gives the cup to Cy.\nBo gives the key to Ada.\nAda gives the coin to Fay.\nCy gives the cup to Ada.\nAda gives the book to Cy.\nCy gives the book to Bo.\nFay gives the coin to Bo.\nBo gives the book to Fay.\nFay gives the book to Cy.\nAda gives the ring to Fay.\nBo gives the coin to Cy.\nCy gives the book to Fay.\nAda gives the key to Cy.\nFay gives the book to Ada.\nAda gives the cup to Dee.\nDee gives the cup to Ada.\nCy gives the key to Dee.\nCy gives the coin to Dee.\nDee gives the key to Bo.\nAda gives the book to Cy.\n\n1. Who holds the coin at the end?\n2. Who holds the key at the end?\n3. Who holds the book at the end?\n4. Who holds the ring at the end?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Bo",
+        "Cy",
+        "Fay"
+      ],
+      "raw": "[\"Dee\",\"Bo\",\"Cy\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T16:00:30.760444+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 337,
+        "completion_tokens": 148,
+        "total_tokens": 485,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 128,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0001077
+    }
+  ],
+  "uncertain_attempts": []
+}

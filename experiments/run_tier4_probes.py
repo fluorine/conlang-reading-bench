@@ -70,7 +70,7 @@ def main():
             or (response_format == 'work_answers' and any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes))
             or type(minimum_observed) is not int
             or minimum_observed < 0 or (minimum_observed and not observed_hints) or len(hint_levels) != 3
-            or any(type(count) is not int or not 1 <= count <= maximum for count in hint_levels)
+            or any(type(count) is not int or not (0 if context_free else 1) <= count <= maximum for count in hint_levels)
             or tuple(sorted(set(hint_levels))) != hint_levels
             or not modes or len(set(modes)) != len(modes) or any(mode not in MODES for mode in modes)):
         parser.error('manifest does not match the frozen Tier 4 prototype')
