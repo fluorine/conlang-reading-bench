@@ -41,6 +41,7 @@ def main(argv=None):
         p.add_argument("--suite", default="smoke")
         p.add_argument("--model", default=next(iter(MODELS)))
         p.add_argument("--effort", default="default")
+        p.add_argument("--provider", default="OpenAI", choices=("OpenAI", "Anthropic"))
         p.add_argument("--max-output", type=int, default=64)
         p.add_argument("--rates", nargs=2, type=float, metavar=("INPUT", "OUTPUT"),
                        help="USD per million tokens; required for an unlisted model")
@@ -93,7 +94,7 @@ def main(argv=None):
                 raise ValueError("import destination exists")
             write(args.out, bundle)
             return
-        conf = settings(args.model, args.effort, args.max_output, args.rates)
+        conf = settings(args.model, args.effort, args.max_output, args.rates, args.provider)
         if args.command == "estimate":
             print_json(dict(calls=len(prompts), upper_usd=sum(bound(conf, p) for p in prompts.values()),
                             settings=conf))

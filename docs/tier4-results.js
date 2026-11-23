@@ -27,6 +27,15 @@ const tier4Research = {
         "minimal": 99.47916666666667,
         "english": 100.0
       }
+    },
+    {
+      "name": "Claude Sonnet 5.5 (low)",
+      "shortName": "Sonnet 5.5 (low)",
+      "releaseDate": "2026-09-28",
+      "scores": {
+        "minimal": 0.0,
+        "english": 0.0
+      }
     }
   ]
 };

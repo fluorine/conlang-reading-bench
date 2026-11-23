@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import VERSION
+from .provider import request as provider_request
 from .suite import certified, digest, read, write
 
 MODELS = {
@@ -24,12 +25,12 @@ def now():
     return datetime.now(timezone.utc).isoformat()
 
 
-def settings(model, effort, limit, rates=None):
+def settings(model, effort, limit, rates=None, provider="OpenAI"):
     price_date = now()[:10] if rates is not None else PRICE_DATE
     rates = rates or MODELS.get(model)
     if not rates or any(not math.isfinite(x) or x < 0 for x in rates) or limit <= 0:
         raise ValueError("provide valid prices per million tokens and a positive output limit")
-    return dict(provider="OpenAI", model=model, effort=effort, temperature=0 if effort == "default" else None,
+    return dict(provider=provider, model=model, effort=effort, temperature=0 if effort == "default" else None,
                 max_completion_tokens=limit, input_usd_per_million=rates[0],
                 output_usd_per_million=rates[1], price_date=price_date)
 
@@ -79,7 +80,6 @@ def run(manifest, conf, path, budget):
     if not math.isfinite(budget) or budget <= 0:
         raise ValueError("positive finite budget required")
     prompts, _ = certified(manifest)
-    key = os.environ["OPENAI_API_KEY"]
     path = Path(path)
     with locked(path):
         bundle = read(path) if path.exists() else new_bundle(manifest, prompts, conf)
@@ -96,22 +96,11 @@ def run(manifest, conf, path, budget):
             bundle["attempts"].append(attempt)
             bundle["usage_summary"] = summarize(bundle)
             write(path, bundle)
-            payload = dict(model=conf["model"], messages=[dict(role="user", content=prompt)],
-                           max_completion_tokens=conf["max_completion_tokens"])
-            if conf["temperature"] is not None:
-                payload["temperature"] = conf["temperature"]
-            if conf["effort"] != "default":
-                payload["reasoning_effort"] = conf["effort"]
-            request = urllib.request.Request(ENDPOINT, data=json.dumps(payload).encode(),
-                                             headers={"Authorization": "Bearer " + key,
-                                                      "Content-Type": "application/json"})
             try:
-                with urllib.request.urlopen(request, timeout=75) as resp:
-                    data = json.load(resp)
+                data = provider_request(conf, [dict(role="user", content=prompt)])
                 usage = data["usage"]
                 cost = price(conf, usage["prompt_tokens"], usage["completion_tokens"])
-                raw = data["choices"][0]["message"].get("content") or ""
-                bundle["responses"][item] = dict(prompt_hash=digest(prompt), raw=raw,
+                bundle["responses"][item] = dict(prompt_hash=digest(prompt), raw=data["raw"],
                     model_revision=data["model"], usage=usage, cost_usd=cost, time=now())
                 attempt["status"] = "completed"
             except urllib.error.HTTPError as exc:

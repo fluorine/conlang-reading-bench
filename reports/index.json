@@ -421,6 +421,42 @@
     },
     "independent_rerun_of": null
   },
+  "holdout2/claude-haiku-5-5-low-2048.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "fa2e0ed0c64ac087d7787e908e9b41d75a2964e173910d9c97277f10051a5664",
+    "settings": {
+      "provider": "Anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": "low",
+      "temperature": null,
+      "max_completion_tokens": 2048,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-23"
+    },
+    "accuracy": {
+      "minimal": 82.29166666666666,
+      "glossary": 82.29166666666666,
+      "grammar": 100.0,
+      "english": 100.0
+    },
+    "headline": 88.19444444444444,
+    "all_four_correct": {
+      "minimal": 75.0,
+      "glossary": 75.0,
+      "grammar": 100,
+      "english": 100
+    },
+    "usage": {
+      "input_tokens": 27752,
+      "output_tokens": 37581,
+      "reasoning_tokens": 0,
+      "list_price_usd": 0.0215657,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
   "holdout2/gpt-4.1-mini-2025-04-14.json": {
     "status": "regraded",
     "scorer_version": "0.1.1",
@@ -881,6 +917,38 @@
     },
     "independent_rerun_of": null
   },
+  "transfer4/claude-haiku-5-5-low-2048.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "eeb1d404359c0244332e0ff40b761324dc89a9dc99181f82bd3d61cfbb76d59a",
+    "settings": {
+      "provider": "Anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": "low",
+      "temperature": null,
+      "max_completion_tokens": 2048,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-23"
+    },
+    "accuracy": {
+      "minimal": 86.45833333333334,
+      "english": 100.0
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 83.33333333333334,
+      "english": 100
+    },
+    "usage": {
+      "input_tokens": 12716,
+      "output_tokens": 28170,
+      "reasoning_tokens": 0,
+      "list_price_usd": 0.0153566,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
   "transfer4/gpt-4.1-mini-2025-04-14.json": {
     "status": "regraded",
     "scorer_version": "0.1.1",
@@ -1037,6 +1105,38 @@
       "output_tokens": 11390,
       "reasoning_tokens": 10577,
       "list_price_usd": 0.0065159,
+      "outstanding_reservations_usd": 0
+    },
+    "independent_rerun_of": null
+  },
+  "transfer4fresh/claude-haiku-5-5-low-2048.json": {
+    "status": "regraded",
+    "scorer_version": "0.1.1",
+    "suite_hash": "a287640dfd85f8d72a284adb1d35d87b491139e29048d85ad76ee40a2ed4d61d",
+    "settings": {
+      "provider": "Anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": "low",
+      "temperature": null,
+      "max_completion_tokens": 2048,
+      "input_usd_per_million": 0.1,
+      "output_usd_per_million": 0.5,
+      "price_date": "2026-11-23"
+    },
+    "accuracy": {
+      "minimal": 94.79166666666666,
+      "english": 100.0
+    },
+    "headline": null,
+    "all_four_correct": {
+      "minimal": 91.66666666666666,
+      "english": 100
+    },
+    "usage": {
+      "input_tokens": 12668,
+      "output_tokens": 25906,
+      "reasoning_tokens": 0,
+      "list_price_usd": 0.0142198,
       "outstanding_reservations_usd": 0
     },
     "independent_rerun_of": null

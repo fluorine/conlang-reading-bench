@@ -5,6 +5,8 @@ from pathlib import Path
 from conlang.verify_tier3_comparison import ARCHIVE, CONFIGS, SUITES, main as verify
 from conlang.verify_sol_comparison import ARCHIVE as SOL_ARCHIVE, main as verify_sol
 from conlang.verify_luna_low_comparison import ARCHIVE as LUNA_LOW_ARCHIVE, main as verify_luna_low
+from conlang.verify_haiku_low_comparison import ARCHIVE as HAIKU_ARCHIVE, main as verify_haiku
+from conlang.verify_sonnet_low_comparison import ARCHIVE as SONNET_ARCHIVE, main as verify_sonnet
 
 
 def main():
@@ -14,20 +16,28 @@ def main():
         verify()
     if LUNA_LOW_ARCHIVE.exists():
         verify_luna_low()
+    verify_haiku()
+    verify_sonnet()
     archive = json.loads(ARCHIVE.read_text(encoding='utf-8'))
     details = {'luna': ('GPT-6 Luna (medium)', 'Luna (medium)', '2026-09-22'),
                'luna-low': ('GPT-6 Luna (low)', 'Luna (low)', '2026-09-22'),
                'sol': ('GPT-6 Sol (low)', 'Sol (low)', '2026-09-22'),
-               'terra': ('GPT-6.1 Terra (medium)', 'Terra (medium)', '2026-10-26')}
+               'terra': ('GPT-6.1 Terra (medium)', 'Terra (medium)', '2026-10-26'),
+               'haiku-low': ('Claude Haiku 5.5 (low)', 'Haiku 5.5 (low)', '2026-10-07'),
+               'sonnet-low': ('Claude Sonnet 5.5 (low)', 'Sonnet 5.5 (low)', '2026-09-28')}
+    extra = {name: json.loads(path.read_text(encoding='utf-8'))
+             for name, path in (('haiku-low', HAIKU_ARCHIVE), ('sonnet-low', SONNET_ARCHIVE))}
     sol = json.loads(SOL_ARCHIVE.read_text(encoding='utf-8')) if SOL_ARCHIVE.exists() else None
     luna_low = json.loads(LUNA_LOW_ARCHIVE.read_text(encoding='utf-8')) if LUNA_LOW_ARCHIVE.exists() else None
     models = []
     order = [name for name in ('luna-low', 'luna', 'sol', 'terra')
              if name in CONFIGS or (name == 'sol' and sol) or (name == 'luna-low' and luna_low)]
+    order += list(extra)
     for model in order:
         rows = [row for suite in SUITES for row in
                 (luna_low['runs'][suite]['responses'] if model == 'luna-low'
                  else sol['runs'][suite]['responses'] if model == 'sol'
+                 else extra[model]['runs'][suite]['responses'] if model in extra
                  else archive['runs'][f'{model}-{suite}']['responses'])]
         scores = {}
         for key, english in [('minimal', False), ('english', True)]:

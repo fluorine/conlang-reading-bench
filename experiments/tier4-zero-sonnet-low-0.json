@@ -1,0 +1,107 @@
+{
+  "name": "tier4-zero-sonnet-low-0",
+  "seed": 430022,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    0,
+    1,
+    10
+  ],
+  "scheme": "unique",
+  "context_free": true,
+  "observed_hints": true,
+  "min_observed_markers": 10,
+  "modes": [
+    "fresh_conlang",
+    "fresh_english"
+  ],
+  "pairs": [
+    [
+      266018832,
+      554935977
+    ],
+    [
+      1354185107,
+      1615644411
+    ],
+    [
+      1635568345,
+      194448969
+    ],
+    [
+      1140013065,
+      1310208113
+    ],
+    [
+      1453253947,
+      1362005915
+    ],
+    [
+      766182774,
+      1628249723
+    ],
+    [
+      1620652212,
+      72475054
+    ],
+    [
+      1658253003,
+      249586964
+    ],
+    [
+      397911229,
+      848036229
+    ],
+    [
+      1746181578,
+      1668666118
+    ],
+    [
+      1298181776,
+      1007690336
+    ],
+    [
+      1643786514,
+      821117964
+    ]
+  ],
+  "attempts": 48,
+  "rejections": {},
+  "excluded_manifests": [
+    "tier4-confirmation.json",
+    "tier4-observed-fresh.json",
+    "tier4-deferred-dev.json",
+    "tier4-policy-audit.json",
+    "tier4-paired-random.json",
+    "tier4-checkpoint-dev.json",
+    "tier4-focus-fresh-0.json",
+    "tier4-focus-fresh-1.json",
+    "tier4-focus-fresh-2.json",
+    "tier4-focus-fresh-3.json",
+    "tier4-compact-dev.json",
+    "tier4-regular-dev.json",
+    "tier4-regular-confirm-0.json",
+    "tier4-regular-confirm-1.json",
+    "tier4-regular-confirm-2.json",
+    "tier4-regular-confirm-3.json",
+    "tier4-regular-zero-dev.json"
+  ],
+  "purpose": "matched comparison on the same frozen stories and prompts",
+  "analysis_plan": {
+    "primary": "zero-hint accuracy and paired story difference versus Luna low",
+    "controls": "one hint, full grammar and English at every stage",
+    "output_failures": "missing and invalid answers count wrong; disclose completion and costs",
+    "caveat": "public reused sample; no claim of independent holdout or universal model ability"
+  },
+  "model_config": {
+    "model": "claude-sonnet-5-5",
+    "effort": "low",
+    "max_output": 4096,
+    "rates": [
+      2,
+      10
+    ]
+  },
+  "source_manifest": "tier4-zero-confirm-0.json"
+}

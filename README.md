@@ -16,6 +16,8 @@ A small **conlang comprehension benchmark** for language models. Its research ta
 
 **Tier 4 research:** a zero-hint regular-grammar candidate passed its predeclared checks on 48 stories. On the same stories, Luna low scored 39.1%, Luna medium 91.7%, and Terra medium 99.5%; scores are provisional and the stronger models approach saturation. These are fresh-context measurements; the progressive-conversation version remains to be tested. [Matched comparison](reports/TIER4-MODEL-COMPARISON.md) · [Replicate Tier 4](reports/TIER4-REPLICATION.md) · [Design](reports/NEXT-TIER-DYNAMIC-DESIGN.md)
 
+**Claude follow-up.** Claude Haiku 5.5 (low) scored **88.19%** on Tier 1 and **43.75%** on Tier 3. Claude Sonnet 5.5 (low) scored **0%** on Tiers 3 and 4 under the strict scorer, because it writes reasoning before its JSON array. [Settings, secondary scores and notes](reports/CLAUDE-LOW.md)
+
 ## Replicate the benchmark
 
 ### Copy a prompt for your AI agent

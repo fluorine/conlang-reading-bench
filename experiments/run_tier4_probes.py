@@ -11,6 +11,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
+from conlang.provider import body_size, request as provider_request
 from conlang.runner import price, settings
 from conlang.suite import read, write
 from conlang.tier4_dynamic import LENGTH, TARGETS, build_story, score
@@ -25,6 +26,7 @@ def main():
     parser.add_argument('--budget', required=True, type=float)
     parser.add_argument('--model', default='gpt-6-luna')
     parser.add_argument('--effort', default='low')
+    parser.add_argument('--provider', default='OpenAI', choices=('OpenAI', 'Anthropic'))
     parser.add_argument('--max-output', type=int, default=8192)
     parser.add_argument('--rates', required=True, nargs=2, type=float)
     parser.add_argument('--retry-uncertain', action='store_true',
@@ -82,6 +84,8 @@ def main():
     metadata = {'manifest_sha256': hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest(),
                 'model': args.model, 'effort': args.effort, 'max_output': args.max_output,
                 'rates': args.rates, 'modes': list(modes), 'hint_levels': list(hint_levels)}
+    if args.provider != 'OpenAI':
+        metadata['provider'] = args.provider
     metadata_path = directory / 'run.json'
     if metadata_path.exists():
         if read(metadata_path) != metadata:
@@ -102,7 +106,7 @@ def main():
         uncertain.mkdir(exist_ok=True)
         for path in pending_paths:
             path.rename(uncertain / f'{path.stem}-{uuid.uuid4().hex}.json')
-    conf = settings(args.model, args.effort, args.max_output, args.rates)
+    conf = settings(args.model, args.effort, args.max_output, args.rates, args.provider)
     existing = [read(p) for p in directory.glob('*.json') if p.name != 'run.json']
     spent = (sum(row['cost'] for row in existing)
              + sum(read(p)['reservation'] for p in (directory / 'uncertain').glob('*.json')))
@@ -144,9 +148,7 @@ def main():
                 if row['messages'] != messages or row['answers'] != case['answers']:
                     raise ValueError(f'existing transcript mismatch: {path}')
             else:
-                body = {'model': args.model, 'reasoning_effort': args.effort,
-                        'max_completion_tokens': args.max_output, 'messages': messages}
-                body_bytes = json.dumps(body, ensure_ascii=True).encode('utf-8')
+                body_bytes = b' ' * body_size(conf, messages)
                 # UTF-8 JSON bytes conservatively bound text tokens; allow one envelope per message.
                 reservation = price(conf, len(body_bytes) + 128 * len(messages), args.max_output)
                 pending = path.with_suffix('.pending')
@@ -156,18 +158,15 @@ def main():
                         raise ValueError('budget cannot cover the next maximum-cost request')
                     write(pending, {'reservation': reservation, 'started_utc': started})
                     reserved += reservation
-                request = urllib.request.Request('https://api.openai.com/v1/chat/completions', data=body_bytes,
-                    headers={'Authorization': 'Bearer ' + os.environ['OPENAI_API_KEY'], 'Content-Type': 'application/json'})
-                with urllib.request.urlopen(request, timeout=240) as response:
-                    result = json.load(response)
-                raw = result['choices'][0]['message'].get('content') or ''
+                result = provider_request(conf, messages, timeout=240)
+                raw = result['raw']
                 usage = result['usage']
                 row = {'world': world, 'language': language, 'mode': mode, 'stage': stage,
                        'messages': messages, 'answers': case['answers'], 'raw': raw,
                        'marks': score(raw, case['answers'], response_format=response_format), 'requested_model': args.model,
                        'model': result['model'], 'effort': args.effort, 'max_output': args.max_output,
                        'started_utc': started,
-                       'finish_reason': result['choices'][0].get('finish_reason'), 'usage': usage,
+                       'finish_reason': result['finish_reason'], 'usage': usage,
                        'cost': price(conf, usage['prompt_tokens'], usage['completion_tokens'])}
                 write(path, row)
                 with ledger_lock:

@@ -8,7 +8,8 @@ from conlang.verify_tier4_dynamic import verify_run
 def main():
     configs = [('confirm', 'GPT-6 Luna (low)', 'Luna (low)', '2026-09-22'),
                ('luna-medium', 'GPT-6 Luna (medium)', 'Luna (medium)', '2026-09-22'),
-               ('terra-medium', 'GPT-6.1 Terra (medium)', 'Terra (medium)', '2026-10-26')]
+               ('terra-medium', 'GPT-6.1 Terra (medium)', 'Terra (medium)', '2026-10-26'),
+               ('sonnet-low', 'Claude Sonnet 5.5 (low)', 'Sonnet 5.5 (low)', '2026-09-28')]
     models = []
     for prefix, name, short, date in configs:
         rows = []
