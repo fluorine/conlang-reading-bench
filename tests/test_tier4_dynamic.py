@@ -1,11 +1,13 @@
 import json
 import io
+import re
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from conlang.tier4_dynamic import OBJECTS, TARGETS, build_story, score
+from conlang.tier4_audit import decode_full
 from conlang.suite import read
 from conlang.verify_tier3_search import suffix_blind_answers
 from experiments.run_tier4_probes import main as run_probes
@@ -46,6 +48,10 @@ class TestTier4Dynamic(unittest.TestCase):
         clue = revised['prompts'][1].split('\n\n')[1].split('Known suffix meanings (object/reference holder/role): ')[1]
         for entry in clue.rstrip('.').split('; '):
             self.assertIn(entry.split(':', 1)[0], story)
+        self.assertEqual(decode_full(revised['prompts'][2]), revised['answers'])
+        corrupted = re.sub(r'\b(Ada|Bo|Cy|Dee|Eli|Fay)-[a-z]+', r'\1-zz', revised['prompts'][2], count=1)
+        with self.assertRaisesRegex(ValueError, 'unknown marker'):
+            decode_full(corrupted)
 
     def test_repeated_questions_use_saved_history_without_feedback(self):
         pair = [363756058, 1106497454]

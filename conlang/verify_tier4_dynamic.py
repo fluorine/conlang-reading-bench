@@ -6,6 +6,7 @@ from pathlib import Path
 
 from conlang.runner import price, settings
 from conlang.tier4_dynamic import HINT_LEVELS, SIMPLE_HINT_LEVELS, LENGTH, OBJECTS, TARGETS, build_story, score
+from conlang.tier4_audit import decode_full
 from conlang.verify_tier3_search import suffix_blind_answers
 from experiments.run_tier4_probes import MODES
 
@@ -40,6 +41,8 @@ def verify_run(archive_path, manifest_path):
     uniform, last, initial_holder, questions = 0.0, 0, 0, 0
     for world, language in sorted(pairs):
         case = build_story(world, language, scheme=scheme, observed_hints=observed_hints)
+        if scheme == 'unique' and decode_full(case['prompts'][2]) != case['answers']:
+            raise ValueError('independent fully disclosed replay disagrees with gold')
         english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(OBJECTS)]
         starting = {line.split()[-1].removesuffix('.'): line.split()[0] for line in english_story}
         for i, target in enumerate(TARGETS):
