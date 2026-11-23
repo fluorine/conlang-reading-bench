@@ -155,7 +155,7 @@ def main():
                     spent += row['cost']
                     reserved -= reservation
                     pending.unlink()
-                print(mode, world, stage, sum(row['marks']), '/4', flush=True)
+                print(mode, world, stage, sum(row['marks']), f"/{len(row['answers'])}", flush=True)
             if mode not in ('fresh_conlang', 'fresh_english'):
                 if not row['raw'] and stage < len(hint_levels) - 1:
                     raise ValueError(f'empty response prevents continued-context replay: {path}')

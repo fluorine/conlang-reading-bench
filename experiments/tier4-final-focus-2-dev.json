@@ -1,0 +1,68 @@
+{
+  "name": "tier4-final-focus-2-dev",
+  "seed": 430011,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    1,
+    5,
+    30
+  ],
+  "scheme": "unique",
+  "observed_hints": true,
+  "pairs": [
+    [
+      502885050,
+      12358534
+    ],
+    [
+      1847875,
+      2113771805
+    ],
+    [
+      623725185,
+      874502514
+    ],
+    [
+      270838614,
+      53489533
+    ],
+    [
+      2115964457,
+      637954865
+    ],
+    [
+      1654674241,
+      30043408
+    ],
+    [
+      1622967511,
+      1559791406
+    ],
+    [
+      1176437610,
+      70692767
+    ],
+    [
+      208500020,
+      441301127
+    ],
+    [
+      160070927,
+      655509745
+    ],
+    [
+      1379806828,
+      1830772347
+    ],
+    [
+      1754757486,
+      166871447
+    ]
+  ],
+  "purpose": "adaptive one-question-per-call comparison on previously evaluated final-state stories",
+  "focus_index": 2,
+  "modes": [
+    "fresh_conlang"
+  ]
+}
