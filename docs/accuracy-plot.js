@@ -58,11 +58,14 @@ function render() {
   grid.replaceChildren();
   const isFour = tier === "four";
   const isResearch = tier === "research";
-  const questionCount = isResearch ? 48 : isFour ? 192 : 96;
-  const storyCount = isResearch ? 48 : questionCount / 4;
-  const activeModels = isResearch ? tier3Research.models.map(model => model.name) : models;
-  const activeShortNames = isResearch ? tier3Research.models.map(model => model.shortName) : shortNames;
-  const activeDates = isResearch ? tier3Research.models.map(model => model.releaseDate) : releaseDates;
+  const isTier4 = tier === "tier4";
+  const isExperimental = isResearch || isTier4;
+  const series = isTier4 ? tier4Research.models : isResearch ? tier3Research.models : null;
+  const questionCount = isResearch ? 48 : isFour || isTier4 ? 192 : 96;
+  const storyCount = isExperimental ? 48 : questionCount / 4;
+  const activeModels = isExperimental ? series.map(model => model.name) : models;
+  const activeShortNames = isExperimental ? series.map(model => model.shortName) : shortNames;
+  const activeDates = isExperimental ? series.map(model => model.releaseDate) : releaseDates;
   const activeTimes = activeDates.map(date => Date.parse(date));
   const selected = Array.from(conditions.querySelectorAll("input:checked"), input => input.value);
   const both = selected.length === 2;
@@ -76,15 +79,20 @@ function render() {
     legend.querySelector("." + key).hidden = !selected.includes(key);
   }
   detail.textContent = selected.length ? "Select a point to see the exact score." : "Choose a reading condition to show scores.";
-  note.textContent = isResearch
+  note.textContent = isTier4
+    ? "48 longer stories per configuration, four questions each. Effort is shown with each model. Fresh contexts; results are provisional and cannot be compared directly across tiers."
+    : isResearch
     ? "Exploratory five-object grammar: 48 stories per model, one question per story. The effort is shown with each model. Scores are preliminary and not directly comparable with earlier tiers."
     : isFour
     ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap."
     : "24 reference stories per model. Luna used low reasoning with a 512-token cap.";
-  plot.querySelector("#condition-description").textContent = isResearch
+  plot.querySelector("#condition-description").textContent = isTier4
+    ? "The conlang score is correct answers with no disclosed suffix meanings. English is a separate control. Select a point for its score."
+    : isResearch
     ? "The conlang score is the percentage correct. English is a separate control. Select a point for its score."
     : "The conlang score is the percentage correct with minimal clues. English is a separate control. Select a point for its score.";
   plot.querySelector("#research-note").hidden = !isResearch;
+  plot.querySelector("#tier4-note").hidden = !isTier4;
 
   for (const value of ticks) {
     const tick = document.createElement("div");
@@ -105,8 +113,8 @@ function render() {
     const span = Math.max(...activeTimes) - firstRelease || 1;
     const sameDate = activeTimes.map((time, index) => time === activeTimes[i] ? index : -1).filter(index => index >= 0);
     const dateRank = sameDate.indexOf(i);
-    const base = isResearch && activeModels.length > 2 ? 35 + 40 * elapsed / span
-      : isResearch ? 25 + 50 * elapsed / span : 10 + 80 * elapsed / span;
+    const base = isExperimental && activeModels.length > 2 ? 35 + 40 * elapsed / span
+      : isExperimental ? 25 + 50 * elapsed / span : 10 + 80 * elapsed / span;
     column.style.left = base + "%";
     if (sameDate.length > 1) {
       const spacing = sameDate.length > 2 ? 3.3 : 5;
@@ -119,7 +127,7 @@ function render() {
     date.textContent = dateLabel.format(activeTimes[i]);
     if (sameDate.length > 2 && dateRank !== Math.floor(sameDate.length / 2)) date.hidden = true;
     column.append(date);
-    const scores = isResearch ? tier3Research.models[i].scores : accuracy[tier][i];
+    const scores = isExperimental ? series[i].scores : accuracy[tier][i];
     const label = document.createElement("span");
     label.className = "scatter-model";
     label.textContent = activeShortNames[i];
@@ -127,10 +135,15 @@ function render() {
       const heights = selected.map(key => position(scores[key]));
       const above = Math.max(...heights) < 87;
       const edge = above ? Math.max(...heights) : Math.min(...heights);
-      if (isResearch && sameDate.length > 2) {
-        const groupHeights = sameDate.flatMap(index => selected.map(key => position(tier3Research.models[index].scores[key])));
-        const groupAbove = Math.max(...groupHeights) < 87;
-        const anchor = groupAbove ? Math.max(...groupHeights) : Math.min(...groupHeights);
+      const groupHeights = isExperimental ? sameDate.flatMap(index => selected.map(key => position(series[index].scores[key]))) : [];
+      const groupAbove = groupHeights.length && Math.max(...groupHeights) < 87;
+      const groupEdges = isExperimental ? sameDate.map(index => {
+        const heights = selected.map(key => position(series[index].scores[key]));
+        return groupAbove ? Math.max(...heights) : Math.min(...heights);
+      }) : [];
+      const clustered = groupEdges.length > 1 && Math.max(...groupEdges) - Math.min(...groupEdges) < 12;
+      if (clustered) {
+        const anchor = groupAbove ? Math.max(...groupEdges) : Math.min(...groupEdges);
         const offset = groupAbove ? .65 + dateRank * 1.1 : -.65 - (sameDate.length - dateRank) * 1.1;
         label.style.bottom = `calc(${anchor}% + ${offset}rem)`;
       } else {
