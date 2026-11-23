@@ -37,6 +37,7 @@ jobs:
       - run: python -m conlang.verify_tier4_regular_dev
       - run: python -m conlang.verify_tier4_regular_confirm
       - run: python -m conlang.verify_tier4_regular_zero_dev
+      - run: python -m conlang.verify_tier4_zero_confirm
       - run: python -m experiments.build_tier3_site
       - run: git diff --exit-code -- docs/tier3-results.js
       - run: node tests/test_plot.js

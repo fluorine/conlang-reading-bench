@@ -59,6 +59,12 @@ def analyze_family(prefix='tier4-regular-confirm', levels=(1, 3, 10), seed=43002
               f'95% story bootstrap {100*lower:+.1f} to {100*upper:+.1f}')
     all_rows = [row for e in entries for kind in ('model', 'english') for row in e[kind]]
     primary = sum(sum(e['model'][0]['marks']) for e in entries) / total
+    primary_story = [sum(e['model'][0]['marks']) / 4 for e in entries]
+    rng = Random(seed + 2)
+    primary_samples = sorted(sum(rng.choice(primary_story) for _ in primary_story) / len(primary_story)
+                             for _ in range(10000))
+    print(f'primary accuracy 95% descriptive story bootstrap '
+          f'{100*primary_samples[249]:.1f}% to {100*primary_samples[9749]:.1f}%')
     english = sum(sum(e['english'][0]['marks']) for e in entries) / total
     full = sum(sum(e['model'][2]['marks']) for e in entries) / total
     clean = all(row['raw'] and row.get('finish_reason') != 'length' for row in all_rows)

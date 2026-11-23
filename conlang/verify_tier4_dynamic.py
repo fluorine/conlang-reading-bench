@@ -59,10 +59,19 @@ def verify_run(archive_path, manifest_path):
             or not modes or len(set(modes)) != len(modes) or any(mode not in MODES for mode in modes)):
         raise ValueError('manifest does not match Tier 4 prototype')
     metadata, rows = archive['metadata'], archive['responses']
+    configuration = manifest.get('model_config', {'model': 'gpt-6-luna', 'effort': 'low',
+                                                  'max_output': 8192, 'rates': [0.1, 0.5]})
+    if (set(configuration) != {'model', 'effort', 'max_output', 'rates'}
+            or not isinstance(configuration['model'], str) or not configuration['model']
+            or not isinstance(configuration['effort'], str) or not configuration['effort']
+            or type(configuration['max_output']) is not int or configuration['max_output'] < 1
+            or not isinstance(configuration['rates'], list) or len(configuration['rates']) != 2
+            or any(type(x) not in (int, float) or not math.isfinite(x) or x < 0 for x in configuration['rates'])):
+        raise ValueError('invalid model configuration')
     fingerprint = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
-    if (metadata.get('manifest_sha256') != fingerprint or metadata.get('model') != 'gpt-6-luna'
-            or metadata.get('effort') != 'low' or metadata.get('max_output') != 8192
-            or metadata.get('rates') != [0.1, 0.5] or metadata.get('modes') != list(modes)
+    if (metadata.get('manifest_sha256') != fingerprint or metadata.get('model') != configuration['model']
+            or metadata.get('effort') != configuration['effort'] or metadata.get('max_output') != configuration['max_output']
+            or metadata.get('rates') != configuration['rates'] or metadata.get('modes') != list(modes)
             or metadata.get('hint_levels') != list(hint_levels)):
         raise ValueError('run metadata mismatch')
     pairs = {tuple(pair) for pair in manifest['pairs']}
@@ -71,7 +80,7 @@ def verify_run(archive_path, manifest_path):
     if len(pairs) != len(manifest['pairs']) or actual != expected or len(rows) != len(expected):
         raise ValueError('missing, extra or repeated response')
     lookup = {(r['world'], r['language'], r['mode'], r['stage']): r for r in rows}
-    conf = settings('gpt-6-luna', 'low', 8192, [0.1, 0.5])
+    conf = settings(configuration['model'], configuration['effort'], configuration['max_output'], configuration['rates'])
     uniform, last, initial_holder, questions = 0.0, 0, 0, 0
     for world, language in sorted(pairs):
         if compact:
@@ -134,8 +143,8 @@ def verify_run(archive_path, manifest_path):
                 usage = row['usage']
                 if (row['messages'] != messages or row['answers'] != case['answers']
                         or row['marks'] != score(row['raw'], case['answers'], response_format=response_format)
-                        or row.get('requested_model') != 'gpt-6-luna' or row.get('effort') != 'low'
-                        or row.get('max_output') != 8192
+                        or row.get('requested_model') != configuration['model'] or row.get('effort') != configuration['effort']
+                        or row.get('max_output') != configuration['max_output']
                         or not math.isclose(row['cost'], price(conf, usage['prompt_tokens'], usage['completion_tokens']), abs_tol=1e-10)):
                     raise ValueError(f'{mode} stage {stage}: transcript, score or cost mismatch')
                 if mode not in ('fresh_conlang', 'fresh_english'):
