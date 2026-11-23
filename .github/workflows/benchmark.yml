@@ -34,6 +34,7 @@ jobs:
       - run: python -m conlang.verify_tier4_compact_dev
       - run: python -m conlang.verify_tier4_compact_roles
       - run: python -m conlang.verify_tier4_compact_objects
+      - run: python -m conlang.verify_tier4_regular_dev
       - run: python -m experiments.build_tier3_site
       - run: git diff --exit-code -- docs/tier3-results.js
       - run: node tests/test_plot.js

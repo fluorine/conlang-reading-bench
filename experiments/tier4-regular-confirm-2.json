@@ -1,0 +1,92 @@
+{
+  "name": "tier4-regular-confirm-2",
+  "seed": 430020,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    1,
+    3,
+    10
+  ],
+  "scheme": "unique",
+  "context_free": true,
+  "observed_hints": true,
+  "min_observed_markers": 10,
+  "modes": [
+    "fresh_conlang",
+    "fresh_english"
+  ],
+  "pairs": [
+    [
+      406900785,
+      907948561
+    ],
+    [
+      1090516431,
+      156211900
+    ],
+    [
+      124744773,
+      780859535
+    ],
+    [
+      1543295789,
+      639859018
+    ],
+    [
+      785631425,
+      1555920360
+    ],
+    [
+      1809444761,
+      79202331
+    ],
+    [
+      1607887179,
+      88928030
+    ],
+    [
+      2009746867,
+      950169340
+    ],
+    [
+      367391445,
+      59060071
+    ],
+    [
+      1872554221,
+      1887025265
+    ],
+    [
+      1947382412,
+      1421318660
+    ],
+    [
+      1107944081,
+      1611216025
+    ]
+  ],
+  "attempts": 48,
+  "rejections": {},
+  "excluded_manifests": [
+    "tier4-confirmation.json",
+    "tier4-observed-fresh.json",
+    "tier4-deferred-dev.json",
+    "tier4-policy-audit.json",
+    "tier4-paired-random.json",
+    "tier4-checkpoint-dev.json",
+    "tier4-focus-fresh-0.json",
+    "tier4-focus-fresh-1.json",
+    "tier4-focus-fresh-2.json",
+    "tier4-focus-fresh-3.json",
+    "tier4-compact-dev.json",
+    "tier4-regular-dev.json"
+  ],
+  "purpose": "fresh regular-grammar candidate evaluation; fixed before model calls",
+  "analysis_plan": {
+    "primary": "one-hint fresh-context conlang accuracy",
+    "acceptance": "score below 40%; initial English and full-grammar accuracy at least 90%; no empty or capped requests; 95% paired story-bootstrap lower bounds above zero versus both last-name and disclosed-transfer trackers",
+    "output_failures": "invalid or missing answers count wrong; disclose rates",
+    "secondary": "three hints, full grammar, English, token use and per-story outcomes"
+  }
+}
