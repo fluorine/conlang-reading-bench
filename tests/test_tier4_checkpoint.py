@@ -44,6 +44,17 @@ class Tier4CheckpointTest(unittest.TestCase):
         self.assertIn('"work" field', case['english'])
         self.assertEqual(decode_full(case['prompts'][2], query_after=15), case['answers'])
 
+    def test_focused_question_preserves_single_correct_answer(self):
+        options = dict(scheme='unique', observed_hints=True, hint_levels=(10, 20, 30),
+                       min_observed_markers=20, query_after=15)
+        plain = build_story(334440644, 1573348965, **options)
+        focused = build_story(334440644, 1573348965, focus_index=2, **options)
+        self.assertEqual(focused['answers'], [plain['answers'][2]])
+        self.assertEqual(focused['prompts'][0].split('\n\n')[-1].count('\n'), 0)
+        self.assertIn('1 name', focused['english'])
+        self.assertIn('book after transfer 15', focused['english'])
+        self.assertEqual(decode_full(focused['prompts'][2], query_after=15)[2], focused['answers'][0])
+
 
 if __name__ == '__main__':
     unittest.main()

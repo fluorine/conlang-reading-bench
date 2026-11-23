@@ -24,6 +24,7 @@ def verify_run(archive_path, manifest_path):
     query_after = manifest.get('query_after')
     reasoning_guide = manifest.get('reasoning_guide', False)
     response_format = manifest.get('response_format', 'array')
+    focus_index = manifest.get('focus_index')
     hint_levels = tuple(manifest.get('hint_levels', ()))
     maximum = 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
     modes = tuple(manifest.get('modes', MODES))
@@ -34,6 +35,8 @@ def verify_run(archive_path, manifest_path):
             or (query_after is not None and defer_target_final)
             or type(reasoning_guide) is not bool
             or response_format not in ('array', 'work_answers')
+            or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < len(TARGETS)))
+            or (focus_index is not None and (response_format != 'array' or any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes)))
             or (response_format == 'work_answers' and any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes))
             or type(minimum_observed) is not int
             or minimum_observed < 0 or (minimum_observed and not observed_hints) or len(hint_levels) != 3
@@ -60,21 +63,26 @@ def verify_run(archive_path, manifest_path):
         case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
                            hint_levels=hint_levels, min_observed_markers=minimum_observed,
                            defer_target_final=defer_target_final, query_after=query_after,
-                           reasoning_guide=reasoning_guide, response_format=response_format)
+                           reasoning_guide=reasoning_guide, response_format=response_format,
+                           focus_index=focus_index)
         if scheme == 'unique':
             audit_case = case if hint_levels[-1] == 30 else build_story(
                 world, language, scheme=scheme, observed_hints=observed_hints,
                 hint_levels=(hint_levels[0], 29, 30), min_observed_markers=minimum_observed,
                 defer_target_final=defer_target_final, query_after=query_after,
-                reasoning_guide=reasoning_guide, response_format=response_format)
-            if decode_full(audit_case['prompts'][2], query_after=query_after) != case['answers']:
+                reasoning_guide=reasoning_guide, response_format=response_format, focus_index=focus_index)
+            decoded = decode_full(audit_case['prompts'][2], query_after=query_after)
+            if focus_index is not None:
+                decoded = [decoded[focus_index]]
+            if decoded != case['answers']:
                 raise ValueError('independent fully disclosed replay disagrees with gold')
         english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(OBJECTS)]
         starting = {line.split()[-1].removesuffix('.'): line.split()[0] for line in english_story}
         if query_after is not None:
             from conlang.tier4_checkpoint import suffix_blind_checkpoint
             checkpoint_possible = suffix_blind_checkpoint(case['prompts'][0], query_after)
-        for i, target in enumerate(TARGETS):
+        selected_targets = TARGETS if focus_index is None else (TARGETS[focus_index],)
+        for i, target in enumerate(selected_targets):
             possible = (checkpoint_possible[OBJECTS.index(target)] if query_after is not None else
                         suffix_blind_answers(case['prompts'][0], OBJECTS, OBJECTS.index(target)))
             if len(possible) < 2 or case['answers'][i] not in possible:

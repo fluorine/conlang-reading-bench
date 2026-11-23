@@ -21,7 +21,7 @@ def _parts(prompt):
 
 def build_story(world_seed, language_seed, scheme='shared', observed_hints=False, hint_levels=None,
                 min_observed_markers=0, defer_target_final=False, query_after=None,
-                reasoning_guide=False, response_format='array'):
+                reasoning_guide=False, response_format='array', focus_index=None):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
@@ -34,6 +34,8 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
             or type(defer_target_final) is not bool
             or type(reasoning_guide) is not bool
             or response_format not in ('array', 'work_answers')
+            or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < len(TARGETS)))
+            or (focus_index is not None and response_format != 'array')
             or (defer_target_final and (not observed_hints or scheme != 'unique'))):
         raise ValueError('invalid observed-marker minimum')
     shared = scheme == 'shared'
@@ -113,6 +115,16 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
                             + '\n\nReturn only a JSON array of four names in question order.')
     repeat = ('No new information has been provided. Answer the same questions again.\n\n'
               + questions + '\n\nReturn only a JSON array of four names in question order.')
+    if focus_index is not None:
+        def focus(prompt):
+            segments = prompt.split('\n\n')
+            selected = segments[-1].splitlines()[focus_index]
+            segments[-1] = '1.' + selected.split('.', 1)[1]
+            segments[0] = segments[0].replace('containing 4 names', 'containing 1 name')
+            return '\n\n'.join(segments)
+        prompts = [focus(prompt) for prompt in prompts]
+        english = focus(english)
+        answer = [answer[focus_index]]
     return {'prompts': prompts, 'continuation': continuation, 'repeat': repeat,
             'english': english, 'answers': answer}
 

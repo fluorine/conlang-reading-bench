@@ -26,8 +26,11 @@ def analyze(archive_path, manifest_path):
                                defer_target_final=manifest.get('defer_target_final', False),
                                query_after=manifest.get('query_after'),
                                reasoning_guide=manifest.get('reasoning_guide', False),
-                               response_format=manifest.get('response_format', 'array'))
+                               response_format=manifest.get('response_format', 'array'),
+                               focus_index=manifest.get('focus_index'))
             prediction = last_disclosed_transfer(case['prompts'][stage], manifest.get('query_after'))
+            if manifest.get('focus_index') is not None:
+                prediction = [prediction[manifest['focus_index']]]
             baseline = sum(a == b for a, b in zip(prediction, case['answers']))
             model = sum(rows[(world, language, stage)]['marks'])
             baseline_total += baseline
@@ -36,7 +39,7 @@ def analyze(archive_path, manifest_path):
         rng = random.Random(31000 + stage)
         samples = sorted(sum(rng.choice(differences) for _ in differences) / len(differences)
                          for _ in range(10000))
-        total = len(differences) * 4
+        total = len(differences) * len(case['answers'])
         print(f'{count} meanings: heuristic {baseline_total}/{total}; model {model_total}/{total}; '
               f'difference {100 * sum(differences) / len(differences):+.1f} points '
               f'(95% story bootstrap {100 * samples[249]:+.1f} to {100 * samples[9749]:+.1f})')

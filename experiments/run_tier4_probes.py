@@ -41,6 +41,7 @@ def main():
     query_after = manifest.get('query_after')
     reasoning_guide = manifest.get('reasoning_guide', False)
     response_format = manifest.get('response_format', 'array')
+    focus_index = manifest.get('focus_index')
     hint_levels = tuple(manifest.get('hint_levels', ()))
     maximum = 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
     modes = tuple(manifest.get('modes', MODES))
@@ -51,6 +52,8 @@ def main():
             or (query_after is not None and defer_target_final)
             or type(reasoning_guide) is not bool
             or response_format not in ('array', 'work_answers')
+            or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < len(TARGETS)))
+            or (focus_index is not None and (response_format != 'array' or any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes)))
             or (response_format == 'work_answers' and any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes))
             or type(minimum_observed) is not int
             or minimum_observed < 0 or (minimum_observed and not observed_hints) or len(hint_levels) != 3
@@ -101,7 +104,8 @@ def main():
         case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
                            hint_levels=hint_levels, min_observed_markers=minimum_observed,
                            defer_target_final=defer_target_final, query_after=query_after,
-                           reasoning_guide=reasoning_guide, response_format=response_format)
+                           reasoning_guide=reasoning_guide, response_format=response_format,
+                           focus_index=focus_index)
         history = []
         for stage in range(len(hint_levels)):
             if mode == 'fresh_conlang':

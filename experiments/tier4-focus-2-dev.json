@@ -1,0 +1,65 @@
+{
+  "name": "tier4-focus-2-dev",
+  "seed": 430016,
+  "length": 30,
+  "question_count": 4,
+  "query_after": 15,
+  "hint_levels": [
+    1,
+    3,
+    30
+  ],
+  "scheme": "unique",
+  "observed_hints": true,
+  "min_observed_markers": 20,
+  "modes": [
+    "fresh_conlang"
+  ],
+  "pairs": [
+    [
+      1310677710,
+      184951418
+    ],
+    [
+      977054136,
+      1667307524
+    ],
+    [
+      299626693,
+      1203463246
+    ],
+    [
+      1364556667,
+      1582470867
+    ],
+    [
+      574969024,
+      1381858651
+    ],
+    [
+      2127571955,
+      159213565
+    ],
+    [
+      1693882437,
+      1899935761
+    ],
+    [
+      1751223422,
+      1522635467
+    ]
+  ],
+  "attempts": 9,
+  "rejections": {
+    "suffix-free shortcut determines the answer": 1
+  },
+  "excluded_manifests": [
+    "tier4-confirmation.json",
+    "tier4-observed-fresh.json",
+    "tier4-deferred-dev.json",
+    "tier4-policy-audit.json",
+    "tier4-paired-random.json"
+  ],
+  "purpose": "adaptive one-question-per-call comparison on reused midpoint development stories",
+  "focus_index": 2
+}
