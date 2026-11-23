@@ -54,7 +54,9 @@ def verify_run(archive_path, manifest_path):
                            defer_target_final=defer_target_final)
         if scheme == 'unique':
             audit_case = case if hint_levels[-1] == 30 else build_story(
-                world, language, scheme=scheme, observed_hints=observed_hints)
+                world, language, scheme=scheme, observed_hints=observed_hints,
+                hint_levels=(hint_levels[0], 29, 30), min_observed_markers=minimum_observed,
+                defer_target_final=defer_target_final)
             if decode_full(audit_case['prompts'][2]) != case['answers']:
                 raise ValueError('independent fully disclosed replay disagrees with gold')
         english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(OBJECTS)]
