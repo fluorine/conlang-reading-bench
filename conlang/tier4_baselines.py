@@ -84,3 +84,18 @@ def deferred_policy_candidates(prompt):
                  if i > latest[target] and not has_known for name, _ in pairs}
         results.append(names & suffix_blind_answers(prompt, OBJECTS, OBJECTS.index(target)))
     return results
+
+
+def last_role_recipient(prompt):
+    """Name the final transfer's recipient using an explicitly provided role inventory."""
+    _, header, _, story, _ = _parts(prompt)
+    match = re.search(r' Role-only inventory: giver suffixes (.*?); recipient suffixes (.*?)\.', header)
+    if not match:
+        raise ValueError('no role-only inventory')
+    recipient_suffixes = {marker.removeprefix('-') for marker in match.group(2).split(', ')}
+    words = story.splitlines()[-1].split()
+    recipients = [word.split('-', 1)[0] for word in words
+                  if word.split('-', 1)[1] in recipient_suffixes]
+    if len(recipients) != 1:
+        raise ValueError('final transfer does not have exactly one recipient')
+    return recipients[0]

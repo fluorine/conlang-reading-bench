@@ -7,11 +7,11 @@ LENGTH = 30
 
 
 def build_story(world_seed, language_seed, hint_levels=(1, 3, 18),
-                min_observed_markers=0, focus_index=None):
+                min_observed_markers=0, focus_index=None, role_hints=False):
     if (len(hint_levels) != 3 or tuple(sorted(set(hint_levels))) != tuple(hint_levels)
             or any(type(n) is not int or not 1 <= n <= 18 for n in hint_levels)):
         raise ValueError('invalid compact hint levels')
-    if (type(min_observed_markers) is not int or min_observed_markers < 0
+    if (type(min_observed_markers) is not int or min_observed_markers < 0 or type(role_hints) is not bool
             or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < 3))):
         raise ValueError('invalid compact options')
     prompts, answers = [], None
@@ -41,6 +41,21 @@ def build_story(world_seed, language_seed, hint_levels=(1, 3, 18),
                           allow_simple_hints=True, observed_hints=True, english=True)
     if gold != answers:
         raise ValueError('English control does not match')
+    if role_hints:
+        if hint_levels[-1] != 18:
+            raise ValueError('role inventory requires full mapping in final stage')
+        mapping = {}
+        for entry in parts[-1][2]:
+            marker, meaning = entry.split(': ', 1)
+            mapping[marker] = meaning.split('/')[-1]
+        if len(mapping) != 18 or set(mapping.values()) != {'giver', 'recipient'}:
+            raise ValueError('invalid role inventory')
+        giver = ', '.join(sorted(marker for marker, role in mapping.items() if role == 'giver'))
+        receiver = ', '.join(sorted(marker for marker, role in mapping.items() if role == 'recipient'))
+        note = (f' Role-only inventory: giver suffixes {giver}; recipient suffixes {receiver}. '
+                'This identifies roles only, not objects or reference contexts.')
+        prefix = ' Known suffix meanings (object/reference holder/role): '
+        prompts = [p.replace(prefix, note + prefix, 1) for p in prompts]
     if focus_index is not None:
         def focus(prompt):
             sections = prompt.split('\n\n')

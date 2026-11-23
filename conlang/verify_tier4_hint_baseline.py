@@ -23,7 +23,8 @@ def analyze(archive_path, manifest_path):
                 from conlang.tier4_compact import build_story as build_compact, OBJECTS as compact_targets
                 case = build_compact(world, language, hint_levels=manifest['hint_levels'],
                                      min_observed_markers=manifest.get('min_observed_markers', 0),
-                                     focus_index=manifest.get('focus_index'))
+                                     focus_index=manifest.get('focus_index'),
+                                     role_hints=manifest.get('role_hints', False))
                 prediction = last_disclosed_transfer(case['prompts'][stage], targets=compact_targets)
             else:
                 case = build_story(world, language, scheme=manifest['scheme'],

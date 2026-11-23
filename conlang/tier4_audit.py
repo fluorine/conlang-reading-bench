@@ -24,6 +24,13 @@ def decode_full(prompt, query_after=None, objects=OBJECTS, targets=TARGETS, leng
     required = set(product(objects, ('giver', 'recipient', 'other'), ('giver', 'recipient')))
     if len(mapping) != len(required) or set(mapping.values()) != required:
         raise ValueError('suffix table is not a complete one-to-one mapping')
+    role_note = re.search(r' Role-only inventory: giver suffixes (.*?); recipient suffixes (.*?)\.', clue)
+    if role_note:
+        for role, listed in zip(('giver', 'recipient'), role_note.groups()):
+            claimed = set(listed.split(', '))
+            actual = {'-' + marker for marker, meaning in mapping.items() if meaning[2] == role}
+            if claimed != actual:
+                raise ValueError('role-only inventory disagrees with full suffix table')
     lines = story.splitlines()
     if lines[0] != 'Story:' or len(lines) != 1 + len(objects) + length:
         raise ValueError('invalid story length')
