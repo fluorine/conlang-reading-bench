@@ -7,6 +7,7 @@ from conlang.verify_sol_comparison import ARCHIVE as SOL_ARCHIVE, main as verify
 from conlang.verify_luna_low_comparison import ARCHIVE as LUNA_LOW_ARCHIVE, main as verify_luna_low
 from conlang.verify_haiku_low_comparison import ARCHIVE as HAIKU_ARCHIVE, main as verify_haiku
 from conlang.verify_sonnet_low_comparison import ARCHIVE as SONNET_ARCHIVE, main as verify_sonnet
+from conlang.verify_sonnet_high_comparison import ARCHIVE as SONNET_HIGH_ARCHIVE, main as verify_sonnet_high
 
 
 def main():
@@ -18,15 +19,18 @@ def main():
         verify_luna_low()
     verify_haiku()
     verify_sonnet()
+    verify_sonnet_high()
     archive = json.loads(ARCHIVE.read_text(encoding='utf-8'))
     details = {'luna': ('GPT-6 Luna (medium)', 'Luna (medium)', '2026-09-22'),
                'luna-low': ('GPT-6 Luna (low)', 'Luna (low)', '2026-09-22'),
                'sol': ('GPT-6 Sol (low)', 'Sol (low)', '2026-09-22'),
                'terra': ('GPT-6.1 Terra (medium)', 'Terra (medium)', '2026-10-26'),
                'haiku-low': ('Claude Haiku 5.5 (low)', 'Haiku 5.5 (low)', '2026-10-07'),
-               'sonnet-low': ('Claude Sonnet 5.5 (low)', 'Sonnet 5.5 (low)', '2026-09-28')}
+               'sonnet-low': ('Claude Sonnet 5.5 (low)', 'Sonnet 5.5 (low)', '2026-09-28'),
+               'sonnet-high': ('Claude Sonnet 5.5 (high)', 'Sonnet 5.5 (high)', '2026-09-28')}
     extra = {name: json.loads(path.read_text(encoding='utf-8'))
-             for name, path in (('haiku-low', HAIKU_ARCHIVE), ('sonnet-low', SONNET_ARCHIVE))}
+             for name, path in (('haiku-low', HAIKU_ARCHIVE), ('sonnet-low', SONNET_ARCHIVE),
+                       ('sonnet-high', SONNET_HIGH_ARCHIVE))}
     sol = json.loads(SOL_ARCHIVE.read_text(encoding='utf-8')) if SOL_ARCHIVE.exists() else None
     luna_low = json.loads(LUNA_LOW_ARCHIVE.read_text(encoding='utf-8')) if LUNA_LOW_ARCHIVE.exists() else None
     models = []

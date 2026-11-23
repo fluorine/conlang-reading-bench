@@ -50,9 +50,24 @@ The OpenAI runs used output caps of 8,192 to 16,384 tokens on Tiers 3 and 4. The
 python -m unittest discover -s tests -v
 python -m conlang.verify_haiku_low_comparison
 python -m conlang.verify_sonnet_low_comparison
+python -m conlang.verify_sonnet_high_comparison
 python -m conlang.verify_tier4_zero_comparison
 python -m experiments.build_tier3_site
 python -m experiments.build_tier4_site
 ```
 
 To collect new responses, set `ANTHROPIC_API_KEY` and pass `--provider Anthropic` to `python -m conlang run`, `experiments.run_case_probes` or `experiments.run_tier4_probes`.
+
+## Sonnet 5.5 high on Tier 3
+
+Sonnet 5.5 ran Tier 3 again at high effort, with an 8,192-token output cap. It cost about $3.46. Tier 4 did not run at high effort. The estimate is about $15, which is more than the budget.
+
+| Sonnet 5.5 high | Strict | Last array only |
+|---|---:|---:|
+| Tier 3 conlang | 17/48 (35.4%) | 17/48 |
+| Tier 3 English | 0/48 | 48/48 |
+
+- 30 of the 48 conlang replies reached the 8,192-token cap and have no answer. These count as wrong. The result is limited by the cap, not only by the model.
+- The 17 answered conlang replies are all bare JSON arrays. The English replies still write text before the array, so the strict English score is 0.
+- At low effort with a 4,096-token cap, Sonnet 5.5 had no capped replies and a last-array score of 21/48 on the Tier 3 conlang questions. High effort scores lower because many replies run out of tokens.
+- The result does not show that high effort overcomes Tier 3. It scores below Haiku 5.5 low (21/48) and below Terra medium (40/48).
