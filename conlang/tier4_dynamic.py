@@ -5,6 +5,7 @@ from .three_object_probe import build
 OBJECTS = ('coin', 'key', 'book', 'ring', 'cup')
 TARGETS = ('coin', 'key', 'book', 'ring')
 HINT_LEVELS = (1, 5, 15)
+SIMPLE_HINT_LEVELS = (1, 5, 30)
 LENGTH = 30
 
 
@@ -17,17 +18,21 @@ def _parts(prompt):
     return instruction, header, meanings.removesuffix('.').split('; '), story, questions
 
 
-def build_story(world_seed, language_seed):
+def build_story(world_seed, language_seed, scheme='shared'):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
     disclosed level, and none is uniquely answered after erasing all suffixes.
     """
+    if scheme not in ('shared', 'unique'):
+        raise ValueError('unknown marker scheme')
+    shared = scheme == 'shared'
+    hint_levels = HINT_LEVELS if shared else SIMPLE_HINT_LEVELS
     prompts, answer = [], None
-    for count in HINT_LEVELS:
+    for count in hint_levels:
         prompt, gold = build(world_seed, language_seed, length=LENGTH, objects=OBJECTS,
-                             syncretism=True, revealed=count, query_objects=TARGETS,
-                             nested_hints=True)
+                             syncretism=shared, revealed=count, query_objects=TARGETS,
+                             nested_hints=True, allow_simple_hints=not shared)
         if answer is not None and gold != answer:
             raise ValueError('gold changed across hint stages')
         prompts.append(prompt)
@@ -39,8 +44,8 @@ def build_story(world_seed, language_seed):
     if any(parts[i][2] != parts[i + 1][2][:len(parts[i][2])] for i in range(len(parts) - 1)):
         raise ValueError('hint stages are not cumulative')
     english, english_gold = build(world_seed, language_seed, length=LENGTH, objects=OBJECTS,
-                                  syncretism=True, revealed=HINT_LEVELS[0], query_objects=TARGETS,
-                                  nested_hints=True, english=True)
+                                  syncretism=shared, revealed=hint_levels[0], query_objects=TARGETS,
+                                  nested_hints=True, allow_simple_hints=not shared, english=True)
     if english_gold != answer:
         raise ValueError('English control does not match')
     questions = parts[0][4]

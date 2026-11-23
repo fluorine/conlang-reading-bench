@@ -5,7 +5,7 @@ import math
 from pathlib import Path
 
 from conlang.runner import price, settings
-from conlang.tier4_dynamic import HINT_LEVELS, LENGTH, OBJECTS, TARGETS, build_story, score
+from conlang.tier4_dynamic import HINT_LEVELS, SIMPLE_HINT_LEVELS, LENGTH, OBJECTS, TARGETS, build_story, score
 from conlang.verify_tier3_search import suffix_blind_answers
 from experiments.run_tier4_probes import MODES
 
@@ -13,21 +13,23 @@ ARCHIVE = Path('reports/tier4-dynamic-dev-responses.json')
 MANIFEST = Path('experiments/tier4-dynamic-dev.json')
 
 
-def main():
-    archive = json.loads(ARCHIVE.read_text(encoding='utf-8'))
-    manifest = json.loads(MANIFEST.read_text(encoding='utf-8'))
+def verify_run(archive_path, manifest_path):
+    archive = json.loads(archive_path.read_text(encoding='utf-8'))
+    manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+    scheme = manifest.get('scheme', 'shared')
+    hint_levels = HINT_LEVELS if scheme == 'shared' else SIMPLE_HINT_LEVELS if scheme == 'unique' else ()
     if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
-            or manifest.get('hint_levels') != list(HINT_LEVELS)):
+            or not hint_levels or manifest.get('hint_levels') != list(hint_levels)):
         raise ValueError('manifest does not match Tier 4 prototype')
     metadata, rows = archive['metadata'], archive['responses']
     fingerprint = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
     if (metadata.get('manifest_sha256') != fingerprint or metadata.get('model') != 'gpt-6-luna'
             or metadata.get('effort') != 'low' or metadata.get('max_output') != 8192
             or metadata.get('rates') != [0.1, 0.5] or metadata.get('modes') != list(MODES)
-            or metadata.get('hint_levels') != list(HINT_LEVELS)):
+            or metadata.get('hint_levels') != list(hint_levels)):
         raise ValueError('run metadata mismatch')
     pairs = {tuple(pair) for pair in manifest['pairs']}
-    expected = {(w, l, mode, stage) for w, l in pairs for mode in MODES for stage in range(len(HINT_LEVELS))}
+    expected = {(w, l, mode, stage) for w, l in pairs for mode in MODES for stage in range(len(hint_levels))}
     actual = {(r['world'], r['language'], r['mode'], r['stage']) for r in rows}
     if len(pairs) != len(manifest['pairs']) or actual != expected or len(rows) != len(expected):
         raise ValueError('missing, extra or repeated response')
@@ -35,7 +37,7 @@ def main():
     conf = settings('gpt-6-luna', 'low', 8192, [0.1, 0.5])
     uniform, last, questions = 0.0, 0, 0
     for world, language in sorted(pairs):
-        case = build_story(world, language)
+        case = build_story(world, language, scheme=scheme)
         for i, target in enumerate(TARGETS):
             possible = suffix_blind_answers(case['prompts'][0], OBJECTS, OBJECTS.index(target))
             if len(possible) < 2 or case['answers'][i] not in possible:
@@ -46,7 +48,7 @@ def main():
             questions += 1
         for mode in MODES:
             history = []
-            for stage in range(len(HINT_LEVELS)):
+            for stage in range(len(hint_levels)):
                 if mode == 'fresh_conlang':
                     messages = [{'role': 'user', 'content': case['prompts'][stage]}]
                 elif mode == 'fresh_english':
@@ -67,7 +69,7 @@ def main():
                     history.append({'role': 'assistant', 'content': row['raw']})
     for mode in MODES:
         summaries = []
-        for stage in range(len(HINT_LEVELS)):
+        for stage in range(len(hint_levels)):
             selected = [row for row in rows if row['mode'] == mode and row['stage'] == stage]
             correct = sum(sum(row['marks']) for row in selected)
             total = sum(len(row['marks']) for row in selected)
@@ -77,6 +79,10 @@ def main():
     print(f'capped {sum(row.get("finish_reason") == "length" for row in rows)}; '
           f'empty {sum(not row["raw"] for row in rows)}; '
           f'observed token-valued cost ${sum(row["cost"] for row in rows):.5f}')
+
+
+def main():
+    verify_run(ARCHIVE, MANIFEST)
 
 
 if __name__ == '__main__':

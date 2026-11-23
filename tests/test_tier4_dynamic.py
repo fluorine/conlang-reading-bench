@@ -29,6 +29,14 @@ class TestTier4Dynamic(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'do not determine'):
             build_story(2059601839, 1504670080)
 
+    def test_unique_markers_preserve_the_same_world(self):
+        shared = build_story(363756058, 1106497454)
+        unique = build_story(363756058, 1106497454, scheme='unique')
+        self.assertEqual(unique['answers'], shared['answers'])
+        self.assertEqual(unique['english'], shared['english'])
+        self.assertIn('Each of the 30 object, context, and role combinations has a different suffix', unique['prompts'][0])
+        self.assertEqual(unique['prompts'][0].split('\n\n')[-1], unique['prompts'][2].split('\n\n')[-1])
+
     def test_repeated_questions_use_saved_history_without_feedback(self):
         pair = [363756058, 1106497454]
         case = build_story(*pair)

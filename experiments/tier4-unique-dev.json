@@ -1,0 +1,31 @@
+{
+  "name": "tier4-unique-dev",
+  "source_pairs": "tier4-dynamic-dev.json",
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    1,
+    5,
+    30
+  ],
+  "scheme": "unique",
+  "pairs": [
+    [
+      363756058,
+      1106497454
+    ],
+    [
+      1397017509,
+      1906208588
+    ],
+    [
+      152857299,
+      16415358
+    ],
+    [
+      737172105,
+      86261949
+    ]
+  ],
+  "purpose": "matched development variant; not a final tier"
+}

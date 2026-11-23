@@ -8,7 +8,7 @@ CONTEXTS = ("giver", "recipient", "other")
 
 
 def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False,
-          revealed=0, query_objects=None, nested_hints=False):
+          revealed=0, query_objects=None, nested_hints=False, allow_simple_hints=False):
     multiple_questions = query_objects is not None
     targets = tuple(query_objects) if multiple_questions else ('coin',)
     if not targets or len(set(targets)) != len(targets) or any(obj not in objects for obj in targets):
@@ -33,7 +33,7 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
         suffixes = [suffix for suffix in suffixes for _ in range(2)]
         rng.shuffle(suffixes)
     markers = dict(zip(meanings, suffixes))
-    if revealed and not syncretism:
+    if revealed and not syncretism and not allow_simple_hints:
         raise ValueError('revealed meanings require syncretism')
     distinct_suffixes = sorted(set(suffixes))
     if not 0 <= revealed <= len(distinct_suffixes):

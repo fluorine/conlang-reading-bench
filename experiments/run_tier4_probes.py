@@ -13,7 +13,7 @@ from pathlib import Path
 
 from conlang.runner import price, settings
 from conlang.suite import read, write
-from conlang.tier4_dynamic import HINT_LEVELS, LENGTH, TARGETS, build_story, score
+from conlang.tier4_dynamic import HINT_LEVELS, SIMPLE_HINT_LEVELS, LENGTH, TARGETS, build_story, score
 
 MODES = ('fresh_conlang', 'continued_hints', 'continued_nohint', 'fresh_english', 'continued_english')
 
@@ -34,8 +34,10 @@ def main():
             or args.max_output < 1):
         parser.error('invalid budget, rates or output limit')
     manifest = read(args.manifest)
+    scheme = manifest.get('scheme', 'shared')
+    hint_levels = HINT_LEVELS if scheme == 'shared' else SIMPLE_HINT_LEVELS if scheme == 'unique' else ()
     if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
-            or manifest.get('hint_levels') != list(HINT_LEVELS)):
+            or not hint_levels or manifest.get('hint_levels') != list(hint_levels)):
         parser.error('manifest does not match the frozen Tier 4 prototype')
     pairs = [tuple(pair) for pair in manifest['pairs']]
     if not pairs or len(set(pairs)) != len(pairs):
@@ -44,7 +46,7 @@ def main():
     directory.mkdir(parents=True, exist_ok=True)
     metadata = {'manifest_sha256': hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest(),
                 'model': args.model, 'effort': args.effort, 'max_output': args.max_output,
-                'rates': args.rates, 'modes': list(MODES), 'hint_levels': list(HINT_LEVELS)}
+                'rates': args.rates, 'modes': list(MODES), 'hint_levels': list(hint_levels)}
     metadata_path = directory / 'run.json'
     if metadata_path.exists():
         if read(metadata_path) != metadata:
@@ -58,7 +60,7 @@ def main():
         raise ValueError('uncertain requests require manual reconciliation or an explicit reserved retry')
     if pending_paths:
         expected = {f'{world}-{language}-{mode}-{stage}' for world, language in pairs
-                    for mode in MODES for stage in range(len(HINT_LEVELS))}
+                    for mode in MODES for stage in range(len(hint_levels))}
         if any(path.stem not in expected for path in pending_paths):
             raise ValueError('unknown pending request in output directory')
         uncertain = directory / 'uncertain'
@@ -77,9 +79,9 @@ def main():
     def episode(item):
         nonlocal spent, reserved
         (world, language), mode = item
-        case = build_story(world, language)
+        case = build_story(world, language, scheme=scheme)
         history = []
-        for stage in range(len(HINT_LEVELS)):
+        for stage in range(len(hint_levels)):
             if mode == 'fresh_conlang':
                 messages = [{'role': 'user', 'content': case['prompts'][stage]}]
             elif mode == 'fresh_english':
@@ -129,7 +131,7 @@ def main():
                     pending.unlink()
                 print(mode, world, stage, sum(row['marks']), '/4', flush=True)
             if mode not in ('fresh_conlang', 'fresh_english'):
-                if not row['raw'] and stage < len(HINT_LEVELS) - 1:
+                if not row['raw'] and stage < len(hint_levels) - 1:
                     raise ValueError(f'empty response prevents continued-context replay: {path}')
                 history.append({'role': 'assistant', 'content': row['raw']})
 
