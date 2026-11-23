@@ -13,6 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
+from conlang.provider import request as provider_request
 from conlang.runner import bound, price, settings
 from conlang.scoring import parse
 from conlang.suite import read, write
@@ -26,6 +27,7 @@ def main():
     parser.add_argument('--budget', type=float, required=True)
     parser.add_argument('--model', default='gpt-6-luna')
     parser.add_argument('--effort', default='medium')
+    parser.add_argument('--provider', default='OpenAI', choices=('OpenAI', 'Anthropic'))
     parser.add_argument('--max-output', type=int, default=16384)
     parser.add_argument('--rates', nargs=2, type=float, required=True, metavar=('INPUT', 'OUTPUT'))
     parser.add_argument('--max-new-requests', type=int,
@@ -41,12 +43,14 @@ def main():
         parser.error('expected a nonempty shared-ending manifest')
     if len({tuple(pair) for pair in manifest['pairs']}) != len(manifest['pairs']):
         parser.error('manifest contains repeated seed pairs')
-    conf = settings(args.model, args.effort, args.max_output, args.rates)
+    conf = settings(args.model, args.effort, args.max_output, args.rates, args.provider)
     directory = Path(args.out)
     directory.mkdir(parents=True, exist_ok=True)
     metadata = {'manifest_sha256': hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest(),
                 'model': args.model, 'effort': args.effort, 'max_output': args.max_output,
                 'rates': args.rates}
+    if args.provider != 'OpenAI':
+        metadata['provider'] = args.provider
     metadata_path = directory / 'run.json'
     if metadata_path.exists():
         if read(metadata_path) != metadata:
@@ -91,24 +95,17 @@ def main():
 
     def run(item):
         world, language, english, prompt, gold, path = item
-        body = {'model': args.model, 'reasoning_effort': args.effort,
-                'max_completion_tokens': args.max_output, 'messages': [{'role': 'user', 'content': prompt}]}
-        request = urllib.request.Request('https://api.openai.com/v1/chat/completions',
-                                         data=json.dumps(body).encode(),
-                                         headers={'Authorization': 'Bearer ' + os.environ['OPENAI_API_KEY'],
-                                                  'Content-Type': 'application/json'})
         started = datetime.now(timezone.utc).isoformat()
         pending = path.with_suffix('.pending')
         write(pending, {'started_utc': started, 'reservation': bound(conf, prompt)})
-        with urllib.request.urlopen(request, timeout=240) as response:
-            result = json.load(response)
-        raw = result['choices'][0]['message'].get('content') or ''
+        result = provider_request(conf, [{'role': 'user', 'content': prompt}], timeout=240)
+        raw = result['raw']
         usage = result['usage']
         row = {'world': world, 'language': language, 'english': english, 'prompt': prompt,
                'gold': gold, 'raw': raw, 'correct': parse(raw) == [gold.casefold()],
                'requested_model': args.model, 'model': result['model'], 'effort': args.effort,
                'max_output': args.max_output, 'started_utc': started,
-               'finish_reason': result['choices'][0].get('finish_reason'), 'usage': usage,
+               'finish_reason': result['finish_reason'], 'usage': usage,
                'cost': price(conf, usage['prompt_tokens'], usage['completion_tokens'])}
         write(path, row)
         pending.unlink()

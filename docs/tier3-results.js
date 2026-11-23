@@ -36,6 +36,24 @@ const tier3Research = {
         "minimal": 83.33333333333333,
         "english": 100.0
       }
+    },
+    {
+      "name": "Claude Haiku 5.5 (low)",
+      "shortName": "Haiku 5.5 (low)",
+      "releaseDate": "2026-10-07",
+      "scores": {
+        "minimal": 43.75,
+        "english": 100.0
+      }
+    },
+    {
+      "name": "Claude Sonnet 5.5 (low)",
+      "shortName": "Sonnet 5.5 (low)",
+      "releaseDate": "2026-09-28",
+      "scores": {
+        "minimal": 0.0,
+        "english": 0.0
+      }
     }
   ]
 };

@@ -14,7 +14,7 @@ def main():
     for i in range(4):
         archive = json.loads(Path(f'reports/tier4-zero-confirm-{i}-responses.json').read_text(encoding='utf-8'))
         base.update({(r['world'], r['language'], r['mode'], r['stage']): r for r in archive['responses']})
-    for model_index, label in enumerate(('luna-medium', 'terra-medium')):
+    for model_index, label in enumerate(('luna-medium', 'terra-medium', 'sonnet-low')):
         rows, total_cost, revisions = {}, 0.0, set()
         for i in range(4):
             manifest_path = Path(f'experiments/tier4-zero-{label}-{i}.json')

@@ -7,7 +7,9 @@ def main():
     configurations = {'luna-medium': {'model': 'gpt-6-luna', 'effort': 'medium',
                                        'max_output': 8192, 'rates': [0.1, 0.5]},
                       'terra-medium': {'model': 'gpt-6.1-terra', 'effort': 'medium',
-                                        'max_output': 8192, 'rates': [1.0, 5.0]}}
+                                        'max_output': 8192, 'rates': [1.0, 5.0]},
+                      'sonnet-low': {'model': 'claude-sonnet-5-5', 'effort': 'low',
+                                      'max_output': 4096, 'rates': [2, 10]}}
     for label, config in configurations.items():
         for index in range(4):
             source = Path(f'experiments/tier4-zero-confirm-{index}.json')
@@ -24,7 +26,7 @@ def main():
                                                      'holdout or universal model ability'})
             Path(f'experiments/tier4-zero-{label}-{index}.json').write_text(
                 json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
-    print('8 matched manifests, 48 shared stories per configuration')
+    print('12 matched manifests, 48 shared stories per configuration')
 
 
 if __name__ == '__main__':

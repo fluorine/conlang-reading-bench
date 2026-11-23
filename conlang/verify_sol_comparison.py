@@ -13,7 +13,7 @@ from conlang.verify_tier3_comparison import ARCHIVE as BASE_ARCHIVE, SUITES, mai
 ARCHIVE = Path('reports/sol-comparison-responses.json')
 
 
-def verify_extra(archive_path, identifier, effort, rates, label):
+def verify_extra(archive_path, identifier, effort, rates, label, max_output=16384):
     verify_base()
     archive = json.loads(archive_path.read_text(encoding='utf-8'))
     base = json.loads(BASE_ARCHIVE.read_text(encoding='utf-8'))
@@ -27,14 +27,14 @@ def verify_extra(archive_path, identifier, effort, rates, label):
         metadata, rows = bundle['metadata'], bundle['responses']
         fingerprint = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
         if (metadata.get('manifest_sha256') != fingerprint or metadata.get('model') != identifier
-                or metadata.get('effort') != effort or metadata.get('max_output') != 16384
+                or metadata.get('effort') != effort or metadata.get('max_output') != max_output
                 or metadata.get('rates') != rates):
             raise ValueError(f'{suite}: manifest or configuration mismatch')
         expected = {(world, language, english) for world, language in pairs for english in (False, True)}
         actual = {(row['world'], row['language'], row['english']) for row in rows}
         if actual != expected or len(rows) != len(expected):
             raise ValueError(f'{suite}: incomplete or repeated items')
-        conf = settings(identifier, effort, 16384, rates)
+        conf = settings(identifier, effort, max_output, rates)
         result = {}
         for row in rows:
             prompt, gold = build(row['world'], row['language'], length=manifest['length'],
@@ -44,12 +44,12 @@ def verify_extra(archive_path, identifier, effort, rates, label):
             if (row['prompt'] != prompt or row['gold'] != gold
                     or row['correct'] != (parse(row['raw']) == [gold.casefold()])
                     or row.get('requested_model') != identifier or row.get('effort') != effort
-                    or row.get('max_output') != 16384
+                    or row.get('max_output') != max_output
                     or not math.isclose(row['cost'], price(conf, usage['prompt_tokens'], usage['completion_tokens']), abs_tol=1e-10)):
                 raise ValueError(f'{suite}: response, configuration or cost mismatch')
             result[(row['world'], row['language'], row['english'])] = row['correct']
         print(f'{label}-{suite}:', *(f'{sum(row["correct"] for row in rows if row["english"] == english)}/{len(pairs)}' for english in (False, True)))
-        print(f'  capped: {sum(row.get("finish_reason") == "length" for row in rows)}; '
+        print(f'  capped: {sum(row.get("finish_reason") in ("length", "max_tokens") for row in rows)}; '
               f'empty: {sum(not row["raw"] for row in rows)}; '
               f'observed token-valued cost: ${sum(row["cost"] for row in rows):.5f}')
         for model in differences:
