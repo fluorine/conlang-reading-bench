@@ -23,8 +23,9 @@ def analyze(archive_path, manifest_path):
                                observed_hints=manifest['observed_hints'],
                                hint_levels=manifest['hint_levels'],
                                min_observed_markers=manifest.get('min_observed_markers', 0),
-                               defer_target_final=manifest.get('defer_target_final', False))
-            prediction = last_disclosed_transfer(case['prompts'][stage])
+                               defer_target_final=manifest.get('defer_target_final', False),
+                               query_after=manifest.get('query_after'))
+            prediction = last_disclosed_transfer(case['prompts'][stage], manifest.get('query_after'))
             baseline = sum(a == b for a, b in zip(prediction, case['answers']))
             model = sum(rows[(world, language, stage)]['marks'])
             baseline_total += baseline

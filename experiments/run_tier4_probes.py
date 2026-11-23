@@ -38,12 +38,15 @@ def main():
     observed_hints = manifest.get('observed_hints', False)
     minimum_observed = manifest.get('min_observed_markers', 0)
     defer_target_final = manifest.get('defer_target_final', False)
+    query_after = manifest.get('query_after')
     hint_levels = tuple(manifest.get('hint_levels', ()))
     maximum = 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
     modes = tuple(manifest.get('modes', MODES))
     if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
             or type(observed_hints) is not bool or type(defer_target_final) is not bool
             or (defer_target_final and (not observed_hints or scheme != 'unique'))
+            or (query_after is not None and (type(query_after) is not int or not 1 <= query_after <= LENGTH))
+            or (query_after is not None and defer_target_final)
             or type(minimum_observed) is not int
             or minimum_observed < 0 or (minimum_observed and not observed_hints) or len(hint_levels) != 3
             or any(type(count) is not int or not 1 <= count <= maximum for count in hint_levels)
@@ -92,7 +95,7 @@ def main():
         (world, language), mode = item
         case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
                            hint_levels=hint_levels, min_observed_markers=minimum_observed,
-                           defer_target_final=defer_target_final)
+                           defer_target_final=defer_target_final, query_after=query_after)
         history = []
         for stage in range(len(hint_levels)):
             if mode == 'fresh_conlang':

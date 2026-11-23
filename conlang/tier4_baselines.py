@@ -4,7 +4,7 @@ import re
 from .tier4_dynamic import TARGETS, _parts
 
 
-def last_disclosed_transfer(prompt):
+def last_disclosed_transfer(prompt, query_after=None):
     """Track the latest transfer whose object and role a disclosed suffix identifies.
 
     Unrecognized transfers are ignored, so the tracked holder can become stale.
@@ -23,11 +23,15 @@ def last_disclosed_transfer(prompt):
             known[marker.removeprefix('-')] = next(iter(choices))
     lines = story.splitlines()[1:]
     holders = {}
+    seen_transfers = 0
     for line in lines:
         words = line.split()
         if len(words) == 3 and words[2] in roots:
             holders[roots[words[2]]] = words[0]
         elif len(words) == 2 and all('-' in word for word in words):
+            seen_transfers += 1
+            if query_after is not None and seen_transfers > query_after:
+                break
             names = [word.split('-', 1) for word in words]
             evidence = []
             for index, (_, suffix) in enumerate(names):

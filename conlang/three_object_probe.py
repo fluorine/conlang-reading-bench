@@ -9,22 +9,27 @@ CONTEXTS = ("giver", "recipient", "other")
 
 def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False,
           revealed=0, query_objects=None, nested_hints=False, allow_simple_hints=False,
-          observed_hints=False, defer_target_final=False):
+          observed_hints=False, defer_target_final=False, query_after=None):
     multiple_questions = query_objects is not None
     targets = tuple(query_objects) if multiple_questions else ('coin',)
     if not targets or len(set(targets)) != len(targets) or any(obj not in objects for obj in targets):
         raise ValueError('invalid question objects')
+    if query_after is not None and (type(query_after) is not int or not 1 <= query_after <= length):
+        raise ValueError('invalid checkpoint')
     world = Random(world_seed)
     initial = dict(zip(objects, world.sample(PEOPLE, len(objects))))
     state = initial.copy()
     events = []
-    for _ in range(length):
+    checkpoint_answers = None
+    for event_index in range(length):
         obj = world.choice(objects)
         giver = state[obj]
         recipient = world.choice([name for name in PEOPLE if name != giver])
         events.append((obj, giver, recipient))
         state[obj] = recipient
-    answers = tuple(state[obj] for obj in targets)
+        if query_after == event_index + 1:
+            checkpoint_answers = tuple(state[obj] for obj in targets)
+    answers = checkpoint_answers if query_after is not None else tuple(state[obj] for obj in targets)
     gold = list(answers) if multiple_questions else answers[0]
     rng = Random(language_seed)
     meanings = list(product(objects, CONTEXTS, ("giver", "recipient")))
@@ -80,7 +85,7 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
     outcomes = set()
     visited = 0
 
-    def search(index, state, mapping):
+    def search(index, state, mapping, checkpoint=None):
         nonlocal visited
         visited += 1
         if visited > 150000:
@@ -88,7 +93,7 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
         if len(outcomes) > 1:
             return
         if index == len(encoded):
-            outcomes.add(tuple(state[obj] for obj in targets))
+            outcomes.add(checkpoint if query_after is not None else tuple(state[obj] for obj in targets))
             return
         first, second = encoded[index].split()
         for obj, (giver_word, recipient_word) in product(objects, permutations((first, second))):
@@ -109,12 +114,14 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
             else:
                 next_state = state.copy()
                 next_state[obj] = recipient
-                search(index + 1, next_state, updated)
+                answer_at_checkpoint = (tuple(next_state[obj] for obj in targets)
+                                        if query_after == index + 1 else checkpoint)
+                search(index + 1, next_state, updated, answer_at_checkpoint)
     search(0, initial, known)
     if outcomes != {answers}:
         raise ValueError("clues do not determine the answer")
     blind_states = {tuple(initial[obj] for obj in objects)}
-    for line in encoded:
+    for line in encoded[:query_after]:
         first, second = [word.split("-")[0] for word in line.split()]
         next_states = set()
         for values in blind_states:
@@ -133,7 +140,8 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
                    if multiple_questions else
                    "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. "
                    "Return only a JSON array containing the one name.")
-    question = ("\n".join(f"{i}. Who holds the {obj} at the end?" for i, obj in enumerate(targets, 1))
+    when = f'after transfer {query_after}' if query_after is not None else 'at the end'
+    question = ("\n".join(f"{i}. Who holds the {obj} {when}?" for i, obj in enumerate(targets, 1))
                 if multiple_questions else "Who holds the coin at the end?")
     if english:
         lines = [f"{person} starts with the {obj}." for obj, person in initial.items()]
@@ -153,6 +161,8 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
                "Each combination has exactly one suffix. " if syncretism else
                f"Each of the {'eighteen' if len(objects) == 3 else str(len(objects) * 6)} object, context, and role combinations has a different suffix. ")
             + "Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological.")
+    if query_after is not None:
+        clue += f' The checkpoint is immediately after transfer {query_after}; count only transfer lines.'
     if known:
         examples = []
         for marker, marker_meanings in known.items():

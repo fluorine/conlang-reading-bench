@@ -19,7 +19,7 @@ def _parts(prompt):
 
 
 def build_story(world_seed, language_seed, scheme='shared', observed_hints=False, hint_levels=None,
-                min_observed_markers=0, defer_target_final=False):
+                min_observed_markers=0, defer_target_final=False, query_after=None):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
@@ -43,7 +43,8 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
         prompt, gold = build(world_seed, language_seed, length=LENGTH, objects=OBJECTS,
                              syncretism=shared, revealed=count, query_objects=TARGETS,
                              nested_hints=True, allow_simple_hints=not shared,
-                             observed_hints=observed_hints, defer_target_final=defer_target_final)
+                             observed_hints=observed_hints, defer_target_final=defer_target_final,
+                             query_after=query_after)
         if answer is not None and gold != answer:
             raise ValueError('gold changed across hint stages')
         prompts.append(prompt)
@@ -66,7 +67,7 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
                                   syncretism=shared, revealed=hint_levels[0], query_objects=TARGETS,
                                   nested_hints=True, allow_simple_hints=not shared,
                                   observed_hints=observed_hints, defer_target_final=defer_target_final,
-                                  english=True)
+                                  english=True, query_after=query_after)
     if english_gold != answer:
         raise ValueError('English control does not match')
     if defer_target_final:

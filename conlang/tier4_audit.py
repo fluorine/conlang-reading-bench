@@ -6,7 +6,7 @@ from .tier4_dynamic import LENGTH, OBJECTS, TARGETS
 from .three_object_probe import PEOPLE
 
 
-def decode_full(prompt):
+def decode_full(prompt, query_after=None):
     _, clue, story, _ = prompt.split('\n\n')
     roots = {meaning: word for word, meaning in re.findall(
         r'(\w+) = (initially holds|coin|key|book|ring|cup)', clue)}
@@ -35,7 +35,8 @@ def decode_full(prompt):
         if person not in PEOPLE or relation != roots['initially holds'] or obj not in OBJECTS or obj in state:
             raise ValueError('invalid initial state')
         state[obj] = person
-    for line in lines[1 + len(OBJECTS):]:
+    checkpoint = None
+    for index, line in enumerate(lines[1 + len(OBJECTS):], 1):
         words = line.split()
         if len(words) != 2:
             raise ValueError('invalid transfer')
@@ -56,4 +57,10 @@ def decode_full(prompt):
         if actual_context != context:
             raise ValueError('invalid reference context')
         state[obj] = roles['recipient']
+        if index == query_after:
+            checkpoint = [state[obj] for obj in TARGETS]
+    if query_after is not None:
+        if checkpoint is None:
+            raise ValueError('invalid checkpoint')
+        return checkpoint
     return [state[obj] for obj in TARGETS]
