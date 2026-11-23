@@ -18,7 +18,7 @@ def _parts(prompt):
     return instruction, header, meanings.removesuffix('.').split('; '), story, questions
 
 
-def build_story(world_seed, language_seed, scheme='shared', observed_hints=False):
+def build_story(world_seed, language_seed, scheme='shared', observed_hints=False, hint_levels=None):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
@@ -27,7 +27,11 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
     if scheme not in ('shared', 'unique'):
         raise ValueError('unknown marker scheme')
     shared = scheme == 'shared'
-    hint_levels = HINT_LEVELS if shared else SIMPLE_HINT_LEVELS
+    maximum = 15 if shared else 30
+    hint_levels = tuple(hint_levels) if hint_levels is not None else (HINT_LEVELS if shared else SIMPLE_HINT_LEVELS)
+    if (len(hint_levels) != 3 or any(type(count) is not int or not 1 <= count <= maximum for count in hint_levels)
+            or tuple(sorted(set(hint_levels))) != hint_levels):
+        raise ValueError('hint levels must be three increasing valid counts')
     prompts, answer = [], None
     for count in hint_levels:
         prompt, gold = build(world_seed, language_seed, length=LENGTH, objects=OBJECTS,
@@ -48,7 +52,7 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
         observed = {word.split('-', 1)[1] for line in parts[0][3].splitlines()
                     for word in line.split() if '-' in word}
         first_hints = [entry.split(':', 1)[0].removeprefix('-') for entry in parts[1][2]]
-        if any(marker not in observed for marker in first_hints):
+        if any(marker not in observed for marker in first_hints[:min(len(observed), len(first_hints))]):
             raise ValueError('an early disclosed marker is absent from the story')
     english, english_gold = build(world_seed, language_seed, length=LENGTH, objects=OBJECTS,
                                   syncretism=shared, revealed=hint_levels[0], query_objects=TARGETS,

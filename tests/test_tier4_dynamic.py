@@ -53,6 +53,15 @@ class TestTier4Dynamic(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'unknown marker'):
             decode_full(corrupted)
 
+    def test_custom_hint_counts_preserve_story_and_answers(self):
+        base = build_story(363756058, 1106497454, scheme='unique', observed_hints=True)
+        tuned = build_story(363756058, 1106497454, scheme='unique', observed_hints=True,
+                            hint_levels=(10, 15, 20))
+        self.assertEqual(base['answers'], tuned['answers'])
+        self.assertEqual(base['prompts'][0].split('\n\n')[2:], tuned['prompts'][0].split('\n\n')[2:])
+        with self.assertRaisesRegex(ValueError, 'increasing'):
+            build_story(363756058, 1106497454, scheme='unique', hint_levels=(10, 10, 20))
+
     def test_repeated_questions_use_saved_history_without_feedback(self):
         pair = [363756058, 1106497454]
         case = build_story(*pair)

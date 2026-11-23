@@ -13,7 +13,7 @@ from pathlib import Path
 
 from conlang.runner import price, settings
 from conlang.suite import read, write
-from conlang.tier4_dynamic import HINT_LEVELS, SIMPLE_HINT_LEVELS, LENGTH, TARGETS, build_story, score
+from conlang.tier4_dynamic import LENGTH, TARGETS, build_story, score
 
 MODES = ('fresh_conlang', 'continued_hints', 'continued_nohint', 'fresh_english', 'continued_english')
 
@@ -36,10 +36,14 @@ def main():
     manifest = read(args.manifest)
     scheme = manifest.get('scheme', 'shared')
     observed_hints = manifest.get('observed_hints', False)
-    hint_levels = HINT_LEVELS if scheme == 'shared' else SIMPLE_HINT_LEVELS if scheme == 'unique' else ()
+    hint_levels = tuple(manifest.get('hint_levels', ()))
+    maximum = 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
+    modes = tuple(manifest.get('modes', MODES))
     if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
-            or type(observed_hints) is not bool or not hint_levels
-            or manifest.get('hint_levels') != list(hint_levels)):
+            or type(observed_hints) is not bool or len(hint_levels) != 3
+            or any(type(count) is not int or not 1 <= count <= maximum for count in hint_levels)
+            or tuple(sorted(set(hint_levels))) != hint_levels
+            or not modes or len(set(modes)) != len(modes) or any(mode not in MODES for mode in modes)):
         parser.error('manifest does not match the frozen Tier 4 prototype')
     pairs = [tuple(pair) for pair in manifest['pairs']]
     if not pairs or len(set(pairs)) != len(pairs):
@@ -48,7 +52,7 @@ def main():
     directory.mkdir(parents=True, exist_ok=True)
     metadata = {'manifest_sha256': hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest(),
                 'model': args.model, 'effort': args.effort, 'max_output': args.max_output,
-                'rates': args.rates, 'modes': list(MODES), 'hint_levels': list(hint_levels)}
+                'rates': args.rates, 'modes': list(modes), 'hint_levels': list(hint_levels)}
     metadata_path = directory / 'run.json'
     if metadata_path.exists():
         if read(metadata_path) != metadata:
@@ -62,7 +66,7 @@ def main():
         raise ValueError('uncertain requests require manual reconciliation or an explicit reserved retry')
     if pending_paths:
         expected = {f'{world}-{language}-{mode}-{stage}' for world, language in pairs
-                    for mode in MODES for stage in range(len(hint_levels))}
+                    for mode in modes for stage in range(len(hint_levels))}
         if any(path.stem not in expected for path in pending_paths):
             raise ValueError('unknown pending request in output directory')
         uncertain = directory / 'uncertain'
@@ -81,7 +85,7 @@ def main():
     def episode(item):
         nonlocal spent, reserved
         (world, language), mode = item
-        case = build_story(world, language, scheme=scheme, observed_hints=observed_hints)
+        case = build_story(world, language, scheme=scheme, observed_hints=observed_hints, hint_levels=hint_levels)
         history = []
         for stage in range(len(hint_levels)):
             if mode == 'fresh_conlang':
@@ -137,7 +141,7 @@ def main():
                     raise ValueError(f'empty response prevents continued-context replay: {path}')
                 history.append({'role': 'assistant', 'content': row['raw']})
 
-    episodes = [(pair, mode) for pair in pairs for mode in MODES]
+    episodes = [(pair, mode) for pair in pairs for mode in modes]
     with ThreadPoolExecutor(max_workers=3) as pool:
         for offset in range(0, len(episodes), 3):
             list(pool.map(episode, episodes[offset:offset + 3]))

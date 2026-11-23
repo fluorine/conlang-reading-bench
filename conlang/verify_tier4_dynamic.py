@@ -5,7 +5,7 @@ import math
 from pathlib import Path
 
 from conlang.runner import price, settings
-from conlang.tier4_dynamic import HINT_LEVELS, SIMPLE_HINT_LEVELS, LENGTH, OBJECTS, TARGETS, build_story, score
+from conlang.tier4_dynamic import LENGTH, OBJECTS, TARGETS, build_story, score
 from conlang.tier4_audit import decode_full
 from conlang.verify_tier3_search import suffix_blind_answers
 from experiments.run_tier4_probes import MODES
@@ -19,20 +19,24 @@ def verify_run(archive_path, manifest_path):
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     scheme = manifest.get('scheme', 'shared')
     observed_hints = manifest.get('observed_hints', False)
-    hint_levels = HINT_LEVELS if scheme == 'shared' else SIMPLE_HINT_LEVELS if scheme == 'unique' else ()
+    hint_levels = tuple(manifest.get('hint_levels', ()))
+    maximum = 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
+    modes = tuple(manifest.get('modes', MODES))
     if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
-            or type(observed_hints) is not bool or not hint_levels
-            or manifest.get('hint_levels') != list(hint_levels)):
+            or type(observed_hints) is not bool or len(hint_levels) != 3
+            or any(type(count) is not int or not 1 <= count <= maximum for count in hint_levels)
+            or tuple(sorted(set(hint_levels))) != hint_levels
+            or not modes or len(set(modes)) != len(modes) or any(mode not in MODES for mode in modes)):
         raise ValueError('manifest does not match Tier 4 prototype')
     metadata, rows = archive['metadata'], archive['responses']
     fingerprint = hashlib.sha256(json.dumps(manifest, sort_keys=True).encode()).hexdigest()
     if (metadata.get('manifest_sha256') != fingerprint or metadata.get('model') != 'gpt-6-luna'
             or metadata.get('effort') != 'low' or metadata.get('max_output') != 8192
-            or metadata.get('rates') != [0.1, 0.5] or metadata.get('modes') != list(MODES)
+            or metadata.get('rates') != [0.1, 0.5] or metadata.get('modes') != list(modes)
             or metadata.get('hint_levels') != list(hint_levels)):
         raise ValueError('run metadata mismatch')
     pairs = {tuple(pair) for pair in manifest['pairs']}
-    expected = {(w, l, mode, stage) for w, l in pairs for mode in MODES for stage in range(len(hint_levels))}
+    expected = {(w, l, mode, stage) for w, l in pairs for mode in modes for stage in range(len(hint_levels))}
     actual = {(r['world'], r['language'], r['mode'], r['stage']) for r in rows}
     if len(pairs) != len(manifest['pairs']) or actual != expected or len(rows) != len(expected):
         raise ValueError('missing, extra or repeated response')
@@ -40,9 +44,12 @@ def verify_run(archive_path, manifest_path):
     conf = settings('gpt-6-luna', 'low', 8192, [0.1, 0.5])
     uniform, last, initial_holder, questions = 0.0, 0, 0, 0
     for world, language in sorted(pairs):
-        case = build_story(world, language, scheme=scheme, observed_hints=observed_hints)
-        if scheme == 'unique' and decode_full(case['prompts'][2]) != case['answers']:
-            raise ValueError('independent fully disclosed replay disagrees with gold')
+        case = build_story(world, language, scheme=scheme, observed_hints=observed_hints, hint_levels=hint_levels)
+        if scheme == 'unique':
+            audit_case = case if hint_levels[-1] == 30 else build_story(
+                world, language, scheme=scheme, observed_hints=observed_hints)
+            if decode_full(audit_case['prompts'][2]) != case['answers']:
+                raise ValueError('independent fully disclosed replay disagrees with gold')
         english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(OBJECTS)]
         starting = {line.split()[-1].removesuffix('.'): line.split()[0] for line in english_story}
         for i, target in enumerate(TARGETS):
@@ -54,7 +61,7 @@ def verify_run(archive_path, manifest_path):
             last += name == case['answers'][i]
             initial_holder += starting[target] == case['answers'][i]
             questions += 1
-        for mode in MODES:
+        for mode in modes:
             history = []
             for stage in range(len(hint_levels)):
                 if mode == 'fresh_conlang':
@@ -75,7 +82,7 @@ def verify_run(archive_path, manifest_path):
                     raise ValueError(f'{mode} stage {stage}: transcript, score or cost mismatch')
                 if mode not in ('fresh_conlang', 'fresh_english'):
                     history.append({'role': 'assistant', 'content': row['raw']})
-    for mode in MODES:
+    for mode in modes:
         summaries = []
         for stage in range(len(hint_levels)):
             selected = [row for row in rows if row['mode'] == mode and row['stage'] == stage]
