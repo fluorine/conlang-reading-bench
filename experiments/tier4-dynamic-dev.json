@@ -1,0 +1,30 @@
+{
+  "name": "tier4-dynamic-dev",
+  "seed": 430010,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    1,
+    5,
+    15
+  ],
+  "pairs": [
+    [
+      363756058,
+      1106497454
+    ],
+    [
+      1397017509,
+      1906208588
+    ],
+    [
+      152857299,
+      16415358
+    ],
+    [
+      737172105,
+      86261949
+    ]
+  ],
+  "purpose": "development only; not a final tier"
+}

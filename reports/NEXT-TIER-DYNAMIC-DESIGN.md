@@ -1,6 +1,6 @@
 # Proposed next tier: progressive hints on a longer story
 
-**Status: design only.** This experiment has not been implemented or evaluated. It would test how much useful information a model extracts from a generated language, and how its answers change when different kinds of help are added. Its scores would form a new comparison group rather than being mixed with earlier tiers.
+**Status: development prototype.** A frozen four-story sample uses 30 transfers, four final-holder questions, and three stages revealing 1, 5 and 15 suffix meanings. Each suffix has two possible meanings. The grammar family and structural rules are given throughout; "minimal" means one disclosed suffix, not an absence of grammar information. The prototype is not an official tier or a calibrated benchmark. Its scores form a new comparison group rather than being mixed with earlier tiers.
 
 ## Core task
 
@@ -36,3 +36,5 @@ Keep **story generation, model execution and scoring** separate. Freeze seeds, q
 ## Suggested first experiment
 
 Start with a small development sample of several seeded stories, one long-story length, a fixed handful of questions and three disclosure stages: minimal clues, a glossary, and explicit grammar. Confirm answerability and output format locally, then run both fresh-context and continued-context variants on one affordable model with matched English controls. Choose or revise the protocol using development data; freeze a new held-out sample before comparing models. Only promote it to a numbered tier once the questions, ambiguity checks, baselines, scoring and costs are reproducible.
+
+The current prototype explores a different three-stage sequence: it keeps the structural rules visible and increases the number of disclosed suffix meanings from one to five to fifteen. Its frozen manifest is [`tier4-dynamic-dev.json`](../experiments/tier4-dynamic-dev.json). It includes fresh-context hints, continued-context hints, a continued-context no-new-hint repeat, and both fresh and continued English controls. The runner is `python -m experiments.run_tier4_probes`; it uses a hard bundle budget and records every request. Four stories are an economical diagnostic, not sufficient evidence of calibration. A human review and an independently seeded holdout remain necessary.

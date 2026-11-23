@@ -7,7 +7,12 @@ OBJECTS = ("coin", "key", "book")
 CONTEXTS = ("giver", "recipient", "other")
 
 
-def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False, revealed=0):
+def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False,
+          revealed=0, query_objects=None, nested_hints=False):
+    multiple_questions = query_objects is not None
+    targets = tuple(query_objects) if multiple_questions else ('coin',)
+    if not targets or len(set(targets)) != len(targets) or any(obj not in objects for obj in targets):
+        raise ValueError('invalid question objects')
     world = Random(world_seed)
     initial = dict(zip(objects, world.sample(PEOPLE, len(objects))))
     state = initial.copy()
@@ -18,7 +23,8 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
         recipient = world.choice([name for name in PEOPLE if name != giver])
         events.append((obj, giver, recipient))
         state[obj] = recipient
-    gold = state["coin"]
+    answers = tuple(state[obj] for obj in targets)
+    gold = list(answers) if multiple_questions else answers[0]
     rng = Random(language_seed)
     meanings = list(product(objects, CONTEXTS, ("giver", "recipient")))
     suffix_count = len(meanings) // 2 if syncretism else len(meanings)
@@ -32,7 +38,9 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
     distinct_suffixes = sorted(set(suffixes))
     if not 0 <= revealed <= len(distinct_suffixes):
         raise ValueError('invalid number of revealed suffixes')
-    revealed_suffixes = Random(language_seed ^ 0x51F).sample(distinct_suffixes, revealed)
+    hint_rng = Random(language_seed ^ 0x51F)
+    revealed_suffixes = (hint_rng.sample(distinct_suffixes, len(distinct_suffixes))[:revealed]
+                         if nested_hints else hint_rng.sample(distinct_suffixes, revealed))
     known = {suffix: {meaning for meaning, marker in markers.items() if marker == suffix}
              for suffix in revealed_suffixes}
     roots = dict(zip((*objects, "holds"), rng.sample(
@@ -60,7 +68,7 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
         if len(outcomes) > 1:
             return
         if index == len(encoded):
-            outcomes.add(state["coin"])
+            outcomes.add(tuple(state[obj] for obj in targets))
             return
         first, second = encoded[index].split()
         for obj, (giver_word, recipient_word) in product(objects, permutations((first, second))):
@@ -83,7 +91,7 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
                 next_state[obj] = recipient
                 search(index + 1, next_state, updated)
     search(0, initial, known)
-    if outcomes != {gold}:
+    if outcomes != {answers}:
         raise ValueError("clues do not determine the answer")
     blind_states = {tuple(initial[obj] for obj in objects)}
     for line in encoded:
@@ -97,12 +105,16 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
                     updated[obj] = receiver
                     next_states.add(tuple(updated[value] for value in objects))
         blind_states = next_states
-    if len({dict(zip(objects, values))["coin"] for values in blind_states}) < 2:
+    if any(len({dict(zip(objects, values))[obj] for values in blind_states}) < 2 for obj in targets):
         raise ValueError("suffix-free shortcut determines the answer")
 
-    instruction = ("Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. "
+    instruction = ("Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. "
+                   f"Return only a JSON array containing {len(targets)} names in question order."
+                   if multiple_questions else
+                   "Answer the question. The answer is Ada, Bo, Cy, Dee, Eli, or Fay. "
                    "Return only a JSON array containing the one name.")
-    question = "Who holds the coin at the end?"
+    question = ("\n".join(f"{i}. Who holds the {obj} at the end?" for i, obj in enumerate(targets, 1))
+                if multiple_questions else "Who holds the coin at the end?")
     if english:
         lines = [f"{person} starts with the {obj}." for obj, person in initial.items()]
         lines += [f"{giver} gives the {obj} to {recipient}." for obj, giver, recipient in events]

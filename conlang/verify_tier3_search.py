@@ -31,8 +31,8 @@ DATASETS = {
                                                             'objects': ('coin', 'key', 'book', 'ring', 'cup')}),
 }
 
-def suffix_blind_answers(prompt, objects):
-    """Possible coin holders if suffixes are erased but transfers remain legal."""
+def suffix_blind_answers(prompt, objects, target_index=0):
+    """Possible target holders if suffixes are erased but transfers remain legal."""
     story = prompt.split('\n\n')[2].splitlines()[1:]
     states = {tuple(line.split()[0] for line in story[:len(objects)])}
     for line in story[len(objects):]:
@@ -45,7 +45,7 @@ def suffix_blind_answers(prompt, objects):
                     next_state[index] = receiver
                     updated.add(tuple(next_state))
         states = updated
-    return {state[0] for state in states}
+    return {state[target_index] for state in states}
 
 def main():
     archive = json.loads(Path('reports/tier3-search-responses.json').read_text(encoding='utf-8'))
