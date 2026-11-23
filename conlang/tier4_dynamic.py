@@ -1,6 +1,7 @@
 """Longer, multi-question stories with cumulative, verified marker hints."""
 from .scoring import parse
 from .three_object_probe import build
+import json
 
 OBJECTS = ('coin', 'key', 'book', 'ring', 'cup')
 TARGETS = ('coin', 'key', 'book', 'ring')
@@ -20,7 +21,7 @@ def _parts(prompt):
 
 def build_story(world_seed, language_seed, scheme='shared', observed_hints=False, hint_levels=None,
                 min_observed_markers=0, defer_target_final=False, query_after=None,
-                reasoning_guide=False):
+                reasoning_guide=False, response_format='array'):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
@@ -32,6 +33,7 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
             or (min_observed_markers and not observed_hints)
             or type(defer_target_final) is not bool
             or type(reasoning_guide) is not bool
+            or response_format not in ('array', 'work_answers')
             or (defer_target_final and (not observed_hints or scheme != 'unique'))):
         raise ValueError('invalid observed-marker minimum')
     shared = scheme == 'shared'
@@ -57,6 +59,14 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
                  'later transfers can constrain earlier ones. Track the four requested '
                  'holders at the specified time before returning the JSON array.')
         prompts = [prompt.replace('\n\n', guide + '\n\n', 1) for prompt in prompts]
+    if response_format == 'work_answers':
+        original = 'Return only a JSON array containing 4 names in question order.'
+        revised = ('Return only a JSON object with a "work" field containing a concise '
+                   'step-by-step solution and an "answers" field containing a JSON array '
+                   'of four names in question order.')
+        if any(original not in prompt for prompt in prompts):
+            raise ValueError('expected standard output instruction')
+        prompts = [prompt.replace(original, revised, 1) for prompt in prompts]
     parts = [_parts(prompt) for prompt in prompts]
     if any((p[0], p[1], p[3], p[4]) != (parts[0][0], parts[0][1], parts[0][3], parts[0][4])
            for p in parts[1:]):
@@ -78,6 +88,10 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
                                   english=True, query_after=query_after)
     if english_gold != answer:
         raise ValueError('English control does not match')
+    if response_format == 'work_answers':
+        if original not in english:
+            raise ValueError('expected standard English output instruction')
+        english = english.replace(original, revised, 1)
     if defer_target_final:
         events = english.split('\n\n')[1].splitlines()[1 + len(OBJECTS):]
         transfers = parts[0][3].splitlines()[1 + len(OBJECTS):]
@@ -103,6 +117,16 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
             'english': english, 'answers': answer}
 
 
-def score(raw, answers):
+def score(raw, answers, response_format='array'):
+    if response_format == 'work_answers':
+        try:
+            obj = json.loads(raw)
+            if not isinstance(obj, dict) or not isinstance(obj.get('work'), str):
+                return [False for _ in answers]
+            raw = json.dumps(obj.get('answers'))
+        except (TypeError, ValueError):
+            return [False for _ in answers]
+    elif response_format != 'array':
+        raise ValueError('invalid response format')
     parsed = parse(raw)
     return [i < len(parsed) and parsed[i] == gold.casefold() for i, gold in enumerate(answers)]

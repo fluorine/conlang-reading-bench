@@ -1,0 +1,1176 @@
+{
+  "description": "Tier 4 dynamic development run; not an official benchmark.",
+  "metadata": {
+    "manifest_sha256": "cc29d1a4b3d94a9b8de06dc5160a998babe889b6be3770ec9c0a495d1a46ac88",
+    "model": "gpt-6-luna",
+    "effort": "low",
+    "max_output": 8192,
+    "rates": [
+      0.1,
+      0.5
+    ],
+    "modes": [
+      "fresh_conlang"
+    ],
+    "hint_levels": [
+      1,
+      3,
+      30
+    ]
+  },
+  "responses": [
+    {
+      "world": 1310677710,
+      "language": 184951418,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: veki = initially holds, poma = coin, mima = key, kato = book, zoma = ring, mise = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -mu: cup/giver/recipient.\n\nStory:\nBo veki poma\nCy veki mima\nAda veki kato\nEli veki zoma\nDee veki mise\nAda-ko Fay-mo\nEli-so Bo-ka\nCy-to Bo-ki\nFay-ko Dee-mo\nDee-ko Eli-mo\nBo-to Cy-ki\nCy-na Dee-pu\nEli-ka Ada-so\nBo-so Ada-ka\nBo-mi Cy-te\nAda-mu Cy-ne\nCy-pa Eli-sa\nCy-na Ada-pu\nCy-po Eli-ta\nDee-pe Cy-ma\nAda-ki Dee-to\nDee-mo Cy-ko\nFay-ku Eli-si\nAda-te Eli-mi\nFay-si Dee-ku\nAda-po Fay-ta\nCy-su Fay-nu\nEli-nu Fay-su\nAda-tu Dee-pi\nAda-ke Cy-no\nAda-to Cy-ki\nCy-to Fay-ki\nDee-nu Eli-su\nDee-ko Ada-mo\nAda-ta Fay-po\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[\"Cy\", \"Cy\", \"Ada\", \"Dee\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:47:45.156546+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 513,
+        "completion_tokens": 1375,
+        "total_tokens": 1888,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1341,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0007388
+    },
+    {
+      "world": 1310677710,
+      "language": 184951418,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: veki = initially holds, poma = coin, mima = key, kato = book, zoma = ring, mise = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -mu: cup/giver/recipient; -so: coin/other/recipient; -pe: key/giver/recipient.\n\nStory:\nBo veki poma\nCy veki mima\nAda veki kato\nEli veki zoma\nDee veki mise\nAda-ko Fay-mo\nEli-so Bo-ka\nCy-to Bo-ki\nFay-ko Dee-mo\nDee-ko Eli-mo\nBo-to Cy-ki\nCy-na Dee-pu\nEli-ka Ada-so\nBo-so Ada-ka\nBo-mi Cy-te\nAda-mu Cy-ne\nCy-pa Eli-sa\nCy-na Ada-pu\nCy-po Eli-ta\nDee-pe Cy-ma\nAda-ki Dee-to\nDee-mo Cy-ko\nFay-ku Eli-si\nAda-te Eli-mi\nFay-si Dee-ku\nAda-po Fay-ta\nCy-su Fay-nu\nEli-nu Fay-su\nAda-tu Dee-pi\nAda-ke Cy-no\nAda-to Cy-ki\nCy-to Fay-ki\nDee-nu Eli-su\nDee-ko Ada-mo\nAda-ta Fay-po\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[\"Ada\",\"Cy\",\"Eli\",\"Dee\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:02.268021+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 531,
+        "completion_tokens": 2657,
+        "total_tokens": 3188,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2608,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0013816
+    },
+    {
+      "world": 1310677710,
+      "language": 184951418,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: veki = initially holds, poma = coin, mima = key, kato = book, zoma = ring, mise = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -mu: cup/giver/recipient; -so: coin/other/recipient; -pe: key/giver/recipient; -na: cup/recipient/recipient; -sa: book/recipient/giver; -mo: book/other/recipient; -ta: coin/giver/recipient; -pu: cup/recipient/giver; -ne: cup/giver/giver; -nu: cup/other/recipient; -ma: key/giver/giver; -ki: key/other/recipient; -to: key/other/giver; -ke: ring/giver/giver; -te: coin/recipient/recipient; -pa: book/recipient/recipient; -ka: coin/other/giver; -mi: coin/recipient/giver; -pi: ring/recipient/giver; -ku: ring/other/recipient; -no: ring/giver/recipient; -ko: book/other/giver; -su: cup/other/giver; -si: ring/other/giver; -tu: ring/recipient/recipient; -po: coin/giver/giver; -ni: key/recipient/recipient; -me: book/giver/recipient; -ti: key/recipient/giver; -se: book/giver/giver.\n\nStory:\nBo veki poma\nCy veki mima\nAda veki kato\nEli veki zoma\nDee veki mise\nAda-ko Fay-mo\nEli-so Bo-ka\nCy-to Bo-ki\nFay-ko Dee-mo\nDee-ko Eli-mo\nBo-to Cy-ki\nCy-na Dee-pu\nEli-ka Ada-so\nBo-so Ada-ka\nBo-mi Cy-te\nAda-mu Cy-ne\nCy-pa Eli-sa\nCy-na Ada-pu\nCy-po Eli-ta\nDee-pe Cy-ma\nAda-ki Dee-to\nDee-mo Cy-ko\nFay-ku Eli-si\nAda-te Eli-mi\nFay-si Dee-ku\nAda-po Fay-ta\nCy-su Fay-nu\nEli-nu Fay-su\nAda-tu Dee-pi\nAda-ke Cy-no\nAda-to Cy-ki\nCy-to Fay-ki\nDee-nu Eli-su\nDee-ko Ada-mo\nAda-ta Fay-po\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Dee",
+        "Cy",
+        "Eli"
+      ],
+      "raw": "[\"Eli\", \"Dee\", \"Cy\", \"Eli\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:30.900805+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 774,
+        "completion_tokens": 717,
+        "total_tokens": 1491,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 687,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00043589999999999997
+    },
+    {
+      "world": 1364556667,
+      "language": 1582470867,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: veto = initially holds, veki = coin, kaki = key, kama = book, mima = ring, miki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -po: ring/recipient/giver.\n\nStory:\nCy veto veki\nEli veto kaki\nAda veto kama\nFay veto mima\nDee veto miki\nCy-mu Eli-sa\nBo-ni Dee-mo\nFay-po Eli-pi\nBo-no Eli-ne\nAda-ka Dee-me\nDee-ka Cy-me\nCy-ka Fay-me\nBo-sa Eli-mu\nEli-nu Ada-tu\nAda-po Bo-pi\nFay-ka Ada-me\nEli-ku Bo-ko\nEli-mo Fay-ni\nCy-me Ada-ka\nBo-pu Fay-se\nDee-ni Fay-mo\nBo-sa Fay-mu\nBo-ne Fay-no\nFay-ne Bo-no\nBo-te Cy-ke\nDee-mo Fay-ni\nCy-ni Fay-mo\nCy-mo Dee-ni\nDee-no Bo-ne\nEli-me Cy-ka\nBo-ma Ada-su\nDee-ko Eli-ku\nAda-ma Bo-su\nDee-ti Eli-si\nBo-ma Cy-su\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Bo",
+        "Cy",
+        "Bo"
+      ],
+      "raw": "[\"Bo\", \"Eli\", \"Cy\", \"Bo\"]",
+      "marks": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:39.087219+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 505,
+        "completion_tokens": 1553,
+        "total_tokens": 2058,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1519,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.000827
+    },
+    {
+      "world": 1364556667,
+      "language": 1582470867,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: veto = initially holds, veki = coin, kaki = key, kama = book, mima = ring, miki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -po: ring/recipient/giver; -sa: coin/recipient/recipient; -si: book/recipient/giver.\n\nStory:\nCy veto veki\nEli veto kaki\nAda veto kama\nFay veto mima\nDee veto miki\nCy-mu Eli-sa\nBo-ni Dee-mo\nFay-po Eli-pi\nBo-no Eli-ne\nAda-ka Dee-me\nDee-ka Cy-me\nCy-ka Fay-me\nBo-sa Eli-mu\nEli-nu Ada-tu\nAda-po Bo-pi\nFay-ka Ada-me\nEli-ku Bo-ko\nEli-mo Fay-ni\nCy-me Ada-ka\nBo-pu Fay-se\nDee-ni Fay-mo\nBo-sa Fay-mu\nBo-ne Fay-no\nFay-ne Bo-no\nBo-te Cy-ke\nDee-mo Fay-ni\nCy-ni Fay-mo\nCy-mo Dee-ni\nDee-no Bo-ne\nEli-me Cy-ka\nBo-ma Ada-su\nDee-ko Eli-ku\nAda-ma Bo-su\nDee-ti Eli-si\nBo-ma Cy-su\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Bo",
+        "Cy",
+        "Bo"
+      ],
+      "raw": "[\"Bo\", \"Fay\", \"Ada\", \"Bo\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:57.034533+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 523,
+        "completion_tokens": 2088,
+        "total_tokens": 2611,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2048,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010963
+    },
+    {
+      "world": 1364556667,
+      "language": 1582470867,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: veto = initially holds, veki = coin, kaki = key, kama = book, mima = ring, miki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -po: ring/recipient/giver; -sa: coin/recipient/recipient; -si: book/recipient/giver; -ne: key/other/giver; -ma: coin/other/giver; -se: coin/giver/recipient; -no: key/other/recipient; -ti: book/recipient/recipient; -ko: cup/giver/giver; -tu: ring/other/recipient; -pi: ring/recipient/recipient; -ku: cup/giver/recipient; -me: book/other/recipient; -ka: book/other/giver; -su: coin/other/recipient; -mu: coin/recipient/giver; -mo: cup/other/giver; -ke: ring/giver/recipient; -ni: cup/other/recipient; -nu: ring/other/giver; -te: ring/giver/giver; -pu: coin/giver/giver; -mi: key/giver/recipient; -so: cup/recipient/recipient; -to: cup/recipient/giver; -na: key/recipient/giver; -ta: book/giver/giver; -pe: key/giver/giver; -pa: key/recipient/recipient; -ki: book/giver/recipient.\n\nStory:\nCy veto veki\nEli veto kaki\nAda veto kama\nFay veto mima\nDee veto miki\nCy-mu Eli-sa\nBo-ni Dee-mo\nFay-po Eli-pi\nBo-no Eli-ne\nAda-ka Dee-me\nDee-ka Cy-me\nCy-ka Fay-me\nBo-sa Eli-mu\nEli-nu Ada-tu\nAda-po Bo-pi\nFay-ka Ada-me\nEli-ku Bo-ko\nEli-mo Fay-ni\nCy-me Ada-ka\nBo-pu Fay-se\nDee-ni Fay-mo\nBo-sa Fay-mu\nBo-ne Fay-no\nFay-ne Bo-no\nBo-te Cy-ke\nDee-mo Fay-ni\nCy-ni Fay-mo\nCy-mo Dee-ni\nDee-no Bo-ne\nEli-me Cy-ka\nBo-ma Ada-su\nDee-ko Eli-ku\nAda-ma Bo-su\nDee-ti Eli-si\nBo-ma Cy-su\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Fay",
+        "Bo",
+        "Cy",
+        "Bo"
+      ],
+      "raw": "[\"Fay\",\"Bo\",\"Cy\",\"Bo\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:49:21.504467+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 766,
+        "completion_tokens": 514,
+        "total_tokens": 1280,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 495,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00033360000000000003
+    },
+    {
+      "world": 1693882437,
+      "language": 1899935761,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luto = initially holds, luse = coin, zoki = key, veto = book, zoma = ring, vema = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -te: ring/giver/recipient.\n\nStory:\nAda luto luse\nFay luto zoki\nCy luto veto\nBo luto zoma\nDee luto vema\nEli-pi Fay-sa\nDee-mi Bo-se\nAda-ko Cy-pe\nCy-ka Dee-tu\nEli-po Ada-su\nCy-tu Dee-ka\nAda-pu Eli-ti\nAda-to Dee-mu\nDee-se Fay-mi\nAda-ni Dee-ki\nDee-sa Cy-pi\nCy-sa Eli-pi\nFay-pi Eli-sa\nBo-pi Fay-sa\nAda-pu Bo-ti\nCy-no Eli-ne\nDee-pa Ada-si\nCy-ne Dee-no\nDee-pu Ada-ti\nDee-ke Cy-me\nFay-ki Dee-ni\nBo-no Cy-ne\nDee-ka Ada-tu\nAda-te Fay-na\nFay-sa Ada-pi\nCy-pi Ada-sa\nBo-ka Dee-tu\nAda-se Fay-mi\nAda-no Bo-ne\nFay-se Dee-mi\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Ada",
+        "Ada",
+        "Fay"
+      ],
+      "raw": "[\"Ada\", \"Eli\", \"Cy\", \"Bo\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:49:30.667339+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 518,
+        "completion_tokens": 1858,
+        "total_tokens": 2376,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1816,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009808
+    },
+    {
+      "world": 1693882437,
+      "language": 1899935761,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luto = initially holds, luse = coin, zoki = key, veto = book, zoma = ring, vema = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -te: ring/giver/recipient; -tu: cup/other/giver; -pi: key/other/recipient.\n\nStory:\nAda luto luse\nFay luto zoki\nCy luto veto\nBo luto zoma\nDee luto vema\nEli-pi Fay-sa\nDee-mi Bo-se\nAda-ko Cy-pe\nCy-ka Dee-tu\nEli-po Ada-su\nCy-tu Dee-ka\nAda-pu Eli-ti\nAda-to Dee-mu\nDee-se Fay-mi\nAda-ni Dee-ki\nDee-sa Cy-pi\nCy-sa Eli-pi\nFay-pi Eli-sa\nBo-pi Fay-sa\nAda-pu Bo-ti\nCy-no Eli-ne\nDee-pa Ada-si\nCy-ne Dee-no\nDee-pu Ada-ti\nDee-ke Cy-me\nFay-ki Dee-ni\nBo-no Cy-ne\nDee-ka Ada-tu\nAda-te Fay-na\nFay-sa Ada-pi\nCy-pi Ada-sa\nBo-ka Dee-tu\nAda-se Fay-mi\nAda-no Bo-ne\nFay-se Dee-mi\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Ada",
+        "Ada",
+        "Fay"
+      ],
+      "raw": "[\"Ada\",\"Ada\",\"Cy\",\"Bo\"]",
+      "marks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:49:47.307317+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 536,
+        "completion_tokens": 1616,
+        "total_tokens": 2152,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1581,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0008616
+    },
+    {
+      "world": 1693882437,
+      "language": 1899935761,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luto = initially holds, luse = coin, zoki = key, veto = book, zoma = ring, vema = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -te: ring/giver/recipient; -tu: cup/other/giver; -pi: key/other/recipient; -pu: key/recipient/recipient; -to: cup/recipient/recipient; -ke: coin/giver/giver; -pe: book/other/giver; -ni: key/giver/giver; -ti: key/recipient/giver; -na: ring/giver/giver; -me: coin/giver/recipient; -no: coin/other/recipient; -ka: cup/other/recipient; -se: ring/other/giver; -mu: cup/recipient/giver; -mi: ring/other/recipient; -sa: key/other/giver; -si: book/giver/giver; -ki: key/giver/recipient; -su: coin/recipient/giver; -ko: book/other/recipient; -po: coin/recipient/recipient; -pa: book/giver/recipient; -ne: coin/other/giver; -so: book/recipient/giver; -ku: cup/giver/giver; -nu: cup/giver/recipient; -ta: book/recipient/recipient; -mo: ring/recipient/recipient; -ma: ring/recipient/giver.\n\nStory:\nAda luto luse\nFay luto zoki\nCy luto veto\nBo luto zoma\nDee luto vema\nEli-pi Fay-sa\nDee-mi Bo-se\nAda-ko Cy-pe\nCy-ka Dee-tu\nEli-po Ada-su\nCy-tu Dee-ka\nAda-pu Eli-ti\nAda-to Dee-mu\nDee-se Fay-mi\nAda-ni Dee-ki\nDee-sa Cy-pi\nCy-sa Eli-pi\nFay-pi Eli-sa\nBo-pi Fay-sa\nAda-pu Bo-ti\nCy-no Eli-ne\nDee-pa Ada-si\nCy-ne Dee-no\nDee-pu Ada-ti\nDee-ke Cy-me\nFay-ki Dee-ni\nBo-no Cy-ne\nDee-ka Ada-tu\nAda-te Fay-na\nFay-sa Ada-pi\nCy-pi Ada-sa\nBo-ka Dee-tu\nAda-se Fay-mi\nAda-no Bo-ne\nFay-se Dee-mi\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Ada",
+        "Ada",
+        "Fay"
+      ],
+      "raw": "[\"Eli\",\"Dee\",\"Ada\",\"Fay\"]",
+      "marks": [
+        true,
+        false,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:50:06.658221+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 779,
+        "completion_tokens": 357,
+        "total_tokens": 1136,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 336,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0002564
+    },
+    {
+      "world": 1751223422,
+      "language": 1522635467,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luse = initially holds, vese = coin, poma = key, veto = book, zose = ring, poto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -me: key/giver/giver.\n\nStory:\nEli luse vese\nDee luse poma\nFay luse veto\nBo luse zose\nAda luse poto\nCy-so Ada-pe\nAda-pu Fay-ni\nEli-ku Fay-si\nFay-ku Bo-si\nFay-nu Dee-ki\nDee-pa Bo-ke\nAda-no Fay-ko\nAda-mo Bo-te\nAda-me Eli-su\nDee-ke Bo-pa\nCy-ti Eli-ma\nAda-ku Fay-si\nCy-si Fay-ku\nBo-ke Cy-pa\nAda-ni Fay-pu\nAda-ne Eli-ta\nCy-te Eli-mo\nCy-ka Eli-se\nEli-sa Cy-tu\nBo-nu Eli-ki\nFay-si Cy-ku\nBo-ki Ada-nu\nDee-pu Fay-ni\nAda-ki Fay-nu\nBo-so Ada-pe\nFay-se Cy-ka\nBo-pe Ada-so\nEli-ke Cy-pa\nEli-so Ada-pe\nEli-pe Bo-so\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Fay",
+        "Cy"
+      ],
+      "raw": "[\"Ada\", \"Eli\", \"Dee\", \"Bo\"]",
+      "marks": [
+        false,
+        true,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:49:30.658341+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 514,
+        "completion_tokens": 1517,
+        "total_tokens": 2031,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1482,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0008099
+    },
+    {
+      "world": 1751223422,
+      "language": 1522635467,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luse = initially holds, vese = coin, poma = key, veto = book, zose = ring, poto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -me: key/giver/giver; -su: key/giver/recipient; -pa: ring/other/recipient.\n\nStory:\nEli luse vese\nDee luse poma\nFay luse veto\nBo luse zose\nAda luse poto\nCy-so Ada-pe\nAda-pu Fay-ni\nEli-ku Fay-si\nFay-ku Bo-si\nFay-nu Dee-ki\nDee-pa Bo-ke\nAda-no Fay-ko\nAda-mo Bo-te\nAda-me Eli-su\nDee-ke Bo-pa\nCy-ti Eli-ma\nAda-ku Fay-si\nCy-si Fay-ku\nBo-ke Cy-pa\nAda-ni Fay-pu\nAda-ne Eli-ta\nCy-te Eli-mo\nCy-ka Eli-se\nEli-sa Cy-tu\nBo-nu Eli-ki\nFay-si Cy-ku\nBo-ki Ada-nu\nDee-pu Fay-ni\nAda-ki Fay-nu\nBo-so Ada-pe\nFay-se Cy-ka\nBo-pe Ada-so\nEli-ke Cy-pa\nEli-so Ada-pe\nEli-pe Bo-so\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Fay",
+        "Cy"
+      ],
+      "raw": "[\"Fay\",\"Eli\",\"Bo\",\"Cy\"]",
+      "marks": [
+        false,
+        true,
+        false,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:49:48.503925+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 532,
+        "completion_tokens": 1891,
+        "total_tokens": 2423,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1853,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0009987000000000002
+    },
+    {
+      "world": 1751223422,
+      "language": 1522635467,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luse = initially holds, vese = coin, poma = key, veto = book, zose = ring, poto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -me: key/giver/giver; -su: key/giver/recipient; -pa: ring/other/recipient; -no: key/recipient/recipient; -ne: cup/giver/recipient; -ki: key/other/giver; -sa: ring/recipient/recipient; -ta: cup/giver/giver; -pu: book/other/recipient; -te: coin/recipient/giver; -si: coin/other/recipient; -tu: ring/recipient/giver; -ni: book/other/giver; -ma: cup/recipient/recipient; -se: coin/giver/giver; -pe: cup/other/giver; -ka: coin/giver/recipient; -so: cup/other/recipient; -nu: key/other/recipient; -ku: coin/other/giver; -ke: ring/other/giver; -ti: cup/recipient/giver; -mo: coin/recipient/recipient; -ko: key/recipient/giver; -pi: book/recipient/giver; -po: book/giver/recipient; -na: ring/giver/recipient; -to: ring/giver/giver; -mu: book/recipient/recipient; -mi: book/giver/giver.\n\nStory:\nEli luse vese\nDee luse poma\nFay luse veto\nBo luse zose\nAda luse poto\nCy-so Ada-pe\nAda-pu Fay-ni\nEli-ku Fay-si\nFay-ku Bo-si\nFay-nu Dee-ki\nDee-pa Bo-ke\nAda-no Fay-ko\nAda-mo Bo-te\nAda-me Eli-su\nDee-ke Bo-pa\nCy-ti Eli-ma\nAda-ku Fay-si\nCy-si Fay-ku\nBo-ke Cy-pa\nAda-ni Fay-pu\nAda-ne Eli-ta\nCy-te Eli-mo\nCy-ka Eli-se\nEli-sa Cy-tu\nBo-nu Eli-ki\nFay-si Cy-ku\nBo-ki Ada-nu\nDee-pu Fay-ni\nAda-ki Fay-nu\nBo-so Ada-pe\nFay-se Cy-ka\nBo-pe Ada-so\nEli-ke Cy-pa\nEli-so Ada-pe\nEli-pe Bo-so\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Eli",
+        "Fay",
+        "Cy"
+      ],
+      "raw": "[\"Cy\",\"Eli\",\"Fay\",\"Cy\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:50:09.740090+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 775,
+        "completion_tokens": 442,
+        "total_tokens": 1217,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 422,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0002985
+    },
+    {
+      "world": 2127571955,
+      "language": 159213565,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: zose = initially holds, kase = coin, veki = key, pose = book, miki = ring, poki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pa: key/other/giver.\n\nStory:\nBo zose kase\nDee zose veki\nAda zose pose\nCy zose miki\nFay zose poki\nAda-nu Fay-ta\nAda-ta Bo-nu\nAda-tu Cy-sa\nAda-ma Fay-to\nDee-pu Bo-me\nBo-ku Cy-mi\nFay-mi Cy-ku\nFay-ma Ada-to\nDee-ke Fay-pe\nAda-te Dee-su\nDee-pa Cy-si\nCy-pa Dee-si\nCy-mi Fay-ku\nDee-pa Bo-si\nDee-sa Ada-tu\nAda-sa Fay-tu\nFay-sa Dee-tu\nFay-mi Cy-ku\nFay-ku Ada-mi\nDee-te Bo-su\nDee-nu Fay-ta\nAda-na Bo-so\nAda-ti Bo-pi\nBo-mu Ada-mo\nDee-ta Ada-nu\nAda-ku Cy-mi\nBo-pa Dee-si\nAda-sa Fay-tu\nEli-si Dee-pa\nCy-nu Ada-ta\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Bo",
+        "Ada",
+        "Ada"
+      ],
+      "raw": "[\"Bo\",\"Dee\",\"Fay\",\"Cy\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:39.087219+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 512,
+        "completion_tokens": 1561,
+        "total_tokens": 2073,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1529,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0008317
+    },
+    {
+      "world": 2127571955,
+      "language": 159213565,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: zose = initially holds, kase = coin, veki = key, pose = book, miki = ring, poki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pa: key/other/giver; -to: book/other/recipient; -tu: ring/other/recipient.\n\nStory:\nBo zose kase\nDee zose veki\nAda zose pose\nCy zose miki\nFay zose poki\nAda-nu Fay-ta\nAda-ta Bo-nu\nAda-tu Cy-sa\nAda-ma Fay-to\nDee-pu Bo-me\nBo-ku Cy-mi\nFay-mi Cy-ku\nFay-ma Ada-to\nDee-ke Fay-pe\nAda-te Dee-su\nDee-pa Cy-si\nCy-pa Dee-si\nCy-mi Fay-ku\nDee-pa Bo-si\nDee-sa Ada-tu\nAda-sa Fay-tu\nFay-sa Dee-tu\nFay-mi Cy-ku\nFay-ku Ada-mi\nDee-te Bo-su\nDee-nu Fay-ta\nAda-na Bo-so\nAda-ti Bo-pi\nBo-mu Ada-mo\nDee-ta Ada-nu\nAda-ku Cy-mi\nBo-pa Dee-si\nAda-sa Fay-tu\nEli-si Dee-pa\nCy-nu Ada-ta\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Bo",
+        "Ada",
+        "Ada"
+      ],
+      "raw": "[\"Dee\",\"Dee\",\"Ada\",\"Ada\"]",
+      "marks": [
+        false,
+        false,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:55.580510+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 530,
+        "completion_tokens": 2029,
+        "total_tokens": 2559,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1990,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010675
+    },
+    {
+      "world": 2127571955,
+      "language": 159213565,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: zose = initially holds, kase = coin, veki = key, pose = book, miki = ring, poki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pa: key/other/giver; -to: book/other/recipient; -tu: ring/other/recipient; -si: key/other/recipient; -ta: cup/other/giver; -mo: key/giver/giver; -pe: cup/giver/recipient; -su: ring/recipient/recipient; -na: ring/giver/recipient; -ma: book/other/giver; -ke: cup/giver/giver; -te: ring/recipient/giver; -mu: key/giver/recipient; -mi: coin/other/recipient; -me: cup/recipient/giver; -pu: cup/recipient/recipient; -ku: coin/other/giver; -sa: ring/other/giver; -nu: cup/other/recipient; -ti: key/recipient/recipient; -pi: key/recipient/giver; -so: ring/giver/giver; -ki: coin/giver/giver; -po: coin/recipient/recipient; -ka: book/recipient/recipient; -ni: coin/giver/recipient; -ne: coin/recipient/giver; -no: book/giver/giver; -se: book/giver/recipient; -ko: book/recipient/giver.\n\nStory:\nBo zose kase\nDee zose veki\nAda zose pose\nCy zose miki\nFay zose poki\nAda-nu Fay-ta\nAda-ta Bo-nu\nAda-tu Cy-sa\nAda-ma Fay-to\nDee-pu Bo-me\nBo-ku Cy-mi\nFay-mi Cy-ku\nFay-ma Ada-to\nDee-ke Fay-pe\nAda-te Dee-su\nDee-pa Cy-si\nCy-pa Dee-si\nCy-mi Fay-ku\nDee-pa Bo-si\nDee-sa Ada-tu\nAda-sa Fay-tu\nFay-sa Dee-tu\nFay-mi Cy-ku\nFay-ku Ada-mi\nDee-te Bo-su\nDee-nu Fay-ta\nAda-na Bo-so\nAda-ti Bo-pi\nBo-mu Ada-mo\nDee-ta Ada-nu\nAda-ku Cy-mi\nBo-pa Dee-si\nAda-sa Fay-tu\nEli-si Dee-pa\nCy-nu Ada-ta\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Cy",
+        "Bo",
+        "Ada",
+        "Ada"
+      ],
+      "raw": "[\"Cy\",\"Bo\",\"Ada\",\"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:49:18.885802+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 773,
+        "completion_tokens": 473,
+        "total_tokens": 1246,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 455,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00031380000000000004
+    },
+    {
+      "world": 299626693,
+      "language": 1203463246,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luma = initially holds, mise = coin, poto = key, kato = book, zose = ring, kase = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -ko: cup/giver/giver.\n\nStory:\nDee luma mise\nBo luma poto\nEli luma kato\nAda luma zose\nFay luma kase\nFay-to Dee-su\nFay-pa Bo-ka\nFay-ko Eli-ma\nEli-no Fay-ku\nEli-nu Cy-ke\nFay-ka Ada-pa\nFay-me Eli-se\nFay-se Eli-me\nAda-ka Dee-pa\nDee-ka Bo-pa\nBo-mu Eli-ta\nEli-se Fay-me\nCy-te Ada-ti\nBo-ka Dee-pa\nCy-ti Ada-te\nDee-ka Bo-pa\nBo-ka Cy-pa\nBo-me Fay-se\nCy-ko Eli-ma\nAda-ti Eli-te\nEli-ki Cy-ni\nBo-tu Cy-ne\nDee-mo Bo-so\nCy-pa Bo-ka\nEli-nu Dee-ke\nEli-me Dee-se\nBo-me Eli-se\nCy-ka Ada-pa\nDee-nu Cy-ke\nBo-se Fay-me\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Fay",
+        "Ada"
+      ],
+      "raw": "[]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:47:45.179666+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 508,
+        "completion_tokens": 1558,
+        "total_tokens": 2066,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1536,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0008298
+    },
+    {
+      "world": 299626693,
+      "language": 1203463246,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luma = initially holds, mise = coin, poto = key, kato = book, zose = ring, kase = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -ko: cup/giver/giver; -ti: ring/other/giver; -mo: book/giver/recipient.\n\nStory:\nDee luma mise\nBo luma poto\nEli luma kato\nAda luma zose\nFay luma kase\nFay-to Dee-su\nFay-pa Bo-ka\nFay-ko Eli-ma\nEli-no Fay-ku\nEli-nu Cy-ke\nFay-ka Ada-pa\nFay-me Eli-se\nFay-se Eli-me\nAda-ka Dee-pa\nDee-ka Bo-pa\nBo-mu Eli-ta\nEli-se Fay-me\nCy-te Ada-ti\nBo-ka Dee-pa\nCy-ti Ada-te\nDee-ka Bo-pa\nBo-ka Cy-pa\nBo-me Fay-se\nCy-ko Eli-ma\nAda-ti Eli-te\nEli-ki Cy-ni\nBo-tu Cy-ne\nDee-mo Bo-so\nCy-pa Bo-ka\nEli-nu Dee-ke\nEli-me Dee-se\nBo-me Eli-se\nCy-ka Ada-pa\nDee-nu Cy-ke\nBo-se Fay-me\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Fay",
+        "Ada"
+      ],
+      "raw": "[\"Bo\", \"Fay\", \"Eli\", \"Bo\"]",
+      "marks": [
+        true,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:04.680013+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 526,
+        "completion_tokens": 1453,
+        "total_tokens": 1979,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1418,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0007791
+    },
+    {
+      "world": 299626693,
+      "language": 1203463246,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luma = initially holds, mise = coin, poto = key, kato = book, zose = ring, kase = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -ko: cup/giver/giver; -ti: ring/other/giver; -mo: book/giver/recipient; -ni: ring/recipient/recipient; -ta: coin/recipient/giver; -su: coin/other/giver; -pa: key/other/recipient; -nu: cup/other/giver; -so: book/giver/giver; -ke: cup/other/recipient; -tu: key/recipient/recipient; -no: coin/giver/recipient; -ne: key/recipient/giver; -se: book/other/giver; -ma: cup/giver/recipient; -te: ring/other/recipient; -ki: ring/recipient/giver; -ku: coin/giver/giver; -ka: key/other/giver; -mu: coin/recipient/recipient; -me: book/other/recipient; -to: coin/other/recipient; -si: key/giver/recipient; -pu: key/giver/giver; -na: ring/giver/giver; -mi: cup/recipient/giver; -sa: book/recipient/recipient; -pe: ring/giver/recipient; -pi: cup/recipient/recipient; -po: book/recipient/giver.\n\nStory:\nDee luma mise\nBo luma poto\nEli luma kato\nAda luma zose\nFay luma kase\nFay-to Dee-su\nFay-pa Bo-ka\nFay-ko Eli-ma\nEli-no Fay-ku\nEli-nu Cy-ke\nFay-ka Ada-pa\nFay-me Eli-se\nFay-se Eli-me\nAda-ka Dee-pa\nDee-ka Bo-pa\nBo-mu Eli-ta\nEli-se Fay-me\nCy-te Ada-ti\nBo-ka Dee-pa\nCy-ti Ada-te\nDee-ka Bo-pa\nBo-ka Cy-pa\nBo-me Fay-se\nCy-ko Eli-ma\nAda-ti Eli-te\nEli-ki Cy-ni\nBo-tu Cy-ne\nDee-mo Bo-so\nCy-pa Bo-ka\nEli-nu Dee-ke\nEli-me Dee-se\nBo-me Eli-se\nCy-ka Ada-pa\nDee-nu Cy-ke\nBo-se Fay-me\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Bo",
+        "Dee",
+        "Fay",
+        "Ada"
+      ],
+      "raw": "[\"Bo\",\"Dee\",\"Fay\",\"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:20.775026+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 769,
+        "completion_tokens": 659,
+        "total_tokens": 1428,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 632,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00040639999999999996
+    },
+    {
+      "world": 574969024,
+      "language": 1381858651,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: kase = initially holds, veto = coin, zoma = key, zoki = book, zose = ring, luto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pa: key/giver/recipient.\n\nStory:\nEli kase veto\nCy kase zoma\nFay kase zoki\nDee kase zose\nAda kase luto\nEli-ma Cy-ke\nEli-mi Dee-mo\nEli-tu Cy-ka\nDee-na Cy-mu\nEli-si Dee-ti\nAda-na Dee-mu\nDee-ma Eli-ke\nDee-ke Bo-ma\nBo-ke Ada-ma\nFay-su Ada-pu\nEli-ku Fay-te\nDee-ki Bo-pe\nAda-mi Bo-mo\nEli-ka Ada-tu\nEli-te Dee-ku\nEli-ma Ada-ke\nEli-ke Cy-ma\nEli-ma Cy-ke\nAda-ku Dee-te\nEli-me Fay-ta\nDee-ku Ada-te\nCy-ka Eli-tu\nFay-pe Ada-ki\nEli-pi Ada-pa\nAda-me Eli-ta\nFay-mo Ada-mi\nDee-pa Ada-pi\nDee-nu Ada-se\nCy-sa Ada-to\nFay-ka Ada-tu\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Ada",
+        "Fay",
+        "Ada"
+      ],
+      "raw": "[\"Ada\",\"Cy\",\"Dee\",\"Eli\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:39.074125+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 518,
+        "completion_tokens": 2086,
+        "total_tokens": 2604,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2047,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010948
+    },
+    {
+      "world": 574969024,
+      "language": 1381858651,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: kase = initially holds, veto = coin, zoma = key, zoki = book, zose = ring, luto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pa: key/giver/recipient; -mi: ring/recipient/recipient; -ka: coin/giver/recipient.\n\nStory:\nEli kase veto\nCy kase zoma\nFay kase zoki\nDee kase zose\nAda kase luto\nEli-ma Cy-ke\nEli-mi Dee-mo\nEli-tu Cy-ka\nDee-na Cy-mu\nEli-si Dee-ti\nAda-na Dee-mu\nDee-ma Eli-ke\nDee-ke Bo-ma\nBo-ke Ada-ma\nFay-su Ada-pu\nEli-ku Fay-te\nDee-ki Bo-pe\nAda-mi Bo-mo\nEli-ka Ada-tu\nEli-te Dee-ku\nEli-ma Ada-ke\nEli-ke Cy-ma\nEli-ma Cy-ke\nAda-ku Dee-te\nEli-me Fay-ta\nDee-ku Ada-te\nCy-ka Eli-tu\nFay-pe Ada-ki\nEli-pi Ada-pa\nAda-me Eli-ta\nFay-mo Ada-mi\nDee-pa Ada-pi\nDee-nu Ada-se\nCy-sa Ada-to\nFay-ka Ada-tu\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Ada",
+        "Fay",
+        "Ada"
+      ],
+      "raw": "[\"Ada\",\"Eli\",\"Fay\",\"Dee\"]",
+      "marks": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:49:00.977949+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 536,
+        "completion_tokens": 1893,
+        "total_tokens": 2429,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1854,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0010001
+    },
+    {
+      "world": 574969024,
+      "language": 1381858651,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: kase = initially holds, veto = coin, zoma = key, zoki = book, zose = ring, luto = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pa: key/giver/recipient; -mi: ring/recipient/recipient; -ka: coin/giver/recipient; -me: book/recipient/recipient; -na: coin/other/recipient; -mu: coin/other/giver; -su: cup/giver/recipient; -ki: ring/other/giver; -mo: ring/recipient/giver; -si: ring/giver/giver; -ku: cup/other/recipient; -pu: cup/giver/giver; -sa: coin/recipient/giver; -pi: key/giver/giver; -ti: ring/giver/recipient; -ta: book/recipient/giver; -ma: key/other/recipient; -tu: coin/giver/giver; -ke: key/other/giver; -te: cup/other/giver; -nu: key/recipient/giver; -pe: ring/other/recipient; -to: coin/recipient/recipient; -se: key/recipient/recipient; -ne: book/other/recipient; -ko: book/giver/recipient; -po: book/other/giver; -ni: cup/recipient/recipient; -no: cup/recipient/giver; -so: book/giver/giver.\n\nStory:\nEli kase veto\nCy kase zoma\nFay kase zoki\nDee kase zose\nAda kase luto\nEli-ma Cy-ke\nEli-mi Dee-mo\nEli-tu Cy-ka\nDee-na Cy-mu\nEli-si Dee-ti\nAda-na Dee-mu\nDee-ma Eli-ke\nDee-ke Bo-ma\nBo-ke Ada-ma\nFay-su Ada-pu\nEli-ku Fay-te\nDee-ki Bo-pe\nAda-mi Bo-mo\nEli-ka Ada-tu\nEli-te Dee-ku\nEli-ma Ada-ke\nEli-ke Cy-ma\nEli-ma Cy-ke\nAda-ku Dee-te\nEli-me Fay-ta\nDee-ku Ada-te\nCy-ka Eli-tu\nFay-pe Ada-ki\nEli-pi Ada-pa\nAda-me Eli-ta\nFay-mo Ada-mi\nDee-pa Ada-pi\nDee-nu Ada-se\nCy-sa Ada-to\nFay-ka Ada-tu\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Eli",
+        "Ada",
+        "Fay",
+        "Ada"
+      ],
+      "raw": "[\"Eli\",\"Ada\",\"Fay\",\"Ada\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:49:23.961150+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 779,
+        "completion_tokens": 626,
+        "total_tokens": 1405,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 600,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00039089999999999996
+    },
+    {
+      "world": 977054136,
+      "language": 1667307524,
+      "mode": "fresh_conlang",
+      "stage": 0,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luto = initially holds, kama = coin, luma = key, pose = book, luse = ring, kaki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pe: key/giver/giver.\n\nStory:\nBo luto kama\nFay luto luma\nAda luto pose\nDee luto luse\nEli luto kaki\nCy-ti Fay-na\nBo-ta Ada-pa\nAda-ki Eli-mo\nDee-ni Eli-mi\nCy-na Fay-ti\nAda-ta Bo-pa\nFay-su Eli-si\nFay-na Cy-ti\nEli-ni Ada-mi\nDee-pa Bo-ta\nBo-te Fay-ma\nBo-ma Ada-te\nEli-ki Bo-mo\nFay-ti Cy-na\nFay-pi Ada-no\nAda-pa Dee-ta\nBo-ki Dee-mo\nAda-ma Eli-te\nDee-se Fay-nu\nFay-mu Dee-pe\nDee-ki Bo-mo\nEli-ma Ada-te\nFay-tu Ada-me\nCy-pa Ada-ta\nAda-ma Cy-te\nAda-ni Cy-mi\nCy-ta Bo-pa\nBo-ke Fay-pu\nDee-ne Fay-ku\nCy-ma Dee-te\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[\"Bo\",\"Eli\",\"Ada\",\"Dee\"]",
+      "marks": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:47:45.171546+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 511,
+        "completion_tokens": 1435,
+        "total_tokens": 1946,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1403,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0007686
+    },
+    {
+      "world": 977054136,
+      "language": 1667307524,
+      "mode": "fresh_conlang",
+      "stage": 1,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luto = initially holds, kama = coin, luma = key, pose = book, luse = ring, kaki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pe: key/giver/giver; -pu: coin/recipient/recipient; -mo: book/other/recipient.\n\nStory:\nBo luto kama\nFay luto luma\nAda luto pose\nDee luto luse\nEli luto kaki\nCy-ti Fay-na\nBo-ta Ada-pa\nAda-ki Eli-mo\nDee-ni Eli-mi\nCy-na Fay-ti\nAda-ta Bo-pa\nFay-su Eli-si\nFay-na Cy-ti\nEli-ni Ada-mi\nDee-pa Bo-ta\nBo-te Fay-ma\nBo-ma Ada-te\nEli-ki Bo-mo\nFay-ti Cy-na\nFay-pi Ada-no\nAda-pa Dee-ta\nBo-ki Dee-mo\nAda-ma Eli-te\nDee-se Fay-nu\nFay-mu Dee-pe\nDee-ki Bo-mo\nEli-ma Ada-te\nFay-tu Ada-me\nCy-pa Ada-ta\nAda-ma Cy-te\nAda-ni Cy-mi\nCy-ta Bo-pa\nBo-ke Fay-pu\nDee-ne Fay-ku\nCy-ma Dee-te\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[\"Bo\",\"Cy\",\"Bo\",\"Ada\"]",
+      "marks": [
+        false,
+        false,
+        true,
+        false
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:03.467809+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 529,
+        "completion_tokens": 2212,
+        "total_tokens": 2741,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 2170,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.0011589
+    },
+    {
+      "world": 977054136,
+      "language": 1667307524,
+      "mode": "fresh_conlang",
+      "stage": 2,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Answer the questions in order. Each answer is Ada, Bo, Cy, Dee, Eli, or Fay. Return only a JSON array containing 4 names in question order. Consider the entire story when inferring suffixes: the current holder must be the giver, each suffix has the same meaning wherever it appears, and later transfers can constrain earlier ones. Track the four requested holders at the specified time before returning the JSON array.\n\nInitial words: luto = initially holds, kama = coin, luma = key, pose = book, luse = ring, kaki = cup. Initial statements are holder, holds, object. Each later line is a transfer, with two marked names in either order. Each suffix uniquely indicates the object transferred, the person's role, and whether the reference object is held by the giver, recipient, or someone else immediately before the transfer. The reference is the key, except when the key moves it is the book. Each of the 30 object, context, and role combinations has a different suffix. Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological. The checkpoint is immediately after transfer 15; count only transfer lines. Known suffix meanings (object/reference holder/role): -pe: key/giver/giver; -pu: coin/recipient/recipient; -mo: book/other/recipient; -ni: ring/other/giver; -mu: key/giver/recipient; -ma: cup/other/giver; -si: cup/recipient/giver; -ku: coin/giver/giver; -se: key/recipient/recipient; -na: key/other/giver; -su: cup/recipient/recipient; -no: ring/recipient/giver; -tu: ring/giver/giver; -ta: coin/other/giver; -te: cup/other/recipient; -ne: coin/giver/recipient; -me: ring/giver/recipient; -nu: key/recipient/giver; -mi: ring/other/recipient; -ti: key/other/recipient; -ke: coin/recipient/giver; -ki: book/other/giver; -pa: coin/other/recipient; -pi: ring/recipient/recipient; -ko: book/giver/giver; -sa: book/recipient/giver; -to: book/giver/recipient; -po: cup/giver/giver; -so: cup/giver/recipient; -ka: book/recipient/recipient.\n\nStory:\nBo luto kama\nFay luto luma\nAda luto pose\nDee luto luse\nEli luto kaki\nCy-ti Fay-na\nBo-ta Ada-pa\nAda-ki Eli-mo\nDee-ni Eli-mi\nCy-na Fay-ti\nAda-ta Bo-pa\nFay-su Eli-si\nFay-na Cy-ti\nEli-ni Ada-mi\nDee-pa Bo-ta\nBo-te Fay-ma\nBo-ma Ada-te\nEli-ki Bo-mo\nFay-ti Cy-na\nFay-pi Ada-no\nAda-pa Dee-ta\nBo-ki Dee-mo\nAda-ma Eli-te\nDee-se Fay-nu\nFay-mu Dee-pe\nDee-ki Bo-mo\nEli-ma Ada-te\nFay-tu Ada-me\nCy-pa Ada-ta\nAda-ma Cy-te\nAda-ni Cy-mi\nCy-ta Bo-pa\nBo-ke Fay-pu\nDee-ne Fay-ku\nCy-ma Dee-te\n\n1. Who holds the coin after transfer 15?\n2. Who holds the key after transfer 15?\n3. Who holds the book after transfer 15?\n4. Who holds the ring after transfer 15?"
+        }
+      ],
+      "answers": [
+        "Dee",
+        "Fay",
+        "Bo",
+        "Fay"
+      ],
+      "raw": "[\"Dee\",\"Fay\",\"Bo\",\"Fay\"]",
+      "marks": [
+        true,
+        true,
+        true,
+        true
+      ],
+      "requested_model": "gpt-6-luna",
+      "model": "gpt-6-luna",
+      "effort": "low",
+      "max_output": 8192,
+      "started_utc": "2026-11-23T14:48:28.679990+00:00",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 772,
+        "completion_tokens": 467,
+        "total_tokens": 1239,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 446,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "cost": 0.00031069999999999996
+    }
+  ],
+  "uncertain_attempts": []
+}
