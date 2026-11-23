@@ -9,16 +9,16 @@ from .tier4_dynamic import build_story
 from .verify_tier4_dynamic import verify_run
 
 
-def main():
+def analyze_family(prefix='tier4-regular-confirm', levels=(1, 3, 10), seed=430020):
     entries, seen, total_cost = [], set(), 0.0
     for index in range(4):
-        manifest_path = Path(f'experiments/tier4-regular-confirm-{index}.json')
-        archive_path = Path(f'reports/tier4-regular-confirm-{index}-responses.json')
+        manifest_path = Path(f'experiments/{prefix}-{index}.json')
+        archive_path = Path(f'reports/{prefix}-{index}-responses.json')
         verify_run(archive_path, manifest_path)
         manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
         archive = json.loads(archive_path.read_text(encoding='utf-8'))
         if (len(manifest['pairs']) != 12 or manifest.get('context_free') is not True
-                or manifest['hint_levels'] != [1, 3, 10] or manifest.get('min_observed_markers') != 10
+                or manifest['hint_levels'] != list(levels) or manifest.get('min_observed_markers') != 10
                 or manifest.get('modes') != ['fresh_conlang', 'fresh_english']):
             raise ValueError('unexpected confirmation configuration')
         lookup = {(r['world'], r['language'], r['mode'], r['stage']): r for r in archive['responses']}
@@ -27,7 +27,7 @@ def main():
                 raise ValueError('repeated confirmation story')
             seen.add((world, language))
             case = build_story(world, language, scheme='unique', observed_hints=True,
-                               hint_levels=(1, 3, 10), min_observed_markers=10, context_free=True)
+                               hint_levels=levels, min_observed_markers=10, context_free=True)
             prediction = last_disclosed_transfer(case['prompts'][0])
             last = case['prompts'][0].split('\n\n')[2].splitlines()[-1].split()[-1].split('-')[0]
             tracker = sum(a == b for a, b in zip(prediction, case['answers']))
@@ -39,7 +39,7 @@ def main():
     if len(entries) != 48:
         raise ValueError('incomplete evaluation')
     total = len(entries) * 4
-    for stage, hints in enumerate((1, 3, 10)):
+    for stage, hints in enumerate(levels):
         conlang = sum(sum(e['model'][stage]['marks']) for e in entries)
         english = sum(sum(e['english'][stage]['marks']) for e in entries)
         missing = sum(max(0, 4 - len(parse(e['model'][stage]['raw']))) for e in entries)
@@ -48,9 +48,9 @@ def main():
     print(f'tracker {sum(e["tracker"] for e in entries)}/{total}; '
           f'last-name {sum(e["last"] for e in entries)}/{total}; token-valued cost ${total_cost:.5f}')
     bounds = []
-    for seed, key in ((430020, 'tracker'), (430021, 'last')):
+    for comparison_seed, key in ((seed, 'tracker'), (seed + 1, 'last')):
         differences = [(sum(e['model'][0]['marks']) - e[key]) / 4 for e in entries]
-        rng = Random(seed)
+        rng = Random(comparison_seed)
         samples = sorted(sum(rng.choice(differences) for _ in differences) / len(differences)
                          for _ in range(10000))
         lower, upper = samples[249], samples[9749]
@@ -67,6 +67,10 @@ def main():
           f'primary <40% {primary < .4}; English >=90% {english >= .9}; '
           f'full >=90% {full >= .9}; no empty/capped {clean}; '
           f'both baseline bounds positive {all(bound > 0 for bound in bounds)}')
+
+
+def main():
+    analyze_family()
 
 
 if __name__ == '__main__':
