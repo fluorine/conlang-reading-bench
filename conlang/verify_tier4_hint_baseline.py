@@ -36,7 +36,8 @@ def analyze(archive_path, manifest_path):
                                    query_after=manifest.get('query_after'),
                                    reasoning_guide=manifest.get('reasoning_guide', False),
                                    response_format=manifest.get('response_format', 'array'),
-                                   focus_index=manifest.get('focus_index'))
+                                   focus_index=manifest.get('focus_index'),
+                                   context_free=manifest.get('context_free', False))
                 prediction = last_disclosed_transfer(case['prompts'][stage], manifest.get('query_after'))
             if manifest.get('focus_index') is not None:
                 prediction = [prediction[manifest['focus_index']]]

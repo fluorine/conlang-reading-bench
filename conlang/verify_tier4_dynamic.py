@@ -28,13 +28,16 @@ def verify_run(archive_path, manifest_path):
     compact = manifest.get('variant') == 'compact-three'
     role_hints = manifest.get('role_hints', False)
     object_hint_counts = manifest.get('object_hint_counts')
+    context_free = manifest.get('context_free', False)
     objects = ('coin', 'key', 'book') if compact else OBJECTS
     targets = objects if compact else TARGETS
     hint_levels = tuple(manifest.get('hint_levels', ()))
-    maximum = 18 if compact and scheme == 'unique' else 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
+    maximum = (10 if context_free and scheme == 'unique' and not compact else
+               18 if compact and scheme == 'unique' else 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0)
     modes = tuple(manifest.get('modes', MODES))
     if (manifest.get('variant', 'standard') not in ('standard', 'compact-three')
             or type(role_hints) is not bool or (role_hints and not compact)
+            or type(context_free) is not bool or (context_free and (compact or scheme != 'unique' or defer_target_final))
             or (object_hint_counts is not None and not compact)
             or (compact and (scheme != 'unique' or not observed_hints or defer_target_final
                              or query_after is not None or reasoning_guide or response_format != 'array'
@@ -81,18 +84,19 @@ def verify_run(archive_path, manifest_path):
                                hint_levels=hint_levels, min_observed_markers=minimum_observed,
                                defer_target_final=defer_target_final, query_after=query_after,
                                reasoning_guide=reasoning_guide, response_format=response_format,
-                               focus_index=focus_index)
+                               focus_index=focus_index, context_free=context_free)
         if scheme == 'unique':
             audit_case = case if hint_levels[-1] == maximum else build_compact(
                 world, language, hint_levels=(hint_levels[0], maximum - 1, maximum),
                 min_observed_markers=minimum_observed, focus_index=focus_index,
                 role_hints=role_hints, object_hint_counts=object_hint_counts) if compact else build_story(
                 world, language, scheme=scheme, observed_hints=observed_hints,
-                hint_levels=(hint_levels[0], 29, 30), min_observed_markers=minimum_observed,
+                hint_levels=(hint_levels[0], maximum - 1, maximum), min_observed_markers=minimum_observed,
                 defer_target_final=defer_target_final, query_after=query_after,
-                reasoning_guide=reasoning_guide, response_format=response_format, focus_index=focus_index)
+                reasoning_guide=reasoning_guide, response_format=response_format, focus_index=focus_index,
+                context_free=context_free)
             decoded = decode_full(audit_case['prompts'][2], query_after=query_after,
-                                  objects=objects, targets=targets)
+                                  objects=objects, targets=targets, context_free=context_free)
             if focus_index is not None:
                 decoded = [decoded[focus_index]]
             if decoded != case['answers']:

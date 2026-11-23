@@ -1,0 +1,85 @@
+{
+  "name": "tier4-regular-dev",
+  "seed": 430019,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    1,
+    3,
+    10
+  ],
+  "scheme": "unique",
+  "context_free": true,
+  "observed_hints": true,
+  "min_observed_markers": 10,
+  "modes": [
+    "fresh_conlang",
+    "fresh_english"
+  ],
+  "pairs": [
+    [
+      1647126372,
+      380823325
+    ],
+    [
+      1155016799,
+      823579011
+    ],
+    [
+      234296101,
+      917348432
+    ],
+    [
+      2092425533,
+      1883275724
+    ],
+    [
+      1761991178,
+      1555710533
+    ],
+    [
+      1196266742,
+      951534732
+    ],
+    [
+      340120637,
+      337825118
+    ],
+    [
+      24578018,
+      503062325
+    ],
+    [
+      1876471205,
+      1014398931
+    ],
+    [
+      35504099,
+      1815131137
+    ],
+    [
+      822727817,
+      341094703
+    ],
+    [
+      1480414231,
+      1768726083
+    ]
+  ],
+  "attempts": 12,
+  "rejections": {},
+  "excluded_manifests": [
+    "tier4-confirmation.json",
+    "tier4-observed-fresh.json",
+    "tier4-deferred-dev.json",
+    "tier4-policy-audit.json",
+    "tier4-paired-random.json",
+    "tier4-checkpoint-dev.json",
+    "tier4-focus-fresh-0.json",
+    "tier4-focus-fresh-1.json",
+    "tier4-focus-fresh-2.json",
+    "tier4-focus-fresh-3.json",
+    "tier4-compact-dev.json"
+  ],
+  "purpose": "development: 5 objects, regular object-role suffixes; no model selection"
+}

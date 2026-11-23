@@ -6,7 +6,8 @@ from .tier4_dynamic import LENGTH, OBJECTS, TARGETS
 from .three_object_probe import PEOPLE
 
 
-def decode_full(prompt, query_after=None, objects=OBJECTS, targets=TARGETS, length=LENGTH):
+def decode_full(prompt, query_after=None, objects=OBJECTS, targets=TARGETS, length=LENGTH,
+                context_free=False):
     _, clue, story, _ = prompt.split('\n\n')
     roots = {meaning: word for word, meaning in re.findall(
         r'(\w+) = (initially holds|coin|key|book|ring|cup)', clue)}
@@ -21,7 +22,8 @@ def decode_full(prompt, query_after=None, objects=OBJECTS, targets=TARGETS, leng
         if not marker.startswith('-') or marker[1:] in mapping:
             raise ValueError('invalid suffix table')
         mapping[marker[1:]] = tuple(meaning.split('/'))
-    required = set(product(objects, ('giver', 'recipient', 'other'), ('giver', 'recipient')))
+    required = set(product(objects, ('other',) if context_free else ('giver', 'recipient', 'other'),
+                           ('giver', 'recipient')))
     if len(mapping) != len(required) or set(mapping.values()) != required:
         raise ValueError('suffix table is not a complete one-to-one mapping')
     role_note = re.search(r' Role-only inventory: giver suffixes (.*?); recipient suffixes (.*?)\.', clue)
@@ -68,7 +70,7 @@ def decode_full(prompt, query_after=None, objects=OBJECTS, targets=TARGETS, leng
         if set(roles) != {'giver', 'recipient'} or state[obj] != roles['giver']:
             raise ValueError('invalid transfer roles or holder')
         reference = 'book' if obj == 'key' else 'key'
-        actual_context = ('giver' if state[reference] == roles['giver'] else
+        actual_context = ('other' if context_free else 'giver' if state[reference] == roles['giver'] else
                           'recipient' if state[reference] == roles['recipient'] else 'other')
         if actual_context != context:
             raise ValueError('invalid reference context')

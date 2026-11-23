@@ -21,7 +21,7 @@ def _parts(prompt):
 
 def build_story(world_seed, language_seed, scheme='shared', observed_hints=False, hint_levels=None,
                 min_observed_markers=0, defer_target_final=False, query_after=None,
-                reasoning_guide=False, response_format='array', focus_index=None):
+                reasoning_guide=False, response_format='array', focus_index=None, context_free=False):
     """Return the same questions at three nested hint levels and an English control.
 
     Every accepted item has one answer for all four questions at the least
@@ -33,13 +33,14 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
             or (min_observed_markers and not observed_hints)
             or type(defer_target_final) is not bool
             or type(reasoning_guide) is not bool
+            or type(context_free) is not bool or (context_free and scheme != 'unique')
             or response_format not in ('array', 'work_answers')
             or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < len(TARGETS)))
             or (focus_index is not None and response_format != 'array')
             or (defer_target_final and (not observed_hints or scheme != 'unique'))):
         raise ValueError('invalid observed-marker minimum')
     shared = scheme == 'shared'
-    maximum = 15 if shared else 30
+    maximum = 10 if context_free else 15 if shared else 30
     hint_levels = tuple(hint_levels) if hint_levels is not None else (HINT_LEVELS if shared else SIMPLE_HINT_LEVELS)
     if (len(hint_levels) != 3 or any(type(count) is not int or not 1 <= count <= maximum for count in hint_levels)
             or tuple(sorted(set(hint_levels))) != hint_levels):
@@ -50,7 +51,7 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
                              syncretism=shared, revealed=count, query_objects=TARGETS,
                              nested_hints=True, allow_simple_hints=not shared,
                              observed_hints=observed_hints, defer_target_final=defer_target_final,
-                             query_after=query_after)
+                             query_after=query_after, context_free=context_free)
         if answer is not None and gold != answer:
             raise ValueError('gold changed across hint stages')
         prompts.append(prompt)
@@ -87,7 +88,7 @@ def build_story(world_seed, language_seed, scheme='shared', observed_hints=False
                                   syncretism=shared, revealed=hint_levels[0], query_objects=TARGETS,
                                   nested_hints=True, allow_simple_hints=not shared,
                                   observed_hints=observed_hints, defer_target_final=defer_target_final,
-                                  english=True, query_after=query_after)
+                                  english=True, query_after=query_after, context_free=context_free)
     if english_gold != answer:
         raise ValueError('English control does not match')
     if response_format == 'work_answers':

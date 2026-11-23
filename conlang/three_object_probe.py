@@ -9,13 +9,15 @@ CONTEXTS = ("giver", "recipient", "other")
 
 def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, syncretism=False,
           revealed=0, query_objects=None, nested_hints=False, allow_simple_hints=False,
-          observed_hints=False, defer_target_final=False, query_after=None):
+          observed_hints=False, defer_target_final=False, query_after=None, context_free=False):
     multiple_questions = query_objects is not None
     targets = tuple(query_objects) if multiple_questions else ('coin',)
     if not targets or len(set(targets)) != len(targets) or any(obj not in objects for obj in targets):
         raise ValueError('invalid question objects')
     if query_after is not None and (type(query_after) is not int or not 1 <= query_after <= length):
         raise ValueError('invalid checkpoint')
+    if type(context_free) is not bool or (context_free and syncretism):
+        raise ValueError('invalid context-free grammar')
     world = Random(world_seed)
     initial = dict(zip(objects, world.sample(PEOPLE, len(objects))))
     state = initial.copy()
@@ -32,7 +34,7 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
     answers = checkpoint_answers if query_after is not None else tuple(state[obj] for obj in targets)
     gold = list(answers) if multiple_questions else answers[0]
     rng = Random(language_seed)
-    meanings = list(product(objects, CONTEXTS, ("giver", "recipient")))
+    meanings = list(product(objects, ('other',) if context_free else CONTEXTS, ("giver", "recipient")))
     suffix_count = len(meanings) // 2 if syncretism else len(meanings)
     suffixes = rng.sample([a + b for a in "ptkmns" for b in "aeiou"], suffix_count)
     if syncretism:
@@ -51,7 +53,8 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
     for obj, giver, recipient in events:
         # The special reference object is always the key, or the book when the key moves.
         reference = "book" if obj == "key" else "key"
-        context = "giver" if state[reference] == giver else "recipient" if state[reference] == recipient else "other"
+        context = ("other" if context_free else "giver" if state[reference] == giver else
+                   "recipient" if state[reference] == recipient else "other")
         words = [giver + "-" + markers[obj, context, "giver"],
                  recipient + "-" + markers[obj, context, "recipient"]]
         rng.shuffle(words)
@@ -102,7 +105,8 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
             if giver == recipient or state[obj] != giver:
                 continue
             reference = "book" if obj == "key" else "key"
-            context = "giver" if state[reference] == giver else "recipient" if state[reference] == recipient else "other"
+            context = ("other" if context_free else "giver" if state[reference] == giver else
+                       "recipient" if state[reference] == recipient else "other")
             required = ((gm, (obj, context, "giver")), (rm, (obj, context, "recipient")))
             updated = {key: set(value) for key, value in mapping.items()}
             for marker, meaning in required:
@@ -154,12 +158,15 @@ def build(world_seed, language_seed, length=18, english=False, objects=OBJECTS, 
             + ". Initial statements are holder, holds, object. "
             "Each later line is a transfer, with two marked names in either order. Each suffix "
             + ("may indicate " if syncretism else "uniquely indicates ")
-            + "the object transferred, the person's role, and whether the "
+            + ("the object transferred and the person's role; the middle field in each meaning "
+               "is always 'other' and carries no information. " if context_free else
+               "the object transferred, the person's role, and whether the "
             "reference object is held by the giver, recipient, or someone else immediately before "
-            "the transfer. The reference is the key, except when the key moves it is the book. "
+            "the transfer. The reference is the key, except when the key moves it is the book. ")
             + ("Each suffix represents exactly two different object, context, and role combinations. "
                "Each combination has exactly one suffix. " if syncretism else
-               f"Each of the {'eighteen' if len(objects) == 3 else str(len(objects) * 6)} object, context, and role combinations has a different suffix. ")
+               (f"Each of the {len(objects) * 2} object and role combinations has a different suffix. " if context_free else
+                f"Each of the {'eighteen' if len(objects) == 3 else str(len(objects) * 6)} object, context, and role combinations has a different suffix. "))
             + "Infer suffix meanings from the story. Only the current holder gives. Transfers are chronological.")
     if query_after is not None:
         clue += f' The checkpoint is immediately after transfer {query_after}; count only transfer lines.'
