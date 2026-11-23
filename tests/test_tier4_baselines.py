@@ -1,6 +1,6 @@
 import unittest
 
-from conlang.tier4_baselines import last_disclosed_transfer
+from conlang.tier4_baselines import deferred_policy_candidates, last_disclosed_transfer
 from conlang.tier4_dynamic import build_story
 
 
@@ -26,6 +26,9 @@ class Tier4BaselinesTest(unittest.TestCase):
         self.assertEqual(last_disclosed_transfer(case['prompts'][2]), case['answers'])
         self.assertLess(sum(a == b for a, b in zip(
             last_disclosed_transfer(case['prompts'][0]), case['answers'])), 4)
+        candidates = deferred_policy_candidates(case['prompts'][0])
+        self.assertEqual(len(candidates), 4)
+        self.assertTrue(all(answer in choices for answer, choices in zip(case['answers'], candidates)))
 
 
 if __name__ == '__main__':

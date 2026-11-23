@@ -23,6 +23,7 @@ jobs:
       - run: python -m conlang.verify_tier4_hint_baseline
       - run: python -m conlang.verify_tier4_deferred_dev
       - run: python -m conlang.verify_tier4_deferred_tuning
+      - run: python -m conlang.verify_tier4_policy_leak
       - run: python -m experiments.build_tier3_site
       - run: git diff --exit-code -- docs/tier3-results.js
       - run: node tests/test_plot.js

@@ -1,0 +1,19 @@
+# Tier 4: auditing the deferred-hint policy
+
+The [deferred-hint experiment](TIER4-DEFERRED-DEV.md) deliberately withholds the two suffixes appearing on the final transfer of every queried object. This makes hint disclosure depend on hidden story events. A policy-aware solver can infer that each target's final transfer is on a line with neither suffix disclosed. This is a structural correlation, not proof that a model exploited it or that it reveals the answer by itself.
+
+We generated 64 new stories (256 questions) using seed 430014, applying the existing answer-uniqueness and suffix-blind ambiguity checks. The [manifest](../experiments/tier4-policy-audit.json) records all accepted seeds and rejection counts; no model calls were made. On the same stories and the same ten-hint count:
+
+* With deferred disclosure, neither suffix was revealed on **256/256** actual final transfers. This is guaranteed by the policy.
+* With the existing seeded randomized-observed ordering applied to the same stories, neither suffix was revealed on **79/256** final transfers. This is a matched descriptive calculation, not a new model experiment; these stories were accepted under the deferred policy, and the randomized-hint version was not separately required to be unambiguous.
+* Deferred prompts had **1,002/1,920** transfer lines with neither suffix disclosed. A policy-aware observer could eliminate all other lines as candidate final transfers for every target, though many candidate lines remain.
+
+One simple policy-aware baseline intersects legal suffix-blind holders with names on all-undisclosed lines after the latest directly identified transfer of each target. Compared with a similarly constructed baseline that does not invoke the policy, its candidate set shrank on **0/256** questions; both retained an average of **4.85** candidates. Uniformly choosing from either set has **21.5% expected accuracy**, versus **18.9%** from the suffix-blind set alone. These are expected guessing rates, not model outcomes. The construction is a weak necessary-condition bound, not a complete solver; the zero difference does not rule out other ways to exploit the policy.
+
+As an additional crude rule, choosing the last name on the last all-undisclosed line scores **53/256 (20.7%)**, versus **51/256 (19.9%)** for choosing the last name on the final line. This is an exploratory comparison on correlated questions, without a confidence claim. On the earlier six development stories, the former scored 7/24, matching the latter.
+
+Run `python -m conlang.verify_tier4_policy_leak` to reconstruct the stories and reproduce the counts. `python -m experiments.make_tier4_policy_audit` regenerates the frozen seed manifest. The audit checks one family of rules only: the disclosure policy can convey information even if these simple rules do not improve. The model prompts did not describe the policy; future public use could expose it through documentation or training, so it must not be treated as secret.
+
+## Next experiment
+
+The [paired randomized](../experiments/tier4-paired-random.json) and [paired deferred](../experiments/tier4-paired-deferred.json) development manifests freeze 12 new identical stories under both policies. Each story must independently pass the formal uniqueness check under each hint selection; no model answers were used in selection. Compare Luna low on both policies at 10, 20 and 30 hints, with the same questions, fresh contexts, English controls and both shortcut baselines. The shared acceptance rule changes the story distribution and the two hint sets differ, so results measure the combined effect of hint content and selection policy, not a pure causal measurement of policy awareness. Test policy-aware versus policy-unaware instructions separately if the first comparison is useful. This is development, not a calibrated leaderboard.

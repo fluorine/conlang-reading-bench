@@ -1,0 +1,81 @@
+{
+  "seed": 430015,
+  "length": 30,
+  "question_count": 4,
+  "hint_levels": [
+    10,
+    20,
+    30
+  ],
+  "scheme": "unique",
+  "observed_hints": true,
+  "min_observed_markers": 20,
+  "pairs": [
+    [
+      334440644,
+      1573348965
+    ],
+    [
+      54345322,
+      1224965710
+    ],
+    [
+      1196162961,
+      742101678
+    ],
+    [
+      1498806290,
+      852672649
+    ],
+    [
+      715824831,
+      299604605
+    ],
+    [
+      2039783719,
+      2132319680
+    ],
+    [
+      1284987840,
+      460472366
+    ],
+    [
+      2092908248,
+      928906866
+    ],
+    [
+      128867423,
+      775270369
+    ],
+    [
+      1782592869,
+      1230558353
+    ],
+    [
+      1856203558,
+      1309729583
+    ],
+    [
+      1484839776,
+      812313157
+    ]
+  ],
+  "attempts": 17,
+  "rejections": {
+    "clues do not determine the answer": 1,
+    "too few observed markers": 4
+  },
+  "excluded_manifests": [
+    "tier4-confirmation.json",
+    "tier4-observed-fresh.json",
+    "tier4-deferred-dev.json",
+    "tier4-policy-audit.json"
+  ],
+  "purpose": "paired development comparison; accepted only when both policies give unique answers; not a final benchmark",
+  "name": "tier4-paired-random",
+  "defer_target_final": false,
+  "modes": [
+    "fresh_conlang",
+    "fresh_english"
+  ]
+}

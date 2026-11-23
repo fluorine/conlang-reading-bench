@@ -41,3 +41,42 @@ def last_disclosed_transfer(prompt):
     if any(target not in holders for target in TARGETS):
         raise ValueError('missing initial holder')
     return [holders[target] for target in TARGETS]
+
+
+def deferred_policy_candidates(prompt):
+    """Holders possible under the public final-transfer withholding policy.
+
+    Every queried object is guaranteed to have moved, and the two markers on
+    its final transfer are withheld. Its final transfer must therefore be on
+    a line with no disclosed marker, after its latest identified transfer.
+    Intersect these names with suffix-blind legal holders. This is a necessary
+    condition only; the resulting sets need not be sufficient or calibrated.
+    """
+    from .tier4_dynamic import OBJECTS
+    from .verify_tier3_search import suffix_blind_answers
+
+    _, _, meanings, story, _ = _parts(prompt)
+    known = {}
+    for entry in meanings:
+        marker, description = entry.split(': ', 1)
+        parsed = [tuple(value.split('/')) for value in description.split(' or ')]
+        objects = {obj for obj, _, _ in parsed}
+        if len(objects) == 1:
+            known[marker.removeprefix('-')] = next(iter(objects))
+    lines = story.splitlines()[1 + len(OBJECTS):]
+    latest = {target: -1 for target in TARGETS}
+    events = []
+    for index, line in enumerate(lines):
+        pairs = [word.split('-', 1) for word in line.split()]
+        if len(pairs) != 2 or any(len(pair) != 2 for pair in pairs):
+            raise ValueError('invalid transfer line')
+        disclosed = {known[suffix] for _, suffix in pairs if suffix in known}
+        for target in disclosed & set(TARGETS):
+            latest[target] = index
+        events.append((pairs, bool(disclosed)))
+    results = []
+    for target in TARGETS:
+        names = {name for i, (pairs, has_known) in enumerate(events)
+                 if i > latest[target] and not has_known for name, _ in pairs}
+        results.append(names & suffix_blind_answers(prompt, OBJECTS, OBJECTS.index(target)))
+    return results
