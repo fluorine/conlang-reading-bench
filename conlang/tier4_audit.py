@@ -6,11 +6,11 @@ from .tier4_dynamic import LENGTH, OBJECTS, TARGETS
 from .three_object_probe import PEOPLE
 
 
-def decode_full(prompt, query_after=None):
+def decode_full(prompt, query_after=None, objects=OBJECTS, targets=TARGETS, length=LENGTH):
     _, clue, story, _ = prompt.split('\n\n')
     roots = {meaning: word for word, meaning in re.findall(
         r'(\w+) = (initially holds|coin|key|book|ring|cup)', clue)}
-    if set(roots) != {'initially holds', *OBJECTS} or len(set(roots.values())) != len(roots):
+    if set(roots) != {'initially holds', *objects} or len(set(roots.values())) != len(roots):
         raise ValueError('invalid initial vocabulary')
     prefix = ' Known suffix meanings (object/reference holder/role): '
     if prefix not in clue:
@@ -21,22 +21,22 @@ def decode_full(prompt, query_after=None):
         if not marker.startswith('-') or marker[1:] in mapping:
             raise ValueError('invalid suffix table')
         mapping[marker[1:]] = tuple(meaning.split('/'))
-    required = set(product(OBJECTS, ('giver', 'recipient', 'other'), ('giver', 'recipient')))
+    required = set(product(objects, ('giver', 'recipient', 'other'), ('giver', 'recipient')))
     if len(mapping) != len(required) or set(mapping.values()) != required:
         raise ValueError('suffix table is not a complete one-to-one mapping')
     lines = story.splitlines()
-    if lines[0] != 'Story:' or len(lines) != 1 + len(OBJECTS) + LENGTH:
+    if lines[0] != 'Story:' or len(lines) != 1 + len(objects) + length:
         raise ValueError('invalid story length')
     state = {}
     inverse = {word: meaning for meaning, word in roots.items()}
-    for line in lines[1:1 + len(OBJECTS)]:
+    for line in lines[1:1 + len(objects)]:
         person, relation, word = line.split()
         obj = inverse.get(word)
-        if person not in PEOPLE or relation != roots['initially holds'] or obj not in OBJECTS or obj in state:
+        if person not in PEOPLE or relation != roots['initially holds'] or obj not in objects or obj in state:
             raise ValueError('invalid initial state')
         state[obj] = person
     checkpoint = None
-    for index, line in enumerate(lines[1 + len(OBJECTS):], 1):
+    for index, line in enumerate(lines[1 + len(objects):], 1):
         words = line.split()
         if len(words) != 2:
             raise ValueError('invalid transfer')
@@ -58,9 +58,9 @@ def decode_full(prompt, query_after=None):
             raise ValueError('invalid reference context')
         state[obj] = roles['recipient']
         if index == query_after:
-            checkpoint = [state[obj] for obj in TARGETS]
+            checkpoint = [state[obj] for obj in targets]
     if query_after is not None:
         if checkpoint is None:
             raise ValueError('invalid checkpoint')
         return checkpoint
-    return [state[obj] for obj in TARGETS]
+    return [state[obj] for obj in targets]

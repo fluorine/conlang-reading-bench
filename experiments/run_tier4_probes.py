@@ -42,17 +42,23 @@ def main():
     reasoning_guide = manifest.get('reasoning_guide', False)
     response_format = manifest.get('response_format', 'array')
     focus_index = manifest.get('focus_index')
+    compact = manifest.get('variant') == 'compact-three'
+    target_count = 3 if compact else len(TARGETS)
     hint_levels = tuple(manifest.get('hint_levels', ()))
-    maximum = 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
+    maximum = 18 if compact and scheme == 'unique' else 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
     modes = tuple(manifest.get('modes', MODES))
-    if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
+    if (manifest.get('variant', 'standard') not in ('standard', 'compact-three')
+            or (compact and (scheme != 'unique' or not observed_hints or defer_target_final
+                             or query_after is not None or reasoning_guide or response_format != 'array'
+                             or any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes)))
+            or manifest.get('length') != LENGTH or manifest.get('question_count') != target_count
             or type(observed_hints) is not bool or type(defer_target_final) is not bool
             or (defer_target_final and (not observed_hints or scheme != 'unique'))
             or (query_after is not None and (type(query_after) is not int or not 1 <= query_after <= LENGTH))
             or (query_after is not None and defer_target_final)
             or type(reasoning_guide) is not bool
             or response_format not in ('array', 'work_answers')
-            or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < len(TARGETS)))
+            or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < target_count))
             or (focus_index is not None and (response_format != 'array' or any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes)))
             or (response_format == 'work_answers' and any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes))
             or type(minimum_observed) is not int
@@ -101,11 +107,16 @@ def main():
     def episode(item):
         nonlocal spent, reserved
         (world, language), mode = item
-        case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
-                           hint_levels=hint_levels, min_observed_markers=minimum_observed,
-                           defer_target_final=defer_target_final, query_after=query_after,
-                           reasoning_guide=reasoning_guide, response_format=response_format,
-                           focus_index=focus_index)
+        if compact:
+            from conlang.tier4_compact import build_story as build_compact
+            case = build_compact(world, language, hint_levels=hint_levels,
+                                 min_observed_markers=minimum_observed, focus_index=focus_index)
+        else:
+            case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
+                               hint_levels=hint_levels, min_observed_markers=minimum_observed,
+                               defer_target_final=defer_target_final, query_after=query_after,
+                               reasoning_guide=reasoning_guide, response_format=response_format,
+                               focus_index=focus_index)
         history = []
         for stage in range(len(hint_levels)):
             if mode == 'fresh_conlang':

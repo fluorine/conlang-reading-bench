@@ -25,17 +25,24 @@ def verify_run(archive_path, manifest_path):
     reasoning_guide = manifest.get('reasoning_guide', False)
     response_format = manifest.get('response_format', 'array')
     focus_index = manifest.get('focus_index')
+    compact = manifest.get('variant') == 'compact-three'
+    objects = ('coin', 'key', 'book') if compact else OBJECTS
+    targets = objects if compact else TARGETS
     hint_levels = tuple(manifest.get('hint_levels', ()))
-    maximum = 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
+    maximum = 18 if compact and scheme == 'unique' else 15 if scheme == 'shared' else 30 if scheme == 'unique' else 0
     modes = tuple(manifest.get('modes', MODES))
-    if (manifest.get('length') != LENGTH or manifest.get('question_count') != len(TARGETS)
+    if (manifest.get('variant', 'standard') not in ('standard', 'compact-three')
+            or (compact and (scheme != 'unique' or not observed_hints or defer_target_final
+                             or query_after is not None or reasoning_guide or response_format != 'array'
+                             or any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes)))
+            or manifest.get('length') != LENGTH or manifest.get('question_count') != len(targets)
             or type(observed_hints) is not bool or type(defer_target_final) is not bool
             or (defer_target_final and (not observed_hints or scheme != 'unique'))
             or (query_after is not None and (type(query_after) is not int or not 1 <= query_after <= LENGTH))
             or (query_after is not None and defer_target_final)
             or type(reasoning_guide) is not bool
             or response_format not in ('array', 'work_answers')
-            or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < len(TARGETS)))
+            or (focus_index is not None and (type(focus_index) is not int or not 0 <= focus_index < len(targets)))
             or (focus_index is not None and (response_format != 'array' or any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes)))
             or (response_format == 'work_answers' and any(mode not in ('fresh_conlang', 'fresh_english') for mode in modes))
             or type(minimum_observed) is not int
@@ -60,36 +67,44 @@ def verify_run(archive_path, manifest_path):
     conf = settings('gpt-6-luna', 'low', 8192, [0.1, 0.5])
     uniform, last, initial_holder, questions = 0.0, 0, 0, 0
     for world, language in sorted(pairs):
-        case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
-                           hint_levels=hint_levels, min_observed_markers=minimum_observed,
-                           defer_target_final=defer_target_final, query_after=query_after,
-                           reasoning_guide=reasoning_guide, response_format=response_format,
-                           focus_index=focus_index)
+        if compact:
+            from conlang.tier4_compact import build_story as build_compact
+            case = build_compact(world, language, hint_levels=hint_levels,
+                                 min_observed_markers=minimum_observed, focus_index=focus_index)
+        else:
+            case = build_story(world, language, scheme=scheme, observed_hints=observed_hints,
+                               hint_levels=hint_levels, min_observed_markers=minimum_observed,
+                               defer_target_final=defer_target_final, query_after=query_after,
+                               reasoning_guide=reasoning_guide, response_format=response_format,
+                               focus_index=focus_index)
         if scheme == 'unique':
-            audit_case = case if hint_levels[-1] == 30 else build_story(
+            audit_case = case if hint_levels[-1] == maximum else build_compact(
+                world, language, hint_levels=(hint_levels[0], maximum - 1, maximum),
+                min_observed_markers=minimum_observed, focus_index=focus_index) if compact else build_story(
                 world, language, scheme=scheme, observed_hints=observed_hints,
                 hint_levels=(hint_levels[0], 29, 30), min_observed_markers=minimum_observed,
                 defer_target_final=defer_target_final, query_after=query_after,
                 reasoning_guide=reasoning_guide, response_format=response_format, focus_index=focus_index)
-            decoded = decode_full(audit_case['prompts'][2], query_after=query_after)
+            decoded = decode_full(audit_case['prompts'][2], query_after=query_after,
+                                  objects=objects, targets=targets)
             if focus_index is not None:
                 decoded = [decoded[focus_index]]
             if decoded != case['answers']:
                 raise ValueError('independent fully disclosed replay disagrees with gold')
-        english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(OBJECTS)]
+        english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(objects)]
         starting = {line.split()[-1].removesuffix('.'): line.split()[0] for line in english_story}
         if query_after is not None:
             from conlang.tier4_checkpoint import suffix_blind_checkpoint
             checkpoint_possible = suffix_blind_checkpoint(case['prompts'][0], query_after)
-        selected_targets = TARGETS if focus_index is None else (TARGETS[focus_index],)
+        selected_targets = targets if focus_index is None else (targets[focus_index],)
         for i, target in enumerate(selected_targets):
             possible = (checkpoint_possible[OBJECTS.index(target)] if query_after is not None else
-                        suffix_blind_answers(case['prompts'][0], OBJECTS, OBJECTS.index(target)))
+                        suffix_blind_answers(case['prompts'][0], objects, objects.index(target)))
             if len(possible) < 2 or case['answers'][i] not in possible:
                 raise ValueError('invalid suffix-blind check')
             uniform += 1 / len(possible)
             lines = case['prompts'][0].split('\n\n')[2].splitlines()
-            line = lines[1 + len(OBJECTS) + query_after - 1] if query_after is not None else lines[-1]
+            line = lines[1 + len(objects) + query_after - 1] if query_after is not None else lines[-1]
             name = line.split()[-1].split('-')[0]
             last += name == case['answers'][i]
             initial_holder += starting[target] == case['answers'][i]

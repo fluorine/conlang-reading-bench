@@ -4,7 +4,7 @@ import re
 from .tier4_dynamic import TARGETS, _parts
 
 
-def last_disclosed_transfer(prompt, query_after=None):
+def last_disclosed_transfer(prompt, query_after=None, targets=TARGETS):
     """Track the latest transfer whose object and role a disclosed suffix identifies.
 
     Unrecognized transfers are ignored, so the tracked holder can become stale.
@@ -42,9 +42,9 @@ def last_disclosed_transfer(prompt, query_after=None):
             if evidence and len(set(evidence)) == 1:
                 obj, recipient = evidence[0]
                 holders[obj] = recipient
-    if any(target not in holders for target in TARGETS):
+    if any(target not in holders for target in targets):
         raise ValueError('missing initial holder')
-    return [holders[target] for target in TARGETS]
+    return [holders[target] for target in targets]
 
 
 def deferred_policy_candidates(prompt):
