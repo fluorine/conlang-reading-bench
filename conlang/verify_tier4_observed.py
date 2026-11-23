@@ -15,7 +15,9 @@ def analyze(archive_path, manifest_path):
                    'fresh initial minus last-name shortcut': []}
     for world, language in manifest['pairs']:
         rate = lambda mode, stage: sum(lookup[(world, language, mode, stage)]['marks']) / 4
-        case = build_story(world, language, scheme='unique', observed_hints=True)
+        case = build_story(world, language, scheme='unique', observed_hints=True,
+                           hint_levels=manifest.get('hint_levels', [1, 5, 30]),
+                           min_observed_markers=manifest.get('min_observed_markers', 0))
         last = case['prompts'][0].split('\n\n')[2].splitlines()[-1].split()[-1].split('-')[0]
         baseline = sum(answer == last for answer in case['answers']) / 4
         differences['fresh full minus initial'].append(rate('fresh_conlang', 2) - rate('fresh_conlang', 0))
