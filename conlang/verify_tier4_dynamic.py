@@ -35,9 +35,11 @@ def verify_run(archive_path, manifest_path):
         raise ValueError('missing, extra or repeated response')
     lookup = {(r['world'], r['language'], r['mode'], r['stage']): r for r in rows}
     conf = settings('gpt-6-luna', 'low', 8192, [0.1, 0.5])
-    uniform, last, questions = 0.0, 0, 0
+    uniform, last, initial_holder, questions = 0.0, 0, 0, 0
     for world, language in sorted(pairs):
         case = build_story(world, language, scheme=scheme)
+        english_story = case['english'].split('\n\n')[1].splitlines()[1:1 + len(OBJECTS)]
+        starting = {line.split()[-1].removesuffix('.'): line.split()[0] for line in english_story}
         for i, target in enumerate(TARGETS):
             possible = suffix_blind_answers(case['prompts'][0], OBJECTS, OBJECTS.index(target))
             if len(possible) < 2 or case['answers'][i] not in possible:
@@ -45,6 +47,7 @@ def verify_run(archive_path, manifest_path):
             uniform += 1 / len(possible)
             name = case['prompts'][0].split('\n\n')[2].splitlines()[-1].split()[-1].split('-')[0]
             last += name == case['answers'][i]
+            initial_holder += starting[target] == case['answers'][i]
             questions += 1
         for mode in MODES:
             history = []
@@ -75,7 +78,8 @@ def verify_run(archive_path, manifest_path):
             total = sum(len(row['marks']) for row in selected)
             summaries.append(f'{correct}/{total} ({100 * correct / total:.1f}%)')
         print(mode, ' -> '.join(summaries))
-    print(f'suffix-blind random expected {100 * uniform / questions:.1f}%; last-name {last}/{questions}')
+    print(f'suffix-blind random expected {100 * uniform / questions:.1f}%; '
+          f'last-name {last}/{questions}; initial-holder {initial_holder}/{questions}')
     print(f'capped {sum(row.get("finish_reason") == "length" for row in rows)}; '
           f'empty {sum(not row["raw"] for row in rows)}; '
           f'observed token-valued cost ${sum(row["cost"] for row in rows):.5f}')
