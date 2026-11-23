@@ -1,0 +1,73 @@
+{
+  "name": "tier4-focus-fresh-1",
+  "seed": 430017,
+  "length": 30,
+  "question_count": 4,
+  "query_after": 15,
+  "hint_levels": [
+    1,
+    3,
+    30
+  ],
+  "scheme": "unique",
+  "observed_hints": true,
+  "min_observed_markers": 20,
+  "focus_index": 1,
+  "modes": [
+    "fresh_conlang",
+    "fresh_english"
+  ],
+  "pairs": [
+    [
+      945047441,
+      1233156987
+    ],
+    [
+      862404043,
+      567842632
+    ],
+    [
+      1472869634,
+      1326705010
+    ],
+    [
+      333881792,
+      1941571476
+    ],
+    [
+      421142751,
+      1486855403
+    ],
+    [
+      1507315866,
+      1287495807
+    ],
+    [
+      1587284170,
+      1204390158
+    ],
+    [
+      1287523572,
+      2030981171
+    ]
+  ],
+  "attempts": 40,
+  "rejections": {
+    "too few observed markers": 6,
+    "clues do not determine the answer": 2
+  },
+  "excluded_manifests": [
+    "tier4-confirmation.json",
+    "tier4-observed-fresh.json",
+    "tier4-deferred-dev.json",
+    "tier4-policy-audit.json",
+    "tier4-paired-random.json",
+    "tier4-checkpoint-dev.json"
+  ],
+  "purpose": "fresh development evaluation; one question per story, target balanced",
+  "analysis_plan": {
+    "primary": "one-hint focused conlang accuracy",
+    "criteria": "below 40%; initial English at least 90%; no unexplained output failures; paired 95% story-bootstrap lower bound above zero versus both disclosed-transfer and checkpoint last-name baselines; otherwise not calibrated",
+    "secondary": "three and 30 hints; target groups; completion and usage"
+  }
+}

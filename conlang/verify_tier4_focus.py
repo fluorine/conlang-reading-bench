@@ -6,9 +6,9 @@ from random import Random
 from .verify_tier4_dynamic import verify_run
 
 
-def main():
-    original_path = Path('reports/tier4-checkpoint-dev-responses.json')
-    original_manifest_path = Path('experiments/tier4-checkpoint-dev.json')
+def analyze_family(prefix='tier4-focus', original_name='tier4-checkpoint-dev'):
+    original_path = Path(f'reports/{original_name}-responses.json')
+    original_manifest_path = Path(f'experiments/{original_name}.json')
     verify_run(original_path, original_manifest_path)
     original_manifest = json.loads(original_manifest_path.read_text(encoding='utf-8'))
     original = json.loads(original_path.read_text(encoding='utf-8'))
@@ -17,8 +17,8 @@ def main():
     results = {}
     cost = 0.0
     for index in range(4):
-        manifest_path = Path(f'experiments/tier4-focus-{index}-dev.json')
-        archive_path = Path(f'reports/tier4-focus-{index}-dev-responses.json')
+        manifest_path = Path(f'experiments/{prefix}-{index}-dev.json')
+        archive_path = Path(f'reports/{prefix}-{index}-dev-responses.json')
         verify_run(archive_path, manifest_path)
         manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
         archive = json.loads(archive_path.read_text(encoding='utf-8'))
@@ -45,10 +45,15 @@ def main():
         rng = Random(430016 + stage)
         samples = sorted(sum(rng.choice(differences) for _ in differences) / len(differences)
                          for _ in range(10000))
-        print(f'{hints} hints: focused {focused_total}/32, joint {joint_total}/32; '
+        total = 4 * len(original_manifest['pairs'])
+        print(f'{hints} hints: focused {focused_total}/{total}, joint {joint_total}/{total}; '
               f'difference {100*sum(differences)/len(differences):+.1f} points; '
               f'95% story bootstrap {100*samples[249]:+.1f} to {100*samples[9749]:+.1f}')
     print(f'focused token-valued cost ${cost:.5f}; no new English calls')
+
+
+def main():
+    analyze_family()
 
 
 if __name__ == '__main__':
