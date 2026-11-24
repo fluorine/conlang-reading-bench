@@ -42,10 +42,7 @@ jobs:
       - run: python -m conlang.verify_haiku_low_comparison
       - run: python -m conlang.verify_sonnet_low_comparison
       - run: python -m conlang.verify_sonnet_high_comparison
-      - run: python -m experiments.build_tier3_site
-      - run: git diff --exit-code -- docs/tier3-results.js
-      - run: python -m experiments.build_tier4_site
-      - run: git diff --exit-code -- docs/tier4-results.js
+      - run: python -m conlang.verify_final_array_regrade
       - run: node tests/test_plot.js
   regrade:
     if: github.event_name == 'pull_request'

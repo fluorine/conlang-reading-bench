@@ -152,6 +152,9 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .scatter-column { position: absolute; inset-block: 0; width: 0; border-left: 1px solid var(--grid) }
 .scatter-model, .scatter-date { position: absolute; left: 0; transform: translateX(-50%); text-align: center; font-size: .8rem }
 .scatter-model { background: var(--surface); white-space: nowrap; padding-inline: .17rem; font-weight: 650 }
+.scatter-model-key { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin: .4rem 0 1rem 2.35rem; font-size: .8rem; color: var(--muted) }
+.scatter-model-key[hidden] { display: none }
+.scatter-model-key span { white-space: nowrap }
 .scatter-date { top: calc(100% + .3rem); width: 3.1rem; line-height: 1.15; color: var(--muted) }
 .scatter-point { position: absolute; left: var(--x,50%); bottom: var(--y); transform: translate(-50%,50%); width: 2rem; height: 1.65rem; cursor: pointer; border: 0; padding: 0; background: transparent; display: grid; place-items: center; color: var(--chart-green) }
 .scatter-point::before { content: ""; width: .82rem; height: .82rem; border-radius: 50%; background: currentColor; border: 1px solid var(--surface) }

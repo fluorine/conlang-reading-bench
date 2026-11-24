@@ -8,6 +8,18 @@ const tier3Research = {
       "scores": {
         "minimal": 29.166666666666668,
         "english": 100.0
+      },
+      "strictScores": {
+        "minimal": 29.166666666666668,
+        "english": 100.0
+      },
+      "formatCompliance": {
+        "minimal": 97.91666666666667,
+        "english": 100.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     },
     {
@@ -17,6 +29,18 @@ const tier3Research = {
       "scores": {
         "minimal": 37.5,
         "english": 100.0
+      },
+      "strictScores": {
+        "minimal": 37.5,
+        "english": 100.0
+      },
+      "formatCompliance": {
+        "minimal": 100.0,
+        "english": 100.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     },
     {
@@ -26,6 +50,18 @@ const tier3Research = {
       "scores": {
         "minimal": 37.5,
         "english": 100.0
+      },
+      "strictScores": {
+        "minimal": 37.5,
+        "english": 100.0
+      },
+      "formatCompliance": {
+        "minimal": 100.0,
+        "english": 100.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     },
     {
@@ -35,6 +71,18 @@ const tier3Research = {
       "scores": {
         "minimal": 83.33333333333333,
         "english": 100.0
+      },
+      "strictScores": {
+        "minimal": 83.33333333333333,
+        "english": 100.0
+      },
+      "formatCompliance": {
+        "minimal": 100.0,
+        "english": 100.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     },
     {
@@ -44,6 +92,18 @@ const tier3Research = {
       "scores": {
         "minimal": 43.75,
         "english": 100.0
+      },
+      "strictScores": {
+        "minimal": 43.75,
+        "english": 100.0
+      },
+      "formatCompliance": {
+        "minimal": 18.75,
+        "english": 100.0
+      },
+      "capped": {
+        "minimal": 3,
+        "english": 0
       }
     },
     {
@@ -51,8 +111,20 @@ const tier3Research = {
       "shortName": "Sonnet 5.5 (low)",
       "releaseDate": "2026-09-28",
       "scores": {
+        "minimal": 43.75,
+        "english": 100.0
+      },
+      "strictScores": {
         "minimal": 0.0,
         "english": 0.0
+      },
+      "formatCompliance": {
+        "minimal": 0.0,
+        "english": 0.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     },
     {
@@ -61,7 +133,19 @@ const tier3Research = {
       "releaseDate": "2026-09-28",
       "scores": {
         "minimal": 35.416666666666664,
+        "english": 100.0
+      },
+      "strictScores": {
+        "minimal": 35.416666666666664,
         "english": 0.0
+      },
+      "formatCompliance": {
+        "minimal": 35.416666666666664,
+        "english": 0.0
+      },
+      "capped": {
+        "minimal": 30,
+        "english": 0
       }
     }
   ]

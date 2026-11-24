@@ -9,6 +9,7 @@ from .suite import TIERS, certified, digest
 
 
 SCORER = "0.1.1"
+FINAL_ARRAY_SCORER = "final-array-1.0"
 
 
 def parse(raw, *, strict=False):
@@ -23,6 +24,36 @@ def parse(raw, *, strict=False):
     if not isinstance(values, list) or len(values) > 4:
         return []
     return [v.strip().casefold() if isinstance(v, str) else "" for v in values]
+
+
+def parse_final_answer(raw):
+    """Parse a JSON answer array at the end of a reply, allowing preceding text.
+
+    The only permitted trailing material is a closing Markdown fence or a
+    matching Markdown bold delimiter. This is
+    an explicitly separate regrade; it does not change the original scorer or
+    stored response marks. Apply the same rule to every compared model.
+    """
+    if not isinstance(raw, str):
+        return []
+    text = raw.strip()
+    decoder = json.JSONDecoder()
+    for index in range(len(text) - 1, -1, -1):
+        if text[index] != '[':
+            continue
+        try:
+            value, end = decoder.raw_decode(text[index:])
+        except ValueError:
+            continue
+        suffix = text[index + end:].strip()
+        bold = suffix == '**' and text[:index].rstrip().endswith('**')
+        fenced = suffix == '```' and re.search(r'```(?:json)?\s*$', text[:index], re.IGNORECASE)
+        if (suffix != '' and not bold and not fenced) or not isinstance(value, list) or len(value) > 4:
+            continue
+        if not all(isinstance(item, str) for item in value):
+            return []
+        return [item.strip().casefold() for item in value]
+    return []
 
 
 def grade(manifest, bundle, *, strict=False):

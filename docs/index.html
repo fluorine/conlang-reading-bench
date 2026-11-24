@@ -9,10 +9,10 @@
   <meta name="description" content="How well can AI models follow stories in invented languages? Explore reproducible conlang comprehension results and English controls.">
   <title>Conlang Reading Bench · Results</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css?v=14">
-  <script defer src="tier3-results.js?v=3"></script>
-  <script defer src="tier4-results.js?v=1"></script>
-  <script defer src="accuracy-plot.js?v=18"></script>
+  <link rel="stylesheet" href="style.css?v=15">
+  <script defer src="tier3-results.js?v=4"></script>
+  <script defer src="tier4-results.js?v=2"></script>
+  <script defer src="accuracy-plot.js?v=21"></script>
   <script defer src="motion.js?v=1"></script>
 </head>
 <body id="top">
@@ -102,11 +102,12 @@
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
         <div class="legend scatter-key"><span class="minimal"><i aria-hidden="true"></i>Conlang score</span><span class="english"><i aria-hidden="true"></i>English control</span></div>
         <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
+        <div class="scatter-model-key" id="scatter-model-key" aria-label="Model key" hidden></div>
         <p class="scatter-detail" aria-live="polite"></p>
         <p class="chart-note" id="condition-description">The conlang score is the percentage correct. English is a separate control. Select a point for its score.</p>
         <p class="chart-note" id="scatter-note"></p>
-        <p class="chart-note" id="research-note" hidden>The test requires inferring a new grammar. On these 48 stories, choosing the last name mentioned scores 31.25%; random choice among suffix-blind possibilities has 18.8% expected accuracy. Models released on the same date are offset slightly for readability. Scores are preliminary. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/LUNA-LOW-COMPARISON.md">Explore the methods and limitations</a>.</p>
-        <p class="chart-note" id="tier4-note" hidden>Each story has 30 transfers and four questions. The conlang score uses no disclosed suffix meanings; English is a separate control. The same 48 stories were used for all shown configurations. Scores are provisional and may vary on new stories. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/TIER4-MODEL-COMPARISON.md">See the controls and limitations</a>.</p>
+        <p class="chart-note" id="research-note" hidden>The test requires inferring a new grammar. On these 48 stories, choosing the last name mentioned scores 31.25%; random choice among suffix-blind possibilities has 18.8% expected accuracy. Scores use the final JSON answer array, even when reasoning comes first. Select a point to see the original strict score, output-format compliance and capped responses. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FINAL-ARRAY-REGRADE.md">See how results were regraded</a>.</p>
+        <p class="chart-note" id="tier4-note" hidden>Each story has 30 transfers and four questions. The conlang score uses no disclosed suffix meanings; English is a separate control. All models are regraded from the final JSON answer array. Select a point for the original strict score and format compliance. Scores are provisional. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FINAL-ARRAY-REGRADE.md">See the regrade and limitations</a>.</p>
         <label class="scale-check"><input type="checkbox" id="plot-scale"> Logarithmic scale</label>
       </figure>
     </section>

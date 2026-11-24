@@ -21,8 +21,9 @@ const detail = new Element();
 const note = new Element();
 const keyItems = { '.minimal': new Element(), '.english': new Element() };
 const key = new Element(); key.querySelector = selector => keyItems[selector];
+const modelKey = new Element();
 const inner = { '.scatter-grid': grid, '.scatter-detail': detail, '#scatter-note': note,
-                '.scatter-key': key, '#scatter-label': new Element(),
+                '.scatter-key': key, '#scatter-label': new Element(), '#scatter-model-key': modelKey,
                 '#condition-description': new Element(), '#research-note': new Element(), '#tier4-note': new Element() };
 const plot = Object.assign(new Element(), { querySelector: selector => inner[selector], hidden: true });
 const document = {
@@ -42,6 +43,12 @@ let columns = () => grid.children.filter(child => child.className === 'scatter-c
 assert.equal(columns().length, vm.runInContext('tier4Research.models.length', context));
 assert.match(note.textContent, /48 longer stories/);
 assert.match(columns()[1].children.find(child => child.className === 'scatter-model').style.bottom, /91\.666/);
+const tier4SonnetIndex = vm.runInContext("tier4Research.models.slice().sort((a,b) => a.releaseDate.localeCompare(b.releaseDate)).findIndex(m => m.name === 'Claude Sonnet 5.5 (low)')", context);
+const sonnetPoint = columns()[tier4SonnetIndex].children.find(child => child.className === 'scatter-point minimal');
+sonnetPoint.listeners.click();
+assert.match(detail.textContent, /66\.67%/);
+assert.match(detail.textContent, /Original strict score 0\.00%/);
+assert.match(detail.textContent, /Complete bare-JSON responses 0\.00%/);
 checks[0].checked = false;
 conditions.listeners.change();
 assert.notEqual(columns()[0].children.find(child => child.className === 'scatter-model').style.bottom,
@@ -52,6 +59,12 @@ tabs[2].listeners.click();
 assert.equal(tabs[2].attrs['aria-selected'], 'true');
 const researchModelCount = vm.runInContext('tier3Research.models.length', context);
 assert.equal(columns().length, researchModelCount);
+assert.equal(modelKey.hidden, false);
+assert.equal(modelKey.children.length, researchModelCount);
+const sonnetHighIndex = vm.runInContext("tier3Research.models.slice().sort((a,b) => a.releaseDate.localeCompare(b.releaseDate)).findIndex(m => m.name === 'Claude Sonnet 5.5 (high)')", context);
+const sonnetHigh = columns()[sonnetHighIndex].children.find(child => child.className === 'scatter-point minimal');
+sonnetHigh.listeners.click();
+assert.match(detail.textContent, /30 responses hit the output cap/);
 if (researchModelCount === 3) {
   assert.equal(columns()[0].style.transform, 'translateX(-2.5rem)');
   assert.equal(columns()[1].style.transform, 'translateX(2.5rem)');

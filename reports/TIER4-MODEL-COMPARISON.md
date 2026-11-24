@@ -1,5 +1,7 @@
 # Tier 4: matched zero-hint model comparison
 
+**Update:** The site now uses a uniform [final-array regrade](FINAL-ARRAY-REGRADE.md) across the saved model responses, including Claude Sonnet. The original strict results in this report remain unchanged for provenance.
+
 The [48-story zero-hint candidate](TIER4-ZERO-CONFIRM.md) passed its predeclared checks for Luna low. We then tested Luna medium and GPT-6.1 Terra medium on exactly the same stories and prompts, in independent fresh contexts, with an 8,192-token completion cap. The one-hint and fully disclosed stages are separate fresh requests; this experiment does not measure learning across turns. Accuracy is correct answers divided by 192 (48 stories × four questions).
 
 | Model and effort | Zero suffix meanings | One meaning | All ten meanings | English control, initial |

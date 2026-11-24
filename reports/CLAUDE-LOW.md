@@ -1,5 +1,7 @@
 # Claude Haiku 5.5 and Sonnet 5.5, low effort
 
+**Update:** The charts now use a uniform [final-array regrade](FINAL-ARRAY-REGRADE.md) across all models. The strict scores below are preserved as the original historical results; the new regrade also reports format compliance separately.
+
 Claude Haiku 5.5 ran Tiers 1, 2 and 3. Claude Sonnet 5.5 ran Tiers 3 and 4. Both used `output_config.effort = low`. Each call was one user message in a fresh context, with no system prompt and no tools.
 
 ## Official scores (strict scorer)

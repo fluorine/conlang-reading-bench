@@ -8,6 +8,18 @@ const tier4Research = {
       "scores": {
         "minimal": 39.0625,
         "english": 98.4375
+      },
+      "strictScores": {
+        "minimal": 39.0625,
+        "english": 98.4375
+      },
+      "formatCompliance": {
+        "minimal": 83.33333333333333,
+        "english": 100.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     },
     {
@@ -17,6 +29,18 @@ const tier4Research = {
       "scores": {
         "minimal": 91.66666666666667,
         "english": 100.0
+      },
+      "strictScores": {
+        "minimal": 91.66666666666667,
+        "english": 100.0
+      },
+      "formatCompliance": {
+        "minimal": 95.83333333333333,
+        "english": 100.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     },
     {
@@ -26,6 +50,18 @@ const tier4Research = {
       "scores": {
         "minimal": 99.47916666666667,
         "english": 100.0
+      },
+      "strictScores": {
+        "minimal": 99.47916666666667,
+        "english": 100.0
+      },
+      "formatCompliance": {
+        "minimal": 100.0,
+        "english": 100.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     },
     {
@@ -33,8 +69,20 @@ const tier4Research = {
       "shortName": "Sonnet 5.5 (low)",
       "releaseDate": "2026-09-28",
       "scores": {
+        "minimal": 66.66666666666667,
+        "english": 100.0
+      },
+      "strictScores": {
         "minimal": 0.0,
         "english": 0.0
+      },
+      "formatCompliance": {
+        "minimal": 0.0,
+        "english": 0.0
+      },
+      "capped": {
+        "minimal": 0,
+        "english": 0
       }
     }
   ]

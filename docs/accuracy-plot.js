@@ -52,15 +52,20 @@ const grid = plot.querySelector(".scatter-grid");
 const detail = plot.querySelector(".scatter-detail");
 const note = plot.querySelector("#scatter-note");
 const legend = plot.querySelector(".scatter-key");
+const modelKey = plot.querySelector("#scatter-model-key");
 const conditionNames = { minimal: "Conlang score", english: "English control" };
 
 function render() {
   grid.replaceChildren();
+  modelKey.replaceChildren();
   const isFour = tier === "four";
   const isResearch = tier === "research";
   const isTier4 = tier === "tier4";
   const isExperimental = isResearch || isTier4;
-  const series = isTier4 ? tier4Research.models : isResearch ? tier3Research.models : null;
+  const series = isTier4 ? tier4Research.models.slice() : isResearch ? tier3Research.models.slice() : null;
+  if (series) series.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
+  const dense = Boolean(series && series.length > 5);
+  modelKey.hidden = !dense;
   const questionCount = isResearch ? 48 : isFour || isTier4 ? 192 : 96;
   const storyCount = isExperimental ? 48 : questionCount / 4;
   const activeModels = isExperimental ? series.map(model => model.name) : models;
@@ -78,11 +83,11 @@ function render() {
   for (const key of Object.keys(conditionNames)) {
     legend.querySelector("." + key).hidden = !selected.includes(key);
   }
-  detail.textContent = selected.length ? "Select a point to see the exact score." : "Choose a reading condition to show scores.";
+  detail.textContent = selected.length ? "Select a point to see its score and output-format details." : "Choose a reading condition to show scores.";
   note.textContent = isTier4
-    ? "48 longer stories per configuration, four questions each. Effort is shown with each model. Fresh contexts; results are provisional and cannot be compared directly across tiers."
+    ? "48 longer stories per configuration, four questions each. Scores use the final JSON array; extra preceding text is allowed. Fresh contexts; results are provisional and cannot be compared directly across tiers."
     : isResearch
-    ? "Exploratory five-object grammar: 48 stories per model, one question per story. The effort is shown with each model. Scores are preliminary and not directly comparable with earlier tiers."
+    ? "Exploratory five-object grammar: 48 stories per model, one question per story. Scores use the final JSON array; extra preceding text is allowed. Sonnet high reached its output limit on 30 of 48 conlang stories, counted as incorrect. Results are preliminary and not directly comparable with earlier tiers."
     : isFour
     ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap."
     : "24 reference stories per model. Luna used low reasoning with a 512-token cap.";
@@ -126,11 +131,17 @@ function render() {
     date.dateTime = activeDates[i];
     date.textContent = dateLabel.format(activeTimes[i]);
     if (sameDate.length > 2 && dateRank !== Math.floor(sameDate.length / 2)) date.hidden = true;
+    if (dense) date.hidden = activeDates.slice(0, i).some(d => d.slice(0, 7) === activeDates[i].slice(0, 7));
     column.append(date);
     const scores = isExperimental ? series[i].scores : accuracy[tier][i];
     const label = document.createElement("span");
     label.className = "scatter-model";
-    label.textContent = activeShortNames[i];
+    label.textContent = dense ? String(i + 1) : activeShortNames[i];
+    if (dense) {
+      const keyItem = document.createElement("span");
+      keyItem.textContent = `${i + 1} · ${activeShortNames[i]} (${activeDates[i]})`;
+      modelKey.append(keyItem);
+    }
     if (selected.length && scores) {
       const heights = selected.map(key => position(scores[key]));
       const above = Math.max(...heights) < 87;
@@ -142,12 +153,12 @@ function render() {
         return groupAbove ? Math.max(...heights) : Math.min(...heights);
       }) : [];
       const clustered = groupEdges.length > 1 && Math.max(...groupEdges) - Math.min(...groupEdges) < 12;
-      if (clustered) {
+      if (clustered && !dense) {
         const anchor = groupAbove ? Math.max(...groupEdges) : Math.min(...groupEdges);
         const offset = groupAbove ? .65 + dateRank * 1.1 : -.65 - (sameDate.length - dateRank) * 1.1;
         label.style.bottom = `calc(${anchor}% + ${offset}rem)`;
       } else {
-        label.style.bottom = `calc(${edge}% + ${above ? .65 : -1.9}rem)`;
+        label.style.bottom = `calc(${edge}% + ${above ? .65 : dense ? -1.15 : -1.9}rem)`;
       }
       column.append(label);
     }
@@ -170,7 +181,15 @@ function render() {
       point.style.setProperty("--y", position(result) + "%");
       const count = Math.round(result * questionCount / 100);
       const name = model;
-      const message = `${name} · ${activeDates[i]} · ${conditionNames[key]} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
+      let message = `${name} · ${activeDates[i]} · ${conditionNames[key]} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
+      if (isExperimental) {
+        const item = series[i];
+        const strict = item.strictScores[key];
+        const format = item.formatCompliance[key];
+        const capped = item.capped[key];
+        message += ` · Original strict score ${strict.toFixed(2)}% · Complete bare-JSON responses ${format.toFixed(2)}% (${Math.round(format * storyCount / 100)}/${storyCount})`;
+        if (capped) message += ` · ${capped} response${capped === 1 ? '' : 's'} hit the output cap`;
+      }
       point.setAttribute("aria-label", message);
       point.addEventListener("focus", () => { detail.textContent = message; });
       point.addEventListener("click", () => { detail.textContent = message; });
