@@ -41,6 +41,8 @@ assert.equal(plot.hidden, false);
 assert.equal(tabs[3].attrs['aria-selected'], 'true');
 let columns = () => grid.children.filter(child => child.className === 'scatter-column');
 assert.equal(columns().length, vm.runInContext('tier4Research.models.length', context));
+assert.equal(columns()[0].children.find(child => child.className === 'scatter-point minimal').children[0].textContent, '1');
+assert.match(modelKey.children[0].textContent, /^1 · /);
 assert.match(note.textContent, /48 longer stories/);
 assert.match(columns()[1].children.find(child => child.className === 'scatter-model').style.bottom, /91\.666/);
 const tier4SonnetIndex = vm.runInContext("tier4Research.models.slice().sort((a,b) => a.releaseDate.localeCompare(b.releaseDate)).findIndex(m => m.name === 'Claude Sonnet 5.5 (low)')", context);

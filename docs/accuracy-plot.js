@@ -144,7 +144,7 @@ function render() {
     const scoreSummary = scores && selected.length
       ? selected.map(key => `${conditionNames[key]} ${(scores[key] + 1e-10).toFixed(2)}%`).join(" · ")
       : "Select a reading condition";
-    keyItem.textContent = `${dense ? `${i + 1} · ` : ""}${activeShortNames[i]} · ${activeDates[i]} · ${scoreSummary}`;
+    keyItem.textContent = `${i + 1} · ${activeShortNames[i]} · ${activeDates[i]} · ${scoreSummary}`;
     modelKey.append(keyItem);
     if (selected.length && scores) {
       const heights = selected.map(key => position(scores[key]));
@@ -182,6 +182,11 @@ function render() {
       const point = document.createElement("button");
       point.type = "button";
       point.className = "scatter-point " + key;
+      const markerNumber = document.createElement("span");
+      markerNumber.className = "scatter-point-number";
+      markerNumber.textContent = String(i + 1);
+      markerNumber.setAttribute("aria-hidden", "true");
+      point.append(markerNumber);
       point.style.setProperty("--y", position(result) + "%");
       const count = Math.round(result * questionCount / 100);
       const name = model;

@@ -160,6 +160,7 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .scatter-date { top: calc(100% + .3rem); width: 3.1rem; line-height: 1.15; color: var(--muted) }
 .scatter-point { position: absolute; left: var(--x,50%); bottom: var(--y); transform: translate(-50%,50%); width: 2rem; height: 1.65rem; cursor: pointer; border: 0; padding: 0; background: transparent; display: grid; place-items: center; color: var(--chart-green) }
 .scatter-point::before { content: ""; width: .82rem; height: .82rem; border-radius: 50%; background: currentColor; border: 1px solid var(--surface) }
+.scatter-point-number { display: none }
 .scatter .english { color: var(--violet) }
 .scatter-key span[hidden] { display: none }
 .scatter-key .minimal i { background: var(--chart-green); border-radius: 50% }
@@ -239,6 +240,10 @@ footer { border-top: 1px solid var(--line); color: var(--muted) }
   .tier-tabs button { min-height: 3.25rem; text-align: left; font-size: .85rem; line-height: 1.25 }
   .scatter-grid { margin-right: .75rem; --plot-height: 18rem }
   .scatter-model { display: none }
+  .scatter-point { width: 2.2rem; height: 2.2rem }
+  .paired .scatter-point { width: 1.4rem }
+  .scatter-point::before { width: 1.25rem; height: 1.25rem }
+  .scatter-point-number { display: block; position: absolute; color: #102d25; font: 700 .68rem/1 "DM Sans", sans-serif; pointer-events: none }
   .scatter-model-key, .scatter-model-key.compact-only { display: grid; grid-template-columns: 1fr; gap: .4rem; margin-left: 0 }
   .scatter-model-key[hidden] { display: none }
   .scatter-model-entry { width: 100%; min-height: 2.75rem; line-height: 1.35 }

@@ -9,10 +9,10 @@
   <meta name="description" content="How well can AI models follow stories in invented languages? Explore reproducible conlang comprehension results and English controls.">
   <title>Conlang Reading Bench · Results</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=17">
   <script defer src="tier3-results.js?v=4"></script>
   <script defer src="tier4-results.js?v=2"></script>
-  <script defer src="accuracy-plot.js?v=22"></script>
+  <script defer src="accuracy-plot.js?v=23"></script>
   <script defer src="motion.js?v=1"></script>
 </head>
 <body id="top">
@@ -102,8 +102,8 @@
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
         <div class="legend scatter-key"><span class="minimal"><i aria-hidden="true"></i>Conlang score</span><span class="english"><i aria-hidden="true"></i>English control</span></div>
         <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
-        <div class="scatter-model-key" id="scatter-model-key" aria-label="Models and scores" hidden></div>
         <p class="scatter-detail" aria-live="polite"></p>
+        <div class="scatter-model-key" id="scatter-model-key" aria-label="Numbered models and scores" hidden></div>
         <p class="chart-note" id="condition-description">The conlang score is the percentage correct. English is a separate control. Select a point for its score.</p>
         <p class="chart-note" id="scatter-note"></p>
         <p class="chart-note" id="research-note" hidden>The test requires inferring a new grammar. On these 48 stories, choosing the last name mentioned scores 31.25%; random choice among suffix-blind possibilities has 18.8% expected accuracy. Scores use the final JSON answer array, even when reasoning comes first. Select a point to see the original strict score, output-format compliance and capped responses. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FINAL-ARRAY-REGRADE.md">See how results were regraded</a>.</p>
