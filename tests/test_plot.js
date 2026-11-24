@@ -61,6 +61,9 @@ const researchModelCount = vm.runInContext('tier3Research.models.length', contex
 assert.equal(columns().length, researchModelCount);
 assert.equal(modelKey.hidden, false);
 assert.equal(modelKey.children.length, researchModelCount);
+assert.match(modelKey.children[0].textContent, /Conlang score .*%/);
+modelKey.children[0].listeners.click();
+assert.match(detail.textContent, /Conlang score/);
 const sonnetHighIndex = vm.runInContext("tier3Research.models.slice().sort((a,b) => a.releaseDate.localeCompare(b.releaseDate)).findIndex(m => m.name === 'Claude Sonnet 5.5 (high)')", context);
 const sonnetHigh = columns()[sonnetHighIndex].children.find(child => child.className === 'scatter-point minimal');
 sonnetHigh.listeners.click();

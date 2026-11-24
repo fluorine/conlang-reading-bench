@@ -65,7 +65,8 @@ function render() {
   const series = isTier4 ? tier4Research.models.slice() : isResearch ? tier3Research.models.slice() : null;
   if (series) series.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
   const dense = Boolean(series && series.length > 5);
-  modelKey.hidden = !dense;
+  modelKey.hidden = false;
+  modelKey.classList.toggle("compact-only", !dense);
   const questionCount = isResearch ? 48 : isFour || isTier4 ? 192 : 96;
   const storyCount = isExperimental ? 48 : questionCount / 4;
   const activeModels = isExperimental ? series.map(model => model.name) : models;
@@ -137,11 +138,14 @@ function render() {
     const label = document.createElement("span");
     label.className = "scatter-model";
     label.textContent = dense ? String(i + 1) : activeShortNames[i];
-    if (dense) {
-      const keyItem = document.createElement("span");
-      keyItem.textContent = `${i + 1} · ${activeShortNames[i]} (${activeDates[i]})`;
-      modelKey.append(keyItem);
-    }
+    const keyItem = document.createElement("button");
+    keyItem.type = "button";
+    keyItem.className = "scatter-model-entry";
+    const scoreSummary = scores && selected.length
+      ? selected.map(key => `${conditionNames[key]} ${(scores[key] + 1e-10).toFixed(2)}%`).join(" · ")
+      : "Select a reading condition";
+    keyItem.textContent = `${dense ? `${i + 1} · ` : ""}${activeShortNames[i]} · ${activeDates[i]} · ${scoreSummary}`;
+    modelKey.append(keyItem);
     if (selected.length && scores) {
       const heights = selected.map(key => position(scores[key]));
       const above = Math.max(...heights) < 87;
@@ -193,6 +197,7 @@ function render() {
       point.setAttribute("aria-label", message);
       point.addEventListener("focus", () => { detail.textContent = message; });
       point.addEventListener("click", () => { detail.textContent = message; });
+      if (key === selected[0]) keyItem.addEventListener("click", () => { detail.textContent = message; });
       column.append(point);
     }
     grid.append(column);

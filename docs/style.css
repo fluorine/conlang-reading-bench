@@ -151,10 +151,12 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 0; letter-spacing: -.02em }
 .scatter-tick span { position: absolute; right: calc(100% + .35rem); transform: translateY(-50%); font-size: .78rem; color: var(--muted) }
 .scatter-column { position: absolute; inset-block: 0; width: 0; border-left: 1px solid var(--grid) }
 .scatter-model, .scatter-date { position: absolute; left: 0; transform: translateX(-50%); text-align: center; font-size: .8rem }
-.scatter-model { background: var(--surface); white-space: nowrap; padding-inline: .17rem; font-weight: 650 }
+.scatter-model { color: var(--ink); background: var(--surface); white-space: nowrap; padding-inline: .17rem; font-weight: 650 }
 .scatter-model-key { display: flex; flex-wrap: wrap; gap: .35rem 1rem; margin: .4rem 0 1rem 2.35rem; font-size: .8rem; color: var(--muted) }
 .scatter-model-key[hidden] { display: none }
-.scatter-model-key span { white-space: nowrap }
+.scatter-model-key.compact-only { display: none }
+.scatter-model-entry { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 5px; padding: .35rem .55rem; text-align: left; cursor: pointer }
+.scatter-model-entry:focus-visible { outline: 3px solid #cc7a26; outline-offset: 2px }
 .scatter-date { top: calc(100% + .3rem); width: 3.1rem; line-height: 1.15; color: var(--muted) }
 .scatter-point { position: absolute; left: var(--x,50%); bottom: var(--y); transform: translate(-50%,50%); width: 2rem; height: 1.65rem; cursor: pointer; border: 0; padding: 0; background: transparent; display: grid; place-items: center; color: var(--chart-green) }
 .scatter-point::before { content: ""; width: .82rem; height: .82rem; border-radius: 50%; background: currentColor; border: 1px solid var(--surface) }
@@ -233,6 +235,13 @@ footer { border-top: 1px solid var(--line); color: var(--muted) }
   .sample { margin-right: 5px }
   .chart { --label: 6rem; --value: 3.5rem }
   .chart-row dt { font-size: .875rem }
+  .tier-tabs { align-self: stretch; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--line) }
+  .tier-tabs button { min-height: 3.25rem; text-align: left; font-size: .85rem; line-height: 1.25 }
+  .scatter-grid { margin-right: .75rem; --plot-height: 18rem }
+  .scatter-model { display: none }
+  .scatter-model-key, .scatter-model-key.compact-only { display: grid; grid-template-columns: 1fr; gap: .4rem; margin-left: 0 }
+  .scatter-model-key[hidden] { display: none }
+  .scatter-model-entry { width: 100%; min-height: 2.75rem; line-height: 1.35 }
 }
 @media(max-width: 23rem) {
   .chart { --label: 4.8rem; --value: 3.2rem; padding: .85rem }
