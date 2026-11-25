@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="style.css?v=17">
   <script defer src="tier3-results.js?v=4"></script>
   <script defer src="tier4-results.js?v=2"></script>
-  <script defer src="accuracy-plot.js?v=23"></script>
+  <script defer src="tier5-results.js?v=1"></script>
+  <script defer src="accuracy-plot.js?v=24"></script>
+  <script defer src="tier5-ladder.js?v=1"></script>
   <script defer src="motion.js?v=1"></script>
 </head>
 <body id="top">
@@ -96,7 +98,7 @@
           <label><input type="checkbox" value="minimal" checked> Conlang score</label>
           <label><input type="checkbox" value="english" checked> English control</label>
         </fieldset>
-        <div class="tier-tabs" role="tablist" aria-label="Story tier"><button type="button" role="tab" data-tier="two" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 1 · Two transfers</button><button type="button" role="tab" data-tier="four" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 2 · Four transfers</button><button type="button" role="tab" data-tier="research" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 3 · Exploratory</button><button type="button" role="tab" data-tier="tier4" aria-controls="tier-plot" aria-selected="true" tabindex="0">Tier 4 · Longer stories</button></div>
+        <div class="tier-tabs" role="tablist" aria-label="Story tier"><button type="button" role="tab" data-tier="two" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 1 · Two transfers</button><button type="button" role="tab" data-tier="four" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 2 · Four transfers</button><button type="button" role="tab" data-tier="research" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 3 · Exploratory</button><button type="button" role="tab" data-tier="tier4" aria-controls="tier-plot" aria-selected="false" tabindex="-1">Tier 4 · Longer stories</button><button type="button" role="tab" data-tier="tier5" aria-controls="tier-plot" aria-selected="true" tabindex="0">Tier 5 · Rules revealed</button></div>
       </div>
       <figure class="chart scatter" id="tier-plot">
         <figcaption id="scatter-label">Accuracy (% correct)</figcaption>
@@ -108,6 +110,7 @@
         <p class="chart-note" id="scatter-note"></p>
         <p class="chart-note" id="research-note" hidden>The test requires inferring a new grammar. On these 48 stories, choosing the last name mentioned scores 31.25%; random choice among suffix-blind possibilities has 18.8% expected accuracy. Scores use the final JSON answer array, even when reasoning comes first. Select a point to see the original strict score, output-format compliance and capped responses. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FINAL-ARRAY-REGRADE.md">See how results were regraded</a>.</p>
         <p class="chart-note" id="tier4-note" hidden>Each story has 30 transfers and four questions. The conlang score uses no disclosed suffix meanings; English is a separate control. All models are regraded from the final JSON answer array. Select a point for the original strict score and format compliance. Scores are provisional. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FINAL-ARRAY-REGRADE.md">See the regrade and limitations</a>.</p>
+        <p class="chart-note" id="tier5-note" hidden>Each story has six questions, asked again at every stage as one more grammar rule is revealed. On these stories, the strongest shortcut reader scores 27.8%. Refused and capped responses count as wrong. <a href="#tier5-research">See accuracy at each stage</a>.</p>
         <label class="scale-check"><input type="checkbox" id="plot-scale"> Logarithmic scale</label>
       </figure>
     </section>
@@ -132,6 +135,19 @@
       <p class="settings">Five objects change hands 30 times in an invented language. Models answer four questions about the final holders without a glossary of suffix meanings. The rules and starting positions are supplied, and a checker confirms the answers are determined by the story.</p>
       <p class="settings">The graph shows 192 answers per configuration, plus an English control. We also test the same questions with the full grammar disclosed. The results measure this task, not overall intelligence; the sample is small and model aliases may change.</p>
       <p><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/TIER4-MODEL-COMPARISON.md">See the results and how Tier 4 was checked</a></p>
+    </section>
+    <section class="method" id="tier5-research" aria-labelledby="tier5-heading">
+      <h2 id="tier5-heading">Tier 5 · <em>Rules revealed.</em></h2>
+      <p class="settings">Each story uses an invented grammar with case endings, word order, agreement, tense, negation, a mood particle and pronouns. At first the model sees only the words and the kinds of rule the language uses. Each later stage reveals one more rule, and the model answers the same six questions again in a fresh context.</p>
+      <p class="settings">The score is the mean accuracy over all stages, so a model that needs fewer rules scores higher. A checker confirms that every answer is determined once all rules are known. The level was tuned so that the calibration model, Claude Haiku 5.5 (low), scores between 10% and 90%.</p>
+      <figure class="chart" id="tier5-ladder" hidden>
+        <figcaption><h3>Accuracy by rules revealed</h3><p>Share of answers correct at each stage on held-out stories</p></figcaption>
+        <div class="legend" aria-hidden="true"></div>
+        <dl class="plot"></dl>
+        <div class="axis" aria-hidden="true"><div><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div></div>
+        <p class="chart-note" id="tier5-paired"></p>
+      </figure>
+      <p><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/TIER5-PROGRESSIVE-RULES-DESIGN.md">See the design, calibration and limitations</a></p>
     </section>
     <section class="method" id="method" aria-labelledby="method-heading">
       <p class="eyebrow"><span class="rule"></span> The method</p>

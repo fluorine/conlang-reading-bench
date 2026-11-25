@@ -61,8 +61,10 @@ function render() {
   const isFour = tier === "four";
   const isResearch = tier === "research";
   const isTier4 = tier === "tier4";
-  const isExperimental = isResearch || isTier4;
-  const series = isTier4 ? tier4Research.models.slice() : isResearch ? tier3Research.models.slice() : null;
+  const isTier5 = tier === "tier5";
+  const isExperimental = isResearch || isTier4 || isTier5;
+  const series = isTier5 ? tier5Research.models.slice() : isTier4 ? tier4Research.models.slice()
+    : isResearch ? tier3Research.models.slice() : null;
   if (series) series.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
   const dense = Boolean(series && series.length > 5);
   modelKey.hidden = false;
@@ -85,20 +87,25 @@ function render() {
     legend.querySelector("." + key).hidden = !selected.includes(key);
   }
   detail.textContent = selected.length ? "Select a point to see its score and output-format details." : "Choose a reading condition to show scores.";
-  note.textContent = isTier4
+  note.textContent = isTier5
+    ? "Rules are revealed one at a time over 8 stages; the score is the mean accuracy across all stages. Haiku ran all 48 held-out stories and Sonnet the first 8, so Sonnet's interval is wide. Results are provisional and cannot be compared directly across tiers."
+    : isTier4
     ? "48 longer stories per configuration, four questions each. Scores use the final JSON array; extra preceding text is allowed. Fresh contexts; results are provisional and cannot be compared directly across tiers."
     : isResearch
     ? "Exploratory five-object grammar: 48 stories per model, one question per story. Scores use the final JSON array; extra preceding text is allowed. Sonnet high reached its output limit on 30 of 48 conlang stories, counted as incorrect. Results are preliminary and not directly comparable with earlier tiers."
     : isFour
     ? "48 four-transfer stories per model. Luna used low reasoning with a 2,048-token cap."
     : "24 reference stories per model. Luna used low reasoning with a 512-token cap.";
-  plot.querySelector("#condition-description").textContent = isTier4
+  plot.querySelector("#condition-description").textContent = isTier5
+    ? "The conlang score is the mean accuracy over all disclosure stages, from no rules to every rule. English is a separate control. Select a point for its score."
+    : isTier4
     ? "The conlang score is correct answers with no disclosed suffix meanings. English is a separate control. Select a point for its score."
     : isResearch
     ? "The conlang score is the percentage correct. English is a separate control. Select a point for its score."
     : "The conlang score is the percentage correct with minimal clues. English is a separate control. Select a point for its score.";
   plot.querySelector("#research-note").hidden = !isResearch;
   plot.querySelector("#tier4-note").hidden = !isTier4;
+  plot.querySelector("#tier5-note").hidden = !isTier5;
 
   for (const value of ticks) {
     const tick = document.createElement("div");
@@ -191,7 +198,16 @@ function render() {
       const count = Math.round(result * questionCount / 100);
       const name = model;
       let message = `${name} · ${activeDates[i]} · ${conditionNames[key]} · ${storyCount} stories · ${(result + 1e-10).toFixed(2)}% (${count}/${questionCount})`;
-      if (isExperimental) {
+      if (isTier5) {
+        const item = series[i];
+        const curve = item.stageCurve;
+        message = `${name} · ${activeDates[i]} · ${conditionNames[key]} · ${item.stories} stories · ${result.toFixed(2)}%`;
+        if (key === "minimal") {
+          message += ` (95% interval ${item.interval[0].toFixed(1)}–${item.interval[1].toFixed(1)}) · ${curve[0].toFixed(1)}% with no rules, ${curve.at(-1).toFixed(1)}% with all ${curve.length - 1}`;
+          if (item.refused) message += ` · ${item.refused} refused response${item.refused === 1 ? '' : 's'} scored as wrong`;
+          if (item.capped) message += ` · ${item.capped} response${item.capped === 1 ? '' : 's'} hit the output cap`;
+        }
+      } else if (isExperimental) {
         const item = series[i];
         const strict = item.strictScores[key];
         const format = item.formatCompliance[key];

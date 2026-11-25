@@ -11,7 +11,7 @@ class Element {
   addEventListener(type, handler) { this.listeners[type] = handler; }
   focus() {}
 }
-const tabs = ['two', 'four', 'research', 'tier4'].map(tier => Object.assign(new Element(), { dataset: { tier } }));
+const tabs = ['two', 'four', 'research', 'tier4', 'tier5'].map(tier => Object.assign(new Element(), { dataset: { tier } }));
 const checks = ['minimal', 'english'].map(value => Object.assign(new Element(), { value, checked: true }));
 const conditions = new Element();
 conditions.querySelectorAll = selector => selector === 'input:checked' ? checks.filter(c => c.checked) : checks;
@@ -24,7 +24,7 @@ const key = new Element(); key.querySelector = selector => keyItems[selector];
 const modelKey = new Element();
 const inner = { '.scatter-grid': grid, '.scatter-detail': detail, '#scatter-note': note,
                 '.scatter-key': key, '#scatter-label': new Element(), '#scatter-model-key': modelKey,
-                '#condition-description': new Element(), '#research-note': new Element(), '#tier4-note': new Element() };
+                '#condition-description': new Element(), '#research-note': new Element(), '#tier4-note': new Element(), '#tier5-note': new Element() };
 const plot = Object.assign(new Element(), { querySelector: selector => inner[selector], hidden: true });
 const document = {
   querySelector: selector => ({ '#accuracy-overview': plot, '#plot-conditions': conditions, '#plot-scale': scale })[selector],
@@ -36,10 +36,24 @@ const localStorage = { getItem: () => saved, setItem: (_, value) => { saved = va
 const context = vm.createContext({ document, localStorage, Intl, Date, Math });
 vm.runInContext(fs.readFileSync('docs/tier3-results.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('docs/tier4-results.js', 'utf8'), context);
+vm.runInContext(fs.readFileSync('docs/tier5-results.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('docs/accuracy-plot.js', 'utf8'), context);
 assert.equal(plot.hidden, false);
-assert.equal(tabs[3].attrs['aria-selected'], 'true');
+assert.equal(tabs[4].attrs['aria-selected'], 'true');
 let columns = () => grid.children.filter(child => child.className === 'scatter-column');
+assert.equal(columns().length, vm.runInContext('tier5Research.models.length', context));
+assert.equal(inner['#tier5-note'].hidden, false);
+assert.equal(inner['#tier4-note'].hidden, true);
+assert.match(note.textContent, /Rules are revealed one at a time/);
+const tier5SonnetIndex = vm.runInContext("tier5Research.models.slice().sort((a,b) => a.releaseDate.localeCompare(b.releaseDate)).findIndex(m => m.name === 'Claude Sonnet 5.5 (low)')", context);
+columns()[tier5SonnetIndex].children.find(child => child.className === 'scatter-point minimal').listeners.click();
+assert.match(detail.textContent, /8 stories · 83\.59% \(95% interval 73\.4–93\.0\)/);
+assert.match(detail.textContent, /70\.8% with no rules, 83\.3% with all 7/);
+assert.match(detail.textContent, /2 refused responses scored as wrong/);
+columns()[tier5SonnetIndex].children.find(child => child.className === 'scatter-point english').listeners.click();
+assert.doesNotMatch(detail.textContent, /interval/);
+tabs[3].listeners.click();
+assert.equal(inner['#tier5-note'].hidden, true);
 assert.equal(columns().length, vm.runInContext('tier4Research.models.length', context));
 assert.equal(columns()[0].children.find(child => child.className === 'scatter-point minimal').children[0].textContent, '1');
 assert.match(modelKey.children[0].textContent, /^1 · /);
@@ -96,6 +110,7 @@ scale.checked = false;
 const reloaded = vm.createContext({ document, localStorage, Intl, Date, Math });
 vm.runInContext(fs.readFileSync('docs/tier3-results.js', 'utf8'), reloaded);
 vm.runInContext(fs.readFileSync('docs/tier4-results.js', 'utf8'), reloaded);
+vm.runInContext(fs.readFileSync('docs/tier5-results.js', 'utf8'), reloaded);
 vm.runInContext(fs.readFileSync('docs/accuracy-plot.js', 'utf8'), reloaded);
 assert.equal(tabs[0].attrs['aria-selected'], 'true');
 assert.equal(scale.checked, true);

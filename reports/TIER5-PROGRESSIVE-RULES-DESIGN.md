@@ -174,7 +174,7 @@ The levels were fixed before the first model call. Do not tune knobs one by one 
 | 6. Runner | `experiments/run_tier5_probes.py` | Done. Uses `conlang/provider.py`, a hard budget with per-request reservations, resume, and `--estimate`. Records raw text, usage, cost and cap hits. `--stories N` runs the first N stories, and a later run can raise N. |
 | 7. Dev and held-out manifests | `experiments/make_tier5_dev.py`, `experiments/tier5-dev-L{1..5}.json`, `experiments/tier5-heldout-L4.json` | Done. 8 dev stories per level and 48 held-out L4 stories from a separate seed. Each manifest stores a hash of every prompt, so generator drift stops a run. |
 | 8. Run report and gate checks | `conlang/tier5_report.py` | Done. Stage curve, DCS with a story-bootstrap interval, rules to solve, retention, module profile, baselines and the gate checks. `--archive` bundles a run into one file, and the report reads that file the same way as a run folder. |
-| 9. Site and CI | `experiments/build_tier5_site.py`, CI step | To do |
+| 9. Site and CI | `experiments/build_tier5_site.py`, `docs/tier5-results.js`, `docs/tier5-ladder.js`, CI step | Done. The builder scores the archived held-out runs into `docs/tier5-results.js`. The site has a Tier 5 scatter tab and a stage-by-stage bar chart. CI runs the builder with `--check`, so the published data cannot drift from the archives. |
 
 ### Run the dev sweep
 
