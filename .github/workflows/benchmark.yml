@@ -43,6 +43,7 @@ jobs:
       - run: python -m conlang.verify_sonnet_low_comparison
       - run: python -m conlang.verify_sonnet_high_comparison
       - run: python -m conlang.verify_final_array_regrade
+      - run: python -m experiments.build_tier5_site --check
       - run: node tests/test_plot.js
   regrade:
     if: github.event_name == 'pull_request'
