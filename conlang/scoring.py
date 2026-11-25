@@ -26,7 +26,7 @@ def parse(raw, *, strict=False):
     return [v.strip().casefold() if isinstance(v, str) else "" for v in values]
 
 
-def parse_final_answer(raw):
+def parse_final_answer(raw, max_items=4):
     """Parse a JSON answer array at the end of a reply, allowing preceding text.
 
     The only permitted trailing material is a closing Markdown fence or a
@@ -48,7 +48,7 @@ def parse_final_answer(raw):
         suffix = text[index + end:].strip()
         bold = suffix == '**' and text[:index].rstrip().endswith('**')
         fenced = suffix == '```' and re.search(r'```(?:json)?\s*$', text[:index], re.IGNORECASE)
-        if (suffix != '' and not bold and not fenced) or not isinstance(value, list) or len(value) > 4:
+        if (suffix != '' and not bold and not fenced) or not isinstance(value, list) or len(value) > max_items:
             continue
         if not all(isinstance(item, str) for item in value):
             return []
