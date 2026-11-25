@@ -1,13 +1,18 @@
 """Tier 5: progressive rule disclosure over a multi-feature conlang."""
+import hashlib
+import json
 from collections import Counter
 from random import Random
 
 from .scoring import parse_final_answer
-from .tier5_grammar import LABELS, card_orders, card_text, family_text, level, sample_language
+from .suite import read
+from .tier5_grammar import (LABELS, LEVELS, card_orders, card_text, family_text, level,
+                            sample_language)
 from .tier5_verify import Unknown, answer_sets
 from .tier5_world import (answer, english, make_lines, question_text, render,
                           select_questions, _transfer)
 
+PROTOCOL = "tier5-0.1"
 QUESTIONS = 6
 ATTEMPTS = 200
 # Fixed per level so every story and model shares the same four card orders.
@@ -115,6 +120,25 @@ def baselines(lvl, initial, text, specs, gold):
         predicted = [answer(initial, transfers, spec) for spec in specs]
         out[key] = sum(p == g for p, g in zip(predicted, gold)) / len(gold)
     return out
+
+
+def prompts_digest(items):
+    """Hash of every prompt and gold answer, to detect generator drift."""
+    payload = [[item["prompts"], item["english"], item["answers"]] for item in items]
+    return hashlib.sha256(json.dumps(payload, ensure_ascii=True).encode()).hexdigest()
+
+
+def load_manifest(path):
+    """Read a Tier 5 manifest, rebuild its items and check the frozen digest."""
+    manifest = read(path)
+    stories = manifest.get("stories")
+    if (manifest.get("protocol") != PROTOCOL or manifest.get("level") not in LEVELS
+            or not stories or len({tuple(s[:2]) for s in stories}) != len(stories)):
+        raise ValueError("not a Tier 5 manifest")
+    items = [build_story(w, l, manifest["level"], o) for w, l, o in stories]
+    if prompts_digest(items) != manifest.get("prompts_sha256"):
+        raise ValueError("generator output differs from the frozen manifest")
+    return manifest, items
 
 
 def score(raw, answers):

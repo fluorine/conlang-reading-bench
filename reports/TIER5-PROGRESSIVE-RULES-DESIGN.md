@@ -171,9 +171,21 @@ The levels were fixed before the first model call. Do not tune knobs one by one 
 | 3. Verifier | `conlang/tier5_verify.py` | Done |
 | 4. Builder, baselines, scorer | `conlang/tier5.py` | Done |
 | 5. Offline checks | `conlang/verify_tier5_offline.py`, `tests/test_tier5.py` | Done |
-| 6. Runner | Generalize `experiments/run_tier4_probes.py` or add `experiments/run_tier5_probes.py` | To do. Use `conlang/provider.py`, the hard bundle budget and resume. Record raw text, usage and cap hits. |
-| 7. Dev manifests | `experiments/make_tier5_dev.py` | To do |
-| 8. Verification and site | `conlang/verify_tier5_*.py`, `experiments/build_tier5_site.py`, CI step | To do |
+| 6. Runner | `experiments/run_tier5_probes.py` | Done. Uses `conlang/provider.py`, a hard budget with per-request reservations, resume, and `--estimate`. Records raw text, usage, cost and cap hits. |
+| 7. Dev manifests | `experiments/make_tier5_dev.py`, `experiments/tier5-dev-L{1..5}.json` | Done. 8 stories per level. Each manifest stores a hash of every prompt, so generator drift stops a run. |
+| 8. Run report and gate checks | `conlang/tier5_report.py` | Done. Stage curve, DCS with a story-bootstrap interval, rules to solve, retention, module profile, baselines and the gate checks. |
+| 9. Site and CI | `experiments/build_tier5_site.py`, CI step | To do |
+
+### Run the dev sweep
+
+```sh
+python -m experiments.run_tier5_probes --manifest experiments/tier5-dev-L4.json \
+  --out .work/tier5-dev-haiku-L4 --budget 0.70 --model claude-haiku-5-5 \
+  --provider Anthropic --effort low --rates 0.1 0.5
+python -m conlang.tier5_report --manifest experiments/tier5-dev-L4.json --run .work/tier5-dev-haiku-L4
+```
+
+Add `--estimate` to the first command to print the worst-case cost without a call. With the 16,384-token cap, the worst case for all five levels is $2.64 (312 calls). The expected cost is about $0.50.
 
 ## Offline results
 

@@ -1,9 +1,18 @@
+import io
 import json
+import tempfile
 import unittest
 from collections import Counter
+from contextlib import redirect_stdout
+from pathlib import Path
+from unittest.mock import patch
 
 from conlang.scoring import parse_final_answer
-from conlang.tier5 import build_story, score
+from conlang.suite import read, write
+from conlang.tier5 import build_story, load_manifest, score
+from conlang.tier5_report import report
+from experiments.make_tier5_dev import manifest as make_manifest
+from experiments.run_tier5_probes import main as run_probes
 from conlang.tier5_grammar import LEVELS, card_orders, level, sample_language
 from conlang.tier5_verify import answer_sets
 from conlang.tier5_world import MAX_SAME_ANSWER
@@ -61,6 +70,70 @@ class TestTier5(unittest.TestCase):
     def test_final_answer_limit_default_is_unchanged(self):
         self.assertEqual(parse_final_answer(json.dumps(["a"] * 5)), [])
         self.assertEqual(parse_final_answer(json.dumps(["a"] * 5), max_items=6), ["a"] * 5)
+
+
+class TestTier5Runner(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.manifest = self.root / "m.json"
+        write(self.manifest, make_manifest("tier5-test", "L1", 2, "tier5-test"))
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def fake(self, conf, messages, timeout=75):
+        prompt = messages[0]["content"]
+        answers = next(a for a in self.gold if a[0] == prompt)[1]
+        late = "Rules revealed so far:\nNone yet." not in prompt
+        raw = "Reasoning.\n" + json.dumps(answers if late else ["nobody"] * 6)
+        return dict(raw=raw, model=conf["model"], finish_reason="end_turn",
+                    usage=dict(prompt_tokens=1000, completion_tokens=500))
+
+    def run_probe(self, *extra):
+        args = ["--manifest", str(self.manifest), "--out", str(self.root / "run"),
+                "--budget", "1", "--model", "fake", "--provider", "Anthropic",
+                "--rates", "0.1", "0.5", "--workers", "1", *extra]
+        with patch("experiments.run_tier5_probes.provider_request", self.fake), \
+                redirect_stdout(io.StringIO()) as out:
+            run_probes(args)
+        return out.getvalue()
+
+    def test_run_resume_and_report(self):
+        _, items = load_manifest(self.manifest)
+        self.gold = [(p, i["answers"]) for i in items for p in [*i["prompts"], i["english"]]]
+        estimate = json.loads(self.run_probe("--estimate"))
+        self.assertEqual(estimate["remaining"], 2 * 6)
+        self.run_probe()
+        self.assertEqual(len(list((self.root / "run").glob("*-*.json"))), 12)
+        self.assertEqual(json.loads(self.run_probe("--estimate"))["remaining"], 0)
+        self.run_probe()
+        result = report(self.manifest, self.root / "run")
+        self.assertTrue(result["complete"])
+        self.assertEqual(result["stage_curve"][0], 0)
+        self.assertEqual(result["stage_curve"][1:], [100.0] * 4)
+        self.assertEqual(result["english"], 100.0)
+        self.assertEqual(result["dcs"], 80.0)
+        self.assertEqual(result["rules_to_solve"], [1, 1])
+        self.assertAlmostEqual(result["cost_usd"], 12 * (1000 * 0.1 + 500 * 0.5) / 1e6)
+
+    def test_budget_stops_before_overspending(self):
+        _, items = load_manifest(self.manifest)
+        self.gold = [(p, i["answers"]) for i in items for p in [*i["prompts"], i["english"]]]
+        args = ["--manifest", str(self.manifest), "--out", str(self.root / "run"),
+                "--budget", "0.001", "--model", "fake", "--provider", "Anthropic",
+                "--rates", "0.1", "0.5", "--workers", "1"]
+        with patch("experiments.run_tier5_probes.provider_request", self.fake), \
+                redirect_stdout(io.StringIO()):
+            with self.assertRaisesRegex(ValueError, "budget"):
+                run_probes(args)
+
+    def test_manifest_drift_is_detected(self):
+        manifest = read(self.manifest)
+        manifest["prompts_sha256"] = "0" * 64
+        write(self.manifest, manifest)
+        with self.assertRaisesRegex(ValueError, "differs"):
+            load_manifest(self.manifest)
 
 
 if __name__ == "__main__":
