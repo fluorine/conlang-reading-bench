@@ -41,7 +41,7 @@ const accuracy = {
 const models = ["GPT-4o mini (default)", "GPT-4.1 mini (default)", "GPT-5.4 nano (default)", "GPT-6 Luna (low)"];
 const shortNames = ["4o mini (default)", "4.1 mini (default)", "5.4 nano (default)", "Luna (low)"];
 const releaseDates = ["2024-07-18", "2025-04-14", "2026-03-17", "2026-09-22"];
-const dateLabel = new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" });
+const dateLabel = new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
 const plot = document.querySelector("#accuracy-overview");
 const tabs = Array.from(document.querySelectorAll("[role=tab][data-tier]"));
 let tier = tabs.at(-1).dataset.tier;
@@ -121,25 +121,15 @@ function render() {
   activeModels.forEach((model, i) => {
     const column = document.createElement("div");
     column.className = "scatter-column";
-    const firstRelease = Math.min(...activeTimes);
-    const elapsed = activeTimes[i] - firstRelease;
-    const span = Math.max(...activeTimes) - firstRelease || 1;
-    const sameDate = activeTimes.map((time, index) => time === activeTimes[i] ? index : -1).filter(index => index >= 0);
-    const dateRank = sameDate.indexOf(i);
-    const base = isExperimental && activeModels.length > 2 ? 35 + 40 * elapsed / span
-      : isExperimental ? 25 + 50 * elapsed / span : 10 + 80 * elapsed / span;
-    column.style.left = base + "%";
-    if (sameDate.length > 1) {
-      const spacing = sameDate.length > 2 ? 3.3 : 5;
-      const offset = (dateRank - (sameDate.length - 1) / 2) * spacing;
-      column.style.transform = `translateX(${offset}rem)`;
-    }
+    // Even spacing in release order: models released days apart stay legible.
+    const total = activeModels.length;
+    const pad = total <= 2 ? 25 : total <= 4 ? 12 : 7;
+    column.style.left = (total === 1 ? 50 : pad + (100 - 2 * pad) * i / (total - 1)) + "%";
     const date = document.createElement("time");
     date.className = "scatter-date";
     date.dateTime = activeDates[i];
     date.textContent = dateLabel.format(activeTimes[i]);
-    if (sameDate.length > 2 && dateRank !== Math.floor(sameDate.length / 2)) date.hidden = true;
-    if (dense) date.hidden = activeDates.slice(0, i).some(d => d.slice(0, 7) === activeDates[i].slice(0, 7));
+    date.hidden = i > 0 && activeDates[i - 1] === activeDates[i];
     column.append(date);
     const scores = isExperimental ? series[i].scores : accuracy[tier][i];
     const label = document.createElement("span");
@@ -157,20 +147,7 @@ function render() {
       const heights = selected.map(key => position(scores[key]));
       const above = Math.max(...heights) < 87;
       const edge = above ? Math.max(...heights) : Math.min(...heights);
-      const groupHeights = isExperimental ? sameDate.flatMap(index => selected.map(key => position(series[index].scores[key]))) : [];
-      const groupAbove = groupHeights.length && Math.max(...groupHeights) < 87;
-      const groupEdges = isExperimental ? sameDate.map(index => {
-        const heights = selected.map(key => position(series[index].scores[key]));
-        return groupAbove ? Math.max(...heights) : Math.min(...heights);
-      }) : [];
-      const clustered = groupEdges.length > 1 && Math.max(...groupEdges) - Math.min(...groupEdges) < 12;
-      if (clustered && !dense) {
-        const anchor = groupAbove ? Math.max(...groupEdges) : Math.min(...groupEdges);
-        const offset = groupAbove ? .65 + dateRank * 1.1 : -.65 - (sameDate.length - dateRank) * 1.1;
-        label.style.bottom = `calc(${anchor}% + ${offset}rem)`;
-      } else {
-        label.style.bottom = `calc(${edge}% + ${above ? .65 : dense ? -1.15 : -1.9}rem)`;
-      }
+      label.style.bottom = `calc(${edge}% + ${above ? .65 : dense ? -1.15 : -1.9}rem)`;
       column.append(label);
     }
     if (scores && both) {

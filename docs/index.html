@@ -9,12 +9,12 @@
   <meta name="description" content="How well can AI models follow stories in invented languages? Explore reproducible conlang comprehension results and English controls.">
   <title>Conlang Reading Bench · Results</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css?v=17">
+  <link rel="stylesheet" href="style.css?v=18">
   <script defer src="tier3-results.js?v=4"></script>
   <script defer src="tier4-results.js?v=2"></script>
   <script defer src="tier5-results.js?v=1"></script>
-  <script defer src="accuracy-plot.js?v=24"></script>
-  <script defer src="tier5-ladder.js?v=1"></script>
+  <script defer src="accuracy-plot.js?v=25"></script>
+  <script defer src="tier5-ladder.js?v=2"></script>
   <script defer src="motion.js?v=1"></script>
 </head>
 <body id="top">
@@ -106,6 +106,7 @@
         <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
         <p class="scatter-detail" aria-live="polite"></p>
         <div class="scatter-model-key" id="scatter-model-key" aria-label="Numbered models and scores" hidden></div>
+        <p class="chart-note">Models are evenly spaced in release order. Each date marks the first model released that day.</p>
         <p class="chart-note" id="condition-description">The conlang score is the percentage correct. English is a separate control. Select a point for its score.</p>
         <p class="chart-note" id="scatter-note"></p>
         <p class="chart-note" id="research-note" hidden>The test requires inferring a new grammar. On these 48 stories, choosing the last name mentioned scores 31.25%; random choice among suffix-blind possibilities has 18.8% expected accuracy. Scores use the final JSON answer array, even when reasoning comes first. Select a point to see the original strict score, output-format compliance and capped responses. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FINAL-ARRAY-REGRADE.md">See how results were regraded</a>.</p>
@@ -140,12 +141,12 @@
       <h2 id="tier5-heading">Tier 5 · <em>Rules revealed.</em></h2>
       <p class="settings">Each story uses an invented grammar with case endings, word order, agreement, tense, negation, a mood particle and pronouns. At first the model sees only the words and the kinds of rule the language uses. Each later stage reveals one more rule, and the model answers the same six questions again in a fresh context.</p>
       <p class="settings">The score is the mean accuracy over all stages, so a model that needs fewer rules scores higher. A checker confirms that every answer is determined once all rules are known. The level was tuned so that the calibration model, Claude Haiku 5.5 (low), scores between 10% and 90%.</p>
-      <figure class="chart" id="tier5-ladder" hidden>
-        <figcaption><h3>Accuracy by rules revealed</h3><p>Share of answers correct at each stage on held-out stories</p></figcaption>
+      <figure class="chart ladder" id="tier5-ladder" hidden>
+        <figcaption><h3>Accuracy by rules revealed</h3><p>Share of answers correct at each stage on held-out stories. Hover or focus a stage for its values.</p></figcaption>
         <div class="legend" aria-hidden="true"></div>
-        <dl class="plot"></dl>
-        <div class="axis" aria-hidden="true"><div><span>0</span><span>25</span><span>50</span><span>75</span><span>100%</span></div></div>
+        <div class="ladder-canvas"><div class="ladder-tip" role="status" hidden></div></div>
         <p class="chart-note" id="tier5-paired"></p>
+        <details class="ladder-table"><summary>Show the data as a table</summary><table></table></details>
       </figure>
       <p><a class="text-link" href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/TIER5-PROGRESSIVE-RULES-DESIGN.md">See the design, calibration and limitations</a></p>
     </section>
