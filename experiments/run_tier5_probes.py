@@ -40,15 +40,19 @@ def main(argv=None):
     parser.add_argument("--max-output", type=int, default=32768)
     parser.add_argument("--rates", required=True, nargs=2, type=float)
     parser.add_argument("--workers", type=int, default=3)
+    parser.add_argument("--stories", type=int,
+                        help="run only the first N stories; a later run can raise N")
     parser.add_argument("--estimate", action="store_true",
                         help="print the worst-case cost of the remaining requests and exit")
     parser.add_argument("--retry-uncertain", action="store_true",
                         help="keep uncertain attempts, reserve their cost, then retry them")
     args = parser.parse_args(argv)
     if (not all(math.isfinite(x) and x >= 0 for x in [args.budget, *args.rates])
-            or args.max_output < 1 or args.workers < 1):
-        parser.error("invalid budget, rates, output limit or worker count")
+            or args.max_output < 1 or args.workers < 1
+            or (args.stories is not None and args.stories < 1)):
+        parser.error("invalid budget, rates, output limit, worker or story count")
     manifest, items = load_manifest(args.manifest)
+    items = items[:args.stories]
     conf = settings(args.model, args.effort, args.max_output, args.rates, args.provider)
     directory = Path(args.out)
     todo = [(item, stage, prompt) for item, stage, prompt in requests_for(items)

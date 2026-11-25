@@ -119,6 +119,17 @@ class TestTier5Runner(unittest.TestCase):
         archive(self.root / "run", self.root / "archive.json")
         self.assertEqual(report(self.manifest, self.root / "archive.json"), result)
 
+    def test_story_limit_runs_and_scores_a_prefix(self):
+        _, items = load_manifest(self.manifest)
+        self.gold = [(p, i["answers"]) for i in items for p in [*i["prompts"], i["english"]]]
+        self.run_probe("--stories", "1")
+        self.assertEqual(len(list((self.root / "run").glob("*-*.json"))), 6)
+        self.assertEqual(json.loads(self.run_probe("--estimate"))["remaining"], 6)
+        result = report(self.manifest, self.root / "run", stories=1)
+        self.assertTrue(result["complete"])
+        self.assertEqual(result["stories"], 1)
+        self.assertFalse(report(self.manifest, self.root / "run")["complete"])
+
     def test_budget_stops_before_overspending(self):
         _, items = load_manifest(self.manifest)
         self.gold = [(p, i["answers"]) for i in items for p in [*i["prompts"], i["english"]]]

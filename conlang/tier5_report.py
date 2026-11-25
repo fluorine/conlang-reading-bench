@@ -21,9 +21,13 @@ def _bootstrap(values, seed=1776, rounds=10000):
     return [boot[int(0.025 * rounds)], boot[int(0.975 * rounds) - 1]]
 
 
-def report(manifest_path, run_dir):
-    """`run_dir` is a run directory or an archive written by `archive`."""
+def report(manifest_path, run_dir, stories=None):
+    """`run_dir` is a run directory or an archive written by `archive`.
+
+    `stories` scores only the first N manifest stories.
+    """
     manifest, items = load_manifest(manifest_path)
+    items = items[:stories]
     run_dir = Path(run_dir)
     if run_dir.is_file():
         bundle = read(run_dir)
@@ -33,7 +37,7 @@ def report(manifest_path, run_dir):
         metadata = read(run_dir / "run.json") if (run_dir / "run.json").exists() else None
         rows = {(r["world"], r["language"], r["stage"]): r
                 for r in (read(p) for p in run_dir.glob("*-*.json"))}
-    missing, capped, cost, calls = 0, 0, 0.0, 0
+    missing, capped, refused, cost, calls = 0, 0, 0, 0.0, 0
     stories = []
     for item in items:
         marks = []
@@ -49,6 +53,7 @@ def report(manifest_path, run_dir):
                 raise ValueError(f"transcript does not match the manifest: {path}")
             marks.append(score(row["raw"], item["answers"]))
             capped += bool(row.get("capped"))
+            refused += row.get("finish_reason") == "refusal"
             cost += row["cost"]
             calls += 1
         stories.append((item, marks[:-1], marks[-1]))
@@ -87,12 +92,13 @@ def report(manifest_path, run_dir):
         ladder_gap_at_least_30=curve[-1] - curve[0] >= 30,
         final_within_10_of_english=english - curve[-1] <= 10,
         capped_under_2_percent=capped < 0.02 * total,
+        refused_under_2_percent=refused < 0.02 * total,
         dcs_20_above_strongest_baseline=dcs - strongest[1] >= 20,
     )
-    return dict(manifest=manifest["name"], level=manifest["level"],
+    return dict(manifest=manifest["name"], level=manifest["level"], stories=len(items),
                 run=metadata,
                 complete=missing == 0, missing=missing, calls=calls, cost_usd=round(cost, 4),
-                capped=capped, dcs=round(dcs, 2), dcs_interval95=[round(x, 2) for x in _bootstrap(per_story)],
+                capped=capped, refused=refused, dcs=round(dcs, 2), dcs_interval95=[round(x, 2) for x in _bootstrap(per_story)],
                 stage_curve=[round(x, 2) for x in curve], english=round(english, 2),
                 rules_to_solve_median=median(rts), rules_to_solve=rts,
                 retention=round(100 * mean(b for _, b in kept), 1) if kept else None,
@@ -115,8 +121,9 @@ def main(argv=None):
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--run", required=True)
     parser.add_argument("--archive", help="also write the run's rows to this file")
+    parser.add_argument("--stories", type=int, help="score only the first N stories")
     args = parser.parse_args(argv)
-    print(json.dumps(report(args.manifest, args.run), indent=2))
+    print(json.dumps(report(args.manifest, args.run, args.stories), indent=2))
     if args.archive:
         archive(args.run, args.archive)
 

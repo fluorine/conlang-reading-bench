@@ -171,7 +171,7 @@ The levels were fixed before the first model call. Do not tune knobs one by one 
 | 3. Verifier | `conlang/tier5_verify.py` | Done |
 | 4. Builder, baselines, scorer | `conlang/tier5.py` | Done |
 | 5. Offline checks | `conlang/verify_tier5_offline.py`, `tests/test_tier5.py` | Done |
-| 6. Runner | `experiments/run_tier5_probes.py` | Done. Uses `conlang/provider.py`, a hard budget with per-request reservations, resume, and `--estimate`. Records raw text, usage, cost and cap hits. |
+| 6. Runner | `experiments/run_tier5_probes.py` | Done. Uses `conlang/provider.py`, a hard budget with per-request reservations, resume, and `--estimate`. Records raw text, usage, cost and cap hits. `--stories N` runs the first N stories, and a later run can raise N. |
 | 7. Dev and held-out manifests | `experiments/make_tier5_dev.py`, `experiments/tier5-dev-L{1..5}.json`, `experiments/tier5-heldout-L4.json` | Done. 8 dev stories per level and 48 held-out L4 stories from a separate seed. Each manifest stores a hash of every prompt, so generator drift stops a run. |
 | 8. Run report and gate checks | `conlang/tier5_report.py` | Done. Stage curve, DCS with a story-bootstrap interval, rules to solve, retention, module profile, baselines and the gate checks. `--archive` bundles a run into one file, and the report reads that file the same way as a run folder. |
 | 9. Site and CI | `experiments/build_tier5_site.py`, CI step | To do |
@@ -255,9 +255,50 @@ Module profile, accuracy on questions that depend on the module, before and afte
 | Tense | 46.7 | 71.2 |
 | Pronoun | 36.3 | 66.0 |
 
-All six checks pass: hard band, tuning band, ladder gap 56.6 points, final stage 1.7 points below English, no capped reply, and DCS 34.0 points above the strongest baseline. The held-out DCS agrees with the dev DCS (61.5) within 0.4 points.
+All seven checks pass: hard band, tuning band, ladder gap 56.6 points, final stage 1.7 points below English, no capped reply, no refused reply, and DCS 34.0 points above the strongest baseline. The held-out DCS agrees with the dev DCS (61.5) within 0.4 points.
 
 Retention below 100% means a model sometimes loses a correct answer when one more card appears. Pronoun resolution gains the least from its card.
+
+## Model comparison (gate 4)
+
+Sonnet 5.5, effort low, 32,768-token cap, the first 8 stories of the held-out manifest (two full card-order rotations), 72 calls, $3.71. The budget was $5, which does not cover all 48 stories (about $19 at $0.40 per story). Haiku is scored again on the same 8 stories for a paired comparison. Replies: `reports/tier5-heldout-sonnet-low-L4-first8-responses.json`.
+
+```sh
+python -m experiments.run_tier5_probes --manifest experiments/tier5-heldout-L4.json \
+  --out .work/tier5-heldout-sonnet-low-L4 --budget 5 --model claude-sonnet-5-5 \
+  --provider Anthropic --effort low --rates 2 10 --stories 8 --workers 2
+python -m conlang.tier5_report --manifest experiments/tier5-heldout-L4.json \
+  --run .work/tier5-heldout-sonnet-low-L4 --stories 8
+```
+
+| Metric, first 8 stories | Haiku 5.5 low | Sonnet 5.5 low |
+|---|---:|---:|
+| DCS (95% interval) | 63.8 (59.1–68.2) | **83.6 (73.4–93.0)** |
+| Stage curve, stages 0–7 | 35.4, 29.2, 52.1, 60.4, 70.8, 75.0, 89.6, 97.9 | 70.8, 81.3, 77.1, 89.6, 93.8, 81.3, 91.7, 83.3 |
+| English control | 93.8 | 95.8 |
+| Retention | 76.8% | 89.0% |
+| Capped / refused replies | 0 / 0 | 0 / 2 |
+| Cost | $0.29 | $3.71 |
+
+Module profile, before and after the card:
+
+| Module | Haiku | Sonnet |
+|---|---|---|
+| Role (case) | 50.9 → 82.7 | 79.4 → 89.7 |
+| Agreement | 43.4 → 89.8 | 84.2 → 83.6 |
+| Tense | 50.0 → 72.9 | 82.5 → 92.7 |
+| Negation | 48.5 → 78.3 | 80.9 → 84.8 |
+| Irrealis | 46.0 → 78.1 | 82.5 → 90.5 |
+| Pronoun | 26.1 → 70.7 | 67.4 → 87.9 |
+
+**Findings:**
+
+- **The tier separates the two models.** The DCS intervals do not overlap, and both scores are inside the 10–90% hard band. Sonnet is 19.8 points above Haiku on the same stories.
+- **Most of the gap is at stage 0.** Sonnet answers 70.8% before any rule card, compared with 35.4% for Haiku. Sonnet recovers most of the grammar from the lexicon, the family text and the holder rule alone. The pronoun card gives Sonnet the largest gain (20.5 points). The other cards give 0–10 points.
+- **Sonnet is near the ceiling.** DCS 83.6 is above the tuning band, and the ladder gap is 12.5 points. A stronger model or a higher effort setting will probably score above 90%. A model comparison at that level needs L5, or a v2 with real information loss (see [Open questions](#open-questions)).
+- **Two refusals.** Sonnet stopped two replies with `stop_reason: refusal` on these puzzles (stories 112938917 stage 5 and 519759732 stage 7). Each scores 0/6. The report now counts refusals and gates them below 2% (2 of 72 is 2.8%). The stage-7 refusal causes the low final stage. Without that reply, stage 7 is 40/42 (95.2%), within 1 point of English.
+
+Sonnet fails the tuning-band, ladder-gap, English-gap and refusal checks. The probe gates (2 and 3) apply to the calibration model. For a comparison model these checks describe where it falls. They do not reject the tier.
 
 ## Calibration gates
 
@@ -266,7 +307,7 @@ Run these in order. Stop and revise the design if a gate fails.
 1. **Offline, at every level.** Every final-stage question must be uniquely answerable. The strongest baseline must be below 30%. Report stage-0 answerability, but do not gate on it (see [Answerability](#answerability)). **Current result: L4 and L5 pass. L1, L2 and L3 fail the baseline limit,** so they are run in the dev sweep for the curve shape, but they are not eligible.
 2. **Dev sweep.** Run the [tuning procedure](#tuning-procedure) steps 1–4 with the probe. Probe final-stage accuracy must be within 10 points of its English score. Fewer than 2% of requests may reach the cap. The probe's DCS must be at least 20 points above the strongest baseline of the chosen level. **Result: L4 chosen.** It passed every check except the cap share (3 of 72), which the 32,768 cap fixed. See [Dev sweep results](#dev-sweep-results).
 3. **Held-out probe.** Tuning procedure step 5: probe DCS in 10%–90%, and a stage gap of at least 30 points. **Result: pass.** DCS 61.8, stage gap 56.6 points. See [Held-out result](#held-out-result).
-4. **Model comparison.** Only after gate 3 passes, run other models on the same frozen held-out manifest. Report the strongest and weakest models against the band.
+4. **Model comparison.** Only after gate 3 passes, run other models on the same frozen held-out manifest. Report the strongest and weakest models against the band. **Partial result:** Sonnet 5.5 low on 8 stories scores 83.6, against 63.8 for Haiku on the same stories. See [Model comparison](#model-comparison-gate-4).
 
 ## Cost estimate
 
