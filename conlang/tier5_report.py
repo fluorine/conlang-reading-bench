@@ -5,7 +5,7 @@ from pathlib import Path
 from random import Random
 from statistics import mean, median
 
-from .suite import read
+from .suite import read, write
 from .tier5 import load_manifest, score
 
 # Question tags that a card resolves. Lexical inversion has no card.
@@ -22,19 +22,28 @@ def _bootstrap(values, seed=1776, rounds=10000):
 
 
 def report(manifest_path, run_dir):
+    """`run_dir` is a run directory or an archive written by `archive`."""
     manifest, items = load_manifest(manifest_path)
     run_dir = Path(run_dir)
+    if run_dir.is_file():
+        bundle = read(run_dir)
+        metadata = bundle["run"]
+        rows = {(r["world"], r["language"], r["stage"]): r for r in bundle["rows"]}
+    else:
+        metadata = read(run_dir / "run.json") if (run_dir / "run.json").exists() else None
+        rows = {(r["world"], r["language"], r["stage"]): r
+                for r in (read(p) for p in run_dir.glob("*-*.json"))}
     missing, capped, cost, calls = 0, 0, 0.0, 0
     stories = []
     for item in items:
         marks = []
         for stage in [*range(len(item["prompts"])), "english"]:
-            path = run_dir / f"{item['world_seed']}-{item['language_seed']}-{stage}.json"
-            if not path.exists():
+            path = f"{item['world_seed']}-{item['language_seed']}-{stage}"
+            row = rows.get((item["world_seed"], item["language_seed"], stage))
+            if row is None:
                 missing += 1
                 marks.append([False] * len(item["answers"]))
                 continue
-            row = read(path)
             prompt = item["prompts"][stage] if stage != "english" else item["english"]
             if row["prompt"] != prompt or row["answers"] != item["answers"]:
                 raise ValueError(f"transcript does not match the manifest: {path}")
@@ -81,7 +90,7 @@ def report(manifest_path, run_dir):
         dcs_20_above_strongest_baseline=dcs - strongest[1] >= 20,
     )
     return dict(manifest=manifest["name"], level=manifest["level"],
-                run=read(run_dir / "run.json") if (run_dir / "run.json").exists() else None,
+                run=metadata,
                 complete=missing == 0, missing=missing, calls=calls, cost_usd=round(cost, 4),
                 capped=capped, dcs=round(dcs, 2), dcs_interval95=[round(x, 2) for x in _bootstrap(per_story)],
                 stage_curve=[round(x, 2) for x in curve], english=round(english, 2),
@@ -92,12 +101,24 @@ def report(manifest_path, run_dir):
                 strongest_baseline=[strongest[0], round(strongest[1], 1)], checks=checks)
 
 
+def archive(run_dir, out):
+    """Bundle a run's metadata and raw rows into one file for the repository."""
+    run_dir = Path(run_dir)
+    rows = [read(p) for p in sorted(run_dir.glob("*-*.json"))]
+    if any((run_dir / "uncertain").glob("*.json")) or any(run_dir.glob("*.pending")):
+        raise ValueError("run has uncertain requests; reconcile them before archiving")
+    write(out, dict(run=read(run_dir / "run.json"), rows=rows))
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", required=True)
     parser.add_argument("--run", required=True)
+    parser.add_argument("--archive", help="also write the run's rows to this file")
     args = parser.parse_args(argv)
     print(json.dumps(report(args.manifest, args.run), indent=2))
+    if args.archive:
+        archive(args.run, args.archive)
 
 
 if __name__ == "__main__":

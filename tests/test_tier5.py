@@ -10,7 +10,7 @@ from unittest.mock import patch
 from conlang.scoring import parse_final_answer
 from conlang.suite import read, write
 from conlang.tier5 import build_story, load_manifest, score
-from conlang.tier5_report import report
+from conlang.tier5_report import archive, report
 from experiments.make_tier5_dev import manifest as make_manifest
 from experiments.run_tier5_probes import main as run_probes
 from conlang.tier5_grammar import LEVELS, card_orders, level, sample_language
@@ -116,6 +116,8 @@ class TestTier5Runner(unittest.TestCase):
         self.assertEqual(result["dcs"], 80.0)
         self.assertEqual(result["rules_to_solve"], [1, 1])
         self.assertAlmostEqual(result["cost_usd"], 12 * (1000 * 0.1 + 500 * 0.5) / 1e6)
+        archive(self.root / "run", self.root / "archive.json")
+        self.assertEqual(report(self.manifest, self.root / "archive.json"), result)
 
     def test_budget_stops_before_overspending(self):
         _, items = load_manifest(self.manifest)

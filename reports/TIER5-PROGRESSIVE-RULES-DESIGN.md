@@ -159,7 +159,7 @@ The levels were fixed before the first model call. Do not tune knobs one by one 
 
 - **Fresh context only in v1.** Each stage is one user message in a new context, with no system prompt and no tools. This matches the earlier runs. Continued context is a v2 condition.
 - **Full ladder in v1.** Run every stage. Do not stop early when a model succeeds. DCS needs every stage, and the curve may not be monotonic. When the dev data shows monotonic curves, consider adaptive stopping (stop after two passed stages in sequence) to cut cost.
-- **One output cap for all providers.** Use 16,384 tokens and record each request that reaches the cap. Sonnet high reached an 8,192 cap on 30 of 48 Tier 3 requests, which made that run hard to interpret.
+- **One output cap for all providers.** Use 32,768 tokens and record each request that reaches the cap. Sonnet high reached an 8,192 cap on 30 of 48 Tier 3 requests, which made that run hard to interpret. The dev sweep used 16,384, and Haiku low reached it on 7 of 312 requests. Haiku returns its thinking as omitted blocks, so a capped reply has no text and scores zero. At 32,768, no held-out request reached the cap.
 - **Calls per story:** one per stage and one English control. At L4 and L5 this is 9 calls.
 
 ## Implementation status
@@ -172,8 +172,8 @@ The levels were fixed before the first model call. Do not tune knobs one by one 
 | 4. Builder, baselines, scorer | `conlang/tier5.py` | Done |
 | 5. Offline checks | `conlang/verify_tier5_offline.py`, `tests/test_tier5.py` | Done |
 | 6. Runner | `experiments/run_tier5_probes.py` | Done. Uses `conlang/provider.py`, a hard budget with per-request reservations, resume, and `--estimate`. Records raw text, usage, cost and cap hits. |
-| 7. Dev manifests | `experiments/make_tier5_dev.py`, `experiments/tier5-dev-L{1..5}.json` | Done. 8 stories per level. Each manifest stores a hash of every prompt, so generator drift stops a run. |
-| 8. Run report and gate checks | `conlang/tier5_report.py` | Done. Stage curve, DCS with a story-bootstrap interval, rules to solve, retention, module profile, baselines and the gate checks. |
+| 7. Dev and held-out manifests | `experiments/make_tier5_dev.py`, `experiments/tier5-dev-L{1..5}.json`, `experiments/tier5-heldout-L4.json` | Done. 8 dev stories per level and 48 held-out L4 stories from a separate seed. Each manifest stores a hash of every prompt, so generator drift stops a run. |
+| 8. Run report and gate checks | `conlang/tier5_report.py` | Done. Stage curve, DCS with a story-bootstrap interval, rules to solve, retention, module profile, baselines and the gate checks. `--archive` bundles a run into one file, and the report reads that file the same way as a run folder. |
 | 9. Site and CI | `experiments/build_tier5_site.py`, CI step | To do |
 
 ### Run the dev sweep
@@ -185,7 +185,20 @@ python -m experiments.run_tier5_probes --manifest experiments/tier5-dev-L4.json 
 python -m conlang.tier5_report --manifest experiments/tier5-dev-L4.json --run .work/tier5-dev-haiku-L4
 ```
 
-Add `--estimate` to the first command to print the worst-case cost without a call. With the 16,384-token cap, the worst case for all five levels is $2.64 (312 calls). The expected cost is about $0.50.
+Add `--estimate` to the first command to print the worst-case cost without a call. With the 16,384-token cap, the worst case for all five levels is $2.64 (312 calls). The sweep cost $1.05.
+
+### Run the held-out probe
+
+```sh
+python -m experiments.make_tier5_dev --heldout L4 --count 48
+python -m experiments.run_tier5_probes --manifest experiments/tier5-heldout-L4.json \
+  --out .work/tier5-heldout-haiku-L4 --budget 2.50 --model claude-haiku-5-5 \
+  --provider Anthropic --effort low --rates 0.1 0.5 --max-output 32768 --workers 4
+python -m conlang.tier5_report --manifest experiments/tier5-heldout-L4.json \
+  --run .work/tier5-heldout-haiku-L4 --archive reports/tier5-heldout-haiku-low-L4-responses.json
+```
+
+To score an archived run again, pass the archive file to `--run`.
 
 ## Offline results
 
@@ -201,13 +214,58 @@ Add `--estimate` to the first command to print the worst-case cost without a cal
 
 No verifier search reached its node cap.
 
+## Dev sweep results
+
+Haiku 5.5, effort low, 16,384-token cap, 8 stories per level, 312 calls, $1.05. Replies: `reports/tier5-dev-haiku-low-L{1..5}-responses.json`.
+
+| Level | DCS (95% interval) | Stage 0 | Final stage | English | Strongest baseline | Capped | Failed checks |
+|---|---|---:|---:|---:|---|---:|---|
+| L1 | 90.0 (80.8–97.1) | 85.4 | 97.9 | 100.0 | `suffix_blind` 58.3 | 0 | tuning band, ladder gap |
+| L2 | 86.5 (75.4–95.1) | 70.8 | 93.8 | 100.0 | `suffix_blind` 43.8 | 1 | tuning band, ladder gap |
+| L3 | 79.8 (72.0–86.9) | 54.2 | 95.8 | 91.7 | `first_name` 31.2 | 1 | tuning band |
+| **L4** | **61.5 (52.6–71.9)** | 39.6 | 91.7 | 97.9 | `suffix_blind` 37.5 | 3 | cap share |
+| L5 | 49.0 (37.5–60.7) | 27.1 | 85.4 | 100.0 | `suffix_blind` 33.3 | 2 | English gap, cap share, baseline margin |
+
+L4 is frozen as the Tier 5 level. It is the only level in the tuning band whose single failed check was the cap share, and a higher cap removes that failure. L5 fails three checks. L1–L3 are too easy for the probe and fail the offline baseline limit.
+
+**Frozen settings:** level L4, protocol `tier5-0.1`, 6 questions per story, card-order seed 5, output cap 32,768, effort low for the probe.
+
+## Held-out result
+
+Haiku 5.5, effort low, 32,768-token cap, 48 L4 stories (`experiments/tier5-heldout-L4.json`), 432 calls, $1.75. Replies: `reports/tier5-heldout-haiku-low-L4-responses.json`.
+
+| Metric | Value |
+|---|---|
+| DCS (95% interval) | **61.8 (58.1–65.5)** |
+| Stage curve, stages 0–7 | 36.5, 37.2, 46.2, 52.1, 62.2, 79.5, 87.9, 93.1 |
+| English control | 94.8 |
+| Rules to solve, median | 6 of 7 |
+| Retention | 79.9% |
+| Strongest baseline | `suffix_blind` 27.8 |
+| Capped replies | 0 |
+
+Module profile, accuracy on questions that depend on the module, before and after its card:
+
+| Module | Before | After |
+|---|---:|---:|
+| Agreement | 43.2 | 87.6 |
+| Negation | 37.7 | 78.5 |
+| Role (case) | 51.1 | 76.8 |
+| Irrealis | 42.6 | 72.6 |
+| Tense | 46.7 | 71.2 |
+| Pronoun | 36.3 | 66.0 |
+
+All six checks pass: hard band, tuning band, ladder gap 56.6 points, final stage 1.7 points below English, no capped reply, and DCS 34.0 points above the strongest baseline. The held-out DCS agrees with the dev DCS (61.5) within 0.4 points.
+
+Retention below 100% means a model sometimes loses a correct answer when one more card appears. Pronoun resolution gains the least from its card.
+
 ## Calibration gates
 
 Run these in order. Stop and revise the design if a gate fails.
 
 1. **Offline, at every level.** Every final-stage question must be uniquely answerable. The strongest baseline must be below 30%. Report stage-0 answerability, but do not gate on it (see [Answerability](#answerability)). **Current result: L4 and L5 pass. L1, L2 and L3 fail the baseline limit,** so they are run in the dev sweep for the curve shape, but they are not eligible.
-2. **Dev sweep.** Run the [tuning procedure](#tuning-procedure) steps 1–4 with the probe. Probe final-stage accuracy must be within 10 points of its English score. Fewer than 2% of requests may reach the cap. The probe's DCS must be at least 20 points above the strongest baseline of the chosen level.
-3. **Held-out probe.** Tuning procedure step 5: probe DCS in 10%–90%, and a stage gap of at least 30 points.
+2. **Dev sweep.** Run the [tuning procedure](#tuning-procedure) steps 1–4 with the probe. Probe final-stage accuracy must be within 10 points of its English score. Fewer than 2% of requests may reach the cap. The probe's DCS must be at least 20 points above the strongest baseline of the chosen level. **Result: L4 chosen.** It passed every check except the cap share (3 of 72), which the 32,768 cap fixed. See [Dev sweep results](#dev-sweep-results).
+3. **Held-out probe.** Tuning procedure step 5: probe DCS in 10%–90%, and a stage gap of at least 30 points. **Result: pass.** DCS 61.8, stage gap 56.6 points. See [Held-out result](#held-out-result).
 4. **Model comparison.** Only after gate 3 passes, run other models on the same frozen held-out manifest. Report the strongest and weakest models against the band.
 
 ## Cost estimate
@@ -218,10 +276,10 @@ A 48-story run at L4 or L5 is 432 calls. One prompt is about 2,000 input tokens.
 |---|---:|---:|---:|
 | Haiku 5.5 low ($0.10 / $0.50 per M) | ~0.9 M | ~0.9 M | about $0.55 |
 | Sonnet 5.5 low ($2 / $10 per M) | ~0.9 M | ~0.9 M | about $11 |
-| Dev sweep, 5 levels × 8 stories on the probe | ~0.8 M | ~0.8 M | about $0.50 |
-| Held-out probe run (gate 3) | | | about $0.55 |
+| Dev sweep, 5 levels × 8 stories on the probe | | | $1.05 (actual) |
+| Held-out probe run (gate 3) | | | $1.75 (actual) |
 
-Calibration costs about $1.05 in total, with the probe only. The cost for other models applies only after the tier passes calibration.
+Calibration cost $2.80 in total, with the probe only. Haiku low used more output than the 2,000-token assumption, so the Haiku row is low by about 3×. Scale the other model rows the same way before a run.
 
 The Claude rates come from third-party coverage and are not verified. Check the current provider pages before a run.
 

@@ -37,7 +37,7 @@ def main(argv=None):
     parser.add_argument("--model", required=True)
     parser.add_argument("--effort", default="low")
     parser.add_argument("--provider", default="OpenAI", choices=("OpenAI", "Anthropic"))
-    parser.add_argument("--max-output", type=int, default=16384)
+    parser.add_argument("--max-output", type=int, default=32768)
     parser.add_argument("--rates", required=True, nargs=2, type=float)
     parser.add_argument("--workers", type=int, default=3)
     parser.add_argument("--estimate", action="store_true",

@@ -23,7 +23,14 @@ def manifest(name, level_name, count, seed_text):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--count", type=int, default=8)
+    parser.add_argument("--heldout", choices=list(LEVELS),
+                        help="write one held-out manifest for this level instead")
     args = parser.parse_args(argv)
+    if args.heldout:
+        name = f"tier5-heldout-{args.heldout}"
+        write(f"experiments/{name}.json", manifest(name, args.heldout, args.count, f"{name}:seeds"))
+        print(f"experiments/{name}.json")
+        return
     for level_name in LEVELS:
         name = f"tier5-dev-{level_name}"
         write(f"experiments/{name}.json", manifest(name, level_name, args.count, f"{name}:seeds"))
