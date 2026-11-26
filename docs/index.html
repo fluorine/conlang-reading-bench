@@ -13,7 +13,7 @@
   <script defer src="tier3-results.js?v=4"></script>
   <script defer src="tier4-results.js?v=2"></script>
   <script defer src="tier5-results.js?v=1"></script>
-  <script defer src="accuracy-plot.js?v=25"></script>
+  <script defer src="accuracy-plot.js?v=26"></script>
   <script defer src="tier5-ladder.js?v=2"></script>
   <script defer src="motion.js?v=1"></script>
 </head>
@@ -91,7 +91,7 @@
       </figure>
     </section>
     <section class="method" id="accuracy-overview" aria-labelledby="accuracy-heading" hidden>
-      <h2 id="accuracy-heading">Accuracy by <em>model release date.</em></h2>
+      <h2 id="accuracy-heading">Accuracy by <em>estimated model capacity.</em></h2>
       <div class="scatter-controls">
         <fieldset id="plot-conditions">
           <legend>Reading conditions</legend>
@@ -106,7 +106,7 @@
         <div class="scatter-grid" role="group" aria-labelledby="scatter-label"></div>
         <p class="scatter-detail" aria-live="polite"></p>
         <div class="scatter-model-key" id="scatter-model-key" aria-label="Numbered models and scores" hidden></div>
-        <p class="chart-note">Models are evenly spaced in release order. Each date marks the first model released that day.</p>
+        <p class="chart-note">Models are arranged from roughly lower to higher expected capacity, including the effort setting. This editorial order is uncertain, especially across providers; it is not based on these scores. Equal spacing does not represent equal differences in capacity or show exponential growth. Numbers identify the models listed below.</p>
         <p class="chart-note" id="condition-description">The conlang score is the percentage correct. English is a separate control. Select a point for its score.</p>
         <p class="chart-note" id="scatter-note"></p>
         <p class="chart-note" id="research-note" hidden>The test requires inferring a new grammar. On these 48 stories, choosing the last name mentioned scores 31.25%; random choice among suffix-blind possibilities has 18.8% expected accuracy. Scores use the final JSON answer array, even when reasoning comes first. Select a point to see the original strict score, output-format compliance and capped responses. <a href="https://github.com/fluorine/conlang-reading-bench/blob/main/reports/FINAL-ARRAY-REGRADE.md">See how results were regraded</a>.</p>

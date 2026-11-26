@@ -1,4 +1,5 @@
-// Published runs from reports/index.json, in the release order shown below.
+// Published runs from reports/index.json. Capacity order is a rough editorial
+// judgment, independent of this benchmark's scores and not a measured scale.
 const accuracy = {
   "two": [
     {
@@ -41,7 +42,19 @@ const accuracy = {
 const models = ["GPT-4o mini (default)", "GPT-4.1 mini (default)", "GPT-5.4 nano (default)", "GPT-6 Luna (low)"];
 const shortNames = ["4o mini (default)", "4.1 mini (default)", "5.4 nano (default)", "Luna (low)"];
 const releaseDates = ["2024-07-18", "2025-04-14", "2026-03-17", "2026-09-22"];
-const dateLabel = new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+const capacityOrder = [
+  "GPT-4o mini (default)", "GPT-4.1 mini (default)", "GPT-5.4 nano (default)",
+  "GPT-6 Luna (low)", "GPT-6 Luna (medium)", "Claude Haiku 5.5 (low)",
+  "GPT-6 Sol (low)", "Claude Sonnet 5.5 (low)", "Claude Sonnet 5.5 (high)",
+  "GPT-6.1 Terra (medium)"
+];
+function capacityRank(name) {
+  const index = capacityOrder.indexOf(name);
+  return index < 0 ? Infinity : index;
+}
+function capacityCompare(a, b) {
+  return capacityRank(a.name) - capacityRank(b.name) || a.name.localeCompare(b.name);
+}
 const plot = document.querySelector("#accuracy-overview");
 const tabs = Array.from(document.querySelectorAll("[role=tab][data-tier]"));
 let tier = tabs.at(-1).dataset.tier;
@@ -65,16 +78,15 @@ function render() {
   const isExperimental = isResearch || isTier4 || isTier5;
   const series = isTier5 ? tier5Research.models.slice() : isTier4 ? tier4Research.models.slice()
     : isResearch ? tier3Research.models.slice() : null;
-  if (series) series.sort((a, b) => a.releaseDate.localeCompare(b.releaseDate));
+  if (series) series.sort(capacityCompare);
   const dense = Boolean(series && series.length > 5);
   modelKey.hidden = false;
-  modelKey.classList.toggle("compact-only", !dense);
+  modelKey.classList.toggle("compact-only", false);
   const questionCount = isResearch ? 48 : isFour || isTier4 ? 192 : 96;
   const storyCount = isExperimental ? 48 : questionCount / 4;
   const activeModels = isExperimental ? series.map(model => model.name) : models;
   const activeShortNames = isExperimental ? series.map(model => model.shortName) : shortNames;
   const activeDates = isExperimental ? series.map(model => model.releaseDate) : releaseDates;
-  const activeTimes = activeDates.map(date => Date.parse(date));
   const selected = Array.from(conditions.querySelectorAll("input:checked"), input => input.value);
   const both = selected.length === 2;
   const logarithmic = scale.checked;
@@ -121,16 +133,14 @@ function render() {
   activeModels.forEach((model, i) => {
     const column = document.createElement("div");
     column.className = "scatter-column";
-    // Even spacing in release order: models released days apart stay legible.
+    // These positions represent categories, not numerical capacity differences.
     const total = activeModels.length;
     const pad = total <= 2 ? 25 : total <= 4 ? 12 : 7;
     column.style.left = (total === 1 ? 50 : pad + (100 - 2 * pad) * i / (total - 1)) + "%";
-    const date = document.createElement("time");
-    date.className = "scatter-date";
-    date.dateTime = activeDates[i];
-    date.textContent = dateLabel.format(activeTimes[i]);
-    date.hidden = i > 0 && activeDates[i - 1] === activeDates[i];
-    column.append(date);
+    const axisLabel = document.createElement("span");
+    axisLabel.className = "scatter-date";
+    axisLabel.textContent = String(i + 1);
+    column.append(axisLabel);
     const scores = isExperimental ? series[i].scores : accuracy[tier][i];
     const label = document.createElement("span");
     label.className = "scatter-model";
@@ -141,7 +151,8 @@ function render() {
     const scoreSummary = scores && selected.length
       ? selected.map(key => `${conditionNames[key]} ${(scores[key] + 1e-10).toFixed(2)}%`).join(" · ")
       : "Select a reading condition";
-    keyItem.textContent = `${i + 1} · ${activeShortNames[i]} · ${activeDates[i]} · ${scoreSummary}`;
+    const placement = Number.isFinite(capacityRank(model)) ? "" : " · capacity unplaced";
+    keyItem.textContent = `${i + 1} · ${activeShortNames[i]} · ${activeDates[i]}${placement} · ${scoreSummary}`;
     modelKey.append(keyItem);
     if (selected.length && scores) {
       const heights = selected.map(key => position(scores[key]));
